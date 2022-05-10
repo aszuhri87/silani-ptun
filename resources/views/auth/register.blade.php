@@ -56,13 +56,13 @@
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
     <div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
+        {{-- <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div> --}}
         <div class="content-wrapper">
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <div class="auth-wrapper auth-v1 px-2">
+                <div class="auth-wrapper auth-v1">
                     {{-- <div class="auth-inner py-2"> --}}
                         <!-- Register v1 -->
                         <div class="card mb-0">
@@ -71,7 +71,7 @@
                                 <a href="javascript:void(0);" class="brand-logo text-center">
                                     <img src="{{asset('app-assets/images/logo.png')}}" alt="" style="width:auto; height:50px" >
                                 </a>
-                                <h2 class="brand-text text-center text-success ml-1 mt-1">SIPDO | PTUN Yogyakarta</h2>
+                                <h2 class="brand-text text-center text-success ml-1">SIPDO | PTUN Yogyakarta</h2>
                                 <p class="card-text mb-2">Silahkan mendaftar!</p>
 
                                 <form method="POST" action="{{ route('register') }}" class="auth-register-form mt-2" >
