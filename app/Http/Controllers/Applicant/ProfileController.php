@@ -54,8 +54,9 @@ class ProfileController extends Controller
                 $file->move(public_path().'/files/', $file_name);
             }
 
-            $appl = Applicant::where('user_id', Auth::id())
-            ->update([
+            $appl = Applicant::where('user_id', Auth::id());
+
+            $appl->update([
                 'name' => $request->name ? $request->name : $appl->name,
                 'image' => $file_name ? $file_name : $appl->image,
                 'nik' => $request->nik ? $request->nik : $appl->nik,
