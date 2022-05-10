@@ -11,7 +11,7 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Profile Settings</h2>
+                        <h3 class="content-header-title float-left mb-0">Profile Settings</h3>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a>
@@ -23,16 +23,9 @@
                     </div>
                 </div>
             </div>
-            <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
-                <div class="form-group breadcrumb-right">
-                    <div class="dropdown">
-                        <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="app-todo.html"><i class="mr-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="mr-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="mr-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="mr-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
-                    </div>
-                </div>
-            </div>
+
         </div>
-        <div class="content-body">
+        <div class="content-body" id="profile">
             <!-- account setting page -->
             <section id="page-account-settings">
                 <div class="row">
@@ -53,31 +46,10 @@
                                     <span class="font-weight-bold">Change Password</span>
                                 </a>
                             </li>
-                            <!-- information -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="account-pill-info" data-toggle="pill" href="#account-vertical-info" aria-expanded="false">
-                                    <i data-feather="info" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Information</span>
-                                </a>
-                            </li>
-                            <!-- social -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
-                                    <i data-feather="link" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Social</span>
-                                </a>
-                            </li>
-                            <!-- notification -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="account-pill-notifications" data-toggle="pill" href="#account-vertical-notifications" aria-expanded="false">
-                                    <i data-feather="bell" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Notifications</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                     <!--/ left menu section -->
-
                     <!-- right content section -->
                     <div class="col-md-9">
                         <div class="card">
@@ -86,58 +58,64 @@
                                     <!-- general tab -->
                                     <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
                                         <!-- header media -->
-                                        <div class="media">
+                                        {{-- <div class="media">
                                             <a href="javascript:void(0);" class="mr-25">
                                                 <img src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
                                             </a>
                                             <!-- upload and reset button -->
                                             <div class="media-body mt-75 ml-1">
-                                                <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                <label for="account-upload" class="btn btn-sm btn-success mb-75 mr-75">Upload</label>
                                                 <input type="file" id="account-upload" hidden accept="image/*" />
                                                 <button class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
                                                 <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
                                             </div>
                                             <!--/ upload and reset button -->
-                                        </div>
+                                        </div> --}}
                                         <!--/ header media -->
 
                                         <!-- form -->
-                                        <form class="validate-form mt-2">
+                                        <form class="validate-form mt-auto" id="change-profile">
                                             <div class="row">
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="account-username">Username</label>
-                                                        <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="johndoe" />
+                                                        <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="{{$data->username}}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="account-name">Name</label>
-                                                        <input type="text" class="form-control" id="account-name" name="name" placeholder="Name" value="John Doe" />
+                                                        <input type="text" class="form-control" id="account-name" name="name" placeholder="Name" value="{{$data->name}}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="account-e-mail">E-mail</label>
-                                                        <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="granger007@hogward.com" />
+                                                        <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{$data->email}}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="account-company">Company</label>
-                                                        <input type="text" class="form-control" id="account-company" name="company" placeholder="Company name" value="Crystal Technologies" />
+                                                        <label for="select_unit">Unit</label>
+                                                        <select class="form-control" name="select_unit">
+                                                            <option value="">-- Pilih Unit --</option>
+                                                            @foreach ($unit as $dt )
+                                                            <option value="{{$dt->id}}">{{$dt->name}}</option>
+                                                            @endforeach
+
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 mt-75">
+                                                {{-- <div class="col-12 mt-75">
                                                     <div class="alert alert-warning mb-50" role="alert">
                                                         <h4 class="alert-heading">Your email is not confirmed. Please check your inbox.</h4>
                                                         <div class="alert-body">
                                                             <a href="javascript: void(0);" class="alert-link">Resend confirmation</a>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                    <button type="submit" class="btn btn-success mt-2 mr-1">Save changes</button>
                                                     <button type="reset" class="btn btn-outline-secondary mt-2">Cancel</button>
                                                 </div>
                                             </div>
@@ -149,7 +127,7 @@
                                     <!-- change password -->
                                     <div class="tab-pane fade" id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
                                         <!-- form -->
-                                        <form class="validate-form">
+                                        <form class="validate-form" id="change-password">
                                             <div class="row">
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
@@ -170,7 +148,7 @@
                                                     <div class="form-group">
                                                         <label for="account-new-password">New Password</label>
                                                         <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="New Password" />
+                                                            <input type="password" id="account-new-password" name="new_password" class="form-control" placeholder="New Password" />
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text cursor-pointer">
                                                                     <i data-feather="eye"></i>
@@ -191,7 +169,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mr-1 mt-1">Save changes</button>
+                                                    <button type="submit" class="btn btn-success mr-1 mt-1" id="sv-change-password">Save changes</button>
                                                     <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
                                                 </div>
                                             </div>
@@ -240,7 +218,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary mt-1 mr-1">Save changes</button>
+                                                    <button type="submit" class="btn btn-success mt-1 mr-1">Save changes</button>
                                                     <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
                                                 </div>
                                             </div>
@@ -249,118 +227,6 @@
                                     </div>
                                     <!--/ information -->
 
-                                    <!-- social -->
-                                    <div class="tab-pane fade" id="account-vertical-social" role="tabpanel" aria-labelledby="account-pill-social" aria-expanded="false">
-                                        <!-- form -->
-                                        <form class="validate-form">
-                                            <div class="row">
-                                                <!-- social header -->
-                                                <div class="col-12">
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <i data-feather="link" class="font-medium-3"></i>
-                                                        <h4 class="mb-0 ml-75">Social Links</h4>
-                                                    </div>
-                                                </div>
-                                                <!-- twitter link input -->
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-twitter">Twitter</label>
-                                                        <input type="text" id="account-twitter" class="form-control" placeholder="Add link" value="https://www.twitter.com" />
-                                                    </div>
-                                                </div>
-                                                <!-- facebook link input -->
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-facebook">Facebook</label>
-                                                        <input type="text" id="account-facebook" class="form-control" placeholder="Add link" />
-                                                    </div>
-                                                </div>
-                                                <!-- google plus input -->
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-google">Google+</label>
-                                                        <input type="text" id="account-google" class="form-control" placeholder="Add link" />
-                                                    </div>
-                                                </div>
-                                                <!-- linkedin link input -->
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-linkedin">LinkedIn</label>
-                                                        <input type="text" id="account-linkedin" class="form-control" placeholder="Add link" value="https://www.linkedin.com" />
-                                                    </div>
-                                                </div>
-                                                <!-- instagram link input -->
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-instagram">Instagram</label>
-                                                        <input type="text" id="account-instagram" class="form-control" placeholder="Add link" />
-                                                    </div>
-                                                </div>
-                                                <!-- Quora link input -->
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="account-quora">Quora</label>
-                                                        <input type="text" id="account-quora" class="form-control" placeholder="Add link" />
-                                                    </div>
-                                                </div>
-
-                                                <!-- divider -->
-                                                <div class="col-12">
-                                                    <hr class="my-2" />
-                                                </div>
-
-                                                <div class="col-12 mt-1">
-                                                    <!-- profile connection header -->
-                                                    <div class="d-flex align-items-center mb-3">
-                                                        <i data-feather="user" class="font-medium-3"></i>
-                                                        <h4 class="mb-0 ml-75">Profile Connections</h4>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <!-- twitter user -->
-                                                        <div class="col-6 col-md-3 text-center mb-1">
-                                                            <p class="font-weight-bold">Your Twitter</p>
-                                                            <div class="avatar mb-1">
-                                                                <span class="avatar-content">
-                                                                    <img src="../../../app-assets/images/avatars/11-small.png" alt="avatar img" width="40" height="40" />
-                                                                </span>
-                                                            </div>
-                                                            <p class="mb-0">@johndoe</p>
-                                                            <a href="javascript:void(0)">Disconnect</a>
-                                                        </div>
-                                                        <!-- facebook button -->
-                                                        <div class="col-6 col-md-3 text-center mb-1">
-                                                            <p class="font-weight-bold mb-2">Your Facebook</p>
-                                                            <button class="btn btn-outline-primary">Connect</button>
-                                                        </div>
-                                                        <!-- google user -->
-                                                        <div class="col-6 col-md-3 text-center mb-1">
-                                                            <p class="font-weight-bold">Your Google</p>
-                                                            <div class="avatar mb-1">
-                                                                <span class="avatar-content">
-                                                                    <img src="../../../app-assets/images/avatars/3-small.png" alt="avatar img" width="40" height="40" />
-                                                                </span>
-                                                            </div>
-                                                            <p class="mb-0">@luraweber</p>
-                                                            <a href="javascript:void(0)">Disconnect</a>
-                                                        </div>
-                                                        <!-- github button -->
-                                                        <div class="col-6 col-md-3 text-center mb-2">
-                                                            <p class="font-weight-bold mb-1">Your GitHub</p>
-                                                            <button class="btn btn-outline-primary">Connect</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <!-- submit and cancel button -->
-                                                    <button type="submit" class="btn btn-primary mr-1 mt-1">Save changes</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <!--/ form -->
-                                    </div>
-                                    <!--/ social -->
 
                                     <!-- notifications -->
                                     <div class="tab-pane fade" id="account-vertical-notifications" role="tabpanel" aria-labelledby="account-pill-notifications" aria-expanded="false">
@@ -408,7 +274,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                <button type="submit" class="btn btn-success mt-2 mr-1">Save changes</button>
                                                 <button type="reset" class="btn btn-outline-secondary mt-2">Cancel</button>
                                             </div>
                                         </div>
@@ -429,3 +295,7 @@
 <!-- END: Content-->
 
 @endsection
+
+@push('script')
+@include('admin.profile.script')
+@endpush

@@ -1,19 +1,57 @@
 <?php
 
-use App\Http\Controllers\Admin\AcceptedMailController;
+use App\Http\Controllers\Admin\AcceptedController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DocumentCategoryController;
+use App\Http\Controllers\Admin\DocumentCategoryRequirementController;
+use App\Http\Controllers\Admin\DocumentRequirementController;
 use App\Http\Controllers\Admin\InboxController;
+use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RequirementTypeController;
+use App\Http\Controllers\Admin\SubUnitController;
+use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\VerificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/dashboard', [AdminController::class, 'index']);
-    Route::get('/notification', [NotificationController::class, 'index']);
-    Route::get('/inbox', [InboxController::class, 'index']);
-    Route::get('/accepted-mail', [AcceptedMailController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::post('/notification/dt', [NotificationController::class, 'dt']);
     Route::get('/profile', [ProfileController::class, 'index']);
-    Route::get('/verification-1', [VerificationController::class, 'verification_1']);
+    Route::post('/profile/update_password', [ProfileController::class, 'update_password']);
+    Route::post('/profile/update_profile', [ProfileController::class, 'update_profile']);
+    // Route::get('/sub-unit', [SubUnitController::class, 'index']);
+    Route::get('/list-applicant', [AdminController::class, 'list_applicant']);
+
+    Route::post('/manage-admin/dt', [ManageAdminController::class, 'dt']);
+    Route::post('/accepted/dt', [AcceptedController::class, 'dt']);
+    Route::post('/verification/dt', [VerificationController::class, 'dt']);
+    Route::get('/verification/download/{id}', [VerificationController::class, 'download']);
+    Route::post('/inbox/dt', [InboxController::class, 'dt']);
+    Route::post('/document-category/dt', [DocumentCategoryController::class, 'dt']);
+    Route::post('/sub-unit/dt', [SubUnitController::class, 'dt']);
+    Route::post('/unit/dt', [UnitController::class, 'dt']);
+    Route::post('/req-type/dt', [RequirementTypeController::class, 'dt']);
+    Route::post('/document-category-req/dt', [DocumentCategoryRequirementController::class, 'dt']);
+    Route::post('/document-req/dt', [DocumentRequirementController::class, 'dt']);
+
+    Route::resource('/notification', NotificationController::class);
+    Route::resource('/manage-admin', ManageAdminController::class);
+    Route::resource('/accepted', AcceptedController::class);
+    Route::resource('/verification', VerificationController::class);
+    Route::resource('/inbox', InboxController::class);
+    Route::resource('/document-category-req', DocumentCategoryRequirementController::class);
+    Route::resource('/document-req', DocumentRequirementController::class);
+    Route::resource('/sub-unit', SubUnitController::class);
+    Route::resource('/document-category', DocumentCategoryController::class);
+    Route::resource('/unit', UnitController::class);
+    Route::resource('/req-type', RequirementTypeController::class);
+
+    // Route::post('/sub-unit', [SubUnitController::class, 'store']);
+    // Route::get('/sub-unit/{id}', [SubUnitController::class, 'index']);
+    // Route::put('/sub-unit/{id}', [SubUnitController::class, 'update']);
+
+    // Route::put('/sub-unit/{id}', [SubUnitController::class, 'update']);
 }
 );

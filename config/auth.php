@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -14,7 +13,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
 
@@ -40,6 +39,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'applicant' => [
+            'driver' => 'session',
+            'provider' => 'applicants',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
+        'super-admin' => [
+            'driver' => 'session',
+            'provider' => 'super_admins',
+        ],
     ],
 
     /*
@@ -60,7 +74,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'applicants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'super_admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
@@ -107,5 +129,4 @@ return [
     */
 
     'password_timeout' => 10800,
-
 ];

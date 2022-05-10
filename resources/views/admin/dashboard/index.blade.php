@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -9,20 +10,12 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <!-- Dashboard Ecommerce Starts -->
-                {{-- <section id="dashboard-ecommerce"> --}}
-                    {{-- <div class="row match-height"> --}}
-
-                        <!--/ Medal Card -->
-
                         <!-- Statistics Card -->
-                        <div class="col-xl-12 col-md-6 col-12">
+                        <div class="col-xl-12 col-md-12 col-12">
                             <div class="card card-statistics">
                                 <div class="card-header">
                                     <h4 class="card-title">Statistics</h4>
-                                    <div class="d-flex align-items-center">
-                                        <p class="card-text font-small-2 mr-25 mb-0">Updated 1 month ago</p>
-                                    </div>
+
                                 </div>
                                 <div class="card-body statistics-body">
                                     <div class="row">
@@ -34,7 +27,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">230k</h4>
+                                                    <h4 class="font-weight-bolder mb-0">{{$queue}}</h4>
                                                     <p class="card-text font-small-3 mb-0">Surat Masuk</p>
                                                 </div>
                                             </div>
@@ -47,7 +40,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">8.549k</h4>
+                                                    <h4 class="font-weight-bolder mb-0">{{$c_applicant}}</h4>
                                                     <p class="card-text font-small-3 mb-0">Pemohon</p>
                                                 </div>
                                             </div>
@@ -60,7 +53,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">1.423k</h4>
+                                                    <h4 class="font-weight-bolder mb-0">{{$reject}}</h4>
                                                     <p class="card-text font-small-3 mb-0">Surat Ditolak</p>
                                                 </div>
                                             </div>
@@ -73,7 +66,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">9745</h4>
+                                                    <h4 class="font-weight-bolder mb-0">{{$accept}}</h4>
                                                     <p class="card-text font-small-3 mb-0">Surat Diterima</p>
                                                 </div>
                                             </div>
@@ -89,20 +82,20 @@
                     <section id="apexchart">
                         <div class="row">
                             <!-- Area Chart starts -->
-                            <div class="col-xl-12 col-md-6 col-12"">
+                            <div class="col-xl-12 col-md-12 col-12"">
                                 <div class="card">
                                     <div class="card-header d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start">
                                         <div>
-                                            <h4 class="card-title">Line Chart</h4>
-                                            <span class="card-subtitle text-muted">Commercial networks</span>
+                                            <h4 class="card-title">Diagram Statistik Tahun {{date('Y')}}</h4>
+                                            {{-- <span class="card-subtitle text-muted">Commercial networks</span> --}}
                                         </div>
-                                        <div class="d-flex align-items-center">
+                                        {{-- <div class="d-flex align-items-center">
                                             <i class="font-medium-2" data-feather="calendar"></i>
                                             <input type="text" class="form-control flat-picker bg-transparent border-0 shadow-none" placeholder="YYYY-MM-DD" />
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="card-body">
-                                        <div id="line-area-chart"></div>
+                                        <div id="chart-admin"></div>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +155,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <!--/ Company Table Card -->
 
 
@@ -178,5 +171,7 @@
 @endsection
 
 @push('script')
-    {{-- @include('admin.script') --}}
+    @include('admin.dashboard.script')
+
+
 @endpush

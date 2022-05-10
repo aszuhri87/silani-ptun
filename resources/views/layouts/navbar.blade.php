@@ -1,15 +1,20 @@
  <!-- BEGIN: Header-->
- <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
+ <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark bg-ptun navbar-shadow container-xxl">
     <div class="navbar-container d-flex content">
         <div class="bookmark-wrapper d-flex align-items-center">
             <ul class="nav navbar-nav d-xl-none">
                 <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
             </ul>
             <ul class="nav navbar-nav bookmark-icons">
+                @hasrole('admin|super admin')
                 <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/inbox" data-toggle="tooltip" data-placement="top" title="Surat Masuk"><i class="ficon" data-feather="inbox"></i></a></li>
                 {{-- <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-toggle="tooltip" data-placement="top" title="Chat"><i class="ficon" data-feather="message-square"></i></a></li>
                 <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-calendar.html" data-toggle="tooltip" data-placement="top" title="Calendar"><i class="ficon" data-feather="calendar"></i></a></li> --}}
-                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/accepted-mail" data-toggle="tooltip" data-placement="top" title="Selesai"><i class="ficon" data-feather="check-square"></i></a></li>
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/accepted" data-toggle="tooltip" data-placement="top" title="Selesai"><i class="ficon" data-feather="check-square"></i></a></li>
+                @endhasrole
+                @role('applicant')
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/applicant/done-docs" data-toggle="tooltip" data-placement="top" title="Selesai"><i class="ficon" data-feather="check-square"></i></a></li>
+                @endrole
             </ul>
             {{-- <ul class="nav navbar-nav">
                 <li class="nav-item d-none d-lg-block"><a class="nav-link bookmark-star"><i class="ficon text-warning" data-feather="star"></i></a>
@@ -22,20 +27,20 @@
             </ul> --}}
         </div>
         <ul class="nav navbar-nav align-items-center ml-auto">
-            <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-id"></i><span class="selected-language">Indonesia</span></a>
+            {{-- <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-id"></i><span class="selected-language">Indonesia</span></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="javascript:void(0);" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="javascript:void(0);" data-language="id"><i class="flag-icon flag-icon-id"></i> Indonesia</a><a class="dropdown-item" href="javascript:void(0);" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="javascript:void(0);" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
-            </li>
+            </li> --}}
 
-            <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>
+            {{-- <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>
                 <div class="search-input">
                     <div class="search-input-icon"><i data-feather="search"></i></div>
                     <input class="form-control input" type="text" placeholder="Explore Vuexy..." tabindex="-1" data-search="search">
                     <div class="search-input-close"><i data-feather="x"></i></div>
                     <ul class="search-list search-list-main"></ul>
                 </div>
-            </li>
+            </li> --}}
 
-            <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">1</span></a>
+            {{-- <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">1</span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header d-flex">
@@ -58,18 +63,41 @@
                     </li>
                     <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="/admin/notification">Read all notifications</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">John Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{Auth::user()->username}}</span><span class="user-status">
+                    @hasrole('admin')
+                    Admin
+
+                    @elserole ('super admin')
+                    Super Admin
+
+                    @elserole('applicant')
+                    Pemohon
+                    @endhasrole
+
+                @hasrole('applicant')
+                </span></div><span class="avatar"><img class="round" src="{{asset('/files/'.Auth::user()->join('applicants', 'applicants.user_id', 'users.id')->where('users.id', Auth::id())->first()->image)}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                @else
+                </span></div><span class="avatar"><img class="round" src="{{asset('/app-assets/images/avatars/profile.png')}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                @endhasrole
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
+                    @role('applicant')
+                    <a class="dropdown-item" href="/applicant/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item" href="/applicant/done-docs"><i class="mr-50" data-feather="check-square"></i> Selesai</a>
+                    @endrole
+                    @hasrole('admin|super admin')
                     <a class="dropdown-item" href="/admin/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
                     <a class="dropdown-item" href="/admin/inbox"><i class="mr-50" data-feather="mail"></i> Surat Masuk</a>
                     <a class="dropdown-item" href="/admin/accepted-mail"><i class="mr-50" data-feather="check-square"></i> Selesai</a>
+                    @endhasrole
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="page-account-settings.html"><i class="mr-50" data-feather="settings"></i> Settings</a>
-                    <a class="dropdown-item" href="page-faq.html"><i class="mr-50" data-feather="help-circle"></i> FAQ</a>
-                    <a class="dropdown-item" href="page-auth-login-v2.html"><i class="mr-50" data-feather="power"></i> Logout</a>
+                    <a class="dropdown-item"  href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><i class="mr-50" data-feather="log-out"></i> Logout</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>
@@ -153,4 +181,5 @@
         </a></li>
 </ul>
 <!-- END: Header-->
+
 @include('layouts.sidebar')
