@@ -6,7 +6,7 @@
         });
 
         const initAction = () => {
-            $(document).on('click','#select-docs-category', function(event){
+            $(document).on('change','#select-docs-category', function(event){
                 event.preventDefault();
                 var id = $(this).find('option:selected').data('id');
                 var id_req = $(this).find('option:selected').val();
@@ -17,7 +17,6 @@
 
                 $.get('/applicant/document-select/'+id, function(data){
                     $('#form-doc-create').find('input[name="id_cat"]').val(id);
-
                         for (i in data){
                             if(data[i].data_type == "textarea"){
                                 $('.label-'+i).html(``+data[i].title+``);
@@ -28,17 +27,17 @@
                             {
                                 $('.label-'+i).html(``+data[i].title+``);
                                 $('.input-'+i).html(`
-                                    <input type="`+data[i].data_type+`"  class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`] required">
+                                    <input type="`+data[i].data_type+`"  class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]">
                                 `);
                             }
-                        }
                         $('#modal-document').modal('show');
+                    }
                 })
             });
 
-            // $(document).on('hide.bs.modal','#modal-document', function(event){
-            //     location.reload();
-            // });
+            $(document).on('hide.bs.modal','#modal-document', function(event){
+                location.reload();
+            });
 
             $(document).on('click', '.btn-detail', function(event){
                 event.preventDefault();
@@ -60,9 +59,9 @@
                     $('textarea[name="description"]').val(data[i].description);
 
                     $('.input-'+i).html(`
-
+                        <div class="input-group">
                             <span class="input-group-text" id="basic-addon1" style="width:100%">`+data[i].requirement_type+` :   <a href="/applicant/document/download/`+data[i].id+`">`+data[i].requirement_value+`</a></span>
-
+                        </div>
                     `);
 
                     // $('input[name="requirement_type"]').val(data[i].requirement_type);
