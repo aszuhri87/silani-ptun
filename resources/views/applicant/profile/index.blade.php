@@ -124,7 +124,6 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-success mt-2 mr-1">Save changes</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-2">Cancel</button>
                                                 </div>
                                             </div>
                                         </form>
