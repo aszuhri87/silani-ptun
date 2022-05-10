@@ -36,9 +36,9 @@
                 })
             });
 
-            $(document).on('hide.bs.modal','#modal-document', function(event){
-                location.reload();
-            });
+            // $(document).on('hide.bs.modal','#modal-document', function(event){
+            //     location.reload();
+            // });
 
             $(document).on('click', '.btn-detail', function(event){
                 event.preventDefault();
