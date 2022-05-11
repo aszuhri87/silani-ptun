@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="select_unit">Unit</label>
-                                    <select class="form-control" name="select_unit">
+                                    <select class="form-control" name="select_unit" id="select_unit">
                                         <option value="">-- Pilih Unit --</option>
                                         @foreach ($unit as $u )
 
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="select_unit">Sub Unit</label>
-                                    <select class="form-control" name="select_sub_unit">
+                                    <select class="form-control" name="select_sub_unit" id="select_sub_unit">
                                         <option value="">-- Pilih Sub Unit --</option>
                                         @foreach ($sub_unit as $su )
 

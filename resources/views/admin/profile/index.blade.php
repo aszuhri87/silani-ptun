@@ -170,7 +170,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-success mr-1 mt-1" id="sv-change-password">Save changes</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
+
                                                 </div>
                                             </div>
                                         </form>
@@ -219,7 +219,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-success mt-1 mr-1">Save changes</button>
-                                                    <button type="reset" class="btn btn-outline-secondary mt-1">Cancel</button>
+
                                                 </div>
                                             </div>
                                         </form>

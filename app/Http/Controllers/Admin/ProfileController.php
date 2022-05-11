@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -60,8 +59,6 @@ class ProfileController extends Controller
                 'unit_id' => $request->select_unit ? $request->select_unit : $user->unit_id,
             ]);
 
-            Alert::success('Berhasil', 'Data berhasil diubah!');
-
             return response([
                 'data' => $user,
                 'message' => 'Data Terubah',
@@ -81,7 +78,6 @@ class ProfileController extends Controller
             $user->update([
                 'password' => Hash::make($request->new_password),
             ]);
-            Alert::success('Berhasil', 'Data berhasil diubah!');
 
             return response([
                 'data' => $user,

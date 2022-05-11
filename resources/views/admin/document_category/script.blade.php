@@ -18,6 +18,7 @@
             $(document).on('click', '.btn-edit', function(event){
                 event.preventDefault();
 
+                var data_unit = <?php echo json_encode($unit)?>;
                 var data = DocsCategoryTable.table().row($(this).parents('tr')).data();
 
                 $('#form-doc-category').trigger("reset");
@@ -25,8 +26,8 @@
                 $('#form-doc-category').attr('method','PUT');
                 $('#form-doc-category').find('input[name="name"]').val(data.name);
                 $('#form-doc-category').find('textarea[name="description"]').val(data.description);
-                $('#form-doc-category').find('select[name="select_unit"]').val(data.select_unit);
-                $('#form-doc-category').find('select[name="select_sub_unit"]').val(data.select_sub_unit);
+                // $('#form-doc-category').find('select[name="select_unit"]').val(data.unit);
+                // $('#form-doc-category').find('select[name="select_sub_unit"]').val(data.sub_unit);
                 showModal('modal-docs-category');
             });
 

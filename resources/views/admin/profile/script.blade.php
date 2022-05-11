@@ -1,10 +1,14 @@
 <script type="text/javascript">
     var Page = function() {
         $(document).ready(function() {
+            var data = <?php echo json_encode($data)?>;
             $('#change-profile').trigger("reset");
             $('#change-profile').attr('action','{{url('admin/profile/update_profile')}}');
             $('#change-profile').attr('method','POST');
             $('#change-profile').attr('enctype','multipart/form-data');
+
+            $('#change-profile').find('select[name="select_unit"]').find('option[value=' + data.unit_id + ']').prop('selected', true);
+            // $('#form-doc-verification').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
 
             formSubmit();
             initAction();
@@ -116,14 +120,14 @@
                     toastr.success(res.message, 'Success')
                     Swal.fire({
                         title: 'Berhasil!',
-                        text: "Berhasil ganti password!",
+                        text: "Berhasil ganti profile!",
                     })
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
                     Swal.fire({
                         title: 'Gagal!',
-                        text: "Gagal ganti password!",
+                        text: "Gagal ganti profile!",
                     })
                 })
                 .always(function() { });

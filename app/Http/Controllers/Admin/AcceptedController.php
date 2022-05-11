@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
+use App\Models\User;
 use DataTables;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
@@ -36,13 +39,23 @@ class AcceptedController extends Controller
             'documents.status',
             'documents.created_at as date_create',
             'document_categories.name as document_category',
+            'document_categories.unit_id',
             'applicants.name as applicant',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->where('documents.status', 'Diterima')
         ->whereNull('documents.deleted_at');
 
-        return DataTables::query($data)->addIndexColumn()->make(true);
+        $admin = Admin::where('user_id', Auth::id())->first();
+
+        $user = User::where('id', Auth::id())->first();
+        if ($user->hasRole('admin')) {
+            $data->where('unit_id', $admin->unit_id);
+
+            return DataTables::query($data)->addIndexColumn()->make(true);
+        } else {
+            return DataTables::query($data)->addIndexColumn()->make(true);
+        }
     }
 
     public function store(Request $request)
