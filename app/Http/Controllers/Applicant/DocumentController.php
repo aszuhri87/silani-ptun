@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 
 class DocumentController extends Controller
@@ -282,7 +283,13 @@ class DocumentController extends Controller
         try {
             $result = Document::find($id);
 
-            DB::transaction(function () use ($result) {
+            DB::transaction(function () use ($result,$id) {
+                $file = DocumentRequirement::where('document_id', $id)->get();
+                foreach ($file as $f) {
+                    $destinationPath[] = public_path().'/files/'.$f->requirement_value;
+                    File::delete($destinationPath);
+                }
+
                 $result->delete();
             });
 
