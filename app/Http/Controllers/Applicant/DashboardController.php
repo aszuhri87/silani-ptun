@@ -19,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $appl = Applicant::select('id')->where('user_id', Auth::id())->first();
+
         $accept = Document::select(
             DB::raw('COUNT(id) as count')
         )

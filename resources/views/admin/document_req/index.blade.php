@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-
 @section('content')
-
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -59,7 +57,6 @@
             </div>
         </div>
     </section>
-
     <!--/ Responsive Datatable -->
 
 </div>

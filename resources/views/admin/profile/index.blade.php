@@ -97,7 +97,7 @@
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="select_unit">Unit</label>
-                                                        <select class="form-control" name="select_unit">
+                                                        <select class="form-control" name="select_unit" id="select_unit">
                                                             <option value="">-- Pilih Unit --</option>
                                                             @foreach ($unit as $dt )
                                                             <option value="{{$dt->id}}">{{$dt->name}}</option>

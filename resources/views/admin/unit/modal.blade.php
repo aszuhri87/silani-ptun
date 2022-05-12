@@ -14,7 +14,6 @@
                      <!-- Basic -->
                      <div class="col-md-12">
                         <form id="form-unit" name="form-unit" class="auth-register-form mt-2" >
-
                             <label for="name">Nama</label>
                             <div class="input-group mb-2">
                                 <input type="text" class="form-control" name="name" placeholder="Nama" aria-label="Name" aria-describedby="name" />
@@ -27,10 +26,7 @@
 
                             </div>
                             <small class="textarea-counter-value float-right bg-success"><span class="char-count">0</span> / 50 </small>
-
-
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success" id="btn-save" >Simpan</button>

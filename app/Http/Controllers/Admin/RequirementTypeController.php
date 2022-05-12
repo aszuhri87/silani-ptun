@@ -40,8 +40,6 @@ class RequirementTypeController extends Controller
                 'data_unit' => $request->data_unit,
             ]);
 
-        // return $data;
-
         Alert::success('Sukses', 'Berhasil Menambahkan Data!');
 
         return redirect()->back();

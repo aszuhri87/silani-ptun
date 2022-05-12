@@ -17,37 +17,38 @@
                         <form id="form-doc-inbox" name="form-doc-inbox" >
                             <div class="row">
                                 <div class="col-4">
-                                    <label for="name_doc">Nama</label>
+                                    <label for="name">Nama</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nilai Keperluan" aria-label="name_doc"  aria-describedby="name_doc" readonly/>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nilai Keperluan" aria-label="name"  aria-describedby="name" readonly/>
                                     </div>
-                                    <label for="date">Tanggal</label>
+                                    <label for="tanggal">Tanggal</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="date" name="date" placeholder="Status" aria-label="date"  aria-describedby="date" readonly />
+                                        <input type="text" class="form-control" id="date" name="date" placeholder="Tanggal" aria-label="tanggal"  aria-describedby="tanggal" readonly />
                                     </div>
-                                    <label for="document_category">Kategori</label>
+                                    <label for="Kategori">Kategori</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="document_category" name="document_category" placeholder="Nilai Keperluan" aria-label="document_category"  aria-describedby="document_category" readonly />
+                                        <input type="text" class="form-control" id="document_category" name="document_category" placeholder="Kategori Dokumen" aria-label="Kategori"  aria-describedby="Kategori" readonly />
                                     </div>
-                                    <label for="applicant">Pemohon</label>
+                                    <label for="pemohon">Pemohon</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="applicant" name="applicant" placeholder="Nama Pemohon" aria-label="applicant"  aria-describedby="applicant" readonly />
+                                        <input type="text" class="form-control" id="applicant" name="applicant" placeholder="Nama Pemohon" aria-label="pemohon"  aria-describedby="pemohon" readonly />
                                     </div>
                                     <label for="requirement_type">Jenis Keperluan</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="requirement_type" name="requirement_type" placeholder="Nilai Keperluan" aria-label="requirement_type"  aria-describedby="requirement_type" readonly/>
+                                        <input type="text" class="form-control" id="requirement_type" name="requirement_type" placeholder="Jenis Keperluan" aria-label="requirement_type"  aria-describedby="requirement_type" readonly/>
                                     </div>
 
                                 </div>
                                 <div class="col-4">
+
                                     <label for="requirement">Keperluan</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="requirement" name="requirement" placeholder="Status" aria-label="requirement"  aria-describedby="requirement" readonly/>
+                                        <input type="text" class="form-control" id="requirement" name="requirement" placeholder="Keperluan" aria-label="requirement"  aria-describedby="requirement" readonly/>
                                     </div>
 
                                     <label for="required">Dibutuhkan</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="required" name="required" placeholder="Nilai Keperluan" aria-label="required"  aria-describedby="required" readonly/>
+                                        <input type="text" class="form-control" id="required" name="required" placeholder="Dibutuhkan" aria-label="required"  aria-describedby="required" readonly/>
                                     </div>
 
                                     <label for="description" id="description" class="form-label">Deskripsi</label>
@@ -55,7 +56,7 @@
                                         <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="4" placeholder="" readonly></textarea>
                                      </div>
 
-                                    <label for="requirement_value">Status</label>
+                                    <label for="status">Status</label>
                                     <div class="input-group mb-2">
 
                                         {{-- <input type="text" class="form-control" style="border: none; border-color: transparent; background:white;" id="status" name="status" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" disabled/> --}}

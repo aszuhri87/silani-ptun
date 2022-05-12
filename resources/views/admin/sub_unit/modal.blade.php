@@ -15,8 +15,6 @@
                      <div class="col-md-12">
 
                         <form id="form-sub-unit" name="form-sub-unit" class="auth-register-form mt-2" >
-
-
                                 <label for="name">Nama</label>
                                 <div class="input-group mb-2">
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Nama" aria-label="name"  aria-describedby="name" />

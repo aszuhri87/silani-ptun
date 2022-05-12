@@ -59,8 +59,6 @@
                             <div class="card-body">
                                 <a href="javascript:void(0);" class="brand-logo">
                                     <img src="{{asset('app-assets/images/logo.png')}}" alt="" style="width:80px%; height:80px" >
-
-
                                 </a>
 
                                 <h2 class="brand-text text-success ml-1">SIPDO | PTUN Yogyakarta</h2>
@@ -78,7 +76,7 @@
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">
                                             <label for="password">Password</label>
-                                            <a href="page-auth-forgot-password-v1.html">
+                                            <a href="{{ route('password.request') }}">
                                                 <small>Forgot Password?</small>
                                             </a>
                                         </div>
