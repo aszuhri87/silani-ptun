@@ -89,7 +89,7 @@
 
                                         <div class="form-group">
                                             <label for="username" class="form-label">Username</label>
-                                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="johndoe" value="{{ old('username') }}"  aria-describedby="username" tabindex="1" required autocomplete="username" autofocus />
+                                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="Username" value="{{ old('username') }}"  aria-describedby="username" tabindex="1" required autocomplete="username" autofocus />
                                             @error('username')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="john@example.com" aria-describedby="email" tabindex="2" required autocomplete="email" />
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Email" aria-describedby="email" tabindex="2" required autocomplete="email" />
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
