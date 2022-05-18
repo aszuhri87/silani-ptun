@@ -158,13 +158,13 @@ class DocumentController extends Controller
         ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
         ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
 
-        $data = DocumentRequirement::select([
+        $data = Document::select([
             'documents.id',
             'documents.name',
             'documents.status',
             'documents.created_at as date_create',
             'document_categories.name as document_category',
-            // 'applicants.name as applicant',
+            'applicants.name as applicant',
             'document_category_req.requirement_type',
             'document_category_req.requirement',
             'document_category_req.required',
@@ -173,8 +173,9 @@ class DocumentController extends Controller
             'document_category_req.title',
             'document_category_req.data_type',
         ])
-        // ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('documents', 'documents.id', 'document_requirements.document_id')
+
+        ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
+        ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
             $join->on('document_category_req.id', 'document_requirements.document_category_requirement_id');

@@ -132,14 +132,16 @@ class VerificationController extends Controller
             'id',
             'requirement_value',
         ])
-        ->where('document_id', $id)
+        ->where('id', $id)
         ->whereNull('deleted_at')
-        ->first();
+        ->get();
 
-        if (file_exists(public_path('/files/'.$data->requirement_value))) {
-            return response()->download(public_path('/files/'.$data->requirement_value));
-        } else {
-            return redirect()->back()->with('message', 'IT WORKS!');
+        foreach ($data as $datas) {
+            if (file_exists(public_path('/files/'.$datas->requirement_value))) {
+                return response()->download(public_path('/files/'.$datas->requirement_value));
+            } else {
+                return redirect()->back()->with('message', 'IT WORKS!');
+            }
         }
     }
 

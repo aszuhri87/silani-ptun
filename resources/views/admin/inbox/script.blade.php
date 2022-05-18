@@ -26,12 +26,25 @@
                     $('#form-doc-inbox').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-inbox').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
 
+
                     for (i in data.doc_req){
-                    $('.file-'+i).html(`
-                        <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/admin/verification/download/`+data.doc_req[i].document_id+`">`+data.doc_req[i].requirement_value+`</a></span>
-                        </div>
-                    `);
+                        var str = data.doc_req[i].requirement_value;
+                        var dotIndex= str.lastIndexOf('.');
+                        var ext = str.substring(dotIndex);
+
+                        if(ext=='.jpg'||ext=='.jpeg'||ext=='.png'||ext=='.pdf'){
+                            $('.file-'+i).html(`
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/admin/verification/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
+                            </div>
+                        `);
+                        }else{
+                            $('.file-'+i).html(`
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
+                            </div>
+                        `);
+                        }
                     }
 
                     if (data.status=="Menunggu") {
