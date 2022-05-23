@@ -79,9 +79,19 @@
                     @endhasrole
 
                 @hasrole('applicant')
+                @if (Auth::user()->join('applicants', 'applicants.user_id', 'users.id')->where('users.id', Auth::id())->first()->image != null)
+
                 </span></div><span class="avatar"><img class="round" src="{{asset('/files/'.Auth::user()->join('applicants', 'applicants.user_id', 'users.id')->where('users.id', Auth::id())->first()->image)}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+
                 @else
+
+                </span></div><span class="avatar"><img class="round" src="{{asset('/files/profile.png')}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                @endif
+                @endhasrole
+
+                @hasrole('admin|super admin')
                 </span></div><span class="avatar"><img class="round" src="{{asset('/app-assets/images/avatars/profile.png')}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+
                 @endhasrole
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
