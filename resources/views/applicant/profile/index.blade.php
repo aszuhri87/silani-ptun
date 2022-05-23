@@ -81,7 +81,13 @@
                                         <!-- header media -->
                                         <div class="media">
                                             <a href="javascript:void(0);" class="mr-25">
+                                                @if ($data->image != null)
+
                                                 <img src="{{asset('/files/'.$data->image)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+
+                                                @else
+                                                <img src="{{asset('/files/profile.png')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                @endif
                                             </a>
                                             <!-- upload and reset button -->
                                             <!--/ header media -->
