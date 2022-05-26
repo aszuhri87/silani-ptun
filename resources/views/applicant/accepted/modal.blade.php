@@ -84,7 +84,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="btn-save" class="btn btn-success">Proses</button>
+                    {{-- <button type="submit" id="btn-save" class="btn btn-success">Proses</button> --}}
                 </div>
             </form>
             </div>
