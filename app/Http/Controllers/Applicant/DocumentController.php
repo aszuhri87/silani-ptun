@@ -172,6 +172,8 @@ class DocumentController extends Controller
             'document_requirements.requirement_value',
             'document_category_req.title',
             'document_category_req.data_type',
+            'document_category_req.data_max',
+            'document_category_req.data_min',
         ])
 
         ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
