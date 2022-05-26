@@ -21,13 +21,13 @@
                             if(data[i].data_type == "textarea"){
                                 $('.label-'+i).html(``+data[i].title+``);
                                 $('.text-'+i).html(`
-                                <textarea data-length="50" class="form-control char-textarea" id="`+data[i].data_type+`" name="requirement_value[`+i+`]" rows="4" placeholder=""></textarea>
+                                <textarea data-length="50" class="form-control char-textarea" id="`+data[i].data_type+`" name="requirement_value[`+i+`]"  rows="4" placeholder=""></textarea>
                             `);
                             }else
                             {
                                 $('.label-'+i).html(``+data[i].title+``);
                                 $('.input-'+i).html(`
-                                    <input type="`+data[i].data_type+`"  class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]">
+                                    <input type="`+data[i].data_type+`"  class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]"  minLength="`+data[i].data_min+`" maxLength="`+data[i].data_max+`">
                                 `);
                             }
                         $('#modal-document').modal('show');
