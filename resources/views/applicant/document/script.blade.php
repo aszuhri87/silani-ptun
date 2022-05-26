@@ -27,7 +27,7 @@
                             {
                                 $('.label-'+i).html(``+data[i].title+``);
                                 $('.input-'+i).html(`
-                                    <input type="`+data[i].data_type+`"  class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]"  minLength="`+data[i].data_min+`" maxLength="`+data[i].data_max+`">
+                                    <input type="`+data[i].data_type+`"  class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]" pattern=".{`+data[i].data_max+`,}" title="Harus diisi `+data[i].data_max+` karakter">
                                 `);
                             }
                         $('#modal-document').modal('show');
