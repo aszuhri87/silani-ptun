@@ -44,6 +44,7 @@ class AcceptedController extends Controller
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->where('documents.status', 'Diterima')
+        ->orWhere('documents.status', 'Ditolak')
         ->whereNull('documents.deleted_at');
 
         $admin = Admin::where('user_id', Auth::id())->first();
