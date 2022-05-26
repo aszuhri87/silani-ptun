@@ -35,8 +35,10 @@ class AcceptedController extends Controller
             'applicants.name as applicant',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->where('documents.status', 'Diterima')
-        ->orWhere('documents.status', 'Ditolak')
+        ->where(function ($query) {
+            $query->where('documents.status', '=', 'Diterima')
+            ->orWhere('documents.status', '=', 'Ditolak');
+        })
         ->where('documents.applicant_id', $appl->id)
         ->whereNull('documents.deleted_at');
 
