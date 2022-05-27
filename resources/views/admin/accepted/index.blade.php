@@ -47,6 +47,7 @@
                                     <th>Kategori Dokumen</th>
                                     <th>Tanggal</th>
                                     <th>Status</th>
+                                    <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

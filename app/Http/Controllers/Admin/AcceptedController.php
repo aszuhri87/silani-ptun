@@ -37,6 +37,7 @@ class AcceptedController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
+            'documents.notes',
             'documents.created_at as date_create',
             'document_categories.name as document_category',
             'document_categories.unit_id',
@@ -98,6 +99,7 @@ class AcceptedController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
+            'documents.notes',
             'documents.created_at as date_create',
             'document_categories.name as document_category',
             'applicants.name as applicant',
@@ -135,6 +137,7 @@ class AcceptedController extends Controller
             $data = Document::find($id);
             $data->update([
                 'status' => $request->status_edit ? $request->status_edit : $data->status,
+                'notes' => $request->notes ? $request->notes : $data->notes,
             ]);
 
             return response([

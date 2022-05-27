@@ -25,6 +25,7 @@
                     { data: 'document_category',"searchable": false},
                     { data: 'date_create',"searchable": false },
                     { data: 'status' },
+                    { data: 'notes' },
                     { defaultContent: '' }
                     ],
                 columnDefs: [

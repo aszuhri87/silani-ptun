@@ -25,6 +25,7 @@
                     $('#form-doc-accepted').find('input[name="required"]').val(data.required);
                     $('#form-doc-accepted').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
+                    $('#form-doc-accepted').find('textarea[name="notes"]').val(data.notes);
 
 
                     for (i in data.doc_req){

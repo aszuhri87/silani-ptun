@@ -90,6 +90,10 @@
                                     <label class="form-check-label" for="status_edit2">Ditolak</label>
                                   </div>
                                 </div>
+                                <label for="keterangan" id="keterangan" class="form-label">Keterangan</label>
+                                <div class="input-group mb-2">
+                                    <textarea data-length="50" class="form-control char-textarea" id="keterangan" name="notes"  placeholder=""></textarea>
+                                 </div>
 
                                 {{-- <input type="hidden" class="form-control" id="status_edit" name="status_edit" value="diproses" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/> --}}
                         </div>

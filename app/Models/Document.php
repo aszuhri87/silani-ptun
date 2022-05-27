@@ -22,6 +22,7 @@ class Document extends Model
         'name',
         'document_category_id',
         'status',
+        'notes',
     ];
 
     protected $dates = ['deleted_at'];
