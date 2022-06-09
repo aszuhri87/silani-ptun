@@ -33,7 +33,7 @@ class HomeController extends Controller
             if ($app->user_id == Auth::id()) {
                 Alert::toast('Selamat Datang '.Auth::user()->username.'!', 'success');
 
-                return view('applicant.dashboard.index');
+                return redirect('/applicant/dashboard');
             } elseif ($admin->user_id == Auth::id()) {
                 Alert::toast('Selamat Datang '.Auth::user()->username.'!', 'success');
 

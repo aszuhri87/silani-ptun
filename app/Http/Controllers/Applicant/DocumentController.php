@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Response;
 
 class DocumentController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         $docs_category = DB::table('document_categories')
@@ -80,13 +85,14 @@ class DocumentController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
-            'documents.created_at as date_create',
+             DB::raw("to_char(documents.created_at , 'dd FMMonthFM YYYY HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->where('documents.status', 'Menunggu')
         ->where('documents.applicant_id', $appl->id)
-        ->whereNull('documents.deleted_at');
+        ->whereNull('documents.deleted_at')
+        ->orderBy('documents.created_at', 'DESC');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -118,7 +124,7 @@ class DocumentController extends Controller
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
-                            $name = $file->getClientOriginalName();
+                            $name = date('Y-m-d_s').'_'.$file->getClientOriginalName();
                             $file->move(public_path().'/files/', $name);
 
                             $value[$index] = $name;
@@ -153,7 +159,8 @@ class DocumentController extends Controller
     {
         $doc_category_req = DocumentCategoryRequirement::select([
             'requirement_types.data_type as data_type',
-            'requirement_types.description as title', 'document_category_requirements.*',
+            'requirement_types.description as title',
+            'document_category_requirements.*',
         ])
         ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
         ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
@@ -162,20 +169,26 @@ class DocumentController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
-            'documents.created_at as date_create',
+             DB::raw("to_char(documents.created_at , 'dd FMMonthFM YYYY HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',
             'document_category_req.requirement',
             'document_category_req.required',
             'document_category_req.description',
-            'document_requirements.requirement_value',
+            // 'document_requirements.requirement_value',
             'document_category_req.title',
             'document_category_req.data_type',
-            'document_category_req.data_max',
-            'document_category_req.data_min',
         ])
-
+        ->with(['doc_req' => function ($query) {
+            $query->select(['document_requirements.id', 'document_requirements.requirement_value', 'document_requirements.document_id', 'document_category_requirements.data_min',
+            'document_category_requirements.data_max', 'document_category_requirements.requirement_type', 'requirement_types.data_type as data_type',
+            'requirement_types.description as title', ])
+            ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id')
+            ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
+            ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
+        },
+        ])
         ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
         ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
@@ -184,7 +197,7 @@ class DocumentController extends Controller
         })
         ->where('document_requirements.document_id', $id)
         ->whereNull('documents.deleted_at')
-        ->get();
+        ->first();
 
         // dd($data);
 

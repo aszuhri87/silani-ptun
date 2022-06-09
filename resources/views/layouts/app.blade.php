@@ -62,6 +62,35 @@
     <link rel="stylesheet" type="text/css" href=" {{asset('assets/css/style.css')}}">
     <!-- END: Custom CSS-->
 
+    <style>
+        input:invalid{
+            border: 1px solid crimson;
+        }
+        .tooltipLink {
+        position:absolute;
+        transition: visibility 0s, opacity 0.5s linear;
+        }
+        .tooltipLink embed {
+        float:right;
+        display:none;
+        visibility: visible;
+        opacity: 1;
+        }
+
+        .tooltipLink:hover embed{
+        visibility: visible;
+        opacity: 1;
+        display:block;
+        position:absolute;
+        z-index:1000;
+        overflow:hidden;
+        border-radius: 13px;
+        right: 50%;
+        min-width:2000%;
+        height: 500px;
+        }
+    </style>
+
 </head>
 <!-- END: Head-->
 <!-- END: Head-->
@@ -144,6 +173,7 @@
    <script src="{{asset('app-assets/js/scripts/components/components-modals.js')}}"></script>
    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
    <script src="../../../app-assets/js/scripts/pages/app-user-list.js"></script>
+   <script src="{{asset('js/jquery.blockUI.js')}}"></script>
    <!-- END: Page JS-->
 
 

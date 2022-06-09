@@ -6,7 +6,7 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class ModelHasRole extends Model
 {
     use HasFactory;
     use Uuid;
@@ -16,8 +16,9 @@ class Role extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'name',
-        'guard_name',
+        'model_id',
+        'model_type',
+        'role_id',
     ];
 
     protected $casts = [

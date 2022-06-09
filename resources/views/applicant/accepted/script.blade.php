@@ -25,13 +25,14 @@
                     $('#form-doc-accepted').find('input[name="required"]').val(data.required);
                     $('#form-doc-accepted').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
+                    $('#form-doc-accepted').find('textarea[name="ket"]').val(data.notes);
 
                     if (data.status=='Diterima') {
                         $('#form-doc-accepted').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-success mr-1">'+data.status+'</span>');
                     }else if (data.status=='Ditolak') {
-                        $('#form-doc-accepted').find('h4[name="status"]').val('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
+                        $('#form-doc-accepted').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
                     }else{
-                        $('#form-doc-accepted').find('h4[name="status"]').val('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
+                        $('#form-doc-accepted').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
                     }
 
                     showModal('modal-accepted');

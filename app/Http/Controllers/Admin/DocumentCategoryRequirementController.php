@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Response;
 
 class DocumentCategoryRequirementController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         $docs_category = DB::table('document_categories')

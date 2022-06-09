@@ -16,7 +16,7 @@
 
                         <form id="form-doc-accepted" name="form-doc-accepted" >
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-lg-6">
                                     <label for="name">Nama</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nama" aria-label="name"  aria-describedby="name" readonly/>
@@ -39,7 +39,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-lg-6">
 
                                     <label for="requirement">Keperluan</label>
                                     <div class="input-group mb-2">
@@ -66,6 +66,12 @@
 
 
                                 </div>
+                            </div>
+                            <div class="row">
+                                <label for="ket" id="ket" class="form-label">Keterangan</label>
+                                <div class="input-group mb-2">
+                                    <textarea data-length="50" class="form-control char-textarea" id="ket" name="ket" rows="4" placeholder="" readonly></textarea>
+                                 </div>
                             </div>
 
                                 {{-- <label for="status_edit" id="description" class="form-label">Ubah Status</label>

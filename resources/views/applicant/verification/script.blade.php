@@ -30,9 +30,9 @@
                     if (data.status=='Diproses') {
                         $('#form-doc-verification').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
                     }else if (data.status=='Ditolak') {
-                        $('#form-doc-verification').find('h4[name="status"]').val('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
+                        $('#form-doc-verification').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
                     }else{
-                        $('#form-doc-verification').find('h4[name="status"]').val('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
+                        $('#form-doc-verification').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
                     }
 
                     showModal('modal-verification');

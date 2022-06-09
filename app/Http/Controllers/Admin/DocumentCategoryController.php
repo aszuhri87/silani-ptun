@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Response;
 
 class DocumentCategoryController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         $sub_unit = DB::table('sub_units')

@@ -12,6 +12,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UnitController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         return view('admin.unit.index');

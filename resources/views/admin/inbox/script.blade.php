@@ -14,6 +14,7 @@
                 $('#form-doc-inbox').trigger("reset");
                 $('#form-doc-inbox').attr('action', $(this).attr('href'));
                 $('#form-doc-inbox').attr('method','PUT');
+                $('div#doc_file').html("");
 
                 $.get(url, function(data){
                     $('#form-doc-inbox').find('input[name="name"]').val(data.name);
@@ -33,18 +34,41 @@
                         var ext = str.substring(dotIndex);
 
                         if(ext=='.jpg'||ext=='.jpeg'||ext=='.png'||ext=='.pdf'){
-                            $('.file-'+i).html(`
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/admin/verification/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
-                            </div>
-                        `);
-                        }else{
-                            $('.file-'+i).html(`
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
-                            </div>
-                        `);
-                        }
+                                $('div#doc_file').append(`
+
+                                    <div class="input-group mb-1">
+
+                                        <span class="input-group-text " id="basicadd`+i+`" style="width:100%; ">
+                                            `+data.doc_req[i].requirement_type+` :
+                                            <a style="font-size:12px;" href="/admin/verification/download/`+data.id+`">`+data.doc_req[i].requirement_value+`</a>
+                                            <div class="tooltipLink" style="position:absolute;left:93%; width:50px;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                <embed src="{{ asset('files/`+data.doc_req[i].requirement_value+`') }}">
+                                            <div>
+                                        </span>
+                                    </div>
+                                `);
+
+
+                            //     $('.file-'+i).html(`
+                            //     <div class="input-group">
+                            //         <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/applicant/document/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
+                            //     </div>
+                            // `);
+                            // }
+                            }else{
+                                $('div#doc_file').append(`
+                                    <label for="basicadd`+i+`">`+data.doc_req[i].requirement_value+`</label>
+                                    <div class="input-group mb-1 ">
+                                        <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
+                                    </div>
+                                `);
+                                // $('.file-'+i).html(`
+                                // <div class="input-group">
+                                //     <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
+                                // </div>
+
+                            }
                     }
 
                     if (data.status=="Menunggu") {
@@ -57,6 +81,24 @@
 
                 });
                 showModal('modal-inbox');
+            });
+
+            $('#btn-save').click(function() {
+                $.blockUI({
+                    message:
+                    '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+                    css: {
+                    backgroundColor: 'transparent',
+                    color: '#fff',
+                    border: '0'
+                    },
+                    overlayCSS: {
+                    opacity: 0.5
+                    },
+                    timeout: 1000,
+                });
+
+                // setTimeout($.unblockUI, 2100);
             });
 
             $(document).on('click', '.btn-delete', function(event){

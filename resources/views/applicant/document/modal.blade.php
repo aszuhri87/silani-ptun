@@ -21,7 +21,13 @@
                                     <div class="input-group">
                                         <input type="text"  class="form-control" placeholder="Nama dokumen" name="name" required>
                                     </div>
-                                    @for ($i=0;$i<count($docs_req_category); $i++)
+
+                                    <div id="data_input" class="mb-1">
+
+
+                                    </div>
+
+                                    {{-- @for ($i=0;$i<count($docs_req_category); $i++)
 
                                     <label class="form-label mt-auto label-{{$i}}"></label>
 
@@ -34,7 +40,11 @@
                                     <div class="input-group file-{{$i}}">
 
                                     </div>
-                                    @endfor
+                                    @endfor --}}
+
+                                    <span id="errormsg" class="text-danger">
+
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -62,11 +72,11 @@
                 </div>
                 <div class="modal-body">
                      <!-- Basic -->
-                     <div class="col-md-12">
+                     {{-- <div class="col-md-12"> --}}
 
                         <form id="form-doc-create-2" name="form-doc-create" enctype="multipart/form-data" >
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-lg-6">
                                     <label for="requirement_value">Nama</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nilai Keperluan" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/>
@@ -93,22 +103,25 @@
                                     <div class="input-group mb-2">
                                         <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder="" readonly></textarea>
                                      </div>
-
-
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-lg-6" >
                                     <label for="requirement_value">Dokumen/File</label>
-                                    @for ($i=0;$i<count($docs_req_category); ++$i)
+
+                                    <div class="mt-1" id="doc_file">
+
+                                    </div>
+
+                                    {{-- @for ($i=0;$i<count($docs_req_category); ++$i)
                                     <div class="input-group mb-2 input-{{$i}}">
 
                                     </div>
                                     <div class="input-group mb-2 file-{{$i}}">
 
                                     </div>
-                                    @endfor
+                                    @endfor --}}
 
                                 </div>
-                            </div>
+
                         </div>
                 </div>
                 <div class="modal-footer">

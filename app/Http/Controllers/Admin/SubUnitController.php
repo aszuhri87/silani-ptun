@@ -12,6 +12,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SubUnitController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         $data = DB::table('units')

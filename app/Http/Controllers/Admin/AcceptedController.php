@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Response;
 
 class AcceptedController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         $docs_req_category = DocumentCategoryRequirement::select([
@@ -38,7 +43,7 @@ class AcceptedController extends Controller
             'documents.name',
             'documents.status',
             'documents.notes',
-            'documents.created_at as date_create',
+            DB::raw("to_char(documents.created_at , 'dd FMMonthFM YYYY HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'document_categories.unit_id',
             'applicants.name as applicant',
@@ -48,7 +53,8 @@ class AcceptedController extends Controller
             $query->where('documents.status', '=', 'Diterima')
             ->orWhere('documents.status', '=', 'Ditolak');
         })
-        ->whereNull('documents.deleted_at');
+        ->whereNull('documents.deleted_at')
+        ->orderBy('documents.updated_at', 'DESC');
 
         $admin = Admin::where('user_id', Auth::id())->first();
 
@@ -100,7 +106,7 @@ class AcceptedController extends Controller
             'documents.name',
             'documents.status',
             'documents.notes',
-            'documents.created_at as date_create',
+             DB::raw("to_char(documents.created_at , 'dd FMMonthFM YYYY HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',

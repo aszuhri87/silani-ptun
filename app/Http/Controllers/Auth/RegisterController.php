@@ -94,9 +94,10 @@ class RegisterController extends Controller
             'user_id' => $user->id,
         ]);
 
-        $user_role = User::where('username', $user->username)->first();
+        $user_role = User::where('email', $user->email)->first();
 
         $user_role->assignRole('applicant');
+        // dd($user_role);
 
         return $user;
     }

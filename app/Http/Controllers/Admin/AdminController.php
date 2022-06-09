@@ -11,6 +11,11 @@ use Illuminate\Routing\Controller as BaseController;
 
 class AdminController extends BaseController
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     public function index()
     {
         $data = DB::table('applicants')

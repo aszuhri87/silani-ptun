@@ -16,7 +16,7 @@
 
                         <form id="form-doc-accepted" name="form-doc-accepted" >
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label for="name">Nama</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nilai Keperluan" aria-label="name"  aria-describedby="name" readonly/>
@@ -39,7 +39,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
 
                                     <label for="requirement">Keperluan</label>
                                     <div class="input-group mb-2">
@@ -64,16 +64,19 @@
                                     </div>
 
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="container">
                                         <label for="requirement_value">File</label>
-                                        @for ($i=0;$i<count($docs_req_category); $i++)
+                                        <div id="doc_file">
+
+                                        </div>
+                                        {{-- @for ($i=0;$i<count($docs_req_category); $i++)
 
                                         <label class="form-label mt-auto label-{{$i}}"></label>
                                         <div class="input-group file-{{$i}}">
 
                                         </div>
-                                        @endfor
+                                        @endfor --}}
                                     </div>
                                 </div>
 

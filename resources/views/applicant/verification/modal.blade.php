@@ -12,11 +12,11 @@
                 </div>
                 <div class="modal-body">
                      <!-- Basic -->
-                     <div class="col-md-12">
+                     {{-- <div class="col-md-12"> --}}
 
                         <form id="form-doc-verification" name="form-doc-verification" >
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-lg-6">
                                     <label for="name">Nama</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nama" aria-label="name"  aria-describedby="name" readonly/>
@@ -39,7 +39,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 col-lg-6">
 
                                     <label for="requirement">Keperluan</label>
                                     <div class="input-group mb-2">
@@ -85,7 +85,7 @@
                                 </div> --}}
 
                                 {{-- <input type="hidden" class="form-control" id="status_edit" name="status_edit" value="diproses" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/> --}}
-                        </div>
+
                 </div>
                 <div class="modal-footer">
                     {{-- <button type="submit" id="btn-save" class="btn btn-success">Proses</button> --}}
