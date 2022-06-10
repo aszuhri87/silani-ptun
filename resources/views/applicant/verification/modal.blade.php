@@ -66,27 +66,9 @@
 
 
                                 </div>
-                            </div>
+                        </div>
 
-                                {{-- <label for="status_edit" id="description" class="form-label">Ubah Status</label>
-                                <div class="input-group mb-2">
-                                <div class="form-check form-check-inline">
-                                    <input type="radio" id="status_edit1" name="status_edit" class="form-check-input"  value="Diproses">
-                                    <label class="form-check-label" for="status_edit1">Diproses</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input type="radio" id="status_edit3" name="status_edit" class="form-check-input"  value="Diterima">
-                                    <label class="form-check-label" for="status_edit3">Diterima</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input type="radio" id="status_edit2" name="status_edit" class="form-check-input" value="Ditolak">
-                                    <label class="form-check-label" for="status_edit2">Ditolak</label>
-                                  </div>
-                                </div> --}}
-
-                                {{-- <input type="hidden" class="form-control" id="status_edit" name="status_edit" value="diproses" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/> --}}
-
-                </div>
+                    </div>
                 <div class="modal-footer">
                     {{-- <button type="submit" id="btn-save" class="btn btn-success">Proses</button> --}}
                 </div>

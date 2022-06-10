@@ -35,7 +35,7 @@ class AcceptedController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
-             DB::raw("to_char(documents.created_at , 'dd FMMonthFM YYYY HH24:mi' ) as date_create"),
+             DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'applicants.name as applicant',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
@@ -86,7 +86,7 @@ class AcceptedController extends Controller
             'documents.name',
             'documents.status',
             'documents.notes',
-             DB::raw("to_char(documents.created_at , 'dd FMMonthFM YYYY HH24:mi' ) as date_create"),
+             DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',

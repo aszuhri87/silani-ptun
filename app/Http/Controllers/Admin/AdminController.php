@@ -45,7 +45,7 @@ class AdminController extends BaseController
 
         $count_applicant = count($data);
 
-        $appl = Applicant::select('id', 'user_id', DB::raw("to_char(applicants.created_at, 'FMMonth') as month_name"))
+        $appl = Applicant::select('id', 'user_id', DB::raw("to_char(applicants.created_at, 'TMMonth') as month_name"))
         ->groupBy('applicants.created_at', 'id');
 
         $chart = User::select(DB::raw('count(users.id) as count'), 'applicants.month_name')
@@ -57,7 +57,7 @@ class AdminController extends BaseController
         ->groupBy(DB::raw("date_part('month',users.created_at)"), 'applicants.month_name')
         ->get();
 
-        $doc = Document::select('id', DB::raw("to_char(documents.created_at, 'FMMonth') as month_name"))
+        $doc = Document::select('id', DB::raw("to_char(documents.created_at, 'TMMonth') as month_name"))
         ->groupBy('documents.created_at', 'id');
 
         $count_docs = DocumentRequirement::select(DB::raw('COUNT(DISTINCT(documents.id)) as count'), 'documents.month_name')

@@ -77,7 +77,7 @@
                                     </div>
                                     @endfor --}}
 
-                                    </div>
+                                </div>
 
                             </div>
 
