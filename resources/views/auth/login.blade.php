@@ -77,7 +77,7 @@
                                         <div class="d-flex justify-content-between">
                                             <label for="password">Password</label>
                                             <a href="{{ route('password.request') }}">
-                                                <small>Forgot Password?</small>
+                                                <small>Lupa Password?</small>
                                             </a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
@@ -93,7 +93,7 @@
                                             <label class="custom-control-label" for="remember-me"> Ingat Saya </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-block" tabindex="4">Sign in</button>
+                                    <button type="submit" class="btn btn-success btn-block" tabindex="4">Masuk</button>
                                 </form>
 
                                 <p class="text-center mt-2">

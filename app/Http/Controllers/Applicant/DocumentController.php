@@ -256,30 +256,34 @@ class DocumentController extends Controller
                     'name' => $request->name,
                 ]);
 
-                $data = DocumentRequirement::where('document_id', $id);
+                // dd($document->first()->id);
+
+                $data = DocumentRequirement::where('document_id', $id)->get();
+
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
                     for ($index = 0; $index < count($request->requirement_value); ++$index) {
                         // dd($request->file('requirement_value.'.$index));
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
-                            $name = $file->getClientOriginalName();
+                            $name = date('Y-m-d_s').'_'.$file->getClientOriginalName();
                             $file->move(public_path().'/files/', $name);
 
                             $value[$index] = $name;
+
                         // $path[] = $request->file('requirement_value')->store('public/files');
                         } else {
                             $value[$index] = $request->requirement_value[$index];
                         }
 
-                        $data->update([
-                            'requirement_value' => $value[$index],
-                            'document_id' => $document->id,
-                            // 'document_category_requirement_id' => $category_req[$index]->id,
-                        ]);
+                        for ($x = 0; $x < count($data); ++$x) {
+                            $file_doc = DocumentRequirement::whereIn('id', [$data[$x]->id])->update([
+                                'requirement_value' => $value[$index],
+                            ]);
+                        }
                     }
 
-                    return $data;
+                    return $file_doc;
                 }
             });
 

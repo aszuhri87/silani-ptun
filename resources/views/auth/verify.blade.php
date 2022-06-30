@@ -74,7 +74,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <h2 class="brand-text text-success ml-1">Vuexy</h2>
+                        <h2 class="brand-text text-success ml-1">SIPDO PTUN Yogyakarta</h2>
                     </a>
                     <div class="misc-inner p-2 p-sm-3">
                         <div class="w-100 text-center">
@@ -91,7 +91,7 @@
                             <br>
                             <hr>
                             <p>Sudah Verifikasi?</p>
-                            <a class="btn btn-success mb-2 btn-sm-block" href="{{route('login')}}">Login</a>
+                            <a class="btn btn-success mb-2 btn-sm-block" href="{{route('login')}}">Masuk</a>
                             <br>
                             <img class="img-fluid" src="../../../app-assets/images/pages/error.svg" alt="Error page" style="width: 55%; height:55%" />
 

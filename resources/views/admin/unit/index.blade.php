@@ -45,7 +45,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th width="25%"">Name</th>
-                                    <th width="55%">Description</th>
+                                    <th width="55%">Deskripsi</th>
                                     <th width="10%">Aksi</th>
                                 </tr>
                             </thead>

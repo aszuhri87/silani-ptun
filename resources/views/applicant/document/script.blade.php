@@ -185,31 +185,28 @@
                     // $('#form-doc-create').find('input[name="id_cat"]').val(id);
                     if(data.doc_req[i].data_type == "textarea"){
 
-                    $('div#data_input').append(`
-                        <label class="form-label mt-1 label">`+data.doc_req[i].title+`</label>
-                        <div class="input-group">
-                            <textarea data-length="50" class="form-control char-textarea" id="`+data.doc_req[i].data_type+`" name="requirement_value[`+i+`]" rows="4" placeholder=""></textarea>
-                        </div>
-                    `);
+                        $('div#data_input').append(`
+                            <label class="form-label mt-1 label">`+data.doc_req[i].title+`</label>
+                            <div class="input-group">
+                                <textarea data-length="50" class="form-control char-textarea" id="`+data.doc_req[i].data_type+`" name="requirement_value[`+i+`]"  rows="4" placeholder=""  value="`+data.doc_req[i].requirement_value+`"></textarea>
+                            </div>
+                        `);
                     }else if(data.doc_req[i].data_type == "file"){
 
-                    $('div#data_input').append(`
-                    <label class="form-label mt-1 label">`+data.doc_req[i].title+`</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                        <input type="file" id="inputGroupFile" class="form-control" placeholder="`+data.doc_req[i].title+`" name="requirement_value[`+i+`]" pattern=".{`+data.doc_req[i].data_max+`,}" title="Harus diisi `+data.doc_req[i].data_max+` karakter">
-                        <label class="custom-file-label" for="inputGroupFile">Pilih file</label>
-                        </div>
-                    </div>
-                    `);
+                        $('div#data_input').append(`
+                            <label class="form-label mt-1 label">`+data.doc_req[i].title+`</label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" placeholder="`+data.doc_req[i].title+`" name="requirement_value[`+i+`]" >
+                            </div>
+                        `);
                     }else
                     {
-                    $('div#data_input').append(`
-                        <label class="form-label mt-1 label">`+data[i].title+`</label>
-                        <div class="input-group">
-                            <input type="`+data.doc_req[i].data_type+`"  class="form-control"  placeholder="`+data.doc_req[i].title+`" name="requirement_value[`+i+`]" pattern=".{`+data.doc_req[i].data_max+`,}" title="Harus diisi `+data.doc_req[i].data_max+` karakter">
-                        </div>
-                    `);
+                        $('div#data_input').append(`
+                            <label class="form-label mt-1 label">`+data.doc_req[i].title+`</label>
+                            <div class="input-group">
+                                <input type="`+data.doc_req[i].data_type+`" class="form-control" placeholder="`+data.doc_req[i].title+`" name="requirement_value[`+i+`]" pattern=".{`+data.doc_req[i].data_max+`,}" title="Harus diisi `+data.doc_req[i].data_max+` karakter">
+                            </div>
+                        `);
 
                     }
 

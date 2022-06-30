@@ -112,7 +112,7 @@ $(function () {
           data: pe["data"]
         },
         {
-          name: 'Document',
+          name: 'Dokumen',
           data: docs["data"]
         },
       ],

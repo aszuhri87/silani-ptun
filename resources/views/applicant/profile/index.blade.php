@@ -11,12 +11,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Profile Settings</h2>
+                        <h2 class="content-header-title float-left mb-0">Pengaturan Profil</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                <li class="breadcrumb-item"><a href="index.html">Beranda</a>
                                 </li>
-                                <li class="breadcrumb-item active"> Profile Settings
+                                <li class="breadcrumb-item active"> Pengaturan Profil
                                 </li>
                             </ol>
                         </div>
@@ -43,14 +43,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="account-pill-password" data-toggle="pill" href="#account-vertical-password" aria-expanded="false">
                                     <i data-feather="lock" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Change Password</span>
+                                    <span class="font-weight-bold">Ubah Pasword</span>
                                 </a>
                             </li>
                             <!-- information -->
                             <li class="nav-item">
                                 <a class="nav-link" id="account-pill-info" data-toggle="pill" href="#account-vertical-info" aria-expanded="false">
                                     <i data-feather="info" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Information</span>
+                                    <span class="font-weight-bold">Informasi</span>
                                 </a>
                             </li>
                             <!-- social -->
@@ -99,7 +99,7 @@
                                                 <label for="image" class="btn btn-sm btn-success mb-75 mr-75">Upload</label>
                                                 <input type="file" id="image" name="image" hidden accept="image/*" />
                                                 <button class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
-                                                <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
+                                                <p>Format: JPG, GIF or PNG. Max ukuran 800kB</p>
                                             </div>
                                             <!--/ upload and reset button -->
                                         </div>
@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="account-name">Name</label>
+                                                        <label for="account-name">Nama</label>
                                                         <input type="text" class="form-control" id="account-name" name="name" placeholder="Name" value="{{$data->name}}" />
                                                     </div>
                                                 </div>
@@ -129,7 +129,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-success mt-2 mr-1">Save changes</button>
+                                                    <button type="submit" class="btn btn-success mt-2 mr-1">Simpan perubahan</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -144,9 +144,9 @@
                                             <div class="row">
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="account-old-password">Old Password</label>
+                                                        <label for="account-old-password">Password Lama</label>
                                                         <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Old Password" />
+                                                            <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Password Lama" />
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text cursor-pointer">
                                                                     <i data-feather="eye"></i>
@@ -159,9 +159,9 @@
                                             <div class="row">
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="account-new-password">New Password</label>
+                                                        <label for="account-new-password">Password Baru</label>
                                                         <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="New Password" />
+                                                            <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="Password Baru" />
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text cursor-pointer">
                                                                     <i data-feather="eye"></i>
@@ -172,9 +172,9 @@
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="account-retype-new-password">Retype New Password</label>
+                                                        <label for="account-retype-new-password">Ketikan Password Baru</label>
                                                         <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="New Password" />
+                                                            <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="Password Baru" />
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text cursor-pointer"><i data-feather="eye"></i></div>
                                                             </div>
@@ -182,7 +182,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-success mr-1 mt-1">Save changes</button>
+                                                    <button type="submit" class="btn btn-success mr-1 mt-1">Simpan perubahan</button>
 
                                                 </div>
                                             </div>
@@ -224,7 +224,7 @@
                                                 </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-success mt-1 mr-1">Save changes</button>
+                                                    <button type="submit" class="btn btn-success mt-1 mr-1">Simpan perubahan</button>
 
                                                 </div>
                                             </div>
@@ -281,8 +281,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-success mt-2 mr-1">Save changes</button>
-                                                <button type="reset" class="btn btn-outline-secondary mt-2">Cancel</button>
+                                                <button type="submit" class="btn btn-success mt-2 mr-1">Simpan perubahan</button>
+                                                <button type="reset" class="btn btn-outline-secondary mt-2">Batal</button>
                                             </div>
                                         </div>
                                     </div>

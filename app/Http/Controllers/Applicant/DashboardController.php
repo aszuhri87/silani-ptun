@@ -19,6 +19,8 @@ class DashboardController extends Controller
 
     public function index()
     {
+        date_default_timezone_set('Asia/Jakarta');
+
         $appl = Applicant::select('id')->where('user_id', Auth::id())->first();
 
         $accept = Document::select(

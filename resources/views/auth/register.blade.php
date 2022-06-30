@@ -123,7 +123,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="password-confirm" class="form-label">Confirm Password</label>
+                                            <label for="password-confirm" class="form-label">Konfirm Password</label>
 
                                             <div class="input-group input-group-merge form-password-toggle">
                                                 <input type="password" class="form-control form-control-merge  @error('password') is-invalid @enderror" id="password-confirm" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"  required autocomplete="new-password" tabindex="3" />
@@ -211,7 +211,7 @@
                                     <button  type="submit" class="btn btn-primary btn-block" tabindex="5">Sign up</button>
                                 </form> --}}
 
-                                <button  type="submit" class="btn btn-success btn-block" tabindex="5">Sign up</button>
+                                <button  type="submit" class="btn btn-success btn-block" tabindex="5">Daftar</button>
                             </form>
 
                                 <p class="text-center mt-2">

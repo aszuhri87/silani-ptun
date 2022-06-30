@@ -113,8 +113,16 @@ class InboxController extends Controller
             'document_category_req.data_type',
         ])
         ->with(['doc_req' => function ($query) {
-            $query->select(['document_requirements.id', 'document_requirements.requirement_value', 'document_requirements.document_id', 'document_category_requirements.requirement_type'])
-            ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id');
+            $query->select([
+                'document_requirements.id',
+                'document_requirements.requirement_value',
+                'document_requirements.document_id',
+                'document_category_requirements.requirement_type',
+                ])
+            ->leftJoin(
+                'document_category_requirements',
+                'document_category_requirements.id',
+                'document_requirements.document_category_requirement_id');
         },
         ])
         ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
@@ -126,8 +134,6 @@ class InboxController extends Controller
         ->where('document_requirements.document_id', $id)
         ->whereNull('documents.deleted_at')
         ->first();
-
-        // dd($data->doc_req);
 
         return Response::json($data);
     }
