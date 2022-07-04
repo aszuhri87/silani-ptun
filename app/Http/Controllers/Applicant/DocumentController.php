@@ -256,13 +256,12 @@ class DocumentController extends Controller
                     'name' => $request->name,
                 ]);
 
-                // dd($document->first()->id);
-
                 $data = DocumentRequirement::where('document_id', $id)->get();
 
+                $file_doc = null;
+
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
-                    for ($index = 0; $index < count($request->requirement_value); ++$index) {
-                        // dd($request->file('requirement_value.'.$index));
+                    for ($index = 0; $index < count($data); ++$index) {
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
@@ -270,21 +269,16 @@ class DocumentController extends Controller
                             $file->move(public_path().'/files/', $name);
 
                             $value[$index] = $name;
-
-                        // $path[] = $request->file('requirement_value')->store('public/files');
                         } else {
                             $value[$index] = $request->requirement_value[$index];
                         }
-
-                        for ($x = 0; $x < count($data); ++$x) {
-                            $file_doc = DocumentRequirement::whereIn('id', [$data[$x]->id])->update([
+                        $file_doc = DocumentRequirement::whereIn('document_category_requirement_id', [$data[$index]->document_category_requirement_id])->update([
                                 'requirement_value' => $value[$index],
                             ]);
-                        }
                     }
-
-                    return $file_doc;
                 }
+
+                return $file_doc;
             });
 
             return response([
