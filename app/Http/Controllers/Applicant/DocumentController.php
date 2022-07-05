@@ -99,12 +99,8 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
-        // for ($index = 0; $index < 10; ++$index) {
-        //     dd($request->file('requirement_value.'.$index));
-        // }
         try {
             $result = DB::transaction(function () use ($request) {
-                // $count = count($request->requirement_value);
                 $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
                 $document = Document::create([
@@ -128,7 +124,6 @@ class DocumentController extends Controller
                             $file->move(public_path().'/files/', $name);
 
                             $value[$index] = $name;
-                        // $path[] = $request->file('requirement_value')->store('public/files');
                         } else {
                             $value[$index] = $request->requirement_value[$index];
                         }
@@ -176,7 +171,6 @@ class DocumentController extends Controller
             'document_category_req.requirement',
             'document_category_req.required',
             'document_category_req.description',
-            // 'document_requirements.requirement_value',
             'document_category_req.title',
             'document_category_req.data_type',
         ])
@@ -198,8 +192,6 @@ class DocumentController extends Controller
         ->where('document_requirements.document_id', $id)
         ->whereNull('documents.deleted_at')
         ->first();
-
-        // dd($data);
 
         return Response::json($data);
     }
@@ -245,10 +237,8 @@ class DocumentController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         try {
             $result = DB::transaction(function () use ($request,$id) {
-                // $count = count($request->requirement_value);
                 $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
                 $document = Document::find($id);
@@ -261,7 +251,7 @@ class DocumentController extends Controller
                 $file_doc = null;
 
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
-                    for ($index = 0; $index < count($data); ++$index) {
+                    for ($index = 0; $index < count($request->requirement_value); ++$index) {
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
@@ -273,7 +263,7 @@ class DocumentController extends Controller
                             $value[$index] = $request->requirement_value[$index];
                         }
                         $file_doc = DocumentRequirement::whereIn('document_category_requirement_id', [$data[$index]->document_category_requirement_id])->update([
-                                'requirement_value' => $value[$index],
+                                'requirement_value' => $value[$index] ? $value[$index] : $data[$index]->requirement_value,
                             ]);
                     }
                 }
