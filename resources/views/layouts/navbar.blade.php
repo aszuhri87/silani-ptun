@@ -102,7 +102,7 @@
                     @hasrole('admin|super admin')
                     <a class="dropdown-item" href="/admin/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
                     <a class="dropdown-item" href="/admin/inbox"><i class="mr-50" data-feather="mail"></i> Surat Masuk</a>
-                    <a class="dropdown-item" href="/admin/accepted-mail"><i class="mr-50" data-feather="check-square"></i> Selesai</a>
+                    <a class="dropdown-item" href="/admin/accepted"><i class="mr-50" data-feather="check-square"></i> Selesai</a>
                     @endhasrole
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item"  href="{{ route('logout') }}" onclick="event.preventDefault();
