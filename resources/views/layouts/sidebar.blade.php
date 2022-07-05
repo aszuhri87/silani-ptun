@@ -67,9 +67,9 @@
                     </li>
                     <li class="nav-item @if (Request::is('admin/req-type')) active @endif"><a class="d-flex align-items-center" href="/admin/req-type"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Tipe Keperluan</span></a>
                     </li>
-                    <li class="nav-item @if (Request::is('admin/document-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-req"  data-toggle="tooltip"  data-bs-placement="right" title="Keperluan Dokumen"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Keperluan Dokumen</span></a>
-                    </li>
-                    <li class="nav-item @if (Request::is('admin/document-category-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-category-req"  data-toggle="tooltip" data-bs-placement="right" title="Keperluan Dokumen Kategori"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Keperluan Dokumen Kategori</span></a>
+                    {{-- <li class="nav-item @if (Request::is('admin/document-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-req"  data-toggle="tooltip"  data-bs-placement="right" title="Keperluan Dokumen"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Keperluan Dokumen</span></a>
+                    </li> --}}
+                    <li class="nav-item @if (Request::is('admin/document-category-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-category-req"  data-toggle="tooltip" data-bs-placement="right" title="Keperluan Dokumen Kategori"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Kategori Keperluan Dokumen </span></a>
                     </li>
                 </ul>
             </li>
@@ -81,7 +81,7 @@
                     </li>
                     <li class="nav-item @if (Request::is('admin/req-type')) active @endif"><a class="d-flex align-items-center" href="/admin/req-type"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Tipe Keperluan</span></a>
                     </li>
-                    <li class="nav-item @if (Request::is('admin/document-category-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-category-req"  data-toggle="tooltip" data-bs-placement="right" title="Keperluan Dokumen Kategori"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Keperluan Dokumen Kategori</span></a>
+                    <li class="nav-item @if (Request::is('admin/document-category-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-category-req"  data-toggle="tooltip" data-bs-placement="right" title="Keperluan Dokumen Kategori"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Kategori Keperluan Dokumen </span></a>
                     </li>
                 </ul>
             </li>
