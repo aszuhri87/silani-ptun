@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-datatable">
                         <small>
-                        <table class="table display" id="init-table" width="100%">
+                        <table class="table table-responsive display" id="init-table" width="100%">
                             <thead >
                                 <tr>
                                     <th>#</th>

@@ -24,23 +24,7 @@
 
                                     <div id="data_input" class="mb-1">
 
-
                                     </div>
-
-                                    {{-- @for ($i=0;$i<count($docs_req_category); $i++)
-
-                                    <label class="form-label mt-auto label-{{$i}}"></label>
-
-                                    <div class="input-group input-{{$i}}">
-
-                                    </div>
-                                    <div class="input-group text-{{$i}}">
-
-                                    </div>
-                                    <div class="input-group file-{{$i}}">
-
-                                    </div>
-                                    @endfor --}}
 
                                     <span id="errormsg" class="text-danger">
 
@@ -72,8 +56,6 @@
                 </div>
                 <div class="modal-body">
                      <!-- Basic -->
-                     {{-- <div class="col-md-12"> --}}
-
                         <form id="form-doc-create-2" name="form-doc-create" enctype="multipart/form-data" >
                             <div class="row">
                                 <div class="col-12 col-md-6 col-lg-6">
@@ -110,16 +92,6 @@
                                     <div class="mt-1" id="doc_file">
 
                                     </div>
-
-                                    {{-- @for ($i=0;$i<count($docs_req_category); ++$i)
-                                    <div class="input-group mb-2 input-{{$i}}">
-
-                                    </div>
-                                    <div class="input-group mb-2 file-{{$i}}">
-
-                                    </div>
-                                    @endfor --}}
-
                                 </div>
 
                         </div>

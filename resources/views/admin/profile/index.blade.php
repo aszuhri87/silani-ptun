@@ -49,29 +49,14 @@
 
                         </ul>
                     </div>
-                    <!--/ left menu section -->
-                    <!-- right content section -->
+
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-body">
                                 <div class="tab-content">
                                     <!-- general tab -->
                                     <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
-                                        <!-- header media -->
-                                        {{-- <div class="media">
-                                            <a href="javascript:void(0);" class="mr-25">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
-                                            </a>
-                                            <!-- upload and reset button -->
-                                            <div class="media-body mt-75 ml-1">
-                                                <label for="account-upload" class="btn btn-sm btn-success mb-75 mr-75">Upload</label>
-                                                <input type="file" id="account-upload" hidden accept="image/*" />
-                                                <button class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
-                                                <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
-                                            </div>
-                                            <!--/ upload and reset button -->
-                                        </div> --}}
-                                        <!--/ header media -->
+
 
                                         <!-- form -->
                                         <form class="validate-form mt-auto" id="change-profile">
@@ -106,14 +91,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="col-12 mt-75">
-                                                    <div class="alert alert-warning mb-50" role="alert">
-                                                        <h4 class="alert-heading">Your email is not confirmed. Please check your inbox.</h4>
-                                                        <div class="alert-body">
-                                                            <a href="javascript: void(0);" class="alert-link">Resend confirmation</a>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-success mt-2 mr-1">Simpan Perubahan</button>
                                                     <button type="reset" class="btn btn-outline-secondary mt-2">Batal</button>

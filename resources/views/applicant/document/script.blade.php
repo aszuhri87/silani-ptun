@@ -78,12 +78,6 @@
                         $('input[name="required"]').val(data.required);
                         $('textarea[name="description"]').val(data.description);
 
-                        // $('.input-'+i).html(`
-                        //     <div class="input-group">
-                        //         <span class="input-group-text" id="basic-addon1" style="width:100%">`+data[i].requirement_type+` :   <a href="#">`+data[i].requirement_value+`</a></span>
-                        //     </div>
-                        // `);
-
                         for (i in data.doc_req){
                         var str = data.doc_req[i].requirement_value;
                             var dotIndex= str.lastIndexOf('.');
@@ -104,14 +98,6 @@
                                         </span>
                                     </div>
                                 `);
-
-
-                            //     $('.file-'+i).html(`
-                            //     <div class="input-group">
-                            //         <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/applicant/document/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
-                            //     </div>
-                            // `);
-                            // }
                             }else{
                                 $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].requirement_value+`</label>
@@ -119,15 +105,8 @@
                                         <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
                                     </div>
                                 `);
-                                // $('.file-'+i).html(`
-                                // <div class="input-group">
-                                //     <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
-                                // </div>
-
                             }
                         }
-
-                            // $('input[name="requirement_type"]').val(data[i].requirement_type);
 
                             if (data.status=="Diproses") {
                                 $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
@@ -160,8 +139,6 @@
                 // setTimeout($.unblockUI, 2100);
             });
 
-
-
             $(document).on('click', '.btn-edit', function(event){
                 event.preventDefault();
                 var id = $(this).data('id');
@@ -176,13 +153,7 @@
                 $.get(url, function(data){
                     $('#form-add').html(`<input type="hidden" name="_method" value="PUT">`);
                     for (i in data.doc_req){
-                    // $('input[name="requirement_value"]').val(data[i].requirement_value);
-                    // $('input[name="document_category"]').val(data[i].document_category);
-                    // $('input[name="requirement"]').val(data[i].requirement);
-                    // $('input[name="required"]').val(data[i].required);
-                    // $('textarea[name="description"]').val(data[i].description);
 
-                    // $('#form-doc-create').find('input[name="id_cat"]').val(id);
                     if(data.doc_req[i].data_type == "textarea"){
 
                         $('div#data_input').append(`
