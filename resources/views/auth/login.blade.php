@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="description" content="Sistem Informasi Perizinan Dokumen Online PTUN Yogyakarta">
     <meta name="author" content="VarX">
-    <title>Login - SIPDO | PTUN Yogyakarta</title>
+    <title>Login - SILANI | PTUN Yogyakarta</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -61,9 +61,9 @@
                                     <img src="{{asset('app-assets/images/logo.png')}}" alt="" style="width:80px%; height:80px" >
                                 </a>
 
-                                <h2 class="brand-text text-success ml-1">SIPDO | PTUN Yogyakarta</h2>
+                                <h2 class="brand-text text-success ml-1">SILANI | PTUN Yogyakarta</h2>
                                 <br>
-                                <h4 class="card-title mb-1">Selamat datang di Sistem Informasi Pelayanan Dokumen Online 👋</h4>
+                                <h4 class="card-title mb-1">Selamat datang di Sistem Layanan Terintegrasi 👋</h4>
                                 <p class="card-text mb-2">Silahkan login untuk melanjutkan</p>
 
                                 <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
