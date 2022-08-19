@@ -24,3 +24,4 @@ include base_path('routes/applicant.php');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::post('/import', [App\Http\Controllers\Applicant\ProfileController::class, 'store']);
