@@ -157,6 +157,7 @@ class VerificationController extends Controller
             $data = Document::find($id);
             $data->update([
                 'status' => $request->status_edit ? $request->status_edit : $data->status,
+                'notes' => $request->notes ? $request->notes : $data->notes,
             ]);
 
             return response([
