@@ -26,8 +26,8 @@
                 $('#form-req-type').attr('method','PUT');
 
                 $('#form-req-type').find('input[name="requirement_type"]').val(data.requirement_type);
-                $('#form-req-type').find('input[name="description"]').val(data.description);
-                $('#form-req-type').find('input[name="data_type"]').val(data.data_type);
+                $('#form-req-type').find('textarea[name="description"]').val(data.description);
+                $('#form-req-type').find('select[name="data_type"]').val(data.data_type).find(':selected').text();
                 $('#form-req-type').find('input[name="data_unit"]').val(data.data_unit);
                 showModal('modal-req-type');
             });
