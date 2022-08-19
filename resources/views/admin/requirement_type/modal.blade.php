@@ -23,13 +23,22 @@
                             <label for="description" class="form-label">Deskripsi</label>
                             <div class="input-group">
 
-                            <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder=""></textarea>
+                            <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder="" required></textarea>
                             </div>
                             <small class="textarea-counter-value float-right bg-success"><span class="char-count">0</span> / 50 </small>
-
-                            <label for="data_type">Data Type</label>
-                            <div class="input-group mb-2">
+{{--
+                            <label for="data_type">Data Type</label> --}}
+                            {{-- <div class="input-group mb-2">
                                 <input type="text" class="form-control" name="data_type" placeholder="Data Type" aria-label="Data Type" aria-describedby="data_type" />
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="data_type">Data Type</label>
+                                <select class="form-control" name="data_type">
+                                    <option value="text">Teks</option>
+                                    <option value="file">File</option>
+                                    <option value="textarea">Area Teks</option>
+                                </select>
                             </div>
 
                             <label for="data_unit">Data Unit</label>
