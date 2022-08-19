@@ -53,9 +53,6 @@
             <div class="content-body">
                 <!-- Error page-->
                 <div class="misc-wrapper"><a class="brand-logo" href="javascript:void(0);">
-                    <a href="javascript:void(0);" class="brand-logo">
-                        <img src="{{asset('app-assets/images/logo.png')}}" alt="" style="width:80px%; height:80px" >
-                    </a>
                         <h2 class="brand-text text-success ml-1">SILANI PTUN Yogyakarta</h2>
                     </a>
                     <div class="misc-inner p-2 p-sm-3">
