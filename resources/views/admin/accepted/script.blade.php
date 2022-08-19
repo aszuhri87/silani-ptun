@@ -68,14 +68,6 @@
                                         </span>
                                     </div>
                                 `);
-
-
-                            //     $('.file-'+i).html(`
-                            //     <div class="input-group">
-                            //         <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/applicant/document/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
-                            //     </div>
-                            // `);
-                            // }
                             }else{
                                 $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].requirement_value+`</label>
@@ -83,10 +75,6 @@
                                         <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
                                     </div>
                                 `);
-                                // $('.file-'+i).html(`
-                                // <div class="input-group">
-                                //     <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
-                                // </div>
 
                             }
                     }

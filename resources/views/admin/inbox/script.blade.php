@@ -26,7 +26,7 @@
                     $('#form-doc-inbox').find('input[name="required"]').val(data.required);
                     $('#form-doc-inbox').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-inbox').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
-
+                    $('#form-doc-inbox').find('textarea[name="notes"]').val(data.notes);
 
                     for (i in data.doc_req){
                         var str = data.doc_req[i].requirement_value;
@@ -48,14 +48,6 @@
                                         </span>
                                     </div>
                                 `);
-
-
-                            //     $('.file-'+i).html(`
-                            //     <div class="input-group">
-                            //         <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/applicant/document/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
-                            //     </div>
-                            // `);
-                            // }
                             }else{
                                 $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].requirement_value+`</label>
@@ -63,10 +55,6 @@
                                         <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
                                     </div>
                                 `);
-                                // $('.file-'+i).html(`
-                                // <div class="input-group">
-                                //     <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
-                                // </div>
 
                             }
                     }

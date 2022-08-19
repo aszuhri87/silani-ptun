@@ -45,6 +45,7 @@
                     $('#form-doc-verification').find('input[name="required"]').val(data.required);
                     $('#form-doc-verification').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-verification').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
+                    $('#form-doc-verification').find('textarea[name="notes"]').val(data.notes);
 
                     for (i in data.doc_req){
                         var str = data.doc_req[i].requirement_value;
