@@ -41,7 +41,7 @@
                                     <select class="form-control" id="select-docs-category" name="select_docs_category">
                                             <option value="">-- Pilih --</option>
                                         @foreach ($docs_category as $dc )
-                                            <option value="{{$dc->id}}" data-id="{{$dc->id}}">{{$dc->name}}</option>
+                                            <option value="{{$dc->document_category_id}}" data-id="{{$dc->document_category_id}}">{{$dc->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
