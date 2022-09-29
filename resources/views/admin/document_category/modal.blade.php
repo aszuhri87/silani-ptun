@@ -48,7 +48,7 @@
                                 </div>
                                 <small class="textarea-counter-value float-right bg-success"><span class="char-count">0</span> / 50 </small>
 
-                                <div class="form-group">
+                                <div class="form-group mt-1">
                                     <label for="category">Kategori</label>
                                     <select class="form-control" name="category" id="category">
                                         <option value="">-- Pilih Kategori --</option>
