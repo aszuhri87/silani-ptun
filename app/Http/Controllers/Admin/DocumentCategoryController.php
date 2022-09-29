@@ -41,6 +41,9 @@ class DocumentCategoryController extends Controller
             'document_categories.id',
             'document_categories.name',
             'document_categories.description',
+            'document_categories.category',
+            'document_categories.unit_id',
+            'document_categories.sub_unit_id',
             'sub_units.name as sub_unit',
             'units.name as unit',
         ])->join('units', 'units.id', 'document_categories.unit_id')
@@ -57,8 +60,9 @@ class DocumentCategoryController extends Controller
                 $data = DocumentCategory::create([
                         'name' => $request->name,
                         'description' => $request->description,
-                        'unit_id' => $request->select_unit,
-                        'sub_unit_id' => $request->select_sub_unit,
+                        'unit_id' => $request->unit,
+                        'sub_unit_id' => $request->sub_unit,
+                        'category' => $request->category,
                 ]);
 
                 return $data;
@@ -89,8 +93,9 @@ class DocumentCategoryController extends Controller
             $data->update([
                 'name' => $request->name ? $request->name : $data->name,
                 'description' => $request->description ? $request->description : $data->description,
-                'unit_id' => $request->select_unit ? $request->select_unit : $data->unit_id,
-                'sub_unit_id' => $request->select_sub_unit ? $request->select_sub_unit : $data->sub_unit_id,
+                'unit_id' => $request->unit ? $request->unit : $data->unit_id,
+                'sub_unit_id' => $request->sub_unit ? $request->sub_unit : $data->sub_unit_id,
+                'category' => $request->category ? $request->category : $data->category,
             ]);
 
             return response([

@@ -22,8 +22,8 @@
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Nama" aria-label="Nama"  aria-describedby="nama" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="select_unit">Unit</label>
-                                    <select class="form-control" name="select_unit" id="select_unit">
+                                    <label for="unit">Unit</label>
+                                    <select class="form-control" name="unit" id="unit">
                                         <option value="">-- Pilih Unit --</option>
                                         @foreach ($unit as $u )
 
@@ -33,21 +33,30 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="select_unit">Sub Unit</label>
-                                    <select class="form-control" name="select_sub_unit" id="select_sub_unit">
+                                    <label for="sub_unit">Sub Unit</label>
+                                    <select class="form-control" name="sub_unit" id="sub_unit">
                                         <option value="">-- Pilih Sub Unit --</option>
                                         @foreach ($sub_unit as $su )
-
-                                        <option value="{{$su->id}}">{{$su->name}}</option>
+                                            <option value="{{$su->id}}">{{$su->name}}</option>
                                         @endforeach
-
                                     </select>
                                 </div>
+
                                 <label for="description" id="description" class="form-label">Deskripsi</label>
                                 <div class="input-group">
                                     <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder=""></textarea>
                                 </div>
                                 <small class="textarea-counter-value float-right bg-success"><span class="char-count">0</span> / 50 </small>
+
+                                <div class="form-group">
+                                    <label for="category">Kategori</label>
+                                    <select class="form-control" name="category" id="category">
+                                        <option value="">-- Pilih Kategori --</option>
+                                        <option value="umum"> Umum </option>
+                                        <option value="karyawan"> Karyawan </option>
+
+                                    </select>
+                                </div>
                         </div>
                 </div>
                 <div class="modal-footer">

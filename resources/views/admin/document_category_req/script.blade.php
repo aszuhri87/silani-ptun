@@ -30,8 +30,8 @@
                 $('#form-doc-category-req').find('input[name="data_min"]').val(data.data_min);
                 $('#form-doc-category-req').find('input[name="data_max"]').val(data.data_max);
                 $('#form-doc-category-req').find('textarea[name="description"]').val(data.description);
-                $('#form-doc-category-req').find('select[name="select_docs_category"]').val(data.select_docs_category);
-                $('#form-doc-category-req').find('select[name="select_req_type"][option]').val(data.select_req_type);
+                $('#form-doc-category-req').find('select[name="select_docs_category"]').find('option[value=' + data.document_category_id + ']').prop('selected', true);
+                $('#form-doc-category-req').find('select[name="select_req_type"]').find('option[value=' + data.requirement_type + ']').prop('selected', true);
                 showModal('modal-docs-category-req');
             });
 

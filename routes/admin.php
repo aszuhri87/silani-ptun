@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AcceptedController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ApplicantController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentCategoryRequirementController;
 use App\Http\Controllers\Admin\DocumentRequirementController;
@@ -22,7 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::post('/profile/update_password', [ProfileController::class, 'update_password']);
     Route::post('/profile/update_profile', [ProfileController::class, 'update_profile']);
     // Route::get('/sub-unit', [SubUnitController::class, 'index']);
-    Route::get('/list-applicant', [AdminController::class, 'list_applicant']);
+    Route::post('/list-applicant/dt', [ApplicantController::class, 'dt']);
 
     Route::post('/manage-admin/dt', [ManageAdminController::class, 'dt']);
     Route::post('/accepted/dt', [AcceptedController::class, 'dt']);
@@ -47,11 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::resource('/document-category', DocumentCategoryController::class);
     Route::resource('/unit', UnitController::class);
     Route::resource('/req-type', RequirementTypeController::class);
-
-    // Route::post('/sub-unit', [SubUnitController::class, 'store']);
-    // Route::get('/sub-unit/{id}', [SubUnitController::class, 'index']);
-    // Route::put('/sub-unit/{id}', [SubUnitController::class, 'update']);
-
-    // Route::put('/sub-unit/{id}', [SubUnitController::class, 'update']);
+    Route::resource('/list-applicant', ApplicantController::class);
 }
 );

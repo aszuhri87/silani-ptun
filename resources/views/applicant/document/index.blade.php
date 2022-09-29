@@ -41,7 +41,7 @@
                                     <select class="form-control" id="select-docs-category" name="select_docs_category">
                                             <option value="">-- Pilih --</option>
                                         @foreach ($docs_category as $dc )
-                                            <option value="{{$dc->document_category_id}}" data-id="{{$dc->document_category_id}}">{{$dc->name}}</option>
+                                            <option value="{{$dc->id}}" data-id="{{$dc->id}}">{{$dc->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,8 +62,8 @@
                         {{-- <button type="button" class="btn btn-success" id="create-doc-req-modal"> Tambah</button> --}}
                     </div>
                     <div class="card-datatable">
-                        <table class="table table-responsive"  " id="init-table" class="table-responsive">
-                            <thead class="" width="100%">
+                        <table class="table"  id="init-table">
+                            <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>

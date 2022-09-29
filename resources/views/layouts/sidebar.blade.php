@@ -38,8 +38,6 @@
                     </li>
                     <li class="nav-item @if (Request::is('admin/req-type')) active @endif"><a class="d-flex align-items-center" href="/admin/req-type"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Tipe Keperluan</span></a>
                     </li>
-                    {{-- <li class="nav-item @if (Request::is('admin/document-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-req"  data-toggle="tooltip"  data-bs-placement="right" title="Keperluan Dokumen"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Keperluan Dokumen</span></a>
-                    </li> --}}
                     <li class="nav-item @if (Request::is('admin/document-category-req')) active @endif"><a class="d-flex align-items-center" href="/admin/document-category-req"  data-toggle="tooltip" data-bs-placement="right" title="Kategori Keperluan Dokumen"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level">Kategori Keperluan Dokumen </span></a>
                     </li>
                 </ul>
@@ -80,7 +78,6 @@
             </li>
             <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a class="d-flex align-items-center" href="/admin/verification"><i data-feather="edit-3"></i><span class="menu-title text-truncate" >Perizinan Dokumen</span></a>
             </li>
-
             <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Selesai</span></a>
             </li>
             @endhasrole
@@ -96,6 +93,8 @@
 
           @role('super admin')
             <li class="nav-item @if (Request::is('admin/manage-admin')) active @endif"><a class="d-flex align-items-center" href="/admin/manage-admin"><i data-feather="user-plus"></i><span class="menu-title text-truncate" data-i18n="Documentation">Manajemen Admin</span></a>
+            </li>
+            <li class="nav-item @if (Request::is('admin/list-applicant')) active @endif"><a class="d-flex align-items-center" href="/admin/list-applicant"  data-toggle="tooltip"  data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
             </li>
             @endrole
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();

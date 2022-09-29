@@ -39,7 +39,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $data = DB::table('admins')
-        ->select('*')
+        ->select('admins.unit_id', '*')
         ->leftJoin('users', 'users.id', 'admins.user_id')
         ->where('admins.user_id', $id)
         ->first();
@@ -81,7 +81,7 @@ class ProfileController extends Controller
             // dd($request->new_password);
             $user = User::where('id', Auth::id());
             $user->update([
-                'password' => Hash::make($request->new_password),
+                'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $user->password,
             ]);
 
             return response([

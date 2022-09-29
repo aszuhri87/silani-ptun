@@ -38,7 +38,7 @@
                         {{-- <button type="button" class="btn btn-success" id="create-doc-req-modal"> Tambah</button> --}}
                     </div>
                     <div class="card-datatable">
-                        <table class="table table-responsive"  " id="init-table">
+                        <table class="table"  " id="init-table">
                             <thead width="100%">
                                 <tr>
                                     <th>#</th>

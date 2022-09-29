@@ -45,6 +45,7 @@ class DocumentCategoryRequirementController extends Controller
             'document_category_requirements.data_max',
             'document_category_requirements.description',
             'document_categories.name as document_category',
+            'document_category_requirements.document_category_id',
             'requirement_types.requirement_type as requirement_type',
         ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
         ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')

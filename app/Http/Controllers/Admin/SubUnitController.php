@@ -36,6 +36,7 @@ class SubUnitController extends Controller
             'sub_units.name',
             'sub_units.description',
             'units.name as unit',
+            'sub_units.unit_id',
         ])->leftJoin('units', 'units.id', 'sub_units.unit_id')
         ->whereNull('sub_units.deleted_at');
 

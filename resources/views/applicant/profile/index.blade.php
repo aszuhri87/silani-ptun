@@ -232,61 +232,6 @@
                                         <!--/ form -->
                                     </div>
                                     <!--/ information -->
-
-
-
-                                    {{-- <!-- notifications -->
-                                    <div class="tab-pane fade" id="account-vertical-notifications" role="tabpanel" aria-labelledby="account-pill-notifications" aria-expanded="false">
-                                        <div class="row">
-                                            <h6 class="section-label mx-1 mb-2">Activity</h6>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch1" />
-                                                    <label class="custom-control-label" for="accountSwitch1">
-                                                        Email me when someone comments onmy article
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch2" />
-                                                    <label class="custom-control-label" for="accountSwitch2">
-                                                        Email me when someone answers on my form
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="accountSwitch3" />
-                                                    <label class="custom-control-label" for="accountSwitch3">Email me hen someone follows me</label>
-                                                </div>
-                                            </div>
-                                            <h6 class="section-label mx-1 mt-2">Application</h6>
-                                            <div class="col-12 mt-1 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch4" />
-                                                    <label class="custom-control-label" for="accountSwitch4">News and announcements</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-2">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" checked id="accountSwitch6" />
-                                                    <label class="custom-control-label" for="accountSwitch6">Weekly product updates</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-75">
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="accountSwitch5" />
-                                                    <label class="custom-control-label" for="accountSwitch5">Weekly blog digest</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="submit" class="btn btn-success mt-2 mr-1">Simpan perubahan</button>
-                                                <button type="reset" class="btn btn-outline-secondary mt-2">Batal</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ notifications --> --}}
                                 </div>
                             </div>
                         </div>

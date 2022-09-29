@@ -40,7 +40,7 @@
                         <button type="button" class="btn btn-success" id="create-doc-category-modal"> Tambah</button>
                     </div>
                     <div class="card-datatable">
-                        <table class="table  table-responsive" id="init-table">
+                        <table class="table" id="init-table">
                             <thead class="" width="100%">
                                 <tr>
                                     <th>#</th>
@@ -48,6 +48,7 @@
                                     <th width="15%">Unit</th>
                                     <th width="25%">Sub unit</th>
                                     <th width="20%">Deskripsi</th>
+                                    <th width="20%">Kategori</th>
                                     <th width="10%">Aksi</th>
                                 </tr>
                             </thead>

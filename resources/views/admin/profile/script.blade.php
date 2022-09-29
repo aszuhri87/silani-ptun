@@ -56,7 +56,7 @@
 
                 $('#form-sub-unit').find('input[name="name"]').val(data.name);
                 $('#form-sub-unit').find('textarea[name="description"]').val(data.description);
-                $('#form-sub-unit').find('select[name="select_unit"]').val(data.select_unit);
+                $('#form-sub-unit').find('select[name="select_unit"]').find('option[value=' + data.unit_id + ']').prop('selected', true);
                 showModal('modal-subunit');
             });
 

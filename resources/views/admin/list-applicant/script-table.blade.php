@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    var DocsCategoryTable = function() {
+    var SubUnitTable = function() {
         var init_table;
 
         $(document).ready(function() {
@@ -16,15 +16,13 @@
                 sScrollY: ($(window).height() < 700) ? $(window).height() - 200 : $(window).height() - 400,
                 ajax: {
                     type: 'POST',
-                    url: "{{ url('admin/document-category/dt') }}",
+                    url: "{{ url('admin/list-applicant/dt') }}",
                 },
                 columns: [
                     { data: 'DT_RowIndex' },
                     { data: 'name' },
-                    { data: 'unit', "searchable": false},
-                    { data: 'sub_unit', "searchable": false },
-                    { data: 'description' },
-                    { data: 'category' },
+                    { data: 'username' },
+                    { data: 'email' },
                     { defaultContent: '' }
                     ],
                 columnDefs: [
@@ -42,19 +40,18 @@
                         data: "id",
                         render : function(data, type, full, meta) {
                             return `
-
                             <div class="btn-group" role="group" aria-label="Basic example">
 
-                            <a href="{{ url('admin/document-category') }}/${data}" title="Edit" class="btn btn-light btn-edit btn-sm btn-clean btn-icon" title="Edit">
-                                        <span class="svg-icon svg-icon-md">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#47d147" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <a href="{{ url('/admin/list-applicant') }}/${data}" title="Edit" class="btn btn-light btn-edit btn-sm btn-clean btn-icon" data-toggle="tooltip"  title="Edit details">
+                                <span class="svg-icon svg-icon-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#47d147" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
                                                 <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
                                             </svg>
                                         </span>
                                     </a>
 
-                                    <a href="{{ url('admin/document-category') }}/${data}" title="Delete" class="btn btn-light btn-delete btn-sm btn-clean btn-icon" title="Delete">
+                                    <a href="{{ url('admin/list-applicant') }}/${data}" title="Delete" class="btn btn-light btn-delete btn-sm btn-clean btn-icon" data-toggle="tooltip"  title="Delete">
                                         <span class="svg-icon svg-icon-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d11d18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -63,7 +60,7 @@
                                             </svg>
                                         </span>
                                     </a>
-                                </div>
+                                    </div>
                             `
                         }
                     },

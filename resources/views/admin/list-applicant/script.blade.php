@@ -6,13 +6,13 @@
         });
 
         const initAction = () => {
-            $(document).on('click', '#create-subunit-modal', function(event){
+            $(document).on('click', '#create-list-applicant-modal', function(event){
                 event.preventDefault();
 
-                $('#form-sub-unit').trigger("reset");
-                $('#form-sub-unit').attr('action','{{url('admin/sub-unit')}}');
-                $('#form-sub-unit').attr('method','POST');
-                showModal('modal-subunit');
+                $('#form-list-applicant').trigger("reset");
+                $('#form-list-applicant').attr('action','{{url('admin/list-applicant')}}');
+                $('#form-list-applicant').attr('method','POST');
+                showModal('modal-list-applicant');
             });
 
             $(document).on('click', '.btn-edit', function(event){
@@ -20,15 +20,15 @@
 
                 var data = SubUnitTable.table().row($(this).parents('tr')).data();
 
-                $('#form-sub-unit').trigger("reset");
-                $('#form-sub-unit').attr('action', $(this).attr('href'));
-                $('#form-sub-unit').attr('method','PUT');
+                $('#form-list-applicant').trigger("reset");
+                $('#form-list-applicant').attr('action', $(this).attr('href'));
+                $('#form-list-applicant').attr('method','PUT');
 
-                $('#form-sub-unit').find('input[name="name"]').val(data.name);
-                $('#form-sub-unit').find('textarea[name="description"]').val(data.description);
-                $('#form-sub-unit').find('select[name="select_unit"]').find('option[value=' + data.unit_id + ']').prop('selected', true);
+                $('#form-list-applicant').find('input[name="name"]').val(data.name);
+                $('#form-list-applicant').find('input[name="email"]').val(data.email);
+                $('#form-list-applicant').find('input[name="username"]').val(data.username);
 
-                showModal('modal-subunit');
+                showModal('modal-list-applicant');
             });
 
             $('#btn-save').click(function() {
@@ -81,7 +81,7 @@
             });
         },
         formSubmit = () => {
-            $('#form-sub-unit').submit(function(event){
+            $('#form-list-applicant').submit(function(event){
                 event.preventDefault();
 
                 $.ajax({
@@ -92,7 +92,7 @@
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
                     SubUnitTable.table().draw(false);
-                    hideModal('modal-subunit');
+                    hideModal('modal-list-applicant');
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')

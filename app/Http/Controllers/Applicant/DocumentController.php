@@ -24,6 +24,8 @@ class DocumentController extends Controller
 
     public function index()
     {
+        $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
+
         $docs_category = DB::table('document_categories')
         ->select([
          'document_category_requirements.id',
@@ -38,8 +40,14 @@ class DocumentController extends Controller
         ])
         ->leftJoin('document_category_requirements', 'document_category_requirements.document_category_id', 'document_categories.id')
         ->distinct('document_categories.name')
-        ->whereNull(['document_categories.deleted_at', 'document_category_requirements.deleted_at'])
-        ->get();
+        ->whereNull(['document_categories.deleted_at', 'document_category_requirements.deleted_at']);
+        // ->get();
+
+        if (Auth::user()->category == 'umum') {
+            $docs_category->where('document_categories.category', 'umum');
+        } else {
+            $docs_category->where('document_categories.category', 'karyawan');
+        }
 
         $docs_req_category = DB::table('document_category_requirements')
         ->select([
@@ -70,7 +78,7 @@ class DocumentController extends Controller
 
         return view('applicant.document.index',
         [
-            'docs_category' => $docs_category,
+            'docs_category' => $docs_category->get(),
             'req_type' => $req_type,
             'docs_req_category' => $docs_req_category,
         ]);
@@ -116,7 +124,6 @@ class DocumentController extends Controller
 
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
                     for ($index = 0; $index < count($request->requirement_value); ++$index) {
-                        // dd($request->file('requirement_value.'.$index));
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
@@ -229,8 +236,6 @@ class DocumentController extends Controller
         ->where('document_id', $id)
         ->whereNull('deleted_at')
         ->first();
-
-        // dd($data);
 
         return response()->download(public_path('/files/'.$data->requirement_value));
     }

@@ -37,14 +37,14 @@
                         <button type="button" class="btn btn-success" id="create-admin"> Tambah</button>
                     </div>
                     <div class="card-datatable">
-                        <table class="table table-responsive"   id="init-table">
+                        <table class="table"   id="init-table">
                             <thead width="100%">
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>E-mail</th>
-                                    {{-- <th>Unit</th> --}}
+                                    <th>Unit</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

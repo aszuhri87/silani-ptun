@@ -26,8 +26,11 @@
                 $('#form-doc-category').attr('method','PUT');
                 $('#form-doc-category').find('input[name="name"]').val(data.name);
                 $('#form-doc-category').find('textarea[name="description"]').val(data.description);
-                // $('#form-doc-category').find('select[name="select_unit"]').val(data.unit);
-                // $('#form-doc-category').find('select[name="select_sub_unit"]').val(data.sub_unit);
+                $('#form-doc-category').find('select[name="category"]').val(data.category);
+                $('#form-doc-category').find('select[name="unit"]').find('option[value=' + data.unit_id + ']').prop('selected', true);
+                $('#form-doc-category').find('select[name="sub_unit"]').find('option[value=' + data.sub_unit_id + ']').prop('selected', true);
+                // $('#form-doc-category').find('input[name="category"]').val(data.category);
+
                 showModal('modal-docs-category');
             });
 

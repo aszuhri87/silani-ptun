@@ -27,8 +27,7 @@
                     $('#form-manage-admin').find('input[name="name"]').val(data.name);
                     $('#form-manage-admin').find('input[name="username"]').val(data.username);
                     $('#form-manage-admin').find('input[name="email"]').val(data.email);
-                    $('#form-manage-admin').find('input[name="password"]').val(data.password);
-                    $('#form-sub-unit').find('select[name="select_unit"]').val(data.select_unit);
+                    $('#form-manage-admin').find('select[name="select_unit"]').find('option[value=' + data.unit_id + ']').prop('selected', true);
                     showModal('modal-mng-admin');
                 });
             });

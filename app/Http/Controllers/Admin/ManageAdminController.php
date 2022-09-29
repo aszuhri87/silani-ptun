@@ -42,9 +42,12 @@ class ManageAdminController extends Controller
             'users.username',
             'users.email',
             'users.id',
+            'admins.unit_id',
+            'units.name as unit',
             ])
         ->leftJoin('users', 'users.id', 'admins.user_id')
-        ;
+        ->leftJoin('units', 'units.id', 'admins.unit_id')
+        ->whereNull('admins.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -52,7 +55,7 @@ class ManageAdminController extends Controller
     public function show($id)
     {
         $data = DB::table('admins')
-        ->select('*')
+        ->select('admins.unit_id', '*')
         ->leftJoin('users', 'users.id', 'admins.user_id')
         ->where('admins.user_id', $id)
         ->first();
@@ -97,22 +100,26 @@ class ManageAdminController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = User::find($id);
-            $data->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'username' => $request->username,
-                'password' => Hash::make($request->password),
-            ]);
+            $result = DB::transaction(function () use ($request,$id) {
+                $data = User::find($id);
+                $data->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'username' => $request->username,
+                    'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $user->password,
+                ]);
 
-            $user = Admin::where('id', $data->user_id);
-            $user->update([
-                'name' => $request->name,
-                'unit_id' => $request->select_unit,
-            ]);
+                $user = Admin::where('user_id', $id);
+                $user->update([
+                    'name' => $request->name,
+                    'unit_id' => $request->select_unit ? $request->select_unit : $user->unit_id,
+                ]);
+
+                return $data;
+            });
 
             return response([
-                'data' => $data,
+                'data' => $result,
                 'message' => 'Data Terubah',
             ], 200);
         } catch (Exception $e) {

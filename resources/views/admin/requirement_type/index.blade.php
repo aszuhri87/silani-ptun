@@ -40,7 +40,7 @@
                         <button type="button" class="btn btn-success" id="create-req-type"> Tambah </button>
                     </div>
                     <div class="card-datatable">
-                        <table class="table  table-responsive" id="init-table">
+                        <table class="table" id="init-table">
                             <thead>
                                 <tr>
                                     <th>#</th>

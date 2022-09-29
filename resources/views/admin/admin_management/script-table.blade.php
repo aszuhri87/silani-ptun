@@ -23,7 +23,7 @@
                     { data: 'name' },
                     { data: 'username'},
                     { data: 'email'},
-                    // { data: 'unit',"searchable": false },
+                    { data: 'unit',"searchable": false },
                     // { data: 'status' },
                     { defaultContent: '' }
                     ],
@@ -73,15 +73,6 @@
                     lengthMenu: '<span>Show:</span> _MENU_',
                     processing: '<div class="text-center"> <div class="spinner-border text-primary" role="status"> <span class="sr-only">Loading...</span> </div> </div>',
                 },
-                rowCallback: function(row, data, index){
-                            if (data.status=='Diterima') {
-                                $(row).find('td:eq(5)').html('<span class="badge badge-pill badge-light-success mr-1">'+data.status+'</span>');
-                            }else if (data.status=='Ditolak') {
-                                $(row).find('td:eq(5)').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
-                            }else{
-                                $(row).find('td:eq(5)').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
-                            }
-                        },
 
             });
         },

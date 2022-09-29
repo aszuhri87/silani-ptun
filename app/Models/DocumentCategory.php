@@ -22,6 +22,7 @@ class DocumentCategory extends Model
         'unit_id',
         'sub_unit_id',
         'description',
+        'category',
     ];
 
     protected $dates = ['deleted_at'];
