@@ -40,6 +40,7 @@ class DocumentController extends Controller
         ])
         ->leftJoin('document_category_requirements', 'document_category_requirements.document_category_id', 'document_categories.id')
         ->distinct('document_categories.name')
+        ->whereNotNull('document_category_requirements.document_category_id')
         ->whereNull(['document_categories.deleted_at', 'document_category_requirements.deleted_at']);
         // ->get();
 
