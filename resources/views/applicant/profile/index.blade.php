@@ -53,20 +53,6 @@
                                     <span class="font-weight-bold">Informasi</span>
                                 </a>
                             </li>
-                            <!-- social -->
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
-                                    <i data-feather="link" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Social</span>
-                                </a>
-                            </li> --}}
-                            <!-- notification -->
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" id="account-pill-notifications" data-toggle="pill" href="#account-vertical-notifications" aria-expanded="false">
-                                    <i data-feather="bell" class="font-medium-3 mr-1"></i>
-                                    <span class="font-weight-bold">Notifications</span>
-                                </a>
-                            </li> --}}
                         </ul>
                     </div>
                     <!--/ left menu section -->

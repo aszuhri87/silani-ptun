@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
@@ -38,19 +39,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // protected function login(Request $request)
-    // {
-    //     $input = $request->all();
-
-    //     $this->validate($request, [
-    //         'username' => 'required',
-    //         'password' => 'required',
-    //     ]);
-
-    //     return redirect()->route('login')
-    //             ->with('error', 'Email-Address And Password Are Wrong.');
-    // }
-
     public function username()
     {
         return 'username';
@@ -74,8 +62,9 @@ class LoginController extends Controller
         } else {
             Alert::error('Gagal', 'Email atau password salah!');
 
-            return redirect()->route('login')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+            return Redirect::back()->withErrors([
+                'email' => 'Email atau password salah!',
+            ]);
         }
     }
 }

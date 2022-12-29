@@ -53,7 +53,7 @@
             <div class="content-body">
                 <!-- Error page-->
                 <div class="misc-wrapper"><a class="brand-logo" href="javascript:void(0);">
-                        <h2 class="brand-text text-success ml-1">SILANI PTUN Yogyakarta</h2>
+                        <h2 class="d-flex justify-content-center brand-text text-success">SILANI PTUN Yogyakarta</h2>
                     </a>
                     <div class="misc-inner p-2 p-sm-3">
                         <div class="w-100 text-center">

@@ -81,7 +81,6 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        {{-- <img src="../../../app-assets/images/icons/angular.svg" class="mr-75" height="20" width="20" alt="Angular" /> --}}
                                         <span class="font-weight-bold">Surat Magang</span>
                                     </td>
                                     <td>Peter Charls mengajukan Surat Lamaran</td>

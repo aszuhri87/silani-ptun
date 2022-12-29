@@ -14,26 +14,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/bootstrap-extended.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/components.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/themes/dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/themes/bordered-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/themes/semi-dark-layout.css')}}">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/page-auth.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/form-validation.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/page-auth.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <!-- END: Custom CSS-->
 
 </head>
@@ -53,7 +54,6 @@
                 <div class="auth-wrapper auth-v1 px-2">
                     <div class="auth-inner py-2">
 
-                        @include('sweetalert::alert')
                         <!-- Login v1 -->
                         <div class="card mb-0">
                             <div class="card-body">
@@ -61,7 +61,15 @@
                                     <img src="{{asset('app-assets/images/logo.png')}}" alt="" style="width:80px%; height:80px" >
                                 </a>
 
-                                <h2 class="brand-text text-success ml-1">SILANI | PTUN Yogyakarta</h2>
+                                @if ($errors->has('username') || $errors->has('password'))
+                                    <div class="alert alert-danger" role="alert">
+                                        <div class="alert-body">
+                                           Username atau password Salah!
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <h2 class="d-flex justify-content-center brand-text text-success">SILANI | PTUN Yogyakarta</h2>
                                 <br>
                                 <h4 class="card-title mb-1">Selamat datang di Sistem Layanan Terintegrasi 👋</h4>
                                 <p class="card-text mb-2">Silahkan login untuk melanjutkan</p>
@@ -114,32 +122,26 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="../../../app-assets/js/core/app-menu.js"></script>
-    <script src="../../../app-assets/js/core/app.js"></script>
+    <script src="{{asset('app-assets/js/core/app-menu.js')}}"></script>
+    <script src="{{asset('app-assets/js/core/app.js')}}"></script>
+
+
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="../../../app-assets/js/scripts/pages/page-auth-login.js"></script>
-    <!-- END: Page JS-->
+    <script src="{{asset('app-assets/js/scripts/pages/page-auth-login.js')}}"></script>
 
-    <script>
-        $(window).on('load', function() {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
-                });
-            }
-        })
-    </script>
+    <!-- END: Page JS-->
 </body>
 <!-- END: Body-->
 

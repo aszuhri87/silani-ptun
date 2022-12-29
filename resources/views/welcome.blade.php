@@ -49,9 +49,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body" style="background-image: url('/bg.jpg'); background-size:cover; transform-y: 20;">
-                <!-- Coming soon page-->
                 <div class="misc-wrapper"><a class="brand-logo" href="javascript:void(0);">
-
                     </a>
                     <div class="misc-inner p-2 p-sm-3">
                         <div class="w-100 text-center">
@@ -59,17 +57,14 @@
                             <br>
                             <h2 class="brand-text text-success mt-2 ml-1">Sistem Layanan Terintegrasi</h2>
                             <h4 class="mb-1 text-success">PTUN Yogyakarta</h4>
-                            {{-- <p class="">Masuk atau daftar!</p> --}}
                             <hr>
-
+                            <div>
                                 <a href="{{route('login')}}" class="text-success btn-sm-block" >Masuk</a> atau
                                 <a href="{{route('register')}}" class="text-success btn-sm-block">daftar</a>
-
-                      {{-- <img class="img-fluid" src="../../../app-assets/images/pages/coming-soon.svg" alt="Coming soon page" style="width:30%; height:30% /> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- / Coming soon page-->
             </div>
         </div>
     </div>

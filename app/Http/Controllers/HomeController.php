@@ -40,9 +40,9 @@ class HomeController extends Controller
                 return view('admin.dashboard.index');
             }
         } else {
-            Alert::toast('Akun tidak dikenali!', 'error');
+            Alert::error('error', 'Akun tidak dikenali!');
 
-            return redirect()->back();
+            return redirect('login')->withErrors('error', 'Akun tidak dikenali!');
         }
     }
 }

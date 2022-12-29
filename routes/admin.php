@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::post('/notification/dt', [NotificationController::class, 'dt']);
     Route::get('/profile', [ProfileController::class, 'index']);
+    Route::get('/download_format', [ApplicantController::class, 'download_format']);
+    Route::post('/notification/dt', [NotificationController::class, 'dt']);
     Route::post('/profile/update_password', [ProfileController::class, 'update_password']);
     Route::post('/profile/update_profile', [ProfileController::class, 'update_profile']);
-    // Route::get('/sub-unit', [SubUnitController::class, 'index']);
     Route::post('/list-applicant/dt', [ApplicantController::class, 'dt']);
 
     Route::post('/manage-admin/dt', [ManageAdminController::class, 'dt']);
@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::post('/req-type/dt', [RequirementTypeController::class, 'dt']);
     Route::post('/document-category-req/dt', [DocumentCategoryRequirementController::class, 'dt']);
     Route::post('/document-req/dt', [DocumentRequirementController::class, 'dt']);
+    Route::post('/applicant/import', [ApplicantController::class, 'import']);
 
     Route::resource('/notification', NotificationController::class);
     Route::resource('/manage-admin', ManageAdminController::class);

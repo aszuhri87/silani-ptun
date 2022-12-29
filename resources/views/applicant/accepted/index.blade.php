@@ -35,10 +35,9 @@
                         <div class="form-row">
                             <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
                         </div>
-                        {{-- <button type="button" class="btn btn-success" id="create-doc-req-modal"> Tambah</button> --}}
                     </div>
                     <div class="card-datatable">
-                        <table class="table"  " id="init-table">
+                        <table class="table table-responsive"  id="init-table">
                             <thead width="100%">
                                 <tr>
                                     <th>#</th>

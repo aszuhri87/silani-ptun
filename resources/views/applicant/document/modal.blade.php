@@ -93,11 +93,9 @@
 
                                     </div>
                                 </div>
-
                         </div>
                 </div>
                 <div class="modal-footer">
-                    {{-- <a href=""  id="btn-save" class="btn btn-success btn-edit">Proses</a> --}}
                 </div>
             </form>
             </div>

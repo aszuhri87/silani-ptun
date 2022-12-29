@@ -8,7 +8,6 @@ use App\Http\Controllers\Applicant\ProfileController;
 use App\Http\Controllers\Applicant\VerificationController;
 
 Route::group(['prefix' => 'applicant', 'middleware' => 'role:applicant'], function () {
-    // Route::get('/mail', [MailController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified');
     Route::get('/profile', [ProfileController::class, 'index'])->middleware('verified');
     Route::resource('/profile', ProfileController::class);

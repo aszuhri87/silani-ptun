@@ -9,9 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -67,21 +65,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // $user_check = User::select('username')
-        // ->whereNull('deleted_at')
-        // ->get();
-
-        // foreach ($user_check as $row) {
-        //     if ($row->username == $data['username']) {
-        //         Alert::error('Username sudah ada!');
-
-        //         return response([
-        //             'status' => '400',
-        //             'message' => 'Username sudah tersedia!',
-        //         ]);
-        //     }
-        // }
-
         $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
@@ -98,27 +81,7 @@ class RegisterController extends Controller
         $user_role = User::where('email', $user->email)->first();
 
         $user_role->assignRole('applicant');
-        // dd($user_role);
 
         return $user;
     }
-
-    // protected function register(Request $request)
-    // {
-    //     $input = $request->all();
-
-    //     $this->validate($request, [
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
-
-    //     if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
-    //         // if (auth()->user()->applicant_id != null) {
-    //         return redirect('applicant/dashboard');
-    //     // }
-    //     } else {
-    //         return redirect()->route('register')
-    //             ->with('error', 'Email-Address And Password Are Wrong.');
-    //     }
-    // }
 }

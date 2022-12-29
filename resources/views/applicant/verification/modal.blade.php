@@ -58,19 +58,13 @@
 
                                     <label for="status">Status</label>
                                     <div class="input-group mb-2">
-
-                                        {{-- <input type="text" class="form-control" style="border: none; border-color: transparent; background:white;" id="status" name="status" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" disabled/> --}}
                                         <h4 class="mt-1" style="border: none; border-color: transparent;" id="status" name="status"></h4>
                                     </div>
-
-
-
                                 </div>
                         </div>
 
                     </div>
                 <div class="modal-footer">
-                    {{-- <button type="submit" id="btn-save" class="btn btn-success">Proses</button> --}}
                 </div>
             </form>
             </div>

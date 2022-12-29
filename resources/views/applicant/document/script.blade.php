@@ -28,16 +28,15 @@
                                     </div>
                                 `);
                             }else if(data[i].data_type == "file"){
+                                $('div#data_input').append(`
+                                    <label class="form-label mt-1 label">`+data[i].title+`</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="`+data[i].data_type+`" id="inputGroupFile" class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]">
 
-                            $('div#data_input').append(`
-                                <label class="form-label mt-1 label">`+data[i].title+`</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                    <input type="`+data[i].data_type+`" id="inputGroupFile" class="form-control" placeholder="`+data[i].title+`" name="requirement_value[`+i+`]">
-
+                                        </div>
                                     </div>
-                                </div>
-                            `);
+                                `);
                             }else
                             {
                                 $('div#data_input').append(`
@@ -53,9 +52,9 @@
                 })
             });
 
-            $(document).on('hide.bs.modal','#modal-document', function(event){
-                location.reload();
-            });
+            // $(document).on('hide.bs.modal','#modal-document', function(event){
+            //     location.reload();
+            // });
 
             $(document).on('click', '.btn-detail', function(event){
                 event.preventDefault();
@@ -108,15 +107,15 @@
                             }
                         }
 
-                            if (data.status=="Diproses") {
-                                $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
-                            }else if (data.status=='Ditolak') {
-                                $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
-                            }else{
-                                $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
-                            }
-                            showModal('modal-document-2');
+                        if (data.status=="Diproses") {
+                            $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
+                        }else if (data.status=='Ditolak') {
+                            $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
+                        }else{
+                            $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
+                        }
 
+                    showModal('modal-document-2');
 
                 });
             });
@@ -217,6 +216,7 @@
                 })
             });
         },
+
         formSubmit = () => {
             $('#form-doc-create').submit(function(event){
                 event.preventDefault();

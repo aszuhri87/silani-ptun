@@ -71,7 +71,7 @@
                                 <img src="{{asset('app-assets/images/logo.png')}}" alt=""
                                     style="width:auto; height:50px">
                             </a>
-                            <h2 class="brand-text text-center text-success ml-1">SILANI | PTUN Yogyakarta</h2>
+                            <h2 class="d-flex justify-content-center brand-text text-center text-success">SILANI | PTUN Yogyakarta</h2>
                             <p class="card-text mb-2">Silahkan mendaftar!</p>
 
                             <form method="POST" action="{{ route('register') }}" class="auth-register-form mt-2">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use App\Models\Applicant;
 use App\Models\User;
 use DataTables;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ApplicantController extends Controller
 {
@@ -141,5 +143,18 @@ class ApplicantController extends Controller
                 'message' => $e->getMessage(),
             ]);
         }
+    }
+
+    public function download_format() {
+        $file = public_path().'/format-list-pegawai.xlsx';
+    
+        return Response::download($file, 'format list pegawai.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new UsersImport(), $request->file);
+
+        return redirect()->back();
     }
 }

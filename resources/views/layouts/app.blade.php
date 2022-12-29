@@ -55,6 +55,7 @@
     <link rel="stylesheet" type="text/css" href=" {{asset('app-assets/css/plugins/charts/chart-apex.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/forms/form-file-uploader.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dropify.css')}}" />
     <!-- END: Page CSS-->
 
 
@@ -92,9 +93,6 @@
     </style>
 
 </head>
-<!-- END: Head-->
-<!-- END: Head-->
-
 <!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
@@ -121,7 +119,7 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
-    <script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/bootstrap/bootstrap.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
@@ -139,29 +137,14 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
 
-
     <!-- BEGIN: Page JS-->
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
-    <!-- END: Page JS-->
-
-      <!-- BEGIN: Page JS-->
-
-
     <script src="  {{asset('app-assets/js/scripts/charts/chart-apex.js')}}"></script>
-      <!-- END: Page JS-->
+
        <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
-       <!-- END: Page Vendor JS-->
-
-   <!-- BEGIN: Page Vendor JS-->
-
-
-
     <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
-    {{-- <script src="../../../app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
-   <script src="../../../app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js"></script> --}}
-   <!-- END: Page Vendor JS-->
 
    <!-- BEGIN: Page JS-->
    <script src="{{asset('app-assets/js/scripts/tables/table-datatables-advanced.js')}}"></script>
@@ -169,6 +152,7 @@
    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
    <script src="../../../app-assets/js/scripts/pages/app-user-list.js"></script>
    <script src="{{asset('js/jquery.blockUI.js')}}"></script>
+   <script src="{{asset('js/dropify.js')}}"></script>
    <!-- END: Page JS-->
 
 

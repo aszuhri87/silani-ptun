@@ -50,14 +50,13 @@
                                 </a>
 
                                 <a href="{{ url('/applicant/document/edit') }}/${data}" title="Edit" class="btn btn-light btn-edit btn-sm btn-clean btn-icon" data-toggle="tooltip">
-                                        <span class="svg-icon svg-icon-md">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#47d147" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-                                                <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-                                            </svg>
-                                        </span>
-                                    </a>
-
+                                    <span class="svg-icon svg-icon-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#47d147" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                                            <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                                        </svg>
+                                    </span>
+                                </a>
 
                                 <a href="{{ url('applicant/document') }}/${data}" title="Delete" class="btn btn-light btn-delete btn-sm btn-clean btn-icon" data-toggle="tooltip"  title="Delete">
                                     <span class="svg-icon svg-icon-md">
@@ -83,14 +82,14 @@
                     processing: '<div class="text-center"> <div class="spinner-border text-primary" role="status"> <span class="sr-only">Loading...</span> </div> </div>',
                 },
                 rowCallback: function(row, data, index){
-                            if (data.status=='Diproses') {
-                                $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
-                            }else if (data.status=='Ditolak') {
-                                $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
-                            }else{
-                                $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
-                            }
-                        },
+                    if (data.status=='Diproses') {
+                        $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
+                    }else if (data.status=='Ditolak') {
+                        $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
+                    }else{
+                        $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
+                    }
+                },
 
             });
         },

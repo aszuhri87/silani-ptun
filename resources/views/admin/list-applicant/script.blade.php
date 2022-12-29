@@ -44,6 +44,7 @@
                     opacity: 0.5
                     },
                     timeout: 1000,
+                    baseZ: 2000
                 });
 
                 // setTimeout($.unblockUI, 2100);

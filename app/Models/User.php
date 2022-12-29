@@ -26,7 +26,12 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public $incrementing = false;
 
-    protected $guard_name = 'admin';
+    protected $guard_name = [
+        'web',
+        'super-admin',
+        'admin',
+        'applicant',
+    ];
 
     public $keyType = 'string';
 

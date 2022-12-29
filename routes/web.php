@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 include base_path('routes/admin.php');
-// include base_path('routes/auth.php');
 include base_path('routes/applicant.php');
 
 Auth::routes(['verify' => true]);
