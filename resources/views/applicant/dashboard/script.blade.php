@@ -70,7 +70,16 @@ $(function () {
   // --------------------------------------------------------------------
 
 
-  var docs = <?php echo json_encode($c_docs)?>;
+  var docs = {!! json_encode($c_docs) !!};
+
+
+  var bulan = [];
+  var jumlah = [];
+
+  docs.forEach(element => {
+      bulan.push(element.bulan);
+      jumlah.push(element.jumlah)
+  })
 
   var areaChartEl = document.querySelector('#applicant-chart'),
     areaChartConfig = {
@@ -110,12 +119,12 @@ $(function () {
 
         {
           name: 'Document',
-          data: docs["data"]
+          data: jumlah
         },
       ],
       xaxis: {
 
-        categories: docs["label"]
+        categories: bulan
       },
       fill: {
         opacity:1,

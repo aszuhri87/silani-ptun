@@ -145,9 +145,10 @@ class ApplicantController extends Controller
         }
     }
 
-    public function download_format() {
+    public function download_format()
+    {
         $file = public_path().'/format-list-pegawai.xlsx';
-    
+
         return Response::download($file, 'format list pegawai.xlsx');
     }
 

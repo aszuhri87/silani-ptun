@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\MonthName;
+use App\Libraries\MonthNameApplicant;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentRequirement;
@@ -11,16 +13,8 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        date_default_timezone_set('Asia/Jakarta');
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        date_default_timezone_set('Asia/Jakarta');
-
         $appl = Applicant::select('id')->where('user_id', Auth::id())->first();
 
         $accept = Document::select(
@@ -61,11 +55,7 @@ class DashboardController extends Controller
         ->groupBy(DB::raw("date_part('month',document_requirements.created_at)"), 'documents.month_name')
         ->get();
 
-        $c_docs = [];
-        foreach ($count_docs as $row) {
-            $c_docs['label'][] = $row['month_name'];
-            $c_docs['data'][] = (int) $row['count'];
-        }
+        $c_docs = MonthNameApplicant::chart_data($count_docs);
 
         return view('applicant.dashboard.index', [
             'accept' => $accept->count,

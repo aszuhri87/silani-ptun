@@ -30,4 +30,11 @@ class Applicant extends Authenticatable
     ];
 
     protected $dates = ['deleted_at'];
+
+        public function getCreatedAtAttribute()
+    {
+        Carbon::setLocale('id');
+        return Carbon::parse($this->attributes['created_at'])
+        ->diffForHumans();
+    }
 }

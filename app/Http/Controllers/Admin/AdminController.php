@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Libraries\MonthName;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentRequirement;
@@ -11,10 +12,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class AdminController extends BaseController
 {
-    public function __construct()
-    {
-        date_default_timezone_set('Asia/Jakarta');
-    }
 
     public function index()
     {
@@ -68,29 +65,16 @@ class AdminController extends BaseController
         ->groupBy(DB::raw("date_part('month',document_requirements.created_at)"), 'documents.month_name')
         ->get();
 
-        $c_docs = [];
-        foreach ($count_docs as $row) {
-            $c_docs['label'][] = $row['month_name'];
-            $c_docs['data'][] = (int) $row['count'];
-        }
-
-        // dd($c_docs);
-
-        $c_data = [];
-        foreach ($chart as $row) {
-            $c_data['label'][] = $row['month_name'];
-            $c_data['data'][] = (int) $row['count'];
-        }
+        $c_docs = MonthName::chart_data($count_docs);
+        $c_data = MonthName::chart_data($chart);
 
         $json = json_encode($c_data, JSON_FORCE_OBJECT);
-
-        // return view('admin/home', compact('widget', 'laporan', 'data'));
 
         return view('admin.dashboard.index',
         [
             'c_applicant' => $count_applicant,
-            'c_data' => $c_data,
             'c_docs' => $c_docs,
+            'c_data' => $c_data,
             'json' => $json,
             'accept' => $accept->count,
             'reject' => $reject->count,

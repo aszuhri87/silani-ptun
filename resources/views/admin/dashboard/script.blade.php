@@ -69,8 +69,22 @@ $(function () {
   // Area Chart
   // --------------------------------------------------------------------
 
-  var pe = <?php echo json_encode($c_data)?>;
-  var docs = <?php echo json_encode($c_docs)?>;
+  var pe = {!! json_encode($c_data)!!};
+  var docs = {!! json_encode($c_docs) !!};
+
+
+  var bulan = [];
+  var jumlah = [];
+  var jumlah_doc = [];
+
+  pe.forEach(element => {
+      bulan.push(element.bulan);
+      jumlah.push(element.jumlah);
+  });
+
+  docs.forEach(element => {
+    jumlah_doc.push(element.jumlah)
+  })
 
   var areaChartEl = document.querySelector('#chart-admin'),
     areaChartConfig = {
@@ -109,16 +123,16 @@ $(function () {
       series: [
         {
           name: 'Pemohon',
-          data: pe["data"]
+          data: jumlah
         },
         {
           name: 'Dokumen',
-          data: docs["data"]
+          data: jumlah_doc
         },
       ],
       xaxis: {
 
-        categories: docs["label"]
+        categories: bulan
       },
       fill: {
         opacity:1,

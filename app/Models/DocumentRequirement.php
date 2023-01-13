@@ -24,4 +24,10 @@ class DocumentRequirement extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+        ->diffForHumans();
+    }
 }
