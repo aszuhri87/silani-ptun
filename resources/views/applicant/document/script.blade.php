@@ -6,6 +6,39 @@
         });
 
         const initAction = () => {
+            $('#select-chief').select2({
+                    placeholder: "Cari Nama...",
+                    minimumInputLength: 2,
+                    language: { inputTooShort: function () { return 'Ketik minimal 2 karakter'; } },
+                    ajax: {
+                        method: 'GET',
+                        url: '/applicant/employee/find',
+                        dataType: 'json',
+                        data: function (params) {
+                            return {
+                                q: $.trim(params.term)
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data
+                            };
+                            console.log(data);
+                        },
+                        cache: true
+                    }
+                });
+
+            $('#select-chief').on('select2:select', function (e) {
+                e.preventDefault();
+
+                var dt = e.params.data.id;
+
+                $('input[name="chief"]').val(dt);
+
+            });
+
+
             $(document).on('change','#select-docs-category', function(event){
                 event.preventDefault();
                 var id = $(this).find('option:selected').data('id');

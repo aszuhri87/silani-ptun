@@ -30,6 +30,43 @@
                                     <input type="email" class="form-control" id="email" name="email" placeholder="email" aria-label="email"  aria-describedby="email" />
                                 </div>
 
+                                <label for="name">Jabatan</label>
+                                <div class="form-group">
+                                    <select class="form-control" name="title" id="title">
+                                        <option value="Ketua">Ketua</option>
+                                        <option value="Wakil Ketua">Wakil Ketua</option>
+                                        <option value="Panitera ">Panitera </option>
+                                        <option value="Sekretaris">Sekretaris</option>
+                                        <option value="Pan. Mud. Perkara">Pan Mud Perkara</option>
+                                        <option value="Pan. Mud. Hukum">Pan Mud Hukum</option>
+                                        <option value="Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana">Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</option>
+                                        <option value="Sub. Bagian Umum dan Keuangan">Sub. Bagian Umum dan Keuangan</option>
+                                        <option value="Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan">Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</option>
+                                        <option value="Hakim">Hakim</option>
+                                        <option value="Paniter Pengganti">Paniter Pengganti</option>
+                                        <option value="Juru Sita Pengganti">Juru Sita Pengganti</option>
+                                        <option value="Arsiparis">Arsiparis</option>
+                                        <option value="Pustakawan">Pustakawan</option>
+                                        <option value="Analis Pengelola APBN">Analis Pengelola APBN</option>
+                                        <option value="Analis Kepegawaian">Analis Kepegawaian</option>
+                                        <option value="Analis Perkara Peradilan">Analis Perkara Peradilan</option>
+                                        <option value="Pranata Keuangan APBN">Pranata Keuangan APBN</option>
+                                        <option value="Pengelola Perkara ,Kepaniteraan Hukum">Pengelola Perkara ,Kepaniteraan Hukum</option>
+                                        <option value="Pengad Register Perkara, Kep Muda Hukum ">Pengad Register Perkara, Kep Muda Hukum </option>
+                                        <option value="Analis SDM Aparatur">Analis SDM Aparatur</option>
+                                        <option value="Analis Tata Laksana">Analis Tata Laksana</option>
+                                        <option value="Verifikator Keangan,Sub Bag Umum & KU">Verifikator Keangan,Sub Bag Umum & KU</option>
+                                        <option value="Pengelola BMN, Sub Bag Umum dan KU">Pengelola BMN, Sub Bag Umum dan KU</option>
+                                        <option value="Analis Perkara Peradilan (CPNS)">Analis Perkara Peradilan (CPNS)</option>
+                                        <option value="Komandan Petugas Keamanan ">Komandan Petugas Keamanan </option>
+                                    </select>
+                                </div>
+
+                                <label for="gol">Golongan</label>
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="gol" name="gol" placeholder="gol" aria-label="gol"  aria-describedby="gol" />
+                                </div>
+
                                 <label for="name">Password</label>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-merge  @error('password') is-invalid @enderror" id="password" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" tabindex="3" />

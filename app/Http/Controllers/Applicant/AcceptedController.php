@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
@@ -23,7 +24,7 @@ class AcceptedController extends Controller
 
     public function index()
     {
-        return view('applicant.accepted.index');
+        return view('applicant.accepted.index', PageLib::config([]));
     }
 
     public function dt()
@@ -45,6 +46,7 @@ class AcceptedController extends Controller
             ->orWhere('documents.status', '=', 'Ditolak');
         })
         ->where('documents.applicant_id', $appl->id)
+        ->orWhere('documents.user_id', Auth::user()->id)
         ->whereNull('documents.deleted_at')
         ->orderBy('documents.updated_at', 'DESC');
 

@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             [
                 'username' => 'admin_bd1',
                 'name' => 'Admin bd1',
-                'password' => \Hash::make(123456),
+                'password' => \Hash::make('Tunx123admin'),
             ]);
 
             $admin = \App\Models\Admin::updateOrCreate([

@@ -23,6 +23,7 @@
                     { data: 'name' },
                     { data: 'username' },
                     { data: 'email' },
+                    { data: 'title' },
                     { defaultContent: '' }
                     ],
                 columnDefs: [

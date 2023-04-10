@@ -35,6 +35,7 @@
                 $.get('/applicant/profile/'+data.id, function(data){
                     $('#change-info').find('textarea[name="address"]').val(data.address);
                     $('#change-info').find('input[name="gender"][value=' + data.gender + ']').prop('checked', true);
+                    // $('#change-info').find('img[name="signature"]').prop('url', '');
                 });
             });
 

@@ -98,4 +98,30 @@ class UnitController extends Controller
             ]);
         }
     }
+
+    public function find_unit(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $letters = DB::table('units')
+        ->select([
+            'units.id',
+            'units.name',
+            ])
+        ->where('units.name', 'ilike', '%'.$term.'%')
+        ->whereNull('units.deleted_at')
+        ->get();
+
+        $formatted_tags = [];
+
+        foreach ($letters as $letter) {
+            $formatted_tags[] = ['id' => $letter->id, 'text' => $letter->name];
+        }
+
+        return \Response::json($formatted_tags);
+    }
 }

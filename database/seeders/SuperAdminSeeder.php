@@ -31,7 +31,7 @@ class SuperAdminSeeder extends Seeder
             'name' => 'Supermin',
             'username' => 'super_admin',
             'email' => 'super@admin.com',
-            'password' => Hash::make('admin-super'),
+            'password' => Hash::make('superTunx123'),
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
 

@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="card-datatable">
-                        <table class="table table-responsive"  id="init-table">
+                        <table class="table"  id="init-table">
                             <thead width="100%">
                                 <tr>
                                     <th>#</th>

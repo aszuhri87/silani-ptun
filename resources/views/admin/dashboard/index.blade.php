@@ -82,14 +82,13 @@
                 <div class="row">
                     <!-- Area Chart starts -->
                     <div class="col-xl-12 col-md-12 col-12"">
-                                <div class=" card">
-                        <div
-                            class="card-header d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start">
-                            <div>
-                                <h4 class="card-title">Diagram Statistik Tahun {{date('Y')}}</h4>
+                        <div class=" card">
+                            <div class="card-header d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start">
+                                <div>
+                                    <h4 class="card-title">Diagram Statistik Tahun {{date('Y')}}</h4>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
+                            <div class="card-body">
                             <div id="chart-admin"></div>
                         </div>
                     </div>

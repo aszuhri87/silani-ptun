@@ -25,6 +25,9 @@ class UsersImport implements ToModel, WithStartRow
                     'name' => $row['1'],
                     'username' => $row['2'],
                     'email' => $row['3'],
+                    'title' => $row['4'],
+                    'nip' => $row['2'],
+                    'gol' => $row['5'],
                     'password' => Hash::make($row['2']),
                     'category' => 'karyawan',
                     'email_verified_at' => date('Y-m-d H:i:s'),
@@ -39,6 +42,16 @@ class UsersImport implements ToModel, WithStartRow
 
                 $user_role->assignRole('applicant');
             });
+        } else {
+            $users_up = User::where('email', $row['3']);
+            $users_up->update([
+                'name' => $row['1'],
+                'username' => $row['2'],
+                'email' => $row['3'],
+                'title' => $row['4'],
+                'nip' => $row['2'],
+                'gol' => $row['5'],
+            ]);
         }
 
         Alert::success('Berhasil', 'Data berhasil di import!');

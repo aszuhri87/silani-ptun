@@ -22,6 +22,13 @@
                                         <input type="text"  class="form-control" placeholder="Nama dokumen" name="name" required>
                                     </div>
 
+                                    <label for="nama" class="mt-2">Ditujukan Kepada</label>
+                                    <div class="form-group">
+                                        <select class=" form-control" id="select-chief" data-toggle="collapse"
+                                            data-target="#timeline" required></select>
+                                        <input type="hidden" id="chief" name="chief">
+                                    </div>
+
                                     <div id="data_input" class="mb-1">
 
                                     </div>

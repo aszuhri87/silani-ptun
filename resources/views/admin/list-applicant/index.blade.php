@@ -51,6 +51,7 @@
                                     <th width="30%">Nama</th>
                                     <th width="20%">Username</th>
                                     <th width="30%">Email</th>
+                                    <th width="30%">Jabatan</th>
                                     <th width="10%">Aksi</th>
                                 </tr>
                             </thead>

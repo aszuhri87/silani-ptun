@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
@@ -82,7 +83,7 @@ class DocumentController extends Controller
             'docs_category' => $docs_category->get(),
             'req_type' => $req_type,
             'docs_req_category' => $docs_req_category,
-        ]);
+        ], PageLib::config([]));
     }
 
     public function dt()
@@ -117,6 +118,7 @@ class DocumentController extends Controller
                     'applicant_id' => $appl->id,
                     'status' => 'Menunggu',
                     'document_category_id' => $request->id_cat,
+                    'user_id' => $request->chief,
                     ]);
 
                 $category_req = DocumentCategoryRequirement::select('*')
@@ -172,6 +174,7 @@ class DocumentController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
+            'users.name as receiver_name',
              DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'applicants.name as applicant',
@@ -194,6 +197,7 @@ class DocumentController extends Controller
         ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
         ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+        ->leftJoin('users', 'users.id', 'documents.user_id')
         ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
             $join->on('document_category_req.id', 'document_requirements.document_category_requirement_id');
         })
@@ -250,6 +254,7 @@ class DocumentController extends Controller
                 $document = Document::find($id);
                 $document->update([
                     'name' => $request->name,
+                    'user_id' => $request->chief,
                 ]);
 
                 $data = DocumentRequirement::where('document_id', $id)->get();

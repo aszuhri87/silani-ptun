@@ -209,9 +209,41 @@
                                                   </div>
                                                 </div>
                                                 </div>
+                                                @if (Auth::user()->category == 'karyawan')
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="nip">NIP</label>
+                                                            <input type="text" class="form-control" id="nip" placeholder="NIP" value="{{$data->nip}}" name="nip" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="gol">Golongan</label>
+                                                            <input type="text" class="form-control" id="gol" placeholder="Golongan" value="{{$data->gol}}" name="gol" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Tanda Tangan</label>
+                                                            <br>
+                                                            <a href="javascript:void(0);" class="mr-25">
+                                                                @if ($data->signature)
+
+                                                                <img src="{{asset('/signature/'.$data->signature)}}" id="signature-upload-img" class="rounded mr-50" alt="profile image" height="80"  />
+
+                                                                @else
+                                                                <img src="{{asset('/no_image.png')}}" id="signature-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                                @endif
+                                                            </a>
+                                                            <br>
+                                                            <label for="signature" class="btn btn-sm btn-success mb-75 mr-75 mt-2">Upload</label>
+                                                            <input type="file" id="signature" name="signature" hidden accept="image/*" />
+                                                        </div>
+                                                    </div>
+                                                @endif
+
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-success mt-1 mr-1">Simpan perubahan</button>
-
                                                 </div>
                                             </div>
                                         </form>
@@ -236,4 +268,22 @@
 
 @push('script')
     @include('applicant.profile.script')
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#signature-upload-img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#signature").change(function(){
+            readURL(this);
+        });
+    </script>
 @endpush

@@ -40,6 +40,7 @@ class ApplicantController extends Controller
             'users.username',
             'users.email',
             'applicants.name',
+            'users.title',
             'applicants.phone_number',
         ])
         ->join('applicants', 'applicants.user_id', 'users.id')
@@ -58,8 +59,10 @@ class ApplicantController extends Controller
                     'username' => $request->username,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
+                    'title' => $request->title,
                     'category' => 'karyawan',
                     'email_verified_at' => date('Y-m-d H:i:s'),
+                    'gol' => $request->gol,
                 ]);
 
                 Applicant::create([
@@ -95,7 +98,9 @@ class ApplicantController extends Controller
                     'name' => $request->name ? $request->name : $user->name,
                     'username' => $request->username ? $request->username : $user->username,
                     'email' => $request->email ? $request->email : $user->email,
+                    'title' => $request->title ? $request->title : $user->title,
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
+                    'gol' => $request->gol,
                 ]);
 
                 $appl = Applicant::where('user_id', $id)->update([
@@ -157,5 +162,32 @@ class ApplicantController extends Controller
         Excel::import(new UsersImport(), $request->file);
 
         return redirect()->back();
+    }
+
+    public function find_employee(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $letters = DB::table('users')
+        ->select([
+            'users.id',
+            'users.name',
+            ])
+        ->where('users.name', 'ilike', '%'.$term.'%')
+        ->where('users.category', 'karyawan')
+        ->whereNull('users.deleted_at')
+        ->get();
+
+        $formatted_tags = [];
+
+        foreach ($letters as $letter) {
+            $formatted_tags[] = ['id' => $letter->id, 'text' => $letter->name];
+        }
+
+        return \Response::json($formatted_tags);
     }
 }

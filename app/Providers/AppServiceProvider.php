@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\DispositionDocument;
+use App\Observers\DispositionObserver;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('id');
         date_default_timezone_set('Asia/Jakarta');
 
+        // DispositionDocument::observe(DispositionObserver::class);
     }
 }

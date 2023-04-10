@@ -38,8 +38,8 @@
                         {{-- <button type="button" class="btn btn-success" id="create-doc-req-modal"> Tambah</button> --}}
                     </div>
                     <div class="card-datatable">
-                        <table class="table table-responsive"  id="init-table">
-                            <thead width="100%">
+                        <table class="table"  id="init-table">
+                            <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>

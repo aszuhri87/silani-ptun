@@ -11,6 +11,32 @@
                 var id = $(this).data('id');
                 var url = $(this).attr('href');
                 var dt = VerifTable.table().row($(this).parents('tr')).data();
+                $('#form-doc-status').trigger("reset");
+                $('#form-doc-status').attr('action', $(this).attr('href'));
+                $('#form-doc-status').attr('method','POST');
+                $('div#doc_file').html("");
+
+                // $.get(url, function(data){
+                //     $('#form-doc-status').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
+                //     $('#form-doc-status').find('textarea[name="notes"]').val(data.notes);
+
+                //     if (data.status=='Diproses') {
+                //         $('#form-doc-status').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
+                //     }else if (data.status=='Ditolak') {
+                //         $('#form-doc-status').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
+                //     }else{
+                //         $('#form-doc-status').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
+                //     }
+
+                // });
+                showModal('modal-edit-status');
+            });
+
+            $(document).on('click', '.btn-detail', function(event){
+                event.preventDefault();
+                var id = $(this).data('id');
+                var url = $(this).attr('href');
+                var dt = VerifTable.table().row($(this).parents('tr')).data();
                 $('#form-doc-verification').trigger("reset");
                 $('#form-doc-verification').attr('action', $(this).attr('href'));
                 $('#form-doc-verification').attr('method','PUT');

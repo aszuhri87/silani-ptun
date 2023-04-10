@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
@@ -23,7 +24,7 @@ class VerificationController extends Controller
 
     public function index()
     {
-        return view('applicant.verification.index');
+        return view('applicant.verification.index', PageLib::config([]));
     }
 
     public function dt()
@@ -41,7 +42,9 @@ class VerificationController extends Controller
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->where('documents.status', 'Diproses')
+        ->orWhere('documents.status', 'Menunggu')
         ->where('documents.applicant_id', $appl->id)
+        ->orWhere('documents.user_id', Auth::user()->id)
         ->whereNull('documents.deleted_at')
         ->orderBy('documents.updated_at', 'DESC');
 
@@ -142,5 +145,16 @@ class VerificationController extends Controller
                 'message' => $e->getMessage(),
             ]);
         }
+    }
+
+    public function update_approval(Request $request, $id)
+    {
+        $data = Document::find($id);
+        $data->update([
+            'status' => $request->status_edit ? $request->status_edit : $data->status,
+            'notes' => $request->notes ? $request->notes : $data->notes,
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
-use App\Libraries\MonthName;
 use App\Libraries\MonthNameApplicant;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentRequirement;
@@ -63,6 +63,6 @@ class DashboardController extends Controller
             'reject' => $reject->count,
             'queue' => $queue->count,
             'c_docs' => $c_docs,
-        ]);
+        ], PageLib::config([]));
     }
 }

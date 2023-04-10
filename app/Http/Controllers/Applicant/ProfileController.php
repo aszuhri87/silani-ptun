@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
+use App\Models\Signature;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -24,10 +26,21 @@ class ProfileController extends Controller
         $data = DB::table('applicants')
         ->select('*')
         ->join('users', 'users.id', 'applicants.user_id')
-        ->where('applicants.user_id', Auth::guard('admin')->id())
+        ->where('applicants.user_id', Auth::user()->id)
         ->first();
 
-        return view('applicant.profile.index', ['data' => $data]);
+        $signature = DB::table('signatures')
+        ->select('photo')
+        ->where('user_id', Auth::user()->id)
+        ->first();
+
+        if ($signature) {
+            $data->signature = $signature->photo;
+        } else {
+            $data->signature = null;
+        }
+
+        return view('applicant.profile.index', ['data' => $data], PageLib::config([]));
     }
 
     public function show($id)
@@ -37,6 +50,17 @@ class ProfileController extends Controller
         ->leftJoin('users', 'users.id', 'applicants.user_id')
         ->where('applicants.user_id', $id)
         ->first();
+
+        $signature = DB::table('signatures')
+        ->select('photo')
+        ->where('user_id', Auth::user()->id)
+        ->first();
+
+        if ($signature) {
+            $data->signature = $signature->photo;
+        } else {
+            $data->signature = null;
+        }
 
         return Response::json($data);
     }
@@ -105,6 +129,37 @@ class ProfileController extends Controller
                 'gender' => $request->gender ? $request->gender : $user->gender,
             ]);
 
+            if ($request->gol) {
+                $user->update([
+                    'gol' => $request->gol ? $request->gol : $user->gol,
+                ]);
+            }
+
+            if ($request->nip) {
+                $user->update([
+                    'nip' => $request->nip ? $request->nip : $user->nip,
+                ]);
+            }
+
+            if ($request->hasFile('signature')) {
+                $sign_file = $request->file('signature');
+                $sign_file_name = $sign_file->getClientOriginalName();
+                $sign_file->move(public_path().'/signature/', $sign_file_name);
+            }
+
+            $signature = Signature::where('user_id', Auth::user()->id);
+
+            if (!$signature->first()) {
+                Signature::create([
+                    'photo' => $sign_file_name,
+                    'user_id' => Auth::user()->id,
+                ]);
+            } else {
+                $signature->update([
+                    'photo' => $sign_file_name ? $sign_file_name : $signature->photo,
+                ]);
+            }
+
             return response([
                 'data' => $user,
                 'message' => 'Data Terubah',
@@ -142,21 +197,21 @@ class ProfileController extends Controller
     public function store()
     {
         try {
-                $user = User::create([
+            $user = User::create([
                 'name' => $d->name,
                 'username' => $d->username,
                 'email' => $d->email,
                 'password' => Hash::make($d->password),
             ]);
 
-                Applicant::create([
+            Applicant::create([
                 'name' => $d->name,
                 'user_id' => $user->id,
             ]);
 
-                $user_role = User::where('email', $user->email)->first();
+            $user_role = User::where('email', $user->email)->first();
 
-                $user_role->assignRole('applicant');
+            $user_role->assignRole('applicant');
 
             return response([
                 'data' => $user,

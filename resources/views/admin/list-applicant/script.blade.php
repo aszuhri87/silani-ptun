@@ -27,6 +27,8 @@
                 $('#form-list-applicant').find('input[name="name"]').val(data.name);
                 $('#form-list-applicant').find('input[name="email"]').val(data.email);
                 $('#form-list-applicant').find('input[name="username"]').val(data.username);
+                $('#form-list-applicant').find('input[name="title"]').val(data.title);
+                $('#form-list-applicant').find('input[name="gol"]').val(data.gol);
 
                 showModal('modal-list-applicant');
             });

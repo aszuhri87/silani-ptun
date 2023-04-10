@@ -3,12 +3,16 @@
 use App\Http\Controllers\Admin\AcceptedController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ApplicantController;
+use App\Http\Controllers\Admin\DispositionDocumentController;
 use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentCategoryRequirementController;
 use App\Http\Controllers\Admin\DocumentRequirementController;
+use App\Http\Controllers\Admin\ExitPermitDocumentController;
 use App\Http\Controllers\Admin\InboxController;
+use App\Http\Controllers\Admin\LeaveDocumentController;
 use App\Http\Controllers\Admin\ManageAdminController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\OutgoingLetterController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RequirementTypeController;
 use App\Http\Controllers\Admin\SubUnitController;
@@ -24,6 +28,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::post('/profile/update_password', [ProfileController::class, 'update_password']);
     Route::post('/profile/update_profile', [ProfileController::class, 'update_profile']);
     Route::post('/list-applicant/dt', [ApplicantController::class, 'dt']);
+    Route::get('/employee/find', [ApplicantController::class, 'find_employee']);
+    Route::get('/unit/find', [UnitController::class, 'find_unit']);
 
     Route::post('/manage-admin/dt', [ManageAdminController::class, 'dt']);
     Route::post('/accepted/dt', [AcceptedController::class, 'dt']);
@@ -36,7 +42,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::post('/req-type/dt', [RequirementTypeController::class, 'dt']);
     Route::post('/document-category-req/dt', [DocumentCategoryRequirementController::class, 'dt']);
     Route::post('/document-req/dt', [DocumentRequirementController::class, 'dt']);
+    Route::post('/exit-permit-document/dt', [ExitPermitDocumentController::class, 'dt']);
+    Route::post('/leave-document/dt', [LeaveDocumentController::class, 'dt']);
     Route::post('/applicant/import', [ApplicantController::class, 'import']);
+    Route::get('/exit-permit-document/download_pdf/{id}', [ExitPermitDocumentController::class, 'print']);
+    Route::post('/disposition-document/dt', [DispositionDocumentController::class, 'dt']);
+    Route::get('/disposition-document/download_pdf/{id}', [DispositionDocumentController::class, 'print']);
+    Route::post('/outgoing-letter/dt', [OutgoingLetterController::class, 'dt']);
 
     Route::resource('/notification', NotificationController::class);
     Route::resource('/manage-admin', ManageAdminController::class);
@@ -50,5 +62,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::resource('/unit', UnitController::class);
     Route::resource('/req-type', RequirementTypeController::class);
     Route::resource('/list-applicant', ApplicantController::class);
+    Route::resource('/exit-permit-document', ExitPermitDocumentController::class);
+    Route::resource('/leave-document', LeaveDocumentController::class);
+    Route::resource('/disposition-document', DispositionDocumentController::class);
+    Route::resource('/outgoing-letter', OutgoingLetterController::class);
 }
 );
