@@ -251,15 +251,32 @@
 
                     }
 
+                    var leave = data.data.leave_notes;
 
+                    for (let i = 0; i < leave.length; i++) {
+                        if (leave[i].type == 'Tahunan'){
+                            $('.remain0').text(leave[0].remain + ' hari');
+                            $('.amount0').text('Masih ' + leave[0].amount + ' hari');
 
-                    // $('input[name="reason"]').val(data.data.reason);
-                    // $('input[name="datetime"]').val(data.data.datetime);
+                            $('.remain1').text(leave[1].remain + ' hari');
+                            $('.amount1').text('Masih ' + leave[1].amount + ' hari');
+                        } else  if (leave[i].type == 'Sakit'){
+                            $('.sakit').text(leave[i].amount);
+                        } else  if (leave[i].type == 'Besar'){
+                            $('.besar').text(leave[i].amount);
+                        } else  if (leave[i].type == 'Melahirkan'){
+                            $('.melahirkan').text(leave[i].amount);
+                        } else  if (leave[i].type == 'Karena Alasan Penting'){
+                            $('.penting').text(leave[i].amount);
+                        } else  if (leave[i].type == 'Luar Tanggungan Negara'){
+                            $('.tanggungan').text(leave[i].amount);
+                        }
+                    }
 
-                    // $('div#link_pdf').html(`
-                    //     <a href="{{url('applicant/exit-permit-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
-                    //     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
-                    // `);
+                    $('div#link_pdf').html(`
+                        <a href="{{url('applicant/leave-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
+                    `);
                 });
 
                 showModal('modal-document');

@@ -22,9 +22,8 @@
                     { data: 'DT_RowIndex' },
                     { data: 'name' },
                     { data: 'permit_type', "searchable": false},
-                    { data: 'datetime', "searchable": false },
-                    { data: 'chief_approval' },
-                    { data: 'officer_approval' },
+                    { data: 'start_time', "searchable": false },
+                    { data: 'status' },
                     { defaultContent: '' }
                     ],
                 columnDefs: [
@@ -45,7 +44,7 @@
 
                             <div class="btn-group" role="group" aria-label="Basic example">
 
-                            <a href="{{ url('admin/document-category') }}/${data}" title="Edit" class="btn btn-light btn-edit btn-sm btn-clean btn-icon" title="Edit">
+                            <a href="{{ url('admin/leave-document') }}/${data}" title="Edit" class="btn btn-light btn-edit btn-sm btn-clean btn-icon" title="Edit">
                                         <span class="svg-icon svg-icon-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#47d147" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
@@ -54,7 +53,13 @@
                                         </span>
                                     </a>
 
-                                    <a href="{{ url('admin/document-category') }}/${data}" title="Delete" class="btn btn-light btn-delete btn-sm btn-clean btn-icon" title="Delete">
+                                    <a href="{{ url('admin/leave-document') }}/${data}" title="Detail" class="btn btn-light btn-detail btn-sm btn-clean btn-icon" data-toggle="tooltip">
+                                        <span class="svg-icon svg-icon-md">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4bbf41" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                        </span>
+                                    </a>
+
+                                    <a href="{{ url('admin/leave-document') }}/${data}" title="Delete" class="btn btn-light btn-delete btn-sm btn-clean btn-icon" title="Delete">
                                         <span class="svg-icon svg-icon-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d11d18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>

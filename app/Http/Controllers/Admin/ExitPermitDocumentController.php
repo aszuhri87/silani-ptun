@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
+use App\Models\ExitPermitDocument;
+use App\Models\User;
+use App\Notifications\NewLetter;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -22,11 +27,10 @@ class ExitPermitDocumentController extends Controller
         ->select('*')
         ->join('users', 'users.id', 'exit_permit_documents.user_id')
         ->join('units', 'units.id', 'exit_permit_documents.unit_id')
-        // ->join('admins', 'admins.id', 'exit_permit_documents.admin_id')
         ->whereNull('users.deleted_at')
         ->get();
 
-        return view('admin.exit-permit-document.index', ['data' => $data]);
+        return view('admin.exit-permit-document.index', ['data' => $data], PageLib::config([]));
     }
 
     public function dt()
@@ -36,13 +40,17 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.id',
             'users.name',
             'units.name as unit',
-            'exit_permit_documents.datetime',
+            'exit_permit_documents.*',
+            DB::raw("
+                CASE WHEN exit_permit_documents.approver = '".Auth::user()->name."' AND exit_permit_documents.status IS NULL THEN 'Menunggu Konfirmasi Anda'
+                WHEN exit_permit_documents.approver != users.name AND exit_permit_documents.status IS NULL THEN CONCAT('Menunggu persetujuan ', exit_permit_documents.approver)
+                ELSE exit_permit_documents.status END as status
+            "),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
         ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
-        ->whereNull('exit_permit_documents.deleted_at');
-
-        // dd($data->get());
+        ->whereNull('exit_permit_documents.deleted_at')
+        ->orderBy('exit_permit_documents.created_at', 'desc');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -56,7 +64,11 @@ class ExitPermitDocumentController extends Controller
             'unit_id' => $request->unit,
             'reason' => $request->reason,
             'datetime' => $datetime,
+            'approver' => $request->chief,
         ]);
+
+        $user = User::where('name', $request->chief)->first();
+        $user->notify(new NewLetter('exit', $data->id, $user, 'exit'));
 
         return redirect()->back();
     }
@@ -67,30 +79,18 @@ class ExitPermitDocumentController extends Controller
 
         $datetime = $request->date.' '.$request->time;
 
-        $data->update([
-            'user_id' => $request->name,
-            'unit_id' => $request->unit,
-            'reason' => $request->reason,
-            'datetime' => $datetime,
-        ]);
-
-        return response([
-            'data' => $data,
-            'message' => 'Data Terubah',
-        ], 200);
-    }
-
-    public function update_approval($id)
-    {
-        $signature = DB::table('signatures')->select('photo')->where('user_id', Auth::id())->first();
-
-        $data = ExitPermitDocument::find($id);
+        $item = $data->first();
 
         $data->update([
-            'signature' => $signature,
-            'status' => 'Disetujui',
-            'approver' => Auth::user()->name,
+            'user_id' => $request->name ? $request->name : $item->name,
+            'unit_id' => $request->unit ? $request->unit : $item->unit_id,
+            'reason' => $request->reason ? $request->reason : $item->reason,
+            'datetime' => $datetime ? $datetime : $item->datetime,
+            'approver' => $request->chief ? $request->chief : $item->approver,
         ]);
+
+        $user = User::where('name', $request->chief)->first();
+        $user->notify(new NewLetter('exit', $id, $user, 'exit'));
 
         return response([
             'data' => $data,
@@ -105,10 +105,15 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.id',
             'users.name',
             'users.nip',
+            'users.gol',
             'units.name as unit',
-            'exit_permit_documents.datetime',
+            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',
             'exit_permit_documents.approver',
+            'exit_permit_documents.status',
+            'exit_permit_documents.signature',
+            'exit_permit_documents.notes',
         ])
         ->where('exit_permit_documents.id', $id)
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
@@ -145,7 +150,13 @@ class ExitPermitDocumentController extends Controller
             'units.name as unit',
             'exit_permit_documents.datetime',
             'users.nip',
+            'users.gol',
             'exit_permit_documents.reason',
+            'exit_permit_documents.approver',
+            'exit_permit_documents.status',
+            'exit_permit_documents.signature',
+            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
         ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
@@ -153,10 +164,17 @@ class ExitPermitDocumentController extends Controller
         ->whereNull('exit_permit_documents.deleted_at')
         ->first();
 
-        $pdf = PDF::loadView('/applicant/exit-permit-document/print',
+        if ($data->signature) {
+            $sign = base64_encode(file_get_contents(public_path('/signature/'.$data->signature)));
+        } else {
+            $sign = null;
+        }
+
+        $pdf = PDF::loadView('/admin/exit-permit-document/print',
         [
                 'data' => $data,
                 'logo' => base64_encode(file_get_contents(public_path('logo.png'))),
+                'signature' => $sign,
             ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
@@ -165,5 +183,24 @@ class ExitPermitDocumentController extends Controller
         Storage::put('public/pdf/'.$name, $pdf->output());
 
         return $pdf->stream($name);
+    }
+
+    public function update_approval(Request $request, $id)
+    {
+        $signature = DB::table('signatures')->select('photo')->where('user_id', Auth::id())->first();
+
+        $data = ExitPermitDocument::find($id);
+
+        $data->update([
+            'signature' => (string) $signature->photo,
+            'status' => $request->status,
+            'approver' => Auth::user()->name,
+            'notes' => $request->notes,
+        ]);
+
+        return response([
+            'data' => $data,
+            'message' => 'Data Terubah',
+        ], 200);
     }
 }

@@ -29,6 +29,7 @@
     var leave_count = parseInt($('.leave_count').text())
     var outgoing_count = parseInt($('.outgoing_count').text())
 
+
     const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',

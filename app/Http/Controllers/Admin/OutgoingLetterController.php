@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\OutgoingLetter;
+use App\Models\User;
 use App\Notifications\NewLetter;
 use Exception;
 use Illuminate\Http\Request;

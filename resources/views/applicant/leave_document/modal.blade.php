@@ -150,9 +150,9 @@
                     <br>
                     <div style="text-align: center; font-size: 10; font-weight: 700;">
                         FORMULIR PERMINTAAN DAN PEMBERIAN CUTI <br>
-                    W3-TUN5 /               /KP.05.02/ 10 /2022
+                    W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
                     </div>
-                    <table width="100%" ce>
+                    <table width="100%" >
                         <tr>
                             <th colspan="4">
                                I. DATA PEGAWAI
@@ -307,7 +307,7 @@
                                 CUTI BESAR
                             </td>
                             <td style="border: 1px solid; width: 10%;" >
-
+                                <p class="besar" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                         </tr>
                         <tr>
@@ -324,6 +324,7 @@
                                 CUTI SAKIT
                             </td>
                             <td style="border: 1px solid; width: 10%;">
+                                <p class="sakit" style="padding: 0; margin: 0;  white-space:0; text-align:center;"></p>
                             </td>
                         </tr>
                         <tr>
@@ -338,7 +339,7 @@
                                 CUTI MELAHIRKAN
                             </td>
                             <td style="border: 1px solid; width: 10%;">
-
+                                <p class="melahirkan" style="padding: 0; margin: 0;  white-space:0; text-align:center"></p>
                             </td>
                         </tr>
                         <tr>
@@ -346,16 +347,16 @@
                                 <b>N-1</b>
                             </td>
                             <td style="border: 1px solid; height: 15px; ">
-                                <b>....hari</b>
+                                <b class="remain0">....hari</b>
                             </td>
                             <td style="border: 1px solid; height: 15px;">
-                                <b>Masih....hari</b>
+                                <b class="amount0">Masih....hari</b>
                             </td>
                             <td style="border: 1px solid; width: 10%;">
                                 CUTI  KARENA ALASAN PENTING
                             </td>
                             <td style="border: 1px solid; width: 10%;">
-
+                                <p class="penting" style="padding: 0; margin: 0;  white-space:0; text-align:center"></p>
                             </td>
                         </tr>
                         <tr>
@@ -363,16 +364,16 @@
                                 <b>N</b>
                             </td>
                             <td style="border: 1px solid; height: 15px; ">
-                                <b>....hari</b>
+                                <b class="remain1">....hari</b>
                             </td>
                             <td style="border: 1px solid; height: 15px;">
-                                <b>Masih....hari</b>
+                                <b class="amount1">Masih....hari</b>
                             </td>
                             <td style="border: 1px solid; width: 10%;">
                                 CUTI DI LUAR TANGGUNGAN NEGARA
                             </td>
                             <td style="border: 1px solid; width: 10%;">
-
+                                <p class="tanggungan" style="padding: 0; margin: 0;  white-space:0; text-align:center"></p>
                             </td>
                         </tr>
                     </table>

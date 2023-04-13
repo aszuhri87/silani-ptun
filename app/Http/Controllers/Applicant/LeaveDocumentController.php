@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Admin;
 use App\Models\LeaveApproval;
 use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
 use App\Models\Signature;
+use App\Models\Unit;
 use App\Models\User;
 use App\Notifications\NewLetter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 use Yajra\DataTables\Facades\DataTables;
 
 class LeaveDocumentController extends Controller
@@ -82,6 +86,11 @@ class LeaveDocumentController extends Controller
         $user = User::where('id', $request->chief)->first();
         $user->notify(new NewLetter('leave', $data->id, $user, 'leave'));
 
+        $unit = Unit::where('name', 'Kepegawaian')->first();
+        $admin = Admin::where('unit_id', $unit->id)->first();
+        $userAdmin = User::where('id', $admin->user_id)->first();
+        $userAdmin->notify(new NewLetter('leave', $data->id, $userAdmin, 'leave'));
+
         return redirect()->back();
     }
 
@@ -137,10 +146,10 @@ class LeaveDocumentController extends Controller
                 'leave_document_id' => $data->id,
                 'user_id' => $request->chief,
             ]);
-        }
 
-        $user = User::where('id', $request->chief)->first();
-        $user->notify(new NewLetter('leave', $id, $user, 'leave'));
+            $user = User::where('id', $request->chief)->first();
+            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
+        }
 
         return response([
             'data' => $data,
@@ -157,6 +166,7 @@ class LeaveDocumentController extends Controller
             'users.title',
             'units.name as unit',
             'leave_documents.*',
+            DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
             DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
         ])
         ->join('users', 'users.id', 'leave_documents.user_id')
@@ -187,6 +197,7 @@ class LeaveDocumentController extends Controller
         ])
         ->where('leave_document_id', $id)
         ->whereNull('deleted_at')
+        ->orderBy('created_at', 'desc')
         ->get();
 
         $data->approval = $user ? $user : [];
@@ -216,20 +227,50 @@ class LeaveDocumentController extends Controller
 
         $data = DB::table('leave_documents')
         ->select([
-            'leave_documents.id',
             'users.name',
-            // 'units.name as unit',
-            // 'leave_documents.datetime',
             'users.nip',
-            'leave_documents.reason',
+            'users.title',
+            'units.name as unit',
+            'leave_documents.*',
+            DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
+            DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
         ])
-        ->leftJoin('users', 'users.id', 'leave_documents.user_id')
-        // ->leftJoin('units', 'units.id', 'leave_documents.unit_id')
+        ->join('users', 'users.id', 'leave_documents.user_id')
+        ->join('units', 'units.id', 'leave_documents.unit_id')
         ->where('leave_documents.id', $id)
         ->whereNull('leave_documents.deleted_at')
         ->first();
 
-        $pdf = PDF::loadView('/applicant/exit-permit-document/print',
+        $user = LeaveApproval::select([
+            'leave_approvals.user_id',
+            'users.name as chief',
+            'users.nip',
+            'users.title',
+            'leave_approvals.status as approval_status',
+            'leave_approvals.type as approval_type',
+            'leave_approvals.signature',
+            'leave_approvals.note',
+        ])
+        ->join('users', 'users.id', 'leave_approvals.user_id')
+        ->where('leave_approvals.leave_document_id', $id)
+        ->whereNull('leave_approvals.deleted_at')
+        ->get();
+
+        $notes = LeaveNote::select([
+            'amount',
+            'remain',
+            'type',
+            'datetime',
+        ])
+        ->where('leave_document_id', $id)
+        ->whereNull('deleted_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $data->approval = $user ? $user : [];
+        $data->leave_notes = $notes ? $notes : [];
+
+        $pdf = PDF::loadView('/applicant/leave_document/print',
         [
                 'data' => $data,
                 'logo' => base64_encode(file_get_contents(public_path('logo.png'))),

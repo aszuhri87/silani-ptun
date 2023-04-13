@@ -49,6 +49,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::post('/disposition-document/dt', [DispositionDocumentController::class, 'dt']);
     Route::get('/disposition-document/download_pdf/{id}', [DispositionDocumentController::class, 'print']);
     Route::post('/outgoing-letter/dt', [OutgoingLetterController::class, 'dt']);
+    Route::put('/exit-permit-document/update_approval/{id}', [ExitPermitDocumentController::class, 'update_approval']);
+    Route::get('/exit-permit-document/download_pdf/{id}', [ExitPermitDocumentController::class, 'print']);
+    Route::get('/leave-document/download_pdf/{id}', [LeaveDocumentController::class, 'print']);
 
     Route::resource('/notification', NotificationController::class);
     Route::resource('/manage-admin', ManageAdminController::class);

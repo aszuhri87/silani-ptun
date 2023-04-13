@@ -37,7 +37,7 @@
                         <div class="form-row">
                             <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
                         </div>
-                        <button type="button" class="btn btn-success" id="create-doc-category-modal"> Tambah</button>
+                        {{-- <button type="button" class="btn btn-success" id="create-doc-category-modal"> Tambah</button> --}}
                     </div>
                     <div class="card-datatable">
                         <table class="table" id="init-table">
@@ -47,8 +47,7 @@
                                     <th width="25%">Nama</th>
                                     <th width="15%">Jenis Perizinan</th>
                                     <th width="25%">Waktu</th>
-                                    <th width="20%">Disetujui Ketua</th>
-                                    <th width="20%">Disetujui Sekretaris</th>
+                                    <th width="20%">Status</th>
                                     <th width="10%">Aksi</th>
                                 </tr>
                             </thead>
@@ -78,5 +77,5 @@
 
 @push('script')
 @include('admin.leave_document.script')
-{{-- @include('admin.leave_document.script-table') --}}
+@include('admin.leave_document.script-table')
 @endpush

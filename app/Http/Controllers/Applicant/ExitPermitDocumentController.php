@@ -72,7 +72,7 @@ class ExitPermitDocumentController extends Controller
             'approver' => $request->chief,
         ]);
 
-        $user = User::where('id', $request->name)->first();
+        $user = User::where('name', $request->chief)->first();
         $user->notify(new NewLetter('exit', $data->id, $user, 'exit'));
 
         return redirect()->back();
@@ -94,7 +94,7 @@ class ExitPermitDocumentController extends Controller
             'approver' => $request->chief ? $request->chief : $item->approver,
         ]);
 
-        $user = User::where('id', $request->name)->first();
+        $user = User::where('name', $request->chief)->first();
         $user->notify(new NewLetter('exit', $id, $user, 'exit'));
 
         return response([
