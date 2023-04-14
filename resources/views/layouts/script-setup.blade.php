@@ -73,6 +73,13 @@
                       icon: 'info',
                       title: 'Anda mendapat ' + dispo_count + ' surat disposisi baru'
                     })
+
+                $.titleAlert('(' + dispo_count + ') surat disposisi baru', {
+                    requireBlur:true,
+                    stopOnFocus:true,
+                    interval:3000
+                });
+
             } else if(notification.notif_type == 'exit'){
                 exit_count += 1
                 $('.exit_count').text(exit_count);
@@ -81,6 +88,12 @@
                       icon: 'info',
                       title: 'Anda mendapat ' + exit_count + ' surat keluar kantor baru'
                     })
+
+                $.titleAlert('('+ exit_count + ') surat keluar kantor baru', {
+                    requireBlur:true,
+                    stopOnFocus:true,
+                    interval:3000
+                });
             }  else if(notification.notif_type == 'leave'){
                 leave_count += 1
                 $('.leave_count').text(leave_count);
@@ -89,6 +102,12 @@
                       icon: 'info',
                       title: 'Anda mendapat ' + leave_count + ' surat cuti baru'
                     })
+
+                $.titleAlert('(' + leave_count + ') surat cuti baru', {
+                    requireBlur:true,
+                    stopOnFocus:true,
+                    interval:3000
+                });
             }  else if(notification.notif_type == 'outgoing'){
                 outgoing_count += 1
                 $('.outgoing_count').text(outgoing_count);
@@ -97,6 +116,12 @@
                       icon: 'info',
                       title: 'Anda mendapat ' + outgoing_count + ' surat keluar baru'
                     })
+
+                $.titleAlert('(' + outgoing_count + ') surat keluar baru', {
+                    requireBlur:true,
+                    stopOnFocus:true,
+                    interval:3000
+                });
             }
 
         });

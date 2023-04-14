@@ -138,6 +138,7 @@
     <!-- END: Theme JS-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{asset('js/titleAlert.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.6.1/dist/echo.iife.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
