@@ -87,9 +87,12 @@ class LeaveDocumentController extends Controller
         $user->notify(new NewLetter('leave', $data->id, $user, 'leave'));
 
         $unit = Unit::where('name', 'Kepegawaian')->first();
-        $admin = Admin::where('unit_id', $unit->id)->first();
-        $userAdmin = User::where('id', $admin->user_id)->first();
-        $userAdmin->notify(new NewLetter('leave', $data->id, $userAdmin, 'leave'));
+
+        if ($unit) {
+            $admin = Admin::where('unit_id', $unit->id)->first();
+            $userAdmin = User::where('id', $admin->user_id)->first();
+            $userAdmin->notify(new NewLetter('leave', $data->id, $userAdmin, 'leave'));
+        }
 
         return redirect()->back();
     }

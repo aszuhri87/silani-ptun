@@ -60,7 +60,6 @@
     <link rel="stylesheet" href="{{asset('css/dropify.css')}}" />
     <!-- END: Page CSS-->
 
-
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href=" {{asset('assets/css/style.css')}}">
     <!-- END: Custom CSS-->
@@ -96,6 +95,7 @@
 
     @stack('style')
 
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </head>
 <!-- BEGIN: Body-->
 
@@ -109,7 +109,9 @@
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-
+    <script>
+        var module = {};
+    </script>
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">Hak Cipta &copy; {{date('Y')}} <a class="ml-25" href="https://www.ptun-yogyakarta.go.id/" target="_blank">PTUN Yogyakarta</a><span class="d-none d-sm-inline-block"></span></span></p>
@@ -117,7 +119,9 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 
     <script src="  {{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
+
     <!-- BEGIN Vendor JS-->
+
 
 
     <!-- BEGIN: Page Vendor JS-->
@@ -134,7 +138,7 @@
     <!-- END: Theme JS-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.15.0/dist/echo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.6.1/dist/echo.iife.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -143,12 +147,11 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
-
     <!-- BEGIN: Page JS-->
     <script src="{{asset('app-assets/js/scripts/charts/chart-apex.js')}}"></script>
 
-       <!-- BEGIN: Page Vendor JS-->
-       <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
 
@@ -159,6 +162,7 @@
    <script src="../../../app-assets/js/scripts/pages/app-user-list.js"></script>
    <script src="{{asset('js/jquery.blockUI.js')}}"></script>
    <script src="{{asset('js/dropify.js')}}"></script>
+   <script src="{{asset('js/echo.js')}}"></script>
    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
    <!-- END: Page JS-->
