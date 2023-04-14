@@ -70,8 +70,6 @@ class ExitPermitDocumentController extends Controller
         $user = User::where('name', $request->chief)->first();
         $user->notify(new NewLetter('exit', $data->id, $user, 'exit'));
 
-        $this->emit('sent');
-
         return redirect()->back();
     }
 
