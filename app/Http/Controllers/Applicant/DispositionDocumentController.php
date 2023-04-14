@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
+use App\Models\User;
+use App\Notifications\NewLetter;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

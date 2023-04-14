@@ -40,7 +40,11 @@
               didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
+              },
+              onOpen: function () {
+                    var audplay = new Audio("{{asset('tone.mp3')}}");
+                    audplay.play();
+                }
             })
 
         var pusher = new Pusher('9b20901b264fe57d21bd', {
