@@ -28,7 +28,7 @@
         var exit_count = parseInt($('.exit_count').text())
         var leave_count = parseInt($('.leave_count').text())
         var outgoing_count = parseInt($('.outgoing_count').text())
-
+        var title_conf = { requireBlur:true, stopOnFocus:true, interval:3000 }
 
         const Toast = Swal.mixin({
               toast: true,
@@ -74,11 +74,8 @@
                       title: 'Anda mendapat ' + dispo_count + ' surat disposisi baru'
                     })
 
-                $.titleAlert('(' + dispo_count + ') surat disposisi baru', {
-                    requireBlur:true,
-                    stopOnFocus:true,
-                    interval:3000
-                });
+                $.titleAlert('(' + dispo_count + ') surat disposisi baru', title_conf);
+                $('#init-table').DataTable().ajax.reload();
 
             } else if(notification.notif_type == 'exit'){
                 exit_count += 1
@@ -89,11 +86,9 @@
                       title: 'Anda mendapat ' + exit_count + ' surat keluar kantor baru'
                     })
 
-                $.titleAlert('('+ exit_count + ') surat keluar kantor baru', {
-                    requireBlur:true,
-                    stopOnFocus:true,
-                    interval:3000
-                });
+                $.titleAlert('('+ exit_count + ') surat keluar kantor baru', title_conf);
+                $('#init-table').DataTable().ajax.reload();
+
             }  else if(notification.notif_type == 'leave'){
                 leave_count += 1
                 $('.leave_count').text(leave_count);
@@ -103,11 +98,9 @@
                       title: 'Anda mendapat ' + leave_count + ' surat cuti baru'
                     })
 
-                $.titleAlert('(' + leave_count + ') surat cuti baru', {
-                    requireBlur:true,
-                    stopOnFocus:true,
-                    interval:3000
-                });
+                $.titleAlert('(' + leave_count + ') surat cuti baru', title_conf);
+                $('#init-table').DataTable().ajax.reload();
+
             }  else if(notification.notif_type == 'outgoing'){
                 outgoing_count += 1
                 $('.outgoing_count').text(outgoing_count);
@@ -117,11 +110,9 @@
                       title: 'Anda mendapat ' + outgoing_count + ' surat keluar baru'
                     })
 
-                $.titleAlert('(' + outgoing_count + ') surat keluar baru', {
-                    requireBlur:true,
-                    stopOnFocus:true,
-                    interval:3000
-                });
+                $.titleAlert('(' + outgoing_count + ') surat keluar baru', title_conf);
+                $('#init-table').DataTable().ajax.reload();
+
             }
 
         });

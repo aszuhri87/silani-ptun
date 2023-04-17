@@ -94,8 +94,6 @@
     </style>
 
     @stack('style')
-
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </head>
 <!-- BEGIN: Body-->
 
@@ -175,11 +173,3 @@
 <!-- END: Body-->
 
 </html>
-
-
-{{--
-<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
-<script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
- --}}

@@ -43,7 +43,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }
@@ -148,8 +147,6 @@
                     $('input[name="time"]').val(data.data.time);
                     $('input[name="approver"]').val(data.data.approver);
 
-                    console.log(data.data);
-
                     if (data.data.status == 'Ditolak'){
                         $('.status-note').html(
                             `
@@ -185,7 +182,6 @@
                 event.preventDefault();
                 var data = DocsCategoryTable.table().row($(this).parents('tr')).data();
                 var auth = {!! json_encode(Auth::user()->name) !!}
-                console.log(data.status);
 
                 if (auth == data.approver){
                     $('.main').remove();

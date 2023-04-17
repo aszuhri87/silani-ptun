@@ -102,13 +102,13 @@
                </td>
            </tr>
        </table>
-       <table style="margin-left: 45%; ">
+       <table style="margin-left: 55%; padding: 10px;">
            <tr>
                <td></td>
                <!-- <td></td> -->
                <td class="">
                    <div class="d-flex">
-                       Yogyakarta, {{$data->name}}
+                      <p style="padding: 1; margin: 1;  white-space:0;"> Yogyakarta, {{$data->name}} </p>
                    </div>
                </td>
            </tr>

@@ -97,7 +97,6 @@
                     $('input[name="working_time"]').val(data.data.working_time);
                     $('select[id="select-unit"]').find('option[value=' + JSON.stringify(data.data.unit) + ']').prop('selected', true);
 
-                    console.log(data.data);
                     for(let i=0; i< data.data.approval.length; i++){
                         if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!}){
                             $('.econtent').html(`
@@ -139,8 +138,6 @@
                     $('.nip').text(data.data.nip);
                     $('.title').text(data.data.title);
                     $('.tanggal').text(' '+data.data.tanggal);
-
-                    console.log(data.data);
 
                     if(data.data.permit_type == 'Tahunan'){
                         $('.cuti_tahunan').text('✓');

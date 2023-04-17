@@ -23,7 +23,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }

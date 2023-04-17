@@ -55,7 +55,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }
@@ -78,7 +77,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }
@@ -176,7 +174,6 @@
                 var data_unit = <?php echo json_encode($data)?>;
 
                 $.get(url, function(data){
-                    console.log(data.data);
                     let disposition = data.data.disposition;
 
                     $('.index').text(data.data.index);
@@ -307,7 +304,6 @@
                 event.preventDefault();
                 var data = DocsCategoryTable.table().row($(this).parents('tr')).data();
                 var auth = {!! json_encode(Auth::user()->name) !!}
-                console.log(data.status);
 
                 if (auth == data.approver){
                     $('.main').remove();
@@ -361,8 +357,6 @@
                 $('#form-disposition').find('input[name="from"]').val(data.from);
                 $('#form-disposition').find('textarea[name="resume_content"]').val(data.resume_content);
                 $('#form-disposition').find('input[name="uploaded_file"]').attr('data-default-file', '{{asset("files/")}}/' + data.uploaded_document);
-
-                console.log(data.uploaded_document);
 
                 $('textarea[name="notes"]').val(data.notes);
 

@@ -21,7 +21,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }
@@ -44,7 +43,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }
@@ -141,7 +139,6 @@
                 var data_unit = <?php echo json_encode($data)?>;
 
                 $.get(url, function(data){
-                    console.log(data.data);
                     let disposition = data.data.disposition;
 
                     $('.index').text(data.data.index);
@@ -338,8 +335,6 @@
         formSubmit = () => {
             $('#form-disposition').submit(function(event){
                 event.preventDefault();
-
-                console.log($(this).attr('action'));
 
                 $.ajax({
                     url: $(this).attr('action'),

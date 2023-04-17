@@ -25,7 +25,6 @@
                             return {
                                 results: data
                             };
-                            console.log(data);
                         },
                         cache: true
                     }
@@ -92,8 +91,6 @@
                     $('#form-outgoing').find('input[name="date_letter"]').val(data.data.date_letter).prop('disabled', true);
                     $('#form-outgoing').find('input[name="date_received"]').val(data.data.date_received).prop('disabled', true);
                     $('#form-outgoing').find('textarea[name="description"]').val(data.data.description).prop('disabled', true);
-
-                    console.log(data.data.uploaded_document);
 
                     if(data.data.uploaded_document){
                         $('.files').html(`
