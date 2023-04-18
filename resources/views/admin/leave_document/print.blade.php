@@ -236,7 +236,11 @@ W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
             Selama
         </td>
         <td style="border: 1px solid; height: 30px; width: 28%;">
-            {{str_replace("days", "hari",$data->count_time)}}
+            @if (strpos((string)$data->count_time, "day")==true)
+                {{str_replace("day", "hari",$data->count_time)}}
+            @else
+                {{str_replace("days", "hari",$data->count_time)}}
+            @endif
         </td>
         <td style="border: 1px solid; height: 30px; width: 15%;">
             Mulai Tanggal
