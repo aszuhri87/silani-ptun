@@ -57,6 +57,7 @@
             transform: translateX(10px) rotate(-45deg);
             transform-origin: left bottom;
         }
+
     </style>
 </head>
 <body>
@@ -97,7 +98,7 @@
 <br>
 <div style="text-align: center; font-size: 8pt; font-weight: 700;">
     FORMULIR PERMINTAAN DAN PEMBERIAN CUTI <br>
-W3-TUN5 /               /KP.05.02/ 10 /2022
+W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
 </div>
 <table>
     <tr>
@@ -235,19 +236,19 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
             Selama
         </td>
         <td style="border: 1px solid; height: 30px; width: 28%;">
-            {{$data->count_time}}
+            {{str_replace("days", "hari",$data->count_time)}}
         </td>
         <td style="border: 1px solid; height: 30px; width: 15%;">
             Mulai Tanggal
         </td>
         <td style="border: 1px solid; height: 30px; width: 20%;">
-            {{$data->start_time}}
+            {{date("d-m-Y", strtotime($data->start_time))}}
         </td>
         <td style="border: 1px solid; height: 30px; width: 7%;">
             s/d
         </td>
         <td style="border: 1px solid; height: 30px; width: 20%;">
-            {{$data->end_time}}
+            {{date("d-m-Y", strtotime($data->end_time))}}
         </td>
     </tr>
 </table>
@@ -260,17 +261,21 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
     </tr>
     <tr>
         <td style="border: 1px solid; width: 20%;" colspan="3">
-            1. Cuti Tahunan
+            1. CUTI TAHUNAN
         </td>
         <td style="border: 1px solid; width: 20%;">
-            Cuti Besar
+            CUTI BESAR
         </td>
         <td style="border: 1px solid; width: 10%;" >
-
+            @foreach ($data->leave_notes as $notes)
+                @if ($notes->type == 'Besar')
+                    <b>{{$notes->amount}}</b>
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
-        <td style="border: 1px solid; width: 1%;">
+        <td style="border: 1px solid; width: 3%;">
             Tahun
         </td>
         <td style="border: 1px solid; width: 1%;">
@@ -283,6 +288,11 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
             CUTI SAKIT
         </td>
         <td style="border: 1px solid; width: 10%;">
+            @foreach ($data->leave_notes as $notes)
+                @if ($notes->type == 'Sakit')
+                    <b>{{$notes->amount}}</b>
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
@@ -297,7 +307,11 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
             CUTI MELAHIRKAN
         </td>
         <td style="border: 1px solid; width: 10%;">
-
+            @foreach ($data->leave_notes as $notes)
+                @if ($notes->type == 'Melahirkan')
+                    <b>{{$notes->amount}}</b>
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
@@ -305,16 +319,36 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
             <b>N-1</b>
         </td>
         <td style="border: 1px solid; height: 15px; ">
-            <b>....hari</b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-0')
+                        <b>{{$data->leave_notes[$i]->remain}} hari </b>
+                    @endif
+                @endforeach
+            @else
+                <b>Masih...hari</b>
+            @endif
         </td>
         <td style="border: 1px solid; height: 15px;">
-            <b>Masih....hari</b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-0')
+                        <b>Masih {{$data->leave_notes[$i]->amount}} hari </b>
+                    @endif
+                @endforeach
+            @else
+                <b>Masih...hari</b>
+            @endif
         </td>
         <td style="border: 1px solid; width: 10%;">
             CUTI  KARENA ALASAN PENTING
         </td>
         <td style="border: 1px solid; width: 10%;">
-
+            @foreach ($data->leave_notes as $notes)
+                @if ($notes->type == 'Karena Alasan Penting')
+                    <b>{{$notes->amount}}</b>
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
@@ -322,16 +356,36 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
             <b>N</b>
         </td>
         <td style="border: 1px solid; height: 15px; ">
-            <b>....hari</b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-1')
+                        <b>{{$data->leave_notes[$i]->remain}} hari </b>
+                    @endif
+                @endforeach
+            @else
+                <b>Masih...hari</b>
+            @endif
         </td>
         <td style="border: 1px solid; height: 15px;">
-            <b>Masih....hari</b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-1')
+                        <b>Masih {{$data->leave_notes[$i]->amount}} hari </b>
+                    @endif
+                @endforeach
+            @else
+                <b>Masih...hari</b>
+            @endif
         </td>
         <td style="border: 1px solid; width: 10%;">
             CUTI DI LUAR TANGGUNGAN NEGARA
         </td>
         <td style="border: 1px solid; width: 10%;">
-
+            @foreach ($data->leave_notes as $notes)
+                @if ($notes->type == 'Luar Tanggungan Negara')
+                    <b>{{$notes->amount}}</b>
+                @endif
+            @endforeach
         </td>
     </tr>
 </table>
@@ -356,10 +410,10 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
         </td>
     </tr>
     <tr>
-        <td style="border: 1px solid; height: 15px;">
+        <td style="border-right: 1px solid;">
             {{$data->address}}
         </td>
-        <td style="border: 1px solid; height: 15px;">
+        <td style="border-right: 1px solid; text-align: center;">
             {{$data->phone}}
         </td>
         <td style="height: 15px; text-align: center;">
@@ -370,7 +424,6 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
         <td style="border-right: 1px solid;">
         </td>
         <td style="border-right: 1px solid;">
-
         </td>
         <td>
         </td>
@@ -416,15 +469,49 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
     </tr>
     <tr>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Disetujui' && $approve->approval_type == 'ATASAN')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Perubahan' && $approve->approval_type == 'ATASAN')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Ditangguhkan' && $approve->approval_type == 'ATASAN')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
         <td style="border: 1px solid; text-align:center; height: 15px;">
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Tidak Disetujui' && $approve->approval_type == 'ATASAN')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
+        </td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid;" colspan="3">
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'ATASAN')
+                    {{ $approve->note }}
+                @endif
+            @endforeach
+        </td>
+        <td style="border-right: 1px solid; text-align:center;">
+            <b>
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'ATASAN')
+                    {{$approve->title}}
+                @endif
+            @endforeach <br> PTUN YOGYAKARTA </b>
 
         </td>
     </tr>
@@ -432,16 +519,15 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
         <td style="border-right: 1px solid;" colspan="3">
         </td>
         <td style="border-right: 1px solid; text-align:center;">
-            <b>SEKRETARIS <br> PTUN YOGYAKARTA </b>
-
-        </td>
-    </tr>
-    <tr>
-        <td style="border-right: 1px solid;" colspan="3">
-        </td>
-        <td style="border-right: 1px solid; text-align:center;">
-
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'ATASAN')
+                    @if ($approve->signature)
+                        <img src="{{asset('/signature')/$approve->signature}}" alt=""
+                        style="min-height: 60px; max-height: 60px;" width="auto"
+                        style="margin-left: 50%;">
+                    @endif
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
@@ -449,7 +535,11 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
 
         </td>
         <td style="border-right: 1px solid; text-align:center;">
-             <p><b style="text-decoration: underline;">({{$data->name}})</b> <br>{{$data->nip}} <b></b></p>
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'ATASAN')
+                    <p><b style="text-decoration: underline;">({{strtoupper($approve->chief)}})</b> <br>{{$approve->nip}} <b></b></p>
+                @endif
+            @endforeach
         </td>
     </tr>
 </table>
@@ -478,20 +568,37 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
     </tr>
     <tr>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Disetujui' && $approve->approval_type == 'PEJABAT')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Perubahan' && $approve->approval_type == 'PEJABAT')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Ditangguhkan' && $approve->approval_type == 'PEJABAT')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
         <td style="border: 1px solid; text-align:center; height: 15px;">
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_status == 'Tidak Disetujui' && $approve->approval_type == 'PEJABAT')
+                    <span id="tick-mark"></span>
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
         <td style="border-right: 1px solid;" colspan="3">
+
         </td>
         <td style="border-right: 1px solid; text-align:center;">
             <b>KETUA PTUN YOGYAKARTA </b>
@@ -500,10 +607,22 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
     </tr>
     <tr>
         <td style="border-right: 1px solid;" colspan="3">
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'PEJABAT')
+                    {{ $approve->note }}
+                @endif
+            @endforeach
         </td>
         <td style="border-right: 1px solid; text-align:center;">
-
-
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'PEJABAT')
+                    @if ($approve->signature)
+                        <img src="{{asset('/signature')/$approve->signature}}" alt=""
+                        style="min-height: 60px; max-height: 60px;" width="auto"
+                        style="margin-left: 50%;">
+                    @endif
+                @endif
+            @endforeach
         </td>
     </tr>
     <tr>
@@ -511,7 +630,11 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
 
         </td>
         <td style="border-right: 1px solid; text-align:center;">
-             <p><b style="text-decoration: underline;">({{$data->name}})</b> <br>{{$data->nip}} <b></b></p>
+            @foreach ($data->approval as $approve)
+                @if ($approve->approval_type == 'PEJABAT')
+                    <p><b style="text-decoration: underline;">({{$approve->chief}})</b> <br>{{$approve->nip}} <b></b></p>
+                @endif
+            @endforeach
         </td>
     </tr>
 </td>
@@ -521,7 +644,7 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
 <br>
 * Coret yang tidak perlu
 <br>
-** Pilih salah satu dengan centang (<div id="tick-mark"></div> &nbsp; &nbsp;)
+** Pilih salah satu dengan centang (<span id="tick-mark"></span> &nbsp; &nbsp;)
 <br>
 *** diisi oleh pejabat yang menangani bidang kepegawaian sebelum PNS mengajukan Cuti
 <br>
@@ -530,6 +653,5 @@ W3-TUN5 /               /KP.05.02/ 10 /2022
 
 </td>
 </table>
-
 </body>
 </html>

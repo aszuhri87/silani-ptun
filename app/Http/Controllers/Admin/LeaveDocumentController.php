@@ -8,6 +8,8 @@ use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 use Yajra\DataTables\Facades\DataTables;
 
 class LeaveDocumentController extends Controller
@@ -242,5 +244,68 @@ class LeaveDocumentController extends Controller
             'data' => $note,
             'message' => 'Data Terubah',
         ], 200);
+    }
+
+    public function print($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $data = DB::table('leave_documents')
+        ->select([
+            'users.name',
+            'users.nip',
+            'users.title',
+            'units.name as unit',
+            'leave_documents.*',
+            DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
+            DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
+        ])
+        ->join('users', 'users.id', 'leave_documents.user_id')
+        ->join('units', 'units.id', 'leave_documents.unit_id')
+        ->where('leave_documents.id', $id)
+        ->whereNull('leave_documents.deleted_at')
+        ->first();
+
+        $user = LeaveApproval::select([
+            'leave_approvals.user_id',
+            'users.name as chief',
+            'users.nip',
+            'users.title',
+            'leave_approvals.status as approval_status',
+            'leave_approvals.type as approval_type',
+            'leave_approvals.signature',
+            'leave_approvals.note',
+        ])
+        ->join('users', 'users.id', 'leave_approvals.user_id')
+        ->where('leave_approvals.leave_document_id', $id)
+        ->whereNull('leave_approvals.deleted_at')
+        ->get();
+
+        $notes = LeaveNote::select([
+            'amount',
+            'remain',
+            'type',
+            'datetime',
+        ])
+        ->where('leave_document_id', $id)
+        ->whereNull('deleted_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $data->approval = $user ? $user : [];
+        $data->leave_notes = $notes ? $notes : [];
+
+        $pdf = PDF::loadView('/admin/leave_document/print',
+        [
+                'data' => $data,
+                'logo' => base64_encode(file_get_contents(public_path('logo.png'))),
+            ]
+        )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
+
+        $name = date('Y-m-d_s').' '.'.pdf';
+
+        Storage::put('public/pdf/'.$name, $pdf->output());
+
+        return $pdf->stream($name);
     }
 }
