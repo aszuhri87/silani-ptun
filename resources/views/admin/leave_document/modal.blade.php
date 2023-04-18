@@ -18,7 +18,7 @@
                             <label for="nama">Cuti Tahunan</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="hidden" name="type[]" value="Tahunan">
+                                    <input type="hidden" name="type[]" value="Tahunan-0">
                                     <div class="form-group">
                                         <label for="remain">Sisa</label>
                                         <input class="form-control" type="text" name="remain[0]" id="remain0" placeholder="N-1">
@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <input type="hidden" name="type[]" value="Tahunan">
+                                    <input type="hidden" name="type[]" value="Tahunan-1">
                                     <div class="form-group">
                                         <label for="remain1">Sisa</label>
                                         <input class="form-control" type="text" name="remain[1]" id="remain1" placeholder="N">

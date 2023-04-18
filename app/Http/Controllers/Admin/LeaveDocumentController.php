@@ -78,7 +78,7 @@ class LeaveDocumentController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        // dd($request->remain);
         $data = LeaveNote::where('leave_document_id', $id);
         $check = $data->first();
 
@@ -88,14 +88,17 @@ class LeaveDocumentController extends Controller
                     'type' => $item,
                     'amount' => $request->amount[$i],
                     'leave_document_id' => $id,
+                    // 'remain' => $item == 'Tahunan' ? $request->remain[$i] : null,
                     'datetime' => date('Y-m-d H:i:s'),
                 ]);
 
-                $remain = LeaveNote::where('id', $new->id);
-                foreach ($request->remain as $item2) {
-                    $remain->update([
-                        'remain' => $item2,
-                    ]);
+                if ($item == 'Tahunan-'.$i) {
+                    foreach ($request->remain as $key => $item2) {
+                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-'.$i);
+                        $remain->update([
+                            'remain' => $request->remain[$i],
+                        ]);
+                    }
                 }
             }
         } else {
@@ -104,14 +107,15 @@ class LeaveDocumentController extends Controller
                     'type' => $item,
                     'amount' => $request->amount[$i],
                     'leave_document_id' => $id,
+                    // 'remain' => $request->remain[$i] ? $request->remain[$i] : null,
                     'datetime' => date('Y-m-d H:i:s'),
                 ]);
 
-                if ($item == 'Tahunan') {
-                    $data->where('type', 'Tahunan');
-                    foreach ($request->remain as $item2) {
-                        $data->update([
-                            'remain' => $item2,
+                if ($item == 'Tahunan-'.$i) {
+                    foreach ($request->remain as $key => $item2) {
+                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-'.$i);
+                        $remain->update([
+                            'remain' => $request->remain[$i],
                         ]);
                     }
                 }

@@ -251,24 +251,24 @@
                     var leave = data.data.leave_notes;
 
                     for (let i = 0; i < leave.length; i++) {
-                        if (leave[i].type == 'Tahunan'){
-                            $('.remain0').text(leave[0].remain + ' hari');
-                            $('.amount0').text('Masih ' + leave[0].amount + ' hari');
-
-                            $('.remain1').text(leave[1].remain + ' hari');
-                            $('.amount1').text('Masih ' + leave[1].amount + ' hari');
-                        } else  if (leave[i].type == 'Sakit'){
-                            $('.sakit').text(leave[i].amount);
-                        } else  if (leave[i].type == 'Besar'){
-                            $('.besar').text(leave[i].amount);
-                        } else  if (leave[i].type == 'Melahirkan'){
-                            $('.melahirkan').text(leave[i].amount);
-                        } else  if (leave[i].type == 'Karena Alasan Penting'){
-                            $('.penting').text(leave[i].amount);
-                        } else  if (leave[i].type == 'Luar Tanggungan Negara'){
-                            $('.tanggungan').text(leave[i].amount);
+                           if (leave[i].type == 'Tahunan-0'){
+                               $('.remain0').text(leave[i].remain + ' hari');
+                               $('.amount0').text('Masih ' + leave[i].amount + ' hari');
+                           } else if (leave[i].type == 'Tahunan-1'){
+                               $('.remain1').text(leave[i].remain + ' hari');
+                               $('.amount1').text('Masih ' + leave[i].amount + ' hari');
+                           } else  if (leave[i].type == 'Sakit'){
+                               $('.sakit').text(leave[i].amount);
+                           } else  if (leave[i].type == 'Besar'){
+                               $('.besar').text(leave[i].amount);
+                           } else  if (leave[i].type == 'Melahirkan'){
+                               $('.melahirkan').text(leave[i].amount);
+                           } else  if (leave[i].type == 'Karena Alasan Penting'){
+                               $('.penting').text(leave[i].amount);
+                           } else  if (leave[i].type == 'Luar Tanggungan Negara'){
+                               $('.tanggungan').text(leave[i].amount);
+                           }
                         }
-                    }
 
                     $('div#link_pdf').html(`
                         <a href="{{url('applicant/leave-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >

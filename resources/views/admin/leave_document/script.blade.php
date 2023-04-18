@@ -56,17 +56,36 @@
                         var leave = data.data.leave_notes;
 
                         for (let i = 0; i < leave.length; i++) {
-                            if (leave[i].type == 'Tahunan'){
-                                $('#remain0').val(leave[0].remain);
-                                $('#amount0').val(leave[0].amount);
+                            if (leave[i].type == 'Tahunan-0'){
+                                $('#remain0').val(leave[i].remain);
+                                $('#amount0').val(leave[i].amount);
+                            }
 
-                                $('#remain1').val(leave[1].remain);
-                                $('#amount1').val(leave[1].amount);
-                            } else {
-                                $('#amount'+i).val(leave[i].amount);
+                            if (leave[i].type == 'Tahunan-1'){
+                                $('#remain1').val(leave[i].remain);
+                                $('#amount1').val(leave[i].amount);
+                            }
+
+                            if (leave[i].type == 'Sakit'){
+                                $('#amount2').val(leave[i].amount);
+                            }
+
+                            if (leave[i].type == 'Melahirkan'){
+                                $('#amount3').val(leave[i].amount);
+                            }
+
+                            if (leave[i].type == 'Karena Alasan Penting'){
+                                $('#amount4').val(leave[i].amount);
+                            }
+
+                            if (leave[i].type == 'Besar'){
+                                $('#amount5').val(leave[i].amount);
+                            }
+
+                            if (leave[i].type == 'Luar Tanggungan Negara'){
+                                $('#amount6').val(leave[i].amount);
                             }
                         }
-
                     });
                     showModal('modal-docs-category');
                 });
@@ -196,12 +215,12 @@
                         var leave = data.data.leave_notes;
 
                         for (let i = 0; i < leave.length; i++) {
-                           if (leave[i].type == 'Tahunan'){
-                               $('.remain0').text(leave[0].remain + ' hari');
-                               $('.amount0').text('Masih ' + leave[0].amount + ' hari');
-
-                               $('.remain1').text(leave[1].remain + ' hari');
-                               $('.amount1').text('Masih ' + leave[1].amount + ' hari');
+                           if (leave[i].type == 'Tahunan-0'){
+                               $('.remain0').text(leave[i].remain + ' hari');
+                               $('.amount0').text('Masih ' + leave[i].amount + ' hari');
+                           } else if (leave[i].type == 'Tahunan-1'){
+                               $('.remain1').text(leave[i].remain + ' hari');
+                               $('.amount1').text('Masih ' + leave[i].amount + ' hari');
                            } else  if (leave[i].type == 'Sakit'){
                                $('.sakit').text(leave[i].amount);
                            } else  if (leave[i].type == 'Besar'){
@@ -215,10 +234,10 @@
                            }
                         }
 
-                        $('div#link_pdf').html(`
-                            <a href="{{url('admin/leave-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
-                        `);
+                        // $('div#link_pdf').html(`
+                        //     <a href="{{url('admin/leave-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
+                        //     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
+                        // `);
                     });
 
                     showModal('modal-document');

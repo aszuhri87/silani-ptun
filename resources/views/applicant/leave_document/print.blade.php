@@ -318,16 +318,24 @@ W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
         <td style="border: 1px solid; height: 15px;">
             <b>N-1</b>
         </td>
-        <td style="border: 1px solid; height: 15px; justify-content:start;">
-            @if ($data->leave_notes[0]->type == 'Tahunan')
-                <b>{{$data->leave_notes[0]->remain}} hari </b>
+        <td style="border: 1px solid; height: 15px; ">
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-0')
+                        <b>{{$data->leave_notes[$i]->remain}} hari </b>
+                    @endif
+                @endforeach
             @else
-                <b>...hari</b>
+                <b>Masih...hari</b>
             @endif
         </td>
         <td style="border: 1px solid; height: 15px;">
-            @if ($data->leave_notes[0]->type == 'Tahunan')
-                <b>Masih {{$data->leave_notes[0]->amount}} hari</b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-0')
+                        <b>Masih {{$data->leave_notes[$i]->amount}} hari </b>
+                    @endif
+                @endforeach
             @else
                 <b>Masih...hari</b>
             @endif
@@ -348,15 +356,23 @@ W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
             <b>N</b>
         </td>
         <td style="border: 1px solid; height: 15px; ">
-            @if ($data->leave_notes[1]->type == 'Tahunan')
-                <b> {{$data->leave_notes[1]->remain}} hari </b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-1')
+                        <b>{{$data->leave_notes[$i]->remain}} hari </b>
+                    @endif
+                @endforeach
             @else
-                <b>...hari</b>
+                <b>Masih...hari</b>
             @endif
         </td>
         <td style="border: 1px solid; height: 15px;">
-            @if ($data->leave_notes[1]->type == 'Tahunan')
-                <b>Masih {{$data->leave_notes[1]->amount}} hari</b>
+            @if ($data->leave_notes != [])
+                @foreach ($data->leave_notes as $i => $notes)
+                    @if ($data->leave_notes[$i]->type == 'Tahunan-1')
+                        <b>Masih {{$data->leave_notes[$i]->amount}} hari </b>
+                    @endif
+                @endforeach
             @else
                 <b>Masih...hari</b>
             @endif
