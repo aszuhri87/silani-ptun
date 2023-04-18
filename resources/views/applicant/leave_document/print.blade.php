@@ -24,7 +24,7 @@
         th, td{
             padding: 0px;
             padding-left: 15px;
-            text-align: start;
+            text-align: left;
             white-space: nowrap;
         }
         #tick-mark {
