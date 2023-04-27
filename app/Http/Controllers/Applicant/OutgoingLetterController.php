@@ -24,7 +24,7 @@ class OutgoingLetterController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        return view('applicant.outgoing_letter.index', ['data' => $data], PageLib::config([]));
+        return view('applicant.outgoing_letter.index', PageLib::config([]), ['data' => $data]);
     }
 
     public function dt()
