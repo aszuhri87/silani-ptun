@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\User;
 use DataTables;
@@ -31,7 +32,7 @@ class ManageAdminController extends Controller
         ])
         ->whereNull('deleted_at')->get();
 
-        return view('admin.admin_management.index', PageLibb::config([]), ['data' => $data, 'unit' => $unit]);
+        return view('admin.admin_management.index', PageLib::config([]), ['data' => $data, 'unit' => $unit]);
     }
 
     public function dt()
