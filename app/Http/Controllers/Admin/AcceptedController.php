@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
@@ -32,7 +33,7 @@ class AcceptedController extends Controller
         ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at'])
         ->get();
 
-        return view('admin.accepted.index', ['docs_req_category' => $docs_req_category]);
+        return view('admin.accepted.index', PageLib::config([]), ['docs_req_category' => $docs_req_category]);
     }
 
     public function dt()

@@ -23,7 +23,7 @@ class OutgoingLetterController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        return view('admin.outgoing_letter.index', ['data' => $data]);
+        return view('admin.outgoing_letter.index', PageLibib::config([]), ['data' => $data]);
     }
 
     public function dt()

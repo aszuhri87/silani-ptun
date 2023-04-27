@@ -31,7 +31,7 @@ class ManageAdminController extends Controller
         ])
         ->whereNull('deleted_at')->get();
 
-        return view('admin.admin_management.index', ['data' => $data, 'unit' => $unit]);
+        return view('admin.admin_management.index', PageLibb::config([]), ['data' => $data, 'unit' => $unit]);
     }
 
     public function dt()

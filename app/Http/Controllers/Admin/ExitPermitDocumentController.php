@@ -30,7 +30,7 @@ class ExitPermitDocumentController extends Controller
         ->whereNull('users.deleted_at')
         ->get();
 
-        return view('admin.exit-permit-document.index', ['data' => $data], PageLib::config([]));
+        return view('admin.exit-permit-document.index', PageLib::config([]), ['data' => $data], PageLib::config([]));
     }
 
     public function dt()

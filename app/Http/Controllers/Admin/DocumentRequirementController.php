@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\DocumentRequirement;
 use DataTables;
 use Exception;
@@ -31,7 +32,7 @@ class DocumentRequirementController extends Controller
         ])
         ->whereNull('deleted_at')->get();
 
-        return view('admin.document_req.index', ['docs' => $docs, 'docs_category_req' => $docs_category_req]);
+        return view('admin.document_req.index', PageLib::config([]), ['docs' => $docs, 'docs_category_req' => $docs_category_req]);
     }
 
     public function dt()

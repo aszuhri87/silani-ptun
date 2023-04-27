@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Unit;
 use DataTables;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class UnitController extends Controller
 
     public function index()
     {
-        return view('admin.unit.index');
+        return view('admin.unit.index', PageLib::config([]), );
     }
 
     public function dt()

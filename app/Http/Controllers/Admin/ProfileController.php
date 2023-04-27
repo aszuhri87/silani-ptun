@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class ProfileController extends Controller
         ])
         ->whereNull('deleted_at')->get();
 
-        return view('admin.profile.index', ['data' => $data, 'unit' => $unit]);
+        return view('admin.profile.index', PageLib::config([]), ['data' => $data, 'unit' => $unit]);
     }
 
     public function show($id)

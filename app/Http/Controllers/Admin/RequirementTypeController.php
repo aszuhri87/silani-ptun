@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\RequirementType;
 use DataTables;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class RequirementTypeController extends Controller
 
     public function index()
     {
-        return view('admin.requirement_type.index');
+        return view('admin.requirement_type.index', PageLib::config([]), );
     }
 
     public function dt()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\DispositionNotif;
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
 use App\Models\User;
@@ -45,7 +46,7 @@ class DispositionDocumentController extends Controller
             $data[] = $item;
         }
 
-        return view('admin.disposition.index', ['data' => $data]);
+        return view('admin.disposition.index', PageLib::config([]), ['data' => $data]);
     }
 
     public function dt()
@@ -157,6 +158,7 @@ class DispositionDocumentController extends Controller
             'users.name',
         ])
         ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+        ->where('disposition_users.disposition_document_id', $id)
         ->whereNull('disposition_users.deleted_at')
         ->get();
 

@@ -272,9 +272,6 @@
                 $('#form-disposition').attr('action', `{{url('applicant/disposition-update/${data.id}')}}`);
                 $('#form-disposition').attr('method','POST');
 
-
-                $('#form-disposition').find('textarea[name="instruction"]').val(data.instruction);
-
                 if(data.status_user == 'setuju'){
                     $('#status_true').prop('checked', true);
                 } else {

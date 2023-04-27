@@ -103,6 +103,11 @@ class DispositionDocumentController extends Controller
         $user = User::where('title', $request->role)->first();
         $user->notify(new NewLetter('disposition', $docs->id, $user, 'disposition'));
 
+        $admin = User::where('category', 'admin')->get();
+        foreach ($admin as $a) {
+            $a->notify(new NewLetter('disposition', $docs->id, $user, 'disposition'));
+        }
+
         return redirect()->back();
     }
 
@@ -139,6 +144,11 @@ class DispositionDocumentController extends Controller
 
             $users = User::where('title', $request->role)->first();
             $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
+
+            $admin = User::where('category', 'admin')->get();
+            foreach ($admin as $a) {
+                $a->notify(new NewLetter('disposition', $id, $a, 'disposition'));
+            }
 
             return response([
                 'data' => $data,
@@ -183,6 +193,11 @@ class DispositionDocumentController extends Controller
 
         $users = User::where('title', $request->role)->first();
         $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
+
+        $admin = User::where('category', 'admin')->get();
+        foreach ($admin as $a) {
+            $a->notify(new NewLetter('disposition', $id, $a, 'disposition'));
+        }
 
         // return response([
         //     'data' => $data,

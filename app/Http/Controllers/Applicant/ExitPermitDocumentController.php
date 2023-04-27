@@ -75,6 +75,11 @@ class ExitPermitDocumentController extends Controller
         $user = User::where('name', $request->chief)->first();
         $user->notify(new NewLetter('exit', $data->id, $user, 'exit'));
 
+        $admin = User::where('category', 'admin')->get();
+        foreach ($admin as $a) {
+            $a->notify(new NewLetter('exit', $data->id, $a, 'exit'));
+        }
+
         return redirect()->back();
     }
 
@@ -192,12 +197,12 @@ class ExitPermitDocumentController extends Controller
 
     public function update_approval(Request $request, $id)
     {
-        $signature = DB::table('signatures')->select('photo')->where('user_id', Auth::id())->first();
+        $signature = DB::table('signatures')->select('photo')->where('user_id', Auth::user()->id)->first();
 
         $data = ExitPermitDocument::find($id);
 
         $data->update([
-            'signature' => (string) $signature->photo,
+            'signature' => $signature ? $signature->photo : null,
             'status' => $request->status,
             'approver' => Auth::user()->name,
             'notes' => $request->notes,

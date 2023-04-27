@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\User;
 use DataTables;
@@ -29,7 +30,7 @@ class ApplicantController extends Controller
         ->join('users', 'users.id', 'applicants.user_id')
         ->get();
 
-        return view('admin.list-applicant.index', ['data' => $data]);
+        return view('admin.list-applicant.index', PageLib::config([]), ['data' => $data]);
     }
 
     public function dt()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\DocumentCategory;
 use DataTables;
 use Exception;
@@ -31,7 +32,7 @@ class DocumentCategoryController extends Controller
         ])
         ->whereNull('deleted_at')->get();
 
-        return view('admin.document_category.index', ['unit' => $unit, 'sub_unit' => $sub_unit]);
+        return view('admin.document_category.index', PageLib::config([]), ['unit' => $unit, 'sub_unit' => $sub_unit]);
     }
 
     public function dt()

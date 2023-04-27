@@ -61,6 +61,11 @@ class OutgoingLetterController extends Controller
             'uploaded_document' => $file_name,
         ]);
 
+        $admin = User::where('category', 'admin')->get();
+        foreach ($admin as $a) {
+            $a->notify(new NewLetter('outgoing', $docs->id, $a, 'outgoing'));
+        }
+
         return redirect()->back();
     }
 

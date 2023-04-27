@@ -24,7 +24,7 @@ class NotificationController extends Controller
         ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at'])
         ->get();
 
-        return view('admin.notification.index', ['docs_req_category' => $docs_req_category]);
+        return view('admin.notification.index', PageLibib::config([]), ['docs_req_category' => $docs_req_category]);
     }
 
     public function dt()

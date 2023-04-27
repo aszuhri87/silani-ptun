@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\LeaveApproval;
 use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
@@ -26,7 +27,7 @@ class LeaveDocumentController extends Controller
         ->join('users', 'users.id', 'leave_documents.user_id')
         ->get();
 
-        return view('admin.leave_document.index', ['data' => $data]);
+        return view('admin.leave_document.index', PageLib::config([]), ['data' => $data]);
     }
 
     public function dt()

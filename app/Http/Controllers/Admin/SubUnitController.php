@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\SubUnit;
 use DataTables;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class SubUnitController extends Controller
         ])
         ->whereNull('deleted_at')->get();
 
-        return view('admin.sub_unit.index', ['data' => $data]);
+        return view('admin.sub_unit.index', PageLib::config([]), ['data' => $data]);
     }
 
     public function dt()

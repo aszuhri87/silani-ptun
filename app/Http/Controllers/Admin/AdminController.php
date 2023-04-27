@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Libraries\MonthName;
+use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentRequirement;
@@ -12,7 +13,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class AdminController extends BaseController
 {
-
     public function index()
     {
         $data = DB::table('applicants')
@@ -79,7 +79,7 @@ class AdminController extends BaseController
             'accept' => $accept->count,
             'reject' => $reject->count,
             'queue' => $queue->count,
-        ]);
+        ], PageLib::config([]));
     }
 
     public function list_applicant()
@@ -89,6 +89,6 @@ class AdminController extends BaseController
         ->join('users', 'users.applicant_id', 'applicants.id')
         ->get();
 
-        return view('admin.list-applicant.index', ['data' => $data]);
+        return view('admin.list-applicant.index', PageLib::config([]), ['data' => $data]);
     }
 }
