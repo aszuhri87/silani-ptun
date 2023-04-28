@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
+use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
@@ -150,6 +151,9 @@ class AcceptedController extends Controller
                 'status' => $request->status_edit ? $request->status_edit : $data->status,
                 'notes' => $request->notes ? $request->notes : $data->notes,
             ]);
+
+            $applicant = Applicant::where('id', $data->applicant_id)->first();
+            $user = User::where('id', $applicant->user_id)->first();
 
             return response([
                 'data' => $data,

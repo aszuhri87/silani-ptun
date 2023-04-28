@@ -10,15 +10,18 @@
              <ul class="nav navbar-nav bookmark-icons">
                  @hasrole('admin|super admin')
                      <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/inbox" data-toggle="tooltip"
-                             data-placement="top" title="Surat Masuk"><i class="ficon" data-feather="inbox"></i></a></li>
+                             data-placement="top" title="Surat Masuk"><i class="ficon" data-feather="inbox"></i>  <span class="inbox_count badge"> {{ $inbox }} </span></a>
+                            </li>
                      <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/accepted" data-toggle="tooltip"
-                             data-placement="top" title="Selesai"><i class="ficon" data-feather="check-square"></i></a>
+                             data-placement="top" title="Selesai"><i class="ficon" data-feather="check-square"></i> <span class="done_count badge"> {{ $done }} </span></a>
                      </li>
                  @endhasrole
                  @role('applicant')
                      <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/applicant/done-docs"
                              data-toggle="tooltip" data-placement="top" title="Selesai"><i class="ficon"
-                                 data-feather="check-square"></i></a></li>
+                                 data-feather="check-square"></i><span class="done_count badge"> {{ $done }} </span>
+                                </a>
+                     </li>
                  @endrole
              </ul>
          </div>

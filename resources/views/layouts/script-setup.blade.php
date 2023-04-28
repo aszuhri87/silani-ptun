@@ -28,6 +28,8 @@
         var exit_count = parseInt($('.exit_count').text())
         var leave_count = parseInt($('.leave_count').text())
         var outgoing_count = parseInt($('.outgoing_count').text())
+        var inbox_count = parseInt($('.inbox_count').text())
+        var done_count = parseInt($('.done_count').text())
         var title_conf = { requireBlur:true, stopOnFocus:true, interval:3000 }
 
         const Toast = Swal.mixin({
@@ -113,7 +115,31 @@
                 $.titleAlert('(' + outgoing_count + ') surat keluar baru', title_conf);
                 $('#init-table').DataTable().ajax.reload();
 
+            } else if(notification.notif_type == 'inbox'){
+                outgoing_count += 1
+                $('.inbox_count').text(inbox_count);
+
+                Toast.fire({
+                      icon: 'info',
+                      title:  inbox_count + ' dokumen masuk'
+                    })
+
+                $.titleAlert('(' + inbox_count + ') dokumen masuk', title_conf);
+                $('#init-table').DataTable().ajax.reload();
+
+            } else if(notification.notif_type == 'done'){
+                outgoing_count += 1
+                $('.done_count').text(done_count);
+
+                Toast.fire({
+                      icon: 'info',
+                      title:  done_count + ' dokumen selesai'
+                    })
+
+                $.titleAlert('(' + done_count + ') dokumen selesai', title_conf);
+                $('#init-table').DataTable().ajax.reload();
             }
+
 
         });
 

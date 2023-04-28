@@ -128,31 +128,27 @@
                         <li class="nav-item @if (Request::is('applicant/disposition-document')) active @endif"><a
                                 class="d-flex align-items-center" href="/applicant/disposition-document"><i
                                     data-feather="edit-3"></i><span class="menu-title text-truncate">Lembar Disposisi
-                                    <span class="disposition_count"
-                                        style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">{{ $disposition_count }}</span></span></a>
+                                    <span class="disposition_count badge bg-danger">{{ $disposition_count }}</span></span></a>
                         </li>
                     @endif
 
                     <li class="nav-item @if (Request::is('applicant/outgoing-letter')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/outgoing-letter"><i
                                 data-feather="edit-3"></i><span class="menu-title text-truncate">Surat Keluar <span
-                                    class="outgoing_count"
-                                    style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">
+                                    class="outgoing_count badge bg-danger">
                                     {{ $outgoing_count }}</span></span></a>
                     </li>
 
                     <li class="nav-item @if (Request::is('applicant/leave-document')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/leave-document"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Perizinan Cuti <span class="leave_count"
-                                    style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">
+                                data-i18n="Todo">Perizinan Cuti <span class="leave_count badge bg-danger">
                                     {{ $leave_count }}</span></span></a>
                     </li>
                     <li class="nav-item @if (Request::is('applicant/exit-permit-document')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/exit-permit-document"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate"
-                                style="font-size: 8pt;" data-i18n="Todo">Perizinan Keluar Kantor <span class="exit_count"
-                                    style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">
+                                style="font-size: 8pt;" data-i18n="Todo">Perizinan Keluar Kantor <span class="exit_count badge bg-danger">
                                     {{ $exit_count }}</span></span></a>
                     </li>
                 @endif
@@ -171,16 +167,14 @@
                 <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/disposition-document"><i
                             data-feather="edit-3"></i><span class="menu-title text-truncate">Lembar Disposisi
-                         <span class="disposition_count"
-                                        style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">{{ $disposition_count }}</span></span></a>
+                         <span class="disposition_count badge bg-danger">{{ $disposition_count }}</span></span></a>
 
                 </li>
 
                 <li class="nav-item @if (Request::is('admin/outgoing-letter')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/outgoing-letter"><i
                             data-feather="edit-3"></i><span class="menu-title text-truncate">Surat Keluar <span
-                                class="outgoing_count"
-                                style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">
+                                class="outgoing_count badge bg-danger">
                                 {{ $outgoing_count }}</span></span></a>
                 </li>
 
@@ -188,15 +182,13 @@
                     <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
                             class="d-flex align-items-center" href="/admin/leave-document"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Perizinan Cuti <span class="leave_count"
-                                style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">
+                                data-i18n="Todo">Perizinan Cuti <span class="leave_count badge bg-danger">
                                 {{ $leave_count }}</span></span></a>
                     </li>
                     <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
                             class="d-flex align-items-center" href="/admin/exit-permit-document"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo" style="font-size: 8pt;">Perizinan Keluar Kantor <span class="exit_count"
-                                style="background-color: red; color:white; padding: 5px; width: 20px; border-radius: 50px; font-weight: 700;">
+                                data-i18n="Todo" style="font-size: 8pt;">Perizinan Keluar Kantor <span class="exit_count badge bg-danger">
                                 {{ $exit_count }}</span></span></a>
                     </li>
                 @endif
