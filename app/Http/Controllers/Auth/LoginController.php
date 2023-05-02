@@ -50,15 +50,18 @@ class LoginController extends Controller
         if ($user->hasRole('admin')) {
             Alert::toast('Selamat Datang, '.$user_dt->name.'!', 'success');
 
-            return redirect('admin/dashboard');
+            // return redirect('admin/dashboard');
+            return 'admin/dashboard';
         } elseif ($user->hasRole('super admin')) {
             Alert::toast('Selamat Datang, '.$user_dt->name.'!', 'success');
 
-            return redirect('admin/dashboard');
+            // return redirect('admin/dashboard');
+            return 'admin/dashboard';
         } elseif ($user->hasRole('applicant')) {
             Alert::toast('Selamat Datang, '.$user_dt->name.'!', 'success');
 
-            return redirect('applicant/dashboard');
+            // return redirect('applicant/dashboard');
+            return 'applicant/dashboard';
         } else {
             Alert::error('Gagal', 'Email atau password salah!');
 
