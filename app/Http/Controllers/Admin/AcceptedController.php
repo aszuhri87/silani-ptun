@@ -10,6 +10,7 @@ use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
 use App\Models\User;
+use App\Notifications\NewLetter;
 use DataTables;
 use Exception;
 use Illuminate\Http\Request;
@@ -154,6 +155,13 @@ class AcceptedController extends Controller
 
             $applicant = Applicant::where('id', $data->applicant_id)->first();
             $user = User::where('id', $applicant->user_id)->first();
+
+            $user->notify(new NewLetter('done', $data->id, $user, 'done'));
+
+            $admin = User::where('category', 'admin')->get();
+            foreach ($admin as $a) {
+                $a->notify(new NewLetter('done', $data->id, $a, 'done'));
+            }
 
             return response([
                 'data' => $data,

@@ -110,9 +110,9 @@
 
                 <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
                         class="d-flex align-items-center" href="/applicant/done-docs"><i
-                            data-feather="check-square"></i><span class="menu-title text-truncate"
-                            data-i18n="Todo">Selesai
-                            <span class="done_count badge"> {{ $done }} </span></span></a>
+                            data-feather="check-square"></i><span
+                            class="menu-title text-truncate mr-3" style="margin-left: 2px;" data-i18n="Todo">Selesai
+                            </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
                 </li>
 
                 @if (Auth::user()->category == 'karyawan')
@@ -128,28 +128,27 @@
                             Auth::user()->title == 'Sub. Bagian Umum dan Keuangan')
                         <li class="nav-item @if (Request::is('applicant/disposition-document')) active @endif"><a
                                 class="d-flex align-items-center" href="/applicant/disposition-document"><i
-                                    data-feather="edit-3"></i><span class="menu-title text-truncate">Lembar Disposisi
-                                    <span class="disposition_count badge bg-danger">{{ $disposition_count }}</span></span></a>
+                                    data-feather="edit-3"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
+                                        <span class="disposition_count badge bg-secondary">{{ $disposition_count }}</span></span></a>
                         </li>
                     @endif
 
                     <li class="nav-item @if (Request::is('applicant/outgoing-letter')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/outgoing-letter"><i
-                                data-feather="edit-3"></i><span class="menu-title text-truncate">Surat Keluar <span
-                                    class="outgoing_count badge bg-danger">
-                                    {{ $outgoing_count }}</span></span></a>
+                                data-feather="edit-3"></i><span class="mr-3 menu-title text-truncate" style="margin-left: 2px;" >Surat Keluar </span>
+                                <span class="outgoing_count badge bg-secondary">{{ $outgoing_count }}</span></a>
                     </li>
 
                     <li class="nav-item @if (Request::is('applicant/leave-document')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/leave-document"><i
-                                data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Perizinan Cuti <span class="leave_count badge bg-danger">
-                                    {{ $leave_count }}</span></span></a>
+                                data-feather="check-square"></i><span class="menu-title text-truncate mr-1"
+                                data-i18n="Todo" style="margin-left: 2px;" >Perizinan Cuti </span><span class="ml-1 leave_count badge bg-secondary">
+                                {{ $leave_count }}</span></a>
                     </li>
                     <li class="nav-item @if (Request::is('applicant/exit-permit-document')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
-                                data-feather="check-square"></i><span class="menu-title text-truncate"
-                                    data-i18n="Todo">Perizinan Keluar Kantor </span><span class="exit_count badge bg-danger">
+                                data-feather="check-square"></i><marquee behavior="" direction=""><span class="menu-title text-truncate"
+                                    data-i18n="Todo">Perizinan Keluar Kantor</marquee></span><span class="exit_count badge bg-secondary">
                                         {{ $exit_count }}</span></a>
                     </li>
                 @endif
@@ -159,46 +158,45 @@
                 <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
                             class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
-                            <span class="done_count badge bg-danger"> {{ $inbox }} </span></span></a>
+                            <span class="done_count badge bg-secondary"> {{ $inbox }} </span></span></a>
                 </li>
                 <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/verification"><i data-feather="edit-3"></i><span
+                        class="d-flex align-items-center" href="/admin/verification" ><i data-feather="edit-3"></i><span
                             class="menu-title text-truncate">Perizinan Dokumen</span></a>
                 </li>
 
                 <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/disposition-document"><i
-                            data-feather="edit-3"></i><span class="menu-title text-truncate">Lembar Disposisi
-                         <span class="disposition_count badge bg-danger">{{ $disposition_count }}</span></span></a>
+                            data-feather="edit-3"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
+                         <span class="disposition_count badge bg-secondary">{{ $disposition_count }}</span></span></a>
 
                 </li>
 
                 <li class="nav-item @if (Request::is('admin/outgoing-letter')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/outgoing-letter"><i
-                            data-feather="edit-3"></i><span class="menu-title text-truncate">Surat Keluar <span
-                                class="outgoing_count badge bg-danger">
-                                {{ $outgoing_count }}</span></span></a>
+                            data-feather="edit-3"></i><span class="mr-3 menu-title text-truncate" style="margin-left: 2px;" >Surat Keluar </span>
+                            <span class="outgoing_count badge bg-secondary">{{ $outgoing_count }}</span></a>
                 </li>
 
                 @if (Auth::user())
-                    <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
-                            class="d-flex align-items-center" href="/admin/leave-document"><i
-                                data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Perizinan Cuti <span class="leave_count badge bg-danger">
-                                {{ $leave_count }}</span></span></a>
+                    <li class="nav-item @if (Request::is('admin/leave-document')) active @endif"><a
+                            class="d-flex align-items-center" href="admin/leave-document"><i
+                                data-feather="check-square"></i><span class="menu-title text-truncate mr-1"
+                                data-i18n="Todo" style="margin-left: 2px;" >Perizinan Cuti </span><span class="ml-1 leave_count badge bg-secondary">
+                                {{ $leave_count }}</span></a>
                     </li>
-                    <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
+                    <li class="nav-item @if (Request::is('admin/exit-permit-document')) active @endif"><a
                             class="d-flex align-items-center" href="/admin/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
-                                data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Perizinan Keluar Kantor </span> <span class="exit_count badge bg-danger">
+                                data-feather="check-square"></i><marquee behavior="" direction=""><span class="menu-title text-truncate"
+                                data-i18n="Todo">Perizinan Keluar Kantor</marquee></span><span class="exit_count badge bg-secondary">
                                     {{ $exit_count }}</span></a>
                     </li>
                 @endif
 
                 <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span
-                            class="menu-title text-truncate" data-i18n="Todo">Selesai
-                            </span><span class="done_count badge bg-danger"> {{ $done }} </span></a>
+                            class="menu-title text-truncate mr-3" style="margin-left: 2px;" data-i18n="Todo">Selesai
+                            </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
                 </li>
             @endhasrole
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Akun &amp; Data</span><i

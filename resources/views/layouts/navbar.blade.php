@@ -69,8 +69,8 @@
      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
          @role('applicant')
              <a class="dropdown-item" href="/applicant/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
-             <a class="dropdown-item" href="/applicant/done-docs"><i class="mr-50" data-feather="check-square"></i>
-                 Selesai</a>
+             {{-- <a class="dropdown-item" href="/applicant/done-docs"><i class="mr-50" data-feather="check-square"></i>
+                 Selesai</a> --}}
          @endrole
          @hasrole('admin|super admin')
              <a class="dropdown-item" href="/admin/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
