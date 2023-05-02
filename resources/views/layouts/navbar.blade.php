@@ -8,7 +8,7 @@
                              data-feather="menu"></i></a></li>
              </ul>
              <ul class="nav navbar-nav bookmark-icons">
-                 @hasrole('admin|super admin')
+                 {{-- @hasrole('admin|super admin')
                      <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/inbox" data-toggle="tooltip"
                              data-placement="top" title="Surat Masuk"><i class="ficon" data-feather="inbox"></i>  <span class="inbox_count badge"> {{ $inbox }} </span></a>
                             </li>
@@ -22,7 +22,7 @@
                                  data-feather="check-square"></i><span class="done_count badge"> {{ $done }} </span>
                                 </a>
                      </li>
-                 @endrole
+                 @endrole --}}
              </ul>
          </div>
          <ul class="nav navbar-nav align-items-center ml-auto">
@@ -74,8 +74,8 @@
          @endrole
          @hasrole('admin|super admin')
              <a class="dropdown-item" href="/admin/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
-             <a class="dropdown-item" href="/admin/inbox"><i class="mr-50" data-feather="mail"></i> Surat Masuk</a>
-             <a class="dropdown-item" href="/admin/accepted"><i class="mr-50" data-feather="check-square"></i> Selesai</a>
+             {{-- <a class="dropdown-item" href="/admin/inbox"><i class="mr-50" data-feather="mail"></i> Surat Masuk</a>
+             <a class="dropdown-item" href="/admin/accepted"><i class="mr-50" data-feather="check-square"></i> Selesai</a> --}}
          @endhasrole
          <div class="dropdown-divider"></div>
          <a class="dropdown-item" href="{{ route('logout') }}"

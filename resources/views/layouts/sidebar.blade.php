@@ -111,7 +111,8 @@
                 <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
                         class="d-flex align-items-center" href="/applicant/done-docs"><i
                             data-feather="check-square"></i><span class="menu-title text-truncate"
-                            data-i18n="Todo">Selesai</span></a>
+                            data-i18n="Todo">Selesai
+                            <span class="done_count badge"> {{ $done }} </span></span></a>
                 </li>
 
                 @if (Auth::user()->category == 'karyawan')
@@ -146,10 +147,10 @@
                                     {{ $leave_count }}</span></span></a>
                     </li>
                     <li class="nav-item @if (Request::is('applicant/exit-permit-document')) active @endif"><a
-                            class="d-flex align-items-center" href="/applicant/exit-permit-document"><i
+                            class="d-flex align-items-center" href="/applicant/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate"
-                                style="font-size: 8pt;" data-i18n="Todo">Perizinan Keluar Kantor <span class="exit_count badge bg-danger">
-                                    {{ $exit_count }}</span></span></a>
+                                    data-i18n="Todo">Perizinan Keluar Kantor </span><span class="exit_count badge bg-danger">
+                                        {{ $exit_count }}</span></a>
                     </li>
                 @endif
             @endrole
@@ -157,7 +158,8 @@
             @hasrole('admin|super admin')
                 <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
-                            class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk</span></a>
+                            class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
+                            <span class="done_count badge bg-danger"> {{ $inbox }} </span></span></a>
                 </li>
                 <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/verification"><i data-feather="edit-3"></i><span
@@ -186,16 +188,17 @@
                                 {{ $leave_count }}</span></span></a>
                     </li>
                     <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
-                            class="d-flex align-items-center" href="/admin/exit-permit-document"><i
+                            class="d-flex align-items-center" href="/admin/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo" style="font-size: 8pt;">Perizinan Keluar Kantor <span class="exit_count badge bg-danger">
-                                {{ $exit_count }}</span></span></a>
+                                data-i18n="Todo">Perizinan Keluar Kantor </span> <span class="exit_count badge bg-danger">
+                                    {{ $exit_count }}</span></a>
                     </li>
                 @endif
 
                 <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span
-                            class="menu-title text-truncate" data-i18n="Todo">Selesai</span></a>
+                            class="menu-title text-truncate" data-i18n="Todo">Selesai
+                            </span><span class="done_count badge bg-danger"> {{ $done }} </span></a>
                 </li>
             @endhasrole
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Akun &amp; Data</span><i

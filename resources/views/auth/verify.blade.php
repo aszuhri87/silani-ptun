@@ -77,7 +77,14 @@
                             <br>
                             <img class="img-fluid" src="../../../app-assets/images/pages/error.svg" alt="Error page"
                                 style="width: 55%; height:55%" />
-
+                                <br>
+                                <br>
+                            <a class="mt-5" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Klik disini untuk keluar</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>

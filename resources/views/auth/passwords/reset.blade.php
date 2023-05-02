@@ -71,6 +71,8 @@
                                     <div class="form-group">
                                         <input type="hidden" name="token" value="{{ $token }}">
 
+                                        {{dd($token)}}
+
                                         <div class="d-flex justify-content-between">
                                             <label for="reset-password-new">Email</label>
                                         </div>
