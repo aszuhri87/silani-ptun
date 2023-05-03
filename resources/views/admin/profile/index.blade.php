@@ -136,9 +136,9 @@
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="account-retype-new-password">Ketik Password Baru</label>
+                                                        <label for="account-retype-new-password">Ketik Ulang Password Baru</label>
                                                         <div class="input-group form-password-toggle input-group-merge">
-                                                            <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="Password Baru" />
+                                                            <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="Ketik Ulang Password Baru" />
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text cursor-pointer"><i data-feather="eye"></i></div>
                                                             </div>

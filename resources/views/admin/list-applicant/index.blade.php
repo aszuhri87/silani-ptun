@@ -85,14 +85,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <label for="number-input">Excel File</label>
+                    <label for="number-input">File Excel</label>
                     <div class="custom-file mb-1">
-                        <input type="file" name="file" class="form-control">
+                        <input type="file" name="file" class="form-control" accept=".xls,.xlsx">
                     </div>
                     <a href="{{url('admin/download_format')}}" class="mb-3 text-primary font-italic"> *Download contoh format </a>
+                    <p class="mb-3 text-danger font-italic"> *Import hanya bekerja dengan format excel (.xls, .xlsx), pastikan sesuai contoh format! </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-success btn-save">Submit</button>
                 </div>
             </form>

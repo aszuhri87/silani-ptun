@@ -20,8 +20,8 @@
                 },
                 columns: [
                     { data: 'DT_RowIndex' },
-                    { data: 'document_category', "searchable": false},
-                    { data: 'requirement_type', "searchable": false },
+                    { data: 'document_category', "name": "document_categories.name"},
+                    { data: 'requirement_type', "name": "requirement_types.requirement_type" },
                     { data: 'requirement' },
                     { data: 'required' },
                     { data: 'data_min' },

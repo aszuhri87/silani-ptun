@@ -160,9 +160,15 @@ class ApplicantController extends Controller
 
     public function import(Request $request)
     {
-        Excel::import(new UsersImport(), $request->file);
+        try {
+            Excel::import(new UsersImport(), $request->file);
 
-        return redirect()->back();
+            return redirect()->back();
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            Alert::danger('Gagal', 'Data gagal di import! pastikan sesuai contoh format');
+
+            return redirect()->back();
+        }
     }
 
     public function find_employee(Request $request)

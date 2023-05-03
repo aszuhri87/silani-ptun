@@ -20,8 +20,8 @@
                 },
                 columns: [
                     { data: 'DT_RowIndex' },
-                    { data: 'name' },
-                    { data: 'unit' },
+                    { data: 'name', 'name': 'users.name' },
+                    { data: 'unit', 'name': 'units.name' },
                     { data: 'datetime', "searchable": false},
                     { defaultContent: '' }
                     ],

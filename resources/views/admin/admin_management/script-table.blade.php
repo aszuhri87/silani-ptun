@@ -21,9 +21,9 @@
                 columns: [
                     { data: 'DT_RowIndex' },
                     { data: 'name' },
-                    { data: 'username'},
-                    { data: 'email'},
-                    { data: 'unit',"searchable": false },
+                    { data: 'username', 'name': 'users.username'},
+                    { data: 'email', 'name': 'users.email'},
+                    { data: 'unit', 'name': 'units.name' },
                     // { data: 'status' },
                     { defaultContent: '' }
                     ],

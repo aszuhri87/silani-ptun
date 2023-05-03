@@ -147,8 +147,8 @@
                     </li>
                     <li class="nav-item @if (Request::is('applicant/exit-permit-document')) active @endif"><a
                             class="d-flex align-items-center" href="/applicant/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
-                                data-feather="check-square"></i><marquee behavior="" direction=""><span class="menu-title text-truncate"
-                                    data-i18n="Todo">Perizinan Keluar Kantor</marquee></span><span class="exit_count badge bg-secondary">
+                                data-feather="check-square"></i><span class="menu-title text-truncate"
+                                    data-i18n="Todo">Perizinan Keluar Kantor</span><span class="exit_count badge bg-secondary">
                                         {{ $exit_count }}</span></a>
                     </li>
                 @endif
@@ -180,15 +180,15 @@
 
                 @if (Auth::user())
                     <li class="nav-item @if (Request::is('admin/leave-document')) active @endif"><a
-                            class="d-flex align-items-center" href="admin/leave-document"><i
+                            class="d-flex align-items-center" href="/admin/leave-document"><i
                                 data-feather="check-square"></i><span class="menu-title text-truncate mr-1"
                                 data-i18n="Todo" style="margin-left: 2px;" >Perizinan Cuti </span><span class="ml-1 leave_count badge bg-secondary">
                                 {{ $leave_count }}</span></a>
                     </li>
                     <li class="nav-item @if (Request::is('admin/exit-permit-document')) active @endif"><a
                             class="d-flex align-items-center" href="/admin/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
-                                data-feather="check-square"></i><marquee behavior="" direction=""><span class="menu-title text-truncate"
-                                data-i18n="Todo">Perizinan Keluar Kantor</marquee></span><span class="exit_count badge bg-secondary">
+                                data-feather="check-square"></i><span class="menu-title text-truncate"
+                                data-i18n="Todo">Perizinan Keluar Kantor</span><span class="exit_count badge bg-secondary">
                                     {{ $exit_count }}</span></a>
                     </li>
                 @endif
