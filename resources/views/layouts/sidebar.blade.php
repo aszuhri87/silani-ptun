@@ -231,9 +231,9 @@
                 document.getElementById('logout-form').submit();"><i
                         data-feather="log-out"></i><span class="menu-title text-truncate"
                         data-i18n="Raise Support">Logout</span></a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
-                </form>
+                </form> --}}
             </li>
         </ul>
     </div>
