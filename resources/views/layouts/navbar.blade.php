@@ -78,9 +78,7 @@
              <a class="dropdown-item" href="/admin/accepted"><i class="mr-50" data-feather="check-square"></i> Selesai</a> --}}
          @endhasrole
          <div class="dropdown-divider"></div>
-         <a class="dropdown-item" href="{{ route('logout') }}"
-             onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"><i
+         <a class="dropdown-item" href="{{ route('logout') }}"><i
                  class="mr-50" data-feather="log-out"></i> Logout</a>
          {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
              @csrf

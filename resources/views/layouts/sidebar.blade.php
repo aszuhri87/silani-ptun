@@ -226,9 +226,7 @@
                             class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
                 </li>
             @endrole
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i
                         data-feather="log-out"></i><span class="menu-title text-truncate"
                         data-i18n="Raise Support">Logout</span></a>
                 {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

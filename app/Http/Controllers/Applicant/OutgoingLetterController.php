@@ -87,7 +87,7 @@ class OutgoingLetterController extends Controller
                 'user_id' => $request->user_id,
                 'description' => $request->description,
                 'agenda_number' => $request->agenda_number,
-                'uploaded_file' => $file_name ? $file_name : null,
+                'uploaded_document' => $file_name ? $file_name : null,
             ]);
 
             return response([

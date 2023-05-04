@@ -88,7 +88,7 @@ class DispositionDocumentController extends Controller
             'resume_content' => $request->resume_content,
             'agenda_number' => $request->agenda_number,
             'agenda_date' => $request->agenda_date,
-            'uploaded_file' => $file_name,
+            'uploaded_document' => $file_name,
         ]);
 
         $user_disposition = DispositionUser::create([
@@ -275,8 +275,25 @@ class DispositionDocumentController extends Controller
 
         $name = date('Y-m-d_s').' '.'.pdf';
 
+        $pdfVersion = '1.4';
+        $newFile = public_path('files/'.$id.'.pdf');
+        $currentFile = public_path('files/"'.$data->uploaded_document.'"');
+
+        echo shell_exec("gs -sDEVICE=pdfwrite  -dPDFFitPage -dCompatibilityLevel=1.4 -dEmbedAllFonts=true -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false -f -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile");
+
+        ob_end_clean();
+
         Storage::put('public/pdf/'.$name, $pdf->output());
 
-        return $pdf->stream($name);
+        $pdfMerge = PDFMerger::init();
+
+        $pdfMerge->addPDF(storage_path('app/public/pdf/'.$name), 'all');
+        $pdfMerge->addPDF($newFile, 'all');
+
+        $fileName = 'dokumen_lengkap_'.time().'.pdf';
+        $pdfMerge->merge();
+        $pdfMerge->save(public_path($fileName));
+
+        return $pdfMerge->stream(public_path($fileName));
     }
 }

@@ -21,7 +21,7 @@
                 columns: [
                     { data: 'DT_RowIndex' },
                     { data: 'name' },
-                    { data: 'document_category',"searchable": false},
+                    { data: 'document_category',"name": 'document_categories.name'},
                     { data: 'date_create',"searchable": false },
                     { data: 'status' },
                     { defaultContent: '' }

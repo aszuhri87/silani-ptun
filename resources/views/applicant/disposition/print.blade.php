@@ -128,7 +128,7 @@
                     @endforeach
                 </div>
             </td>
-            <td style="border-right: none;">
+            <td style="border-right: none; vertical-align: text-top;">
                 <h5 class="no-space" style="margin-bottom: 5px;">DITERUSKAN KEPADA :</h5>
                 <div class="no-space" style="display: flex; margin-bottom: 3px;">
                     <p class="no-space"> 1. Ketua </p>

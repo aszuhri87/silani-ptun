@@ -22,7 +22,7 @@
                     { data: 'DT_RowIndex' },
                     { data: 'index' },
                     { data: 'code' },
-                    { data: 'from', "searchable": false},
+                    { data: 'from'},
                     { data: 'status' },
                     { defaultContent: '' }
                     ],
