@@ -15,6 +15,7 @@
                     <!-- Basic -->
                     <div class="col-md-12" >
                         <form id="form-disposition" name="form-disposition" class="auth-register-form mt-2" enctype="multipart/form-data">
+                            <div class="form-method"></div>
                             <div class="main">
                                 <label for="index">Indeks</label>
                                 <div class="form-group">

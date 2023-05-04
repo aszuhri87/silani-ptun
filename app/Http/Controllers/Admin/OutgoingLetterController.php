@@ -69,6 +69,8 @@ class OutgoingLetterController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $file_name = null;
+
             if ($request->hasFile('uploaded_file')) {
                 $file = $request->file('uploaded_file');
                 $file_name = $file->getClientOriginalName();
@@ -81,14 +83,14 @@ class OutgoingLetterController extends Controller
                 'date_letter' => $request->date_letter,
                 'letter_number' => $request->letter_number,
                 'date_received' => $request->date_received,
-                'user_id' => $request->user_id,
+                'user_id' => $request->user_id ? $data->user_id : null,
                 'description' => $request->description,
                 'agenda_number' => $request->agenda_number,
                 'uploaded_file' => $file_name ? $file_name : null,
             ]);
 
             $user = User::where('id', $request->user_id)->first();
-            $user->notify(new NewLetter('outgoing', $docs->id, $user, 'outgoing'));
+            $user->notify(new NewLetter('outgoing', $data->id, $user, 'outgoing'));
 
             return response([
                 'data' => $data,

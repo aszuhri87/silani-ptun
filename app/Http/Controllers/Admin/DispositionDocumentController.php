@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 use Yajra\DataTables\Facades\DataTables;
 
 class DispositionDocumentController extends Controller
@@ -54,6 +55,7 @@ class DispositionDocumentController extends Controller
         $data = DB::table('disposition_documents')
         ->select([
             '*',
+            DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
         ])
         ->whereNull('deleted_at')
         ->orderBy('created_at', 'desc');
@@ -116,22 +118,23 @@ class DispositionDocumentController extends Controller
                 $file->move(public_path().'/files/', $file_name);
             }
 
+            // dd($request->index);
+
             $data = DispositionDocument::find($id);
             $data->update([
-                // 'admin_id' => Auth::user()->id ? $data->id : null,
-                'user_id' => $request->role ? $data->user_id : null,
-                'index' => $request->index ? $data->index : null,
-                'letter_type' => $request->letter_type ? $data->letter_type : null,
-                'code' => $request->code ? $data->code : null,
-                'date_finish' => $request->date_finish ? $data->date_finish : null,
-                'date_number' => $request->date_number ? $data->date_number : null,
-                'from' => $request->from ? $data->from : null,
-                'resume_content' => $request->resume_content ? $data->resume_content : null,
-                'agenda_number' => $request->agenda_number ? $data->agenda_number : null,
-                'agenda_date' => $request->agenda_date ? $data->agenda_date : null,
-                'forward_to' => $request->forward_to ? $data->forward_to : null,
-                'instruction' => $request->instruction ? $data->instruction : null,
-                'uploaded_file' => $file_name ? $data->uploaded_document : null,
+                'user_id' => $request->role,
+                'index' => $request->index,
+                'letter_type' => $request->letter_type,
+                'code' => $request->code,
+                'date_finish' => $request->date_finish,
+                'date_number' => $request->date_number,
+                'from' => $request->from,
+                'resume_content' => $request->resume_content,
+                'agenda_number' => $request->agenda_number,
+                'agenda_date' => $request->agenda_date,
+                'forward_to' => $request->forward_to,
+                'instruction' => $request->instruction,
+                'uploaded_file' => $file_name,
             ]);
 
             $user = User::where('title', $request->role)->first();
@@ -217,8 +220,29 @@ class DispositionDocumentController extends Controller
 
         $name = date('Y-m-d_s').' '.'.pdf';
 
+        // Storage::put('public/pdf/'.$name, $pdf->output());
+
+        $pdfVersion = '1.4';
+        $newFile = public_path('files/'.$id.'.pdf');
+        $currentFile = public_path('files/"'.$data->uploaded_document.'"');
+
+        echo shell_exec("gs -sDEVICE=pdfwrite  -dPDFFitPage -dCompatibilityLevel=1.4 -dEmbedAllFonts=true -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false -f -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile");
+
+        ob_end_clean();
+
         Storage::put('public/pdf/'.$name, $pdf->output());
 
-        return $pdf->stream($name);
+        $pdfMerge = PDFMerger::init();
+
+        $pdfMerge->addPDF(storage_path('app/public/pdf/'.$name), 'all');
+        $pdfMerge->addPDF($newFile, 'all');
+
+        $fileName = 'dokumen_lengkap_'.time().'.pdf';
+        $pdfMerge->merge();
+        $pdfMerge->save(public_path($fileName));
+
+        return $pdfMerge->stream(public_path($fileName));
+
+        // return $pdf->stream($name);
     }
 }

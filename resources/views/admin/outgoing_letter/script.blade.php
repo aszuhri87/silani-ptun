@@ -51,6 +51,11 @@
                 $('#form-outgoing').attr('method','POST');
 
                 showModal('modal-outgoing');
+
+                $(document).on('hide.bs.modal','#modal-outgoing', function(event){
+                    location.reload();
+                });
+
             });
 
             $(document).on('click','#btn-print', function(event){
@@ -76,13 +81,12 @@
             $(document).on('click', '.btn-detail', function(event){
                 event.preventDefault();
 
-                $('#uploaded_file').remove();
-
                 var id = $(this).data('id');
                 var url = $(this).attr('href');
                 var dt = OutgoingTable.table().row($(this).parents('tr')).data();
                 var data_unit = <?php echo json_encode($data)?>;
 
+                $('.files').css("width", "67%")
 
                 $.get(url, function(data){
                     $('#form-outgoing').find('select[id="select-user"]').append(`<option value="`+ data.data.user_id +`">`+ data.data.name +`</option>`).prop('disabled', true);
@@ -91,12 +95,18 @@
                     $('#form-outgoing').find('input[name="date_letter"]').val(data.data.date_letter).prop('disabled', true);
                     $('#form-outgoing').find('input[name="date_received"]').val(data.data.date_received).prop('disabled', true);
                     $('#form-outgoing').find('textarea[name="description"]').val(data.data.description).prop('disabled', true);
+                    $('#form-outgoing').find('select[name="letter_type"]').find('option[value=' + data.data.letter_type + ']').prop('selected', true);
 
-                    if(data.data.uploaded_document){
+                    $('#letter_type').attr('disabled', 'disabled');
+
+                    if(data.data.uploaded_document != null){
                         $('.files').html(`
                             <embed class="mt-1" src="{{ asset('files/`+data.data.uploaded_document+`') }}" width="150%" height="600"></embed>
                             `);
-                        }
+                    } else {
+                        $('.files').remove();
+                    }
+
                     });
 
                     showModal('modal-outgoing');
@@ -108,13 +118,17 @@
 
             $(document).on('click', '.btn-edit', function(event){
                 event.preventDefault();
-                var data = OutgoingTable.table().row($(this).parents('tr')).data();
+                // var id = $(this).data('id');
                 var url = $(this).attr('href');
+                var data = OutgoingTable.table().row($(this).parents('tr')).data();
 
                 $('#form-outgoing').trigger("reset");
-                $('#form-outgoing').attr('method','PUT');
+                $('#form-outgoing').attr('method','POST');
+                $('#form-outgoing').attr('action', $(this).attr('href'));
+                // $('#form-outgoing').attr('enctype','multipart/form-data');
 
                 $.get(url, function(data){
+                    $('.form-method').html(`{{ method_field('put') }}`);
                     $('#form-outgoing').find('select[id="select-user"]').append(`<option value="`+ data.data.user_id +`">`+ data.data.name +`</option>`)
                     $('#form-outgoing').find('input[name="letter_number"]').val(data.data.letter_number);
                     $('#form-outgoing').find('input[name="agenda_number"]').val(data.data.agenda_number);
@@ -122,18 +136,17 @@
                     $('#form-outgoing').find('input[name="date_received"]').val(data.data.date_received);
                     $('#form-outgoing').find('textarea[name="description"]').val(data.data.description);
                     $('#form-outgoing').find('input[name="uploaded_file"]').attr('data-default-file', '{{asset("files/")}}/' + data.data.uploaded_document);
+                    $('#form-outgoing').find('select[name="letter_type"]').find('option[value=' + data.data.letter_type + ']').prop('selected', true);
 
                 });
-
-                $('.files').html(`
-                        <label for="uploaded_file">File Surat</label>
-                        <input type="file" name="uploaded_file" id="uploaded_file" class="dropify">
-                        <label style="font-size: 8pt;">*Format harus pdf</label>
-                `);
 
                 $('.dropify').dropify();
 
                 showModal('modal-outgoing');
+
+                $(document).on('hide.bs.modal','#modal-outgoing', function(event){
+                    location.reload();
+                });
             });
 
             $(document).on('click', '.btn-delete', function(event){

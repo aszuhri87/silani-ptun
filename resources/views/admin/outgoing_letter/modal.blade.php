@@ -15,6 +15,8 @@
                     <!-- Basic -->
                     <div class="col-md-12" >
                         <form id="form-outgoing" name="form-outgoing" class="auth-register-form mt-2" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-method"></div>
                             <div class="main">
                                 <label for="agenda_number">No. Agenda</label>
                                 <div class="form-group">
@@ -28,7 +30,7 @@
 
                                 <div class="form-group">
                                     <label for="letter_type">Jenis Surat</label>
-                                    <select class=" form-control" id="letter_type" data-toggle="collapse" required
+                                    <select class=" form-control" id="letter_type" data-toggle="collapse" name="letter_type" required
                                         data-target="#timeline" required>
                                         <option value="Rahasia">Rahasia</option>
                                         <option value="Penting">Penting</option>
@@ -61,7 +63,11 @@
                                     <input type="hidden" name="user_id">
                                 </div>
                             </div>
-                            <div class="form-group files"></div>
+                            <div class="form-group files">
+                                <label for="uploaded_file">File Surat</label>
+                                <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" accept=".pdf">
+                                <label style="font-size: 8pt;">*Format harus pdf</label>
+                            </div>
                             <div class="approval mt-1"></div>
                     </div>
                 </div>

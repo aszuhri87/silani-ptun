@@ -142,7 +142,7 @@ class ExitPermitDocumentController extends Controller
         $data = ExitPermitDocument::find($id);
         $data->delete();
 
-        if ($result->trashed()) {
+        if ($data->trashed()) {
             return response([
                 'message' => 'Successfully deleted!',
             ], 200);

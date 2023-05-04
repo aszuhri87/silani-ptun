@@ -116,7 +116,7 @@ class LeaveDocumentController extends Controller
 
                 if ($item == 'Tahunan-'.$i) {
                     foreach ($request->remain as $key => $item2) {
-                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-'.$i);
+                        $remain = LeaveNote::where('id', $check->id)->where('type', 'Tahunan-'.$i);
                         $remain->update([
                             'remain' => $request->remain[$i],
                         ]);
@@ -189,7 +189,7 @@ class LeaveDocumentController extends Controller
         $data = LeaveDocument::find($id);
         $data->delete();
 
-        if ($result->trashed()) {
+        if ($data->trashed()) {
             return response([
                 'message' => 'Successfully deleted!',
             ], 200);

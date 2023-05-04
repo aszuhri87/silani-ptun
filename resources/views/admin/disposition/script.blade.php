@@ -307,7 +307,7 @@
 
                 if (auth == data.approver){
                     $('.main').remove();
-                    $('#form-disposition').attr('action', '/applicant/exit-permit-document/update_approval/' + data.id);
+                    $('#form-disposition').attr('action', 'Simpan/applicant/exit-permit-document/update_approval/' + data.id);
 
                     $('.approval').html(
                         `
@@ -339,7 +339,9 @@
 
 
                 $('#form-disposition').trigger("reset");
-                $('#form-disposition').attr('method','PUT');
+                $('#form-disposition').attr('action', $(this).attr('href'));
+                $('#form-disposition').attr('method','POST');
+                $('.form-method').html(`{{ method_field('put') }}`);
 
                 if (data.name){
                     $('#form-disposition').find('select[id="select-letter"]').append(`<option value="`+ data.name +`">`+ data.name +`</option>`)
@@ -356,7 +358,7 @@
                 $('#form-disposition').find('input[name="date_number"]').val(data.date_number);
                 $('#form-disposition').find('input[name="from"]').val(data.from);
                 $('#form-disposition').find('textarea[name="resume_content"]').val(data.resume_content);
-                $('#form-disposition').find('input[name="uploaded_file"]').attr('data-default-file', '{{asset("files/")}}/' + data.uploaded_document);
+                $('#form-disposition').find('input[name="uploaded_file"]').attr("data-default-file", "{{asset('files/"+ data.uploaded_document +"')}}");
 
                 $('textarea[name="notes"]').val(data.notes);
 
