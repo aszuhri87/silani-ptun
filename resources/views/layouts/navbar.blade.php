@@ -7,23 +7,7 @@
                  <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon"
                              data-feather="menu"></i></a></li>
              </ul>
-             <ul class="nav navbar-nav bookmark-icons">
-                 {{-- @hasrole('admin|super admin')
-                     <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/inbox" data-toggle="tooltip"
-                             data-placement="top" title="Surat Masuk"><i class="ficon" data-feather="inbox"></i>  <span class="inbox_count badge"> {{ $inbox }} </span></a>
-                            </li>
-                     <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/admin/accepted" data-toggle="tooltip"
-                             data-placement="top" title="Selesai"><i class="ficon" data-feather="check-square"></i> <span class="done_count badge"> {{ $done }} </span></a>
-                     </li>
-                 @endhasrole
-                 @role('applicant')
-                     <li class="nav-item d-none d-lg-block"><a class="nav-link" href="/applicant/done-docs"
-                             data-toggle="tooltip" data-placement="top" title="Selesai"><i class="ficon"
-                                 data-feather="check-square"></i><span class="done_count badge"> {{ $done }} </span>
-                                </a>
-                     </li>
-                 @endrole --}}
-             </ul>
+             <ul class="nav navbar-nav bookmark-icons"></ul>
          </div>
          <ul class="nav navbar-nav align-items-center ml-auto">
              <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
@@ -69,20 +53,13 @@
      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
          @role('applicant')
              <a class="dropdown-item" href="/applicant/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
-             {{-- <a class="dropdown-item" href="/applicant/done-docs"><i class="mr-50" data-feather="check-square"></i>
-                 Selesai</a> --}}
          @endrole
          @hasrole('admin|super admin')
              <a class="dropdown-item" href="/admin/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
-             {{-- <a class="dropdown-item" href="/admin/inbox"><i class="mr-50" data-feather="mail"></i> Surat Masuk</a>
-             <a class="dropdown-item" href="/admin/accepted"><i class="mr-50" data-feather="check-square"></i> Selesai</a> --}}
          @endhasrole
          <div class="dropdown-divider"></div>
          <a class="dropdown-item" href="{{ route('logout') }}"><i
                  class="mr-50" data-feather="log-out"></i> Logout</a>
-         {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-             @csrf
-         </form> --}}
      </div>
      </li>
      </ul>

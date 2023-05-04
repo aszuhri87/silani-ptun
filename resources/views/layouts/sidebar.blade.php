@@ -6,7 +6,6 @@
                         <img src="{{ asset('app-assets/images/logo.png') }}" alt=""
                             style="width:90%; height:75%; padding-left:10%">
                     </span>
-                    {{-- <img src="{{asset('app-assets/images/logo.png')}}" alt="" style="width:auto; height:80%" > --}}
                     <h2 class="brand-text text-success">SILANI</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
@@ -40,7 +39,6 @@
                             data-feather="database"></i><span class="menu-title text-truncate"
                             data-i18n="Menu Levels">Master Data</span></a>
                     <ul class="menu-content">
-                        {{-- <li><a class="d-flex align-items-center" href="/applicant/mail"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Second Level"></span></a> --}}
                         <li class="nav-item @if (Request::is('admin/unit')) active @endif"><a
                                 class="d-flex align-items-center" href="/admin/unit"><i data-feather="circle"></i><span
                                     class="menu-item text-truncate" data-i18n="Second Level">Unit Bidang</span></a>
@@ -91,15 +89,7 @@
                 </li>
             @endrole
 
-
-            @hasrole('admin|super admin')
-                {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="/admin/notification"><i data-feather="bell"></i><span class="menu-title text-truncate" data-i18n="Chat">Notifikasi</span></a>
-            </li> --}}
-            @endhasrole
-
             @role('applicant')
-                {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="/applicant/notification"><i data-feather="bell"></i><span class="menu-title text-truncate" data-i18n="Chat">Notifikasi</span></a>
-            </li> --}}
                 <li class="nav-item @if (Request::is('applicant/document')) active @endif"><a class="d-flex align-items-center"
                         href="/applicant/document"><i data-feather="file-plus"></i><span class="menu-item text-truncate"
                             data-i18n="Second Level">Buat Dokumen</span></a>
@@ -229,9 +219,6 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i
                         data-feather="log-out"></i><span class="menu-title text-truncate"
                         data-i18n="Raise Support">Logout</span></a>
-                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form> --}}
             </li>
         </ul>
     </div>

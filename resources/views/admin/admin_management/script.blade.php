@@ -77,8 +77,6 @@
                     },
                     timeout: 1000,
                 });
-
-                // setTimeout($.unblockUI, 2100);
             });
         },
         formSubmit = () => {

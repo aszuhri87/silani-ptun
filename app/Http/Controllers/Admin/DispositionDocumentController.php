@@ -240,7 +240,7 @@ class DispositionDocumentController extends Controller
 
         $fileName = 'dokumen_lengkap_'.time().'.pdf';
         $pdfMerge->merge();
-        $pdfMerge->save(public_path($fileName));
+        $pdfMerge->save(public_path('files/merged/'.$fileName));
 
         return $pdfMerge->stream(public_path($fileName));
 

@@ -139,7 +139,6 @@
 
                 $('#form-disposition').trigger("reset");
                 $('#form-disposition').attr('action','{{url('admin/disposition-document')}}');
-                // $('#form-disposition').attr('enctype', 'multipart/form-data')
                 $('#form-disposition').attr('method','POST');
 
                 showModal('modal-disposition');
@@ -189,10 +188,6 @@
                         <embed class="mt-1" src="{{ asset('files/`+data.data.uploaded_document+`') }}" width="150%" height="600">
                         </embed>
                     `);
-
-                console.log(data.data.uploaded_document);
-
-
 
                     if(data.data.letter_type == 'Rahasia'){
                         $('.rahasia').text('✓');

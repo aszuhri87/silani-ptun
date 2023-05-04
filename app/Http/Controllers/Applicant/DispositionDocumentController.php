@@ -199,10 +199,6 @@ class DispositionDocumentController extends Controller
             $a->notify(new NewLetter('disposition', $id, $a, 'disposition'));
         }
 
-        // return response([
-        //     'data' => $data,
-        //     'message' => 'Data Terubah',
-        // ], 200);
         return redirect()->back();
     }
 
@@ -292,7 +288,7 @@ class DispositionDocumentController extends Controller
 
         $fileName = 'dokumen_lengkap_'.time().'.pdf';
         $pdfMerge->merge();
-        $pdfMerge->save(public_path($fileName));
+        $pdfMerge->save(public_path('files/merged/'.$fileName));
 
         return $pdfMerge->stream(public_path($fileName));
     }
