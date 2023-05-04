@@ -118,6 +118,7 @@ class DispositionDocumentController extends Controller
                 $file->move(public_path().'/files/', $file_name);
             }
 
+            // dd($file_name);
             // dd($request->index);
 
             $data = DispositionDocument::find($id);
@@ -134,7 +135,7 @@ class DispositionDocumentController extends Controller
                 'agenda_date' => $request->agenda_date,
                 'forward_to' => $request->forward_to,
                 'instruction' => $request->instruction,
-                'uploaded_file' => $file_name,
+                'uploaded_document' => $file_name,
             ]);
 
             $user = User::where('title', $request->role)->first();

@@ -190,6 +190,9 @@
                         </embed>
                     `);
 
+                console.log(data.data.uploaded_document);
+
+
 
                     if(data.data.letter_type == 'Rahasia'){
                         $('.rahasia').text('✓');
@@ -359,7 +362,7 @@
                 $('#form-disposition').find('input[name="from"]').val(data.from);
                 $('#form-disposition').find('textarea[name="resume_content"]').val(data.resume_content);
                 $('#form-disposition').find('input[name="uploaded_file"]').attr("data-default-file", "{{asset('files/"+ data.uploaded_document +"')}}");
-
+                console.log(data.uploaded_document);
                 $('textarea[name="notes"]').val(data.notes);
 
                 showModal('modal-disposition');
