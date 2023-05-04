@@ -23,3 +23,4 @@ include base_path('routes/applicant.php');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::post('/import', [App\Http\Controllers\Applicant\ProfileController::class, 'store']);
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout']);

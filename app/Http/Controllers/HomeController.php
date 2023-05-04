@@ -45,4 +45,14 @@ class HomeController extends Controller
             return redirect('login')->withErrors('error', 'Akun tidak dikenali!');
         }
     }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+            session()->flush();
+        }
+
+        return redirect('/');
+    }
 }
