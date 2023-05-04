@@ -201,8 +201,8 @@
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
-                    OutgoingTable.table().draw(false);
                     hideModal('modal-outgoing');
+                    OutgoingTable.table().draw(false);
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')

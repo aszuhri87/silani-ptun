@@ -83,10 +83,10 @@ class OutgoingLetterController extends Controller
                 'date_letter' => $request->date_letter,
                 'letter_number' => $request->letter_number,
                 'date_received' => $request->date_received,
-                'user_id' => $request->user_id ? $data->user_id : null,
+                'user_id' => $request->user_id,
                 'description' => $request->description,
                 'agenda_number' => $request->agenda_number,
-                'uploaded_document' => $file_name ? $file_name : null,
+                'uploaded_document' => $file_name,
             ]);
 
             $user = User::where('id', $request->user_id)->first();
