@@ -36,7 +36,7 @@
                         </div>
                         <button type="button" class="btn btn-success" id="create-admin"> Tambah</button>
                     </div>
-                    <div class="card-datatable">
+                    <div class="card-datatable" style="padding: 2%;">
                         <table class="table"   id="init-table">
                             <thead width="100%">
                                 <tr>

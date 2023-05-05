@@ -24,6 +24,10 @@
         });
 
     $(document).ready(function(){
+        $('#init-table').DataTable({
+            "dom": '<lf<t>ip>'
+            });
+
         var dispo_count = parseInt($('.disposition_count').text())
         var exit_count = parseInt($('.exit_count').text())
         var leave_count = parseInt($('.leave_count').text())
