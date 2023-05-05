@@ -205,49 +205,51 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <table>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="" width="35%">
-                                                <div class="d-flex">
-                                                  Yogyakarta, &nbsp
-                                                    <p class="name"> </p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td width="25%">
-                                                Pejabat yang memberikan izin:
-                                                <input class="form-control" style="border: 0;" type="text"
-                                                    name="approver" id="name"
-                                                    placeholder="...................................................................">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td width="25%" height="30%">
-                                                <div class="signature">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td width="25%" height="30%">
-                                                <input class="form-control" style="border: 0;" type="text"
-                                                    name="approver" id="approver"
-                                                    placeholder="(..........................)">
-                                            </td>
-                                        </tr>
-                                    </table>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td width="25%"></td>
+                                        <td width="20%"></td>
+                                        <td width="25%"></td>
+                                        <td class="" width="30%" style="margin:0;">
+                                            <div class="d-flex pl-1">
+                                              Yogyakarta, &nbsp
+                                                <p class="date_sign"> </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"></td>
+                                        <td width="20%"></td>
+                                        <td width="25%"></td>
+                                        <td class="" width="30%">
+                                            <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang memberikan izin: </p>
+                                            <input class="form-control" style="border: 0; width:250px;" type="text"
+                                                name="approver" id="approver"
+                                                placeholder="...................................................................">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"></td>
+                                        <td width="20%"></td>
+                                        <td width="25%"></td>
+                                        <td width="30%" height="30%">
+                                            <div class="signature">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"></td>
+                                        <td width="10%"></td>
+                                        <td width="10%"></td>
+                                        <td width="50%" height="30%">
+                                            {{-- <input class="form-control text-center" style="border: 0; width:250px; margin-left: 0;" type="text"
+                                                name="name" id="name"
+                                                placeholder="(..........................)"> --}}
+                                            <p class="name_sign text-center pr-1" style="white-space: none; margin: 0; ">(....................)</p>
+                                        </td>
+                                    </tr>
+                                </table>
                                 </div>
                             </form>
                         </div>

@@ -103,48 +103,48 @@
            </tr>
        </table>
        <table style="margin-left: 55%; padding: 10px;">
-           <tr>
-               <td></td>
-               <!-- <td></td> -->
-               <td class="">
-                   <div class="d-flex">
-                      <p style="padding: 1; margin: 1;  white-space:0;"> Yogyakarta, {{$data->name}} </p>
-                   </div>
-               </td>
-           </tr>
-           <tr>
-               <td></td>
-               <!-- <td></td> -->
-               <!-- <td></td> -->
-               <td >
-                    Pejabat yang memberikan izin: <br>
-                    {{$data->approver}}
-               </td>
-           </tr>
-           <tr>
-               <td></td>
-               <td></td>
-               <!-- <td></td> -->
-               <td>
-                <div style="display:inline-block;">
-                    @if ($signature)
-                    <img src="data:image/png;base64,{{ $signature ?? null }}"
-                    style="margin-left: 60%; margin-top: 95%; width: auto; height: 60px;">
-                    @else
-                    <div style="margin-left: 60%; margin-top: 95%; width: auto; height: 60px;"></div>
-                    @endif
+        <tr>
+            <td></td>
+            <!-- <td></td> -->
+            <td class="">
+                <div class="d-flex">
+                   <p style="padding: 1; margin: 1;  white-space:0;"> Yogyakarta, {{$data->date}} </p>
                 </div>
-               </td>
-           </tr>
-           <tr>
-               <td></td>
-               <!-- <td></td> -->
-               <!-- <td></td> -->
-               <td>
-                   <p style="margin-top: 100px; text-align:center;"> ( {{$data->approver}} )</p>
-               </td>
-           </tr>
-       </table>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <!-- <td></td> -->
+            <!-- <td></td> -->
+            <td >
+                 Pejabat yang memberikan izin: <br>
+                 {{$data->approver}}
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <!-- <td></td> -->
+            <td>
+             <div style="display:inline-block;">
+                 @if ($signature)
+                 <img src="data:image/png;base64,{{ $signature ?? null }}"
+                 style="margin-left: 60%; margin-top: 95%; width: auto; height: 60px;">
+                 @else
+                 <div style="margin-left: 60%; margin-top: 95%; width: auto; height: 60px;"></div>
+                 @endif
+             </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <!-- <td></td> -->
+            <!-- <td></td> -->
+            <td>
+                <p style="margin-top: 100px; text-align:center;"> ( {{$data->name}} )</p>
+            </td>
+        </tr>
+    </table>
    </div>
 </div>
 

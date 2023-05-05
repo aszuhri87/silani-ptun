@@ -151,7 +151,7 @@
                     $('.agenda_numdate').text(data.data.agenda_number+'/'+data.data.agenda_date);
 
                     $('div#files').append(`
-                        <embed class="mt-1" src="{{ asset('files/`+data.data.uploaded_document+`') }}" width="150%" height="600">
+                        <embed class="mt-1" src="{{ asset('files/`+data.data.uploaded_document+`') }}#toolbar=0&navpanes=0&scrollbar=0" width="150%" height="600">
                         </embed>
                     `);
 

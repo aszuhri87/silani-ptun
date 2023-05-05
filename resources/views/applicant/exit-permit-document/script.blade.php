@@ -145,6 +145,8 @@
                     $('input[name="unit"]').val(data.data.unit);
                     $('input[name="reason"]').val(data.data.reason);
                     $('.date').text(data.data.date);
+                    $('.date_sign').text(data.data.date_sign);
+                    $('.name_sign').text('( '+data.data.name+' )');
                     $('input[name="time"]').val(data.data.time);
                     $('input[name="approver"]').val(data.data.approver);
 

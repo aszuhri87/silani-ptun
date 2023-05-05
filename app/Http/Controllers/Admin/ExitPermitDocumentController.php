@@ -108,6 +108,7 @@ class ExitPermitDocumentController extends Controller
             'users.gol',
             'units.name as unit',
             DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay, dd TMMonth YYYY') as date_sign"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',
             'exit_permit_documents.approver',

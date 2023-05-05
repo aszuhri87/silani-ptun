@@ -108,7 +108,7 @@
                <!-- <td></td> -->
                <td class="">
                    <div class="d-flex">
-                      <p style="padding: 1; margin: 1;  white-space:0;"> Yogyakarta, {{$data->name}} </p>
+                      <p style="padding: 1; margin: 1;  white-space:0;"> Yogyakarta, {{$data->date}} </p>
                    </div>
                </td>
            </tr>
@@ -141,7 +141,7 @@
                <!-- <td></td> -->
                <!-- <td></td> -->
                <td>
-                   <p style="margin-top: 100px; text-align:center;"> ( {{$data->approver}} )</p>
+                   <p style="margin-top: 100px; text-align:center;"> ( {{$data->name}} )</p>
                </td>
            </tr>
        </table>
