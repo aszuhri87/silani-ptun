@@ -85,6 +85,8 @@ class LeaveDocumentController extends Controller
         $data = LeaveNote::where('leave_document_id', $id);
         $check = $data->first();
 
+        // dd($request->all());
+
         if (!$check) {
             foreach ($request->type as $i => $item) {
                 $new = LeaveNote::create([
@@ -106,7 +108,8 @@ class LeaveDocumentController extends Controller
             }
         } else {
             foreach ($request->type as $i => $item) {
-                $data->update([
+                $data_type = LeaveNote::where('type', $item)->where('leave_document_id', $id);
+                $data_type->update([
                     'type' => $item,
                     'amount' => $request->amount[$i],
                     'leave_document_id' => $id,

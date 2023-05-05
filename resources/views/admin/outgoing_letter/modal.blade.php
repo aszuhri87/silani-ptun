@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group files">
                                 <label for="uploaded_file">File Surat</label>
-                                <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" accept=".pdf">
+                                <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" accept=".pdf" data-allowed-file-extensions="pdf">
                                 <label style="font-size: 8pt;">*Format harus pdf</label>
                             </div>
                             <div class="approval mt-1"></div>

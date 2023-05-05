@@ -30,6 +30,8 @@
         var outgoing_count = parseInt($('.outgoing_count').text())
         var inbox_count = parseInt($('.inbox_count').text())
         var done_count = parseInt($('.done_count').text())
+        var proceed_count = parseInt($('.proceed_count').text())
+
         var title_conf = { requireBlur:true, stopOnFocus:true, interval:3000 }
 
         const Toast = Swal.mixin({
@@ -116,7 +118,7 @@
                 $('#init-table').DataTable().ajax.reload();
 
             } else if(notification.notif_type == 'inbox'){
-                outgoing_count += 1
+                inbox_count += 1
                 $('.inbox_count').text(inbox_count);
 
                 Toast.fire({
@@ -128,7 +130,7 @@
                 $('#init-table').DataTable().ajax.reload();
 
             } else if(notification.notif_type == 'done'){
-                outgoing_count += 1
+                done_count += 1
                 $('.done_count').text(done_count);
 
                 Toast.fire({
@@ -137,6 +139,19 @@
                     })
 
                 $.titleAlert('(' + done_count + ') dokumen selesai', title_conf);
+                $('#init-table').DataTable().ajax.reload();
+            }
+
+            else if(notification.notif_type == 'proceed'){
+                proceed_count += 1
+                $('.proceed_count').text(proceed_count);
+
+                Toast.fire({
+                      icon: 'info',
+                      title:  proceed_count + ' dokumen diproses'
+                    })
+
+                $.titleAlert('(' + proceed_count + ') dokumen diproses', title_conf);
                 $('#init-table').DataTable().ajax.reload();
             }
 

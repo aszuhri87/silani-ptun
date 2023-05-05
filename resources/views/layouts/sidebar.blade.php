@@ -20,13 +20,13 @@
 
 
             @hasrole('admin|super admin')
-                <li class=" nav-item nav-pill-success"><a class="d-flex align-items-center" href="/admin/dashboard"><i
+                <li class=" nav-item nav-pill-success @if (Request::is('admin/dashboard')) active @endif"><a class="d-flex align-items-center" href="/admin/dashboard"><i
                             data-feather="home"></i><span class="menu-title text-truncate"
                             data-i18n="Dashboards">Dashboards</span></a>
                 </li>
             @endhasrole
             @role('applicant')
-                <li class=" nav-item nav-pill-success"><a class="d-flex align-items-center" href="/applicant/dashboard"><i
+                <li class=" nav-item nav-pill-success  @if (Request::is('applicant/dashboard')) active @endif"><a class="d-flex align-items-center" href="/applicant/dashboard"><i
                             data-feather="home"></i><span class="menu-title text-truncate"
                             data-i18n="Dashboards">Dashboards</span></a>
                 </li>
@@ -94,8 +94,8 @@
                         href="/applicant/document"><i data-feather="file-plus"></i><span class="menu-item text-truncate"
                             data-i18n="Second Level">Buat Dokumen</span></a>
                 <li class="nav-item @if (Request::is('applicant/verification-process')) active @endif"><a class="d-flex align-items-center"
-                        href="/applicant/verification-process"><i data-feather="edit-3"></i><span
-                            class="menu-title text-truncate">Perizinan Dokumen</span></a>
+                        href="/applicant/verification-process" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
+                            class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span> </a>
                 </li>
 
                 <li class="nav-item @if (Request::is('applicant/done-docs')) active @endif"><a
@@ -151,8 +151,8 @@
                             <span class="done_count badge bg-secondary"> {{ $inbox }} </span></span></a>
                 </li>
                 <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/verification" ><i data-feather="edit-3"></i><span
-                            class="menu-title text-truncate">Perizinan Dokumen</span></a>
+                        class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
+                            class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
                 </li>
 
                 <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a

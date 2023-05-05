@@ -128,7 +128,7 @@
 
                 $('.files').html(`
                         <label for="uploaded_file">File Surat</label>
-                        <input type="file" name="uploaded_file" id="uploaded_file" class="dropify">
+                        <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" data-allowed-file-extensions="pdf">
                         <label style="font-size: 8pt;">*Format harus pdf</label>
                 `);
 

@@ -46,6 +46,7 @@ class ApplicantController extends Controller
         ])
         ->join('applicants', 'applicants.user_id', 'users.id')
         ->where('users.category', 'karyawan')
+        ->orderBy('users.created_at', 'desc')
         ->whereNull('users.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);

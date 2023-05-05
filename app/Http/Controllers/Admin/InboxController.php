@@ -9,6 +9,7 @@ use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
 use App\Models\User;
+use App\Notifications\NewLetter;
 use DataTables;
 use Exception;
 use Illuminate\Http\Request;
@@ -143,11 +144,29 @@ class InboxController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = Document::find($id);
+            $data = Document::where('id', $id);
             $data->update([
-                'status' => $request->status_edit ? $request->status_edit : $data->status,
-                'notes' => $request->notes ? $request->notes : $data->notes,
+                'status' => $request->status_edit ? $request->status_edit : $data->first()->status,
+                'notes' => $request->notes ? $request->notes : $data->first()->notes,
             ]);
+
+            $user = User::where('id', $data->first()->user_id)->first();
+
+            if ($request->status_edit == 'Diproses') {
+                $user->notify(new NewLetter('proceed', $data->first()->id, $user, 'proceed'));
+
+                $admin = User::where('category', 'admin')->get();
+                foreach ($admin as $a) {
+                    $a->notify(new NewLetter('proceed', $data->first()->id, $a, 'proceed'));
+                }
+            } else {
+                $user->notify(new NewLetter('done', $data->first()->id, $user, 'done'));
+
+                $admin = User::where('category', 'admin')->get();
+                foreach ($admin as $a) {
+                    $a->notify(new NewLetter('done', $data->first()->id, $a, 'done'));
+                }
+            }
 
             return response([
                 'data' => $data,

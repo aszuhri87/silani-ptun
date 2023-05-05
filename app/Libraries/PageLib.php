@@ -17,6 +17,7 @@ class PageLib
         $counter4 = [];
         $counter5 = [];
         $counter6 = [];
+        $counter7 = [];
 
         foreach ($notify1 as $item1) {
             DB::table('notifications')->where('id', $item1->id)
@@ -49,6 +50,10 @@ class PageLib
                 if ($dat->type == 'done') {
                     $counter6[] = $item1;
                 }
+
+                if ($dat->type == 'proceed') {
+                    $counter7[] = $item1;
+                }
             }
         }
 
@@ -58,6 +63,7 @@ class PageLib
         $outgoing_count = count($counter4);
         $inbox = count($counter5);
         $done = count($counter6);
+        $proceed = count($counter7);
 
         return collect([
             'disposition_count' => $disposition_count,
@@ -66,6 +72,7 @@ class PageLib
             'outgoing_count' => $outgoing_count,
             'inbox' => $inbox,
             'done' => $done,
+            'proceed' => $proceed,
         ])->merge($additional)->all();
     }
 }
