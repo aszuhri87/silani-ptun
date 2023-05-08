@@ -39,7 +39,7 @@
                         </div>
                         <button type="button" class="btn btn-success" id="add-doc-category-req-modal"> Tambah</button>
                     </div>
-                    <div class="card-datatable" style="padding: 2%;">
+                    <div class="card-datatable" >
                         <small>
                         <table class="table display" id="init-table" width="100%">
                             <thead >

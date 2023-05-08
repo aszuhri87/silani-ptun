@@ -139,15 +139,15 @@
 
                 $.get(url, function(data){
                     $('input[name="name"]').val(data.data.name);
-                    $('.name').text(data.data.name);
-                    $('input[name="nip"]').val(data.data.nip+' / '+data.data.gol);
-                    $('input[name="unit"]').val(data.data.unit);
-                    $('input[name="reason"]').val(data.data.reason);
-                    $('.date').text(data.data.date);
+                    $('.name').text(' : '+data.data.name);
+                    $('.nip').text(' : '+data.data.nip+' / '+data.data.gol);
+                    $('.unit').text(' : '+data.data.unit);
+                    $('.reason').text(' : '+data.data.reason);
+                    $('.date').text(' : '+data.data.date);
                     $('.date_sign').text(data.data.date_sign);
                     $('.name_sign').text('( '+data.data.name+' )');
-                    $('input[name="time"]').val(data.data.time);
-                    $('input[name="approver"]').val(data.data.approver);
+                    $('.time').text(' : '+data.data.time);
+                    $('.approver').text(data.data.approver);
 
                     if (data.data.status == 'Ditolak'){
                         $('.status-note').html(

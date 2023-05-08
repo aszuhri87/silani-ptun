@@ -36,7 +36,7 @@
                             <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
                         </div>
                     </div>
-                    <div class="card-datatable" style="padding: 2%;">
+                    <div class="card-datatable" >
                         <table class="table"  id="init-table">
                             <thead width="100%">
                                 <tr>

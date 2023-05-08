@@ -49,6 +49,7 @@ class DocumentCategoryController extends Controller
             'units.name as unit',
         ])->join('units', 'units.id', 'document_categories.unit_id')
         ->join('sub_units', 'sub_units.id', 'document_categories.sub_unit_id')
+        ->orderBy('document_categories.created_at', 'desc')
         ->whereNull('document_categories.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);

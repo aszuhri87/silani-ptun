@@ -32,6 +32,7 @@ class RequirementTypeController extends Controller
             'data_type',
             'data_unit',
         ])
+        ->orderBy('requirement_types.created_at', 'desc')
         ->whereNull('deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);

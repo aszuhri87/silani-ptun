@@ -107,8 +107,8 @@
                <td></td>
                <!-- <td></td> -->
                <td class="">
-                   <div class="d-flex">
-                      <p style="padding: 1; margin: 1;  white-space:0;"> Yogyakarta, {{$data->date}} </p>
+                   <div class="d-flex" style="white-space: nowrap;">
+                      <p style="margin-bottom: 1; white-space:0;"> Yogyakarta, {{$data->date}} </p>
                    </div>
                </td>
            </tr>
@@ -116,7 +116,7 @@
                <td></td>
                <!-- <td></td> -->
                <!-- <td></td> -->
-               <td >
+               <td style="white-space: nowrap;">
                     Pejabat yang memberikan izin: <br>
                     {{$data->approver}}
                </td>
@@ -140,7 +140,7 @@
                <td></td>
                <!-- <td></td> -->
                <!-- <td></td> -->
-               <td>
+               <td style="white-space: nowrap;">
                    <p style="margin-top: 100px; text-align:center;"> ( {{$data->name}} )</p>
                </td>
            </tr>

@@ -48,6 +48,7 @@ class ManageAdminController extends Controller
             ])
         ->leftJoin('users', 'users.id', 'admins.user_id')
         ->leftJoin('units', 'units.id', 'admins.unit_id')
+        ->orderBy('admins.created_at', 'desc')
         ->whereNull('admins.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
@@ -153,16 +154,11 @@ class ManageAdminController extends Controller
     {
         try {
             $result = User::find($id);
+            $result->delete();
 
-            DB::transaction(function () use ($result) {
-                $result->delete();
-            });
-
-            if ($result->trashed()) {
-                return response([
-                    'message' => 'Successfully deleted!',
-                ], 200);
-            }
+            return response([
+                'message' => 'Successfully deleted!',
+            ], 200);
         } catch (Exception $e) {
             throw new Exception($e);
 

@@ -39,6 +39,7 @@ class SubUnitController extends Controller
             'units.name as unit',
             'sub_units.unit_id',
         ])->leftJoin('units', 'units.id', 'sub_units.unit_id')
+        ->orderBy('sub_units.created_at', 'desc')
         ->whereNull('sub_units.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);

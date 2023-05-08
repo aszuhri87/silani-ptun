@@ -130,37 +130,31 @@
                                     <table class="mb-5">
                                         <tr>
                                             <td>
-                                                <p> Nama: </p>
+                                                <p> Nama </p>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input class="form-control" style="max-max-width: 500px; border: 0;"
-                                                        type="text" name="name" id="name"
-                                                        placeholder="............................................................................................................................">
+                                                    <p class="name" style="white-space: none; margin: 0; ">...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p> NIP/Gol.:</p>
+                                                <p> NIP/Gol.</p>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input class="form-control" style="max-width: 500px; border: 0;"
-                                                        type="text" name="nip" id="nip"
-                                                        placeholder="............................................................................................................................">
+                                                    <p class="nip" style="white-space: none; margin: 0; "> :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p> Unit Kerja:</p>
+                                                <p> Unit Kerja</p>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input class="form-control" style="max-width: 500px; border: 0;"
-                                                        type="text" name="unit" id="unit"
-                                                        placeholder="............................................................................................................................">
+                                                    <p class="unit" style="white-space: none; margin: 0; "> :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -173,83 +167,74 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p> Hari/tanggal:</p>
+                                                <p> Hari/tanggal</p>
                                             </td>
                                             <td>
-                                                <div class="form-group date">
+                                                <div class="form-group">
+                                                    <p class="date" style="white-space: none; margin: 0; "> :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p> Jam:</p>
+                                                <p> Jam </p>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input class="form-control" style="max-width: 500px; border: 0;"
-                                                        type="text" name="time" id="time"
-                                                        placeholder="............................................................................................................................">
+                                                    <p class="time" style="white-space: none; margin: 0; "> :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p> Untuk Keperluan:</p>
+                                                <p> Untuk Keperluan</p>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input class="form-control" style="max-width: 500px; border: 0;"
-                                                        type="text" name="reason" id="reason"
-                                                        placeholder="............................................................................................................................">
+                                                    <p class="reason" style="white-space: none; margin: 0; "> :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
-                                </table>
-                                <table>
-                                    <tr>
-                                        <td width="25%"></td>
-                                        <td width="20%"></td>
-                                        <td width="25%"></td>
-                                        <td class="" width="30%" style="margin:0;">
-                                            <div class="d-flex pl-1">
-                                              Yogyakarta, &nbsp
-                                                <p class="date_sign"> </p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="25%"></td>
-                                        <td width="20%"></td>
-                                        <td width="25%"></td>
-                                        <td class="" width="30%">
-                                            <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang memberikan izin: </p>
-                                            <input class="form-control" style="border: 0; width:250px;" type="text"
-                                                name="approver" id="approver"
-                                                placeholder="...................................................................">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="25%"></td>
-                                        <td width="20%"></td>
-                                        <td width="25%"></td>
-                                        <td width="30%" height="30%">
-                                            <div class="signature">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="25%"></td>
-                                        <td width="10%"></td>
-                                        <td width="10%"></td>
-                                        <td width="50%" height="30%">
-                                            {{-- <input class="form-control text-center" style="border: 0; width:250px; margin-left: 0;" type="text"
-                                                name="name" id="name"
-                                                placeholder="(..........................)"> --}}
-                                            <p class="name_sign text-center pr-1" style="white-space: none; margin: 0; ">(....................)</p>
-                                        </td>
-                                    </tr>
-                                </table>
+                                    <table>
+                                        <tr>
+                                            <td width="25%"></td>
+                                            <td width="20%"></td>
+                                            <td width="25%"></td>
+                                            <td class="" width="30%" style="margin:0;">
+                                                <div class="d-flex pl-1">
+                                                  Yogyakarta, &nbsp
+                                                    <p class="date_sign"> </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%"></td>
+                                            <td width="20%"></td>
+                                            <td width="25%"></td>
+                                            <td class="" width="30%" style="white-space: nowrap;">
+                                                <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang memberikan izin: </p>
+                                                <p class="approver text-center" style="white-space: none; margin: 0; ">...........................................</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%"></td>
+                                            <td width="20%"></td>
+                                            <td width="25%"></td>
+                                            <td width="30%" height="30%">
+                                                <div class="signature">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%"></td>
+                                            <td width="10%"></td>
+                                            <td width="10%"></td>
+                                            <td width="50%" height="30%" style="white-space: nowrap;">
+                                                <p class="name_sign text-center" style="white-space: none; margin: 0; ">(....................)</p>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </form>
                         </div>

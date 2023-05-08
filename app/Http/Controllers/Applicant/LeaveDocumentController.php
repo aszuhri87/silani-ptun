@@ -49,6 +49,7 @@ class LeaveDocumentController extends Controller
         ->where('leave_documents.user_id', Auth::user()->id)
         ->orWhere('leave_approvals.user_id', Auth::user()->id)
         ->whereNull('leave_documents.deleted_at')
+        ->orderBy('leave_documents.created_at', 'desc')
         ->groupBy('leave_documents.id', 'users.name');
 
         return DataTables::query($data)->addIndexColumn()->make(true);

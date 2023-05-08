@@ -91,6 +91,15 @@
         min-width:2000%;
         height: 500px;
         }
+
+        div.dataTables_info {
+          margin-left: 35px;
+        }
+
+        div.dataTables_paginate{
+          padding-right: 25px;
+          padding-bottom: 10px;
+        }
     </style>
 
     @stack('style')

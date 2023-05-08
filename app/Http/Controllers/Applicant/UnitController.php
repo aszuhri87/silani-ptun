@@ -31,6 +31,7 @@ class UnitController extends Controller
             'name',
             'description',
         ])
+        ->orderBy('created_at', 'desc')
         ->whereNull('deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);

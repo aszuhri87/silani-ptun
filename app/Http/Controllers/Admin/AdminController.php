@@ -87,6 +87,7 @@ class AdminController extends BaseController
         $data = DB::table('applicants')
         ->select('*')
         ->join('users', 'users.applicant_id', 'applicants.id')
+        ->orderBy('applicants.created_at', 'desc')
         ->get();
 
         return view('admin.list-applicant.index', PageLib::config([]), ['data' => $data]);

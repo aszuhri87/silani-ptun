@@ -45,6 +45,7 @@ class DocumentRequirementController extends Controller
             'document_category_requirements.requirement as document_category_requirement',
         ])->leftJoin('documents', 'documents.id', 'document_requirements.document_id')
         ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id')
+        ->orderBy('document_requirements.created_at', 'desc')
         ->whereNull('document_requirements.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
