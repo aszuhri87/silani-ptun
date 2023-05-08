@@ -46,7 +46,7 @@ class AcceptedController extends Controller
             'documents.name',
             'documents.status',
             'documents.notes',
-            DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
+            DB::raw("to_char(documents.updated_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
             'document_categories.unit_id',
             'applicants.name as applicant',

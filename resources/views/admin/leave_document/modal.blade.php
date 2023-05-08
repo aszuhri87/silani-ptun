@@ -21,40 +21,40 @@
                                     <input type="hidden" name="type[]" value="Tahunan-0">
                                     <div class="form-group">
                                         <label for="remain">Sisa</label>
-                                        <input class="form-control" type="text" name="remain[0]" id="remain0" placeholder="N-1">
+                                        <input class="form-control" type="number" name="remain[0]" id="remain0" placeholder="N-1" required>
                                         <label for="amount">Keterangan</label>
-                                        <input class="form-control" type="text" name="amount[0]" id="amount0" placeholder="Masih...hari">
+                                        <input class="form-control" type="number" name="amount[0]" id="amount0" placeholder="Masih...hari" required>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <input type="hidden" name="type[]" value="Tahunan-1">
                                     <div class="form-group">
                                         <label for="remain1">Sisa</label>
-                                        <input class="form-control" type="text" name="remain[1]" id="remain1" placeholder="N">
+                                        <input class="form-control" type="number" name="remain[1]" id="remain1" placeholder="N" required>
                                         <label for="amount1">Keterangan</label>
-                                        <input class="form-control" type="text" name="amount[1]" id="amount1" placeholder="Masih...hari">
+                                        <input class="form-control" type="number" name="amount[1]" id="amount1" placeholder="Masih...hari" required>
                                     </div>
                                 </div>
                             </div>
                             <label for="address" id="address" class="form-label">Cuti Sakit</label>
                             <input type="hidden" name="type[]" value="Sakit">
-                            <input class="form-control" type="text" name="amount[]" id="amount2">
+                            <input class="form-control" type="number" name="amount[]" id="amount2" required>
 
                             <label for="address" id="address" class="form-label">Cuti Melahirkan</label>
                             <input type="hidden" name="type[]" value="Melahirkan">
-                            <input class="form-control" type="text" name="amount[]" id="amount3">
+                            <input class="form-control" type="number" name="amount[]" id="amount3" required>
 
                             <label for="address" id="address" class="form-label">Cuti Karena Alasan Penting</label>
                             <input type="hidden" name="type[]" value="Karena Alasan Penting">
-                            <input class="form-control" type="text" name="amount[]" id="amount4">
+                            <input class="form-control" type="number" name="amount[]" id="amount4" required>
 
                             <label for="address" id="address" class="form-label">Cuti Besar</label>
                             <input type="hidden" name="type[]" value="Besar">
-                            <input class="form-control" type="text" name="amount[]" id="amount5">
+                            <input class="form-control" type="number" name="amount[]" id="amount5" required>
 
                             <label for="address" id="address" class="form-label">Cuti di Luar Tanggungan Negara</label>
                             <input type="hidden" name="type[]" value="Luar Tanggungan Negara">
-                            <input class="form-control" type="text" name="amount[]" id="amount6">
+                            <input class="form-control" type="number" name="amount[]" id="amount6" required>
                     </div>
                 </div>
                 <div class="modal-footer">
