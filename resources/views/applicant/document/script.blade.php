@@ -110,6 +110,7 @@
                 $.get(url, function(data){
 
                         $('input[name="name"]').val(data.name);
+                        $('input[name="chief_name"]').val(data.chief_name);
                         $('input[name="date"]').val(data.date_create);
                         $('input[name="document_category"]').val(data.document_category);
                         $('input[name="requirement"]').val(data.requirement);

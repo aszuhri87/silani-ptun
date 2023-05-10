@@ -21,6 +21,7 @@
                 columns: [
                     { data: 'DT_RowIndex' },
                     { data: 'name' },
+                    { data: 'chief_name', 'name': 'users.name' },
                     { data: 'document_category',"name": 'document_categories.name'},
                     { data: 'date_create',"searchable": false },
                     { data: 'status' },

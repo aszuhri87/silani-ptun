@@ -97,10 +97,12 @@ class DocumentController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
+            'users.name as chief_name',
              DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+        ->leftJoin('users', 'users.id', 'documents.user_id')
         ->where('documents.status', 'Menunggu')
         ->where('documents.applicant_id', $appl->id)
         ->whereNull('documents.deleted_at')
@@ -191,6 +193,7 @@ class DocumentController extends Controller
             'document_category_req.description',
             'document_category_req.title',
             'document_category_req.data_type',
+            'users.name as chief_name',
         ])
         ->with(['doc_req' => function ($query) {
             $query->select(['document_requirements.id', 'document_requirements.requirement_value', 'document_requirements.document_id', 'document_category_requirements.data_min',

@@ -70,6 +70,10 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nilai Keperluan" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/>
                                     </div>
+                                    <label for="requirement_value">Kepada</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="chief_name" name="chief_name" placeholder="Nilai Keperluan" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/>
+                                    </div>
                                     <label for="requirement_value">Tanggal</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="date" name="date" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" readonly />
