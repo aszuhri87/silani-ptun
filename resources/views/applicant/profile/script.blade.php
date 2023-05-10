@@ -120,6 +120,8 @@
                         title: 'Berhasil!',
                         text: "Berhasil ganti profile!",
                     })
+
+                    location.reload();
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
@@ -149,6 +151,8 @@
                         title: 'Berhasil!',
                         text: "Berhasil ganti profile!",
                     })
+
+                    location.reload();
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
