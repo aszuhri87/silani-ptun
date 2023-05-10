@@ -199,9 +199,9 @@
                                     <table>
                                         <tr>
                                             <td width="25%"></td>
-                                            <td width="20%"></td>
-                                            <td width="25%"></td>
-                                            <td class="" width="30%" style="margin:0;">
+                                            <td width="10%"></td>
+                                            <td width="10%"></td>
+                                            <td class="" width="50%" style="margin:0;">
                                                 <div class="d-flex pl-1">
                                                   Yogyakarta, &nbsp
                                                     <p class="date_sign"> </p>

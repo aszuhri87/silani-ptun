@@ -68,6 +68,13 @@ class ManageAdminController extends Controller
     public function store(Request $request)
     {
         try {
+            $user = User::where('email', $request->email)->first();
+            if ($user) {
+                return response([
+                    'message' => 'Data Tersimpan',
+                ], 500);
+            }
+
             $result = DB::transaction(function () use ($request) {
                 $user = User::create([
                     'name' => $request->name,

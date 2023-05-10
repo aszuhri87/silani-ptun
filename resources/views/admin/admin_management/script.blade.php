@@ -1,5 +1,19 @@
 <script type="text/javascript">
     var Page = function() {
+
+        const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              height: 600,
+              timer: 5000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
         $(document).ready(function() {
             formSubmit();
             initAction();
@@ -89,12 +103,20 @@
                     data: $(this).serialize(),
                 })
                 .done(function(res, xhr, meta) {
-                    toastr.success(res.message, 'Success')
+                    Toast.fire({
+                      icon: 'success',
+                      title: 'Berhasil'
+                    })
+
+
                     mngAdminTable.table().draw(false);
                     hideModal('modal-mng-admin');
                 })
                 .fail(function(res, error) {
-                    toastr.error(res.responseJSON.message, 'Gagal')
+                    Toast.fire({
+                      icon: 'error',
+                      title: 'Email sudah digunakan!'
+                    })
                 })
                 .always(function() { });
             });

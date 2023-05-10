@@ -64,7 +64,7 @@ class RequirementTypeController extends Controller
         try {
             $data = RequirementType::where('requirement_type', $requirement_type);
             $data->update([
-                // 'requirement_type' => $request->requirement_type ? $request->requirement_type : $data->requirement_type,
+                'requirement_type' => $request->requirement_type ? $request->requirement_type : $data->requirement_type,
                 'description' => $request->description ? $request->description : $data->description,
                 'data_type' => $request->data_type ? $request->data_type : $data->data_type,
                 'data_unit' => $request->data_unit ? $request->data_unit : $data->data_unit,
