@@ -99,8 +99,8 @@
                             text: "Berhasil menyimpan!",
                         })
 
-                    VerifTable.table().draw(false);
                     hideModal('modal-verification');
+                    VerifTable.table().draw(false);
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
