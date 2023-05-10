@@ -131,11 +131,20 @@
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
+                    Swal.fire({
+                            title: 'Berhasil!',
+                            text: "Berhasil menyimpan!",
+                        })
+
                     InboxTable.table().draw(false);
                     hideModal('modal-inbox');
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                            title: 'Gagal!',
+                            text: "Gagal menyimpan!",
+                        })
                 })
                 .always(function() { });
             });

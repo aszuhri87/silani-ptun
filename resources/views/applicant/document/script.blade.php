@@ -91,10 +91,6 @@
                 })
             });
 
-            // $(document).on('hide.bs.modal','#modal-document', function(event){
-            //     location.reload();
-            // });
-
             $(document).on('click', '.btn-detail', function(event){
                 event.preventDefault();
                 var id = $(this).data('id');
@@ -275,11 +271,20 @@
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
+                    Swal.fire({
+                            title: 'Berhasil!',
+                            text: "Berhasil menyimpan!",
+                        })
+
                     DocTable.table().draw(false);
                     hideModal('modal-document');
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                            title: 'Gagal!',
+                            text: "Gagal menyimpan!",
+                        })
                 })
                 .always(function() { });
             });

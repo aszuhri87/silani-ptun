@@ -94,10 +94,19 @@
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
                     DocsCategoryTable.table().draw(false);
+                    Swal.fire({
+                            title: 'Berhasil!',
+                            text: "Berhasil menyimpan!",
+                        })
+
                     hideModal('modal-docs-category');
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                            title: 'Gagal!',
+                            text: "Gagal menyimpan!",
+                        })
                 })
                 .always(function() { });
             });

@@ -1,5 +1,17 @@
 <script type="text/javascript">
     var Page = function() {
+        const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              height: 600,
+              timer: 5000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
         $(document).ready(function() {
             formSubmit();
             initAction();
@@ -68,13 +80,6 @@
                                     </div>
                                 `);
 
-
-                            //     $('.file-'+i).html(`
-                            //     <div class="input-group">
-                            //         <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` :   <a href="/applicant/document/download/`+data.doc_req[i].id+`">`+data.doc_req[i].requirement_value+`</a></span>
-                            //     </div>
-                            // `);
-                            // }
                             }else{
                                 $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].requirement_value+`</label>
@@ -82,11 +87,6 @@
                                         <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
                                     </div>
                                 `);
-                                // $('.file-'+i).html(`
-                                // <div class="input-group">
-                                //     <span class="input-group-text" id="basic-addon1" style="width:100%">`+data.doc_req[i].requirement_type+` : `+data.doc_req[i].requirement_value+`</span>
-                                // </div>
-
                             }
                     }
 
@@ -144,11 +144,20 @@
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
+                    Swal.fire({
+                            title: 'Berhasil!',
+                            text: "Berhasil menyimpan!",
+                        })
+
                     VerifTable.table().draw(false);
                     hideModal('modal-verification');
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                            title: 'Gagal!',
+                            text: "Gagal menyimpan!",
+                        })
                 })
                 .always(function() { });
             });

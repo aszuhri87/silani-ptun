@@ -184,20 +184,6 @@
                         style="margin-left: 50%;">
                     `);
 
-                    // if(data.data.approval[0].approval_status == 'Disetujui'){
-                    //     $('.agree-1').text('✓');
-                    // }
-                    // else if(data.data.approval[0].approval_status == 'Perubahan'){
-                    //     $('.agree-2').text('✓');
-                    // }
-                    // else if(data.data.approval[0].approval_status == 'Ditangguhkan'){
-                    //     $('.agree-3').text('✓');
-                    // }
-                    // else{
-                    //     $('.agree-4').text('✓');
-                    // }
-
-
                     for(let i = 0; i < data.data.approval.length; i++){
                         if(data.data.approval[i].approval_type == 'ATASAN'){
                             if(data.data.approval[i].approval_status == 'Disetujui'){
@@ -343,11 +329,20 @@
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
+                    Swal.fire({
+                            title: 'Berhasil!',
+                            text: "Berhasil menyimpan!",
+                        })
+
                     DocsCategoryTable.table().draw(false);
                     hideModal('modal-docs-category');
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                            title: 'Gagal!',
+                            text: "Gagal menyimpan!",
+                        })
                 })
                 .always(function() { });
             });
