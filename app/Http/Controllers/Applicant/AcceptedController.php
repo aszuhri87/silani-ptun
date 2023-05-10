@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
-use App\Models\Applicant;
+use App\Models\Admin;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
+use App\Models\User;
 use DataTables;
 use Exception;
 use Illuminate\Http\Request;
@@ -29,15 +30,15 @@ class AcceptedController extends Controller
 
     public function dt()
     {
-        $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
-
         $data = DB::table('documents')
         ->select([
             'documents.id',
             'documents.name',
             'documents.status',
-             DB::raw("to_char(documents.updated_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
+            'documents.notes',
+            DB::raw("to_char(documents.updated_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
             'document_categories.name as document_category',
+            'document_categories.unit_id',
             'applicants.name as applicant',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
@@ -45,12 +46,19 @@ class AcceptedController extends Controller
             $query->where('documents.status', '=', 'Diterima')
             ->orWhere('documents.status', '=', 'Ditolak');
         })
-        ->where('documents.applicant_id', $appl->id)
-        ->orWhere('documents.user_id', Auth::user()->id)
         ->whereNull('documents.deleted_at')
         ->orderBy('documents.updated_at', 'DESC');
 
-        return DataTables::query($data)->addIndexColumn()->make(true);
+        $admin = Admin::where('user_id', Auth::id())->first();
+
+        $user = User::where('id', Auth::id())->first();
+        if ($user->hasRole('admin')) {
+            $data->where('unit_id', $admin->unit_id);
+
+            return DataTables::query($data)->addIndexColumn()->make(true);
+        } else {
+            return DataTables::query($data)->addIndexColumn()->make(true);
+        }
     }
 
     public function store(Request $request)

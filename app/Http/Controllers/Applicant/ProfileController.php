@@ -84,9 +84,9 @@ class ProfileController extends Controller
             $appl = Applicant::where('user_id', Auth::id());
 
             $appl->update([
-                'name' => $request->name ? $request->name : $appl->name,
-                'image' => $file_name ? $file_name : $appl->image,
-                'nik' => $request->nik ? $request->nik : $appl->nik,
+                'name' => $request->name ? $request->name : $appl->first()->name,
+                'image' => $request->hasFile('image') ? $file_name : $appl->first()->image,
+                'nik' => $request->nik ? $request->nik : $appl->first()->nik,
             ]);
 
             return response([
@@ -151,12 +151,12 @@ class ProfileController extends Controller
 
             if (!$signature->first()) {
                 Signature::create([
-                    'photo' => $sign_file_name,
+                    'photo' => $request->hasFile('signature') ? $sign_file_name : null,
                     'user_id' => Auth::user()->id,
                 ]);
             } else {
                 $signature->update([
-                    'photo' => $sign_file_name ? $sign_file_name : $signature->photo,
+                    'photo' => $request->hasFile('signature') ? $sign_file_name : $signature->first()->photo,
                 ]);
             }
 

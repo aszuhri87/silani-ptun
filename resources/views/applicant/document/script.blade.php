@@ -79,7 +79,14 @@
                                 `);
 
                             }
-                        $('#modal-document').modal('show');
+
+                            showModal('modal-document')
+
+                        // // $('#modal-document').modal('show');
+
+                        $(document).on('hide.bs.modal','#modal-document', function(event){
+                            location.reload();
+                        });
                     }
                 })
             });
@@ -146,10 +153,9 @@
                         }else{
                             $('#form-doc-create').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
                         }
-
-                    showModal('modal-document-2');
-
                 });
+
+                showModal('modal-document-2');
             });
 
             $('#btn-save').click(function() {
@@ -214,6 +220,10 @@
 
                 }
                 showModal('modal-document');
+
+                $(document).on('hide.bs.modal','#modal-document', function(event){
+                    location.reload();
+                });
                 });
             });
 
