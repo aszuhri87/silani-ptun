@@ -60,6 +60,7 @@ class DispositionDocumentController extends Controller
             'disposition_users.instruction',
             'disposition_users.status as status_user',
             'disposition_documents.*',
+            DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
         ])
         ->leftJoin('disposition_documents', 'disposition_documents.id', 'disposition_users.disposition_document_id')
         ->where('disposition_users.user_id', Auth::user()->id)
