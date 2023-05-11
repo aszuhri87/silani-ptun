@@ -201,10 +201,10 @@
                                             <td width="25%"></td>
                                             <td width="10%"></td>
                                             <td width="10%"></td>
-                                            <td class="" width="50%" style="margin:0;">
+                                            <td class="" width="50%" style="margin:0; white-space: nowrap;">
                                                 <div class="d-flex pl-1">
                                                   Yogyakarta, &nbsp
-                                                    <p class="date_sign" style="white-space: nowrap;"> </p>
+                                                    <p class="date_sign"> </p>
                                                 </div>
                                             </td>
                                         </tr>
