@@ -210,9 +210,9 @@
                                         </tr>
                                         <tr>
                                             <td width="25%"></td>
-                                            <td width="20%"></td>
-                                            <td width="25%"></td>
-                                            <td class="" width="30%" style="white-space: nowrap;">
+                                            <td width="10%"></td>
+                                            <td width="10%"></td>
+                                            <td class="" width="50%" style="white-space: nowrap;">
                                                 <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang memberikan izin: </p>
                                                 <p class="approver text-center" style="white-space: none; margin: 0; ">...........................................</p>
                                             </td>
