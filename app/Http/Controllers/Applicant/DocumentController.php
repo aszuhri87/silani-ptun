@@ -173,7 +173,7 @@ class DocumentController extends Controller
     {
         $doc_category_req = DocumentCategoryRequirement::select([
             'requirement_types.data_type as data_type',
-            'requirement_types.description as title',
+            'requirement_types.requirement_type as title',
             'document_category_requirements.*',
         ])
         ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
