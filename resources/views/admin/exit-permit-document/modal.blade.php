@@ -204,7 +204,7 @@
                                             <td class="" width="50%" style="margin:0;">
                                                 <div class="d-flex pl-1">
                                                   Yogyakarta, &nbsp
-                                                    <p class="date_sign"> </p>
+                                                    <p class="date_sign" style="white-space: nowrap;> </p>
                                                 </div>
                                             </td>
                                         </tr>
