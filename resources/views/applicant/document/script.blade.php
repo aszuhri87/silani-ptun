@@ -135,7 +135,7 @@
                                 `);
                             }else{
                                 $('div#doc_file').append(`
-                                    <label for="basicadd`+i+`">`+data.doc_req[i].requirement_value+`</label>
+                                    <label for="basicadd`+i+`">`+data.doc_req[i].requirement_type+`</label>
                                     <div class="input-group mb-1 ">
                                         <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
                                     </div>

@@ -198,7 +198,7 @@ class DocumentController extends Controller
         ->with(['doc_req' => function ($query) {
             $query->select(['document_requirements.id', 'document_requirements.requirement_value', 'document_requirements.document_id', 'document_category_requirements.data_min',
             'document_category_requirements.data_max', 'document_category_requirements.requirement_type', 'requirement_types.data_type as data_type',
-            'requirement_types.description as title', ])
+            'requirement_types.requirement_type as title', ])
             ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id')
             ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
             ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
@@ -232,7 +232,7 @@ class DocumentController extends Controller
             'document_categories.name as document_category',
             'requirement_types.requirement_type as requirement_type',
             'requirement_types.data_type as data_type',
-            'requirement_types.description as title',
+            'requirement_types.requirement_type as title',
         ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
         ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
         ->where('document_category_requirements.document_category_id', $id)
