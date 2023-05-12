@@ -75,21 +75,21 @@ class ExitPermitDocumentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = ExitPermitDocument::find($id);
+        $data = ExitPermitDocument::where('id', $id);
 
         $datetime = $request->date.' '.$request->time;
 
         $item = $data->first();
 
         $data->update([
-            'user_id' => $request->name ? $request->name : $item->name,
+            'user_id' => $request->name ? $request->name : $item->user_id,
             'unit_id' => $request->unit ? $request->unit : $item->unit_id,
             'reason' => $request->reason ? $request->reason : $item->reason,
             'datetime' => $datetime ? $datetime : $item->datetime,
             'approver' => $request->chief ? $request->chief : $item->approver,
         ]);
 
-        $user = User::where('name', $request->chief)->first();
+        $user = User::where('name', $item->approver)->first();
         $user->notify(new NewLetter('exit', $id, $user, 'exit'));
 
         return response([
@@ -108,6 +108,7 @@ class ExitPermitDocumentController extends Controller
             'users.gol',
             'units.name as unit',
             DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'yyyy-MM-dd') as date_input"),
             DB::raw("to_char(exit_permit_documents.datetime, 'dd TMMonth YYYY') as date_sign"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',

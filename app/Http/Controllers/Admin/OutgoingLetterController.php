@@ -77,20 +77,20 @@ class OutgoingLetterController extends Controller
                 $file->move(public_path().'/files/', $file_name);
             }
 
-            $data = OutgoingLetter::find($id);
+            $data = OutgoingLetter::where('id', $id);
             $data->update([
                 'letter_type' => $request->letter_type,
                 'date_letter' => $request->date_letter,
                 'letter_number' => $request->letter_number,
                 'date_received' => $request->date_received,
-                'user_id' => $request->user_id,
+                'user_id' => $request->user_id ? $request->user_id : $data->first()->user_id,
                 'description' => $request->description,
                 'agenda_number' => $request->agenda_number,
                 'uploaded_document' => $file_name,
             ]);
 
-            $user = User::where('id', $request->user_id)->first();
-            $user->notify(new NewLetter('outgoing', $data->id, $user, 'outgoing'));
+            $user = User::where('id', $data->first()->user_id)->first();
+            $user->notify(new NewLetter('outgoing', $id, $user, 'outgoing'));
 
             return response([
                 'data' => $data,

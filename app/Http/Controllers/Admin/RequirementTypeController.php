@@ -84,17 +84,15 @@ class RequirementTypeController extends Controller
     public function destroy($id)
     {
         try {
-            $result = RequirementType::find($id);
+            $result = RequirementType::where('requirement_type', $id);
 
             DB::transaction(function () use ($result) {
                 $result->delete();
             });
 
-            if ($result->trashed()) {
-                return response([
-                    'message' => 'Successfully deleted!',
-                ], 200);
-            }
+            return response([
+                'message' => 'Successfully deleted!',
+            ], 200);
         } catch (Exception $e) {
             throw new Exception($e);
 

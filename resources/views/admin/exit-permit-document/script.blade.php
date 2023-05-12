@@ -182,6 +182,7 @@
 
             $(document).on('click', '.btn-edit', function(event){
                 event.preventDefault();
+                var url = $(this).attr('href');
                 var data = DocsCategoryTable.table().row($(this).parents('tr')).data();
                 var auth = {!! json_encode(Auth::user()->name) !!}
 
@@ -225,11 +226,19 @@
                     $('#form-doc-category').find('select[id="select-letter"]').append(`<option value="`+ data.name +`">`+ data.name +`</option>`)
                 }
 
+                if(data.approver){
+                    $('#form-doc-category').find('select[id="select-chief"]').append(`<option value="`+ data.approver +`">`+ data.approver +`</option>`)
+                }
+
                 if (data.unit){
                     $('#form-doc-category').find('select[id="select-unit"]').append(`<option value="`+ data.unit +`">`+ data.unit +`</option>`)
                 }
 
-                $('#form-doc-category').find('input[type="date"]').val(data.datetime.toString("mm/dd/yy"));
+                $.get(url, function(data){
+                    $('#form-doc-category').find('input[name="date"]').val(data.data.date_input);
+                    $('#form-doc-category').find('input[name="time"]').val(data.data.time);
+                });
+
                 $('#form-doc-category').find('textarea[name="reason"]').val(data.reason);
 
                 $('textarea[name="notes"]').val(data.notes);
