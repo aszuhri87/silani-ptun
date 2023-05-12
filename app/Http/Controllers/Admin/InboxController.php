@@ -58,7 +58,7 @@ class InboxController extends Controller
 
         $user = User::where('id', Auth::id())->first();
         if ($user->hasRole('admin')) {
-            $data->where('unit_id', $admin->unit_id);
+            $data->where('document_categories.unit_id', $admin->unit_id);
 
             return DataTables::query($data)->addIndexColumn()->make(true);
         } else {

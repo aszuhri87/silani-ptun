@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Admin;
 use App\Models\Applicant;
 use App\Models\Document;
+use App\Models\DocumentCategory;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
 use App\Models\User;
@@ -147,16 +149,22 @@ class DocumentController extends Controller
                             'document_id' => $document->id,
                             'document_category_requirement_id' => $category_req[$index]->id,
                         ]);
+
+                        $data['document_category_id'] = $document->document_category_id;
                     }
 
                     return $data;
                 }
             });
 
-            $admin = User::where('category', 'admin')->get();
-            foreach ($admin as $a) {
-                $a->notify(new NewLetter('inbox', $result->id, $a, 'inbox'));
-            }
+            // dd($result->document_category_id);
+            $doc_category = DocumentCategory::where('id', $result->document_category_id)->first();
+
+            $admin = Admin::where('unit_id', $doc_category->unit_id)->first();
+
+            $user = User::where('id', $admin->user_id)->first();
+
+            $user->notify(new NewLetter('inbox', $result->id, $user, 'inbox'));
 
             return response([
                 'data' => $result,
