@@ -157,7 +157,6 @@ class DocumentController extends Controller
                 }
             });
 
-            // dd($result->document_category_id);
             $doc_category = DocumentCategory::where('id', $result->document_category_id)->first();
 
             $admin = Admin::where('unit_id', $doc_category->unit_id)->first();
