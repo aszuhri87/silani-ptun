@@ -40,7 +40,7 @@
                             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#importModal">
                                 Import
                             </button>
-                            <button type="button" class="btn btn-success" id="create-list-applicant-modal">Tambah</button>
+                            <button type="button" class="btn btn-success p-1" id="create-list-applicant-modal">Tambah</button>
                         </div>
                     </div>
                     <div class="card-datatable table-responsive">

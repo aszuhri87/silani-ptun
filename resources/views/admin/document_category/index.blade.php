@@ -37,7 +37,7 @@
                         <div class="form-row">
                             <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
                         </div>
-                        <button type="button" class="btn btn-success" id="create-doc-category-modal"> Tambah</button>
+                        <button type="button" class="btn btn-success p-1" id="create-doc-category-modal"> Tambah</button>
                     </div>
                     <div class="card-datatable" >
                         <table class="table" id="init-table">
