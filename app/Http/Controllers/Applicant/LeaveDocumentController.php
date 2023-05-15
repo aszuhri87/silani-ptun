@@ -33,6 +33,15 @@ class LeaveDocumentController extends Controller
         ->join('users', 'users.id', 'leave_documents.user_id')
         ->get();
 
+        $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
+        foreach ($notify as $item1) {
+            $dat = json_decode($item1->data);
+            if ($dat->type == 'leave') {
+                $notify1 = DB::table('notifications')->where('id', $item1->id);
+                $notify1->update(['read_at' => date('Y-m-d H:i:s')]);
+            }
+        }
+
         return view('applicant.leave_document.index', ['data' => $data], PageLib::config([]));
     }
 
@@ -87,6 +96,10 @@ class LeaveDocumentController extends Controller
         $user = User::where('id', $request->chief)->first();
         $user->notify(new NewLetter('leave', $data->id, $user, 'leave'));
 
+        $admin = User::where('category', 'admin')->get();
+        foreach ($admin as $a) {
+            $a->notify(new NewLetter('leave', $data->id, $a, 'leave'));
+        }
         // $unit = Unit::where('name', 'Kepegawaian')->first();
 
         // if ($unit) {
@@ -94,11 +107,6 @@ class LeaveDocumentController extends Controller
         //     $userAdmin = User::where('id', $admin->user_id)->first();
         //     $userAdmin->notify(new NewLetter('leave', $data->id, $userAdmin, 'leave'));
         // }
-
-        $admin = User::where('category', 'admin')->get();
-        foreach ($admin as $a) {
-            $a->notify(new NewLetter('leave', $data->id, $a, 'leave'));
-        }
 
         return redirect()->back();
     }

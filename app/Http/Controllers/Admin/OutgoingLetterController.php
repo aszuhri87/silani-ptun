@@ -10,6 +10,7 @@ use App\Notifications\NewLetter;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PDF;
@@ -23,6 +24,15 @@ class OutgoingLetterController extends Controller
         ->whereNull('deleted_at')
         ->orderBy('created_at', 'desc')
         ->get();
+
+        $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
+        foreach ($notify as $item1) {
+            $dat = json_decode($item1->data);
+            if ($dat->type == 'outgoing') {
+                $notify1 = DB::table('notifications')->where('id', $item1->id);
+                $notify1->update(['read_at' => date('Y-m-d H:i:s')]);
+            }
+        }
 
         return view('admin.outgoing_letter.index', PageLib::config([]), ['data' => $data]);
     }

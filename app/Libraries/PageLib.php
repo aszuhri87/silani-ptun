@@ -20,8 +20,8 @@ class PageLib
         $counter7 = [];
 
         foreach ($notify1 as $item1) {
-            DB::table('notifications')->where('id', $item1->id)
-            ->update(['read_at' => date('Y-m-d H:i:s')]);
+            // DB::table('notifications')->where('id', $item1->id)
+            // ->update(['read_at' => date('Y-m-d H:i:s')]);
 
             $dat = json_decode($item1->data);
             if ($dat->type == null) {

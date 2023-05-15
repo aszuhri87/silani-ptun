@@ -8,6 +8,7 @@ use App\Models\LeaveApproval;
 use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PDF;
@@ -26,6 +27,15 @@ class LeaveDocumentController extends Controller
         ->select('*')
         ->join('users', 'users.id', 'leave_documents.user_id')
         ->get();
+
+        $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
+        foreach ($notify as $item1) {
+            $dat = json_decode($item1->data);
+            if ($dat->type == 'leave') {
+                $notify1 = DB::table('notifications')->where('id', $item1->id);
+                $notify1->update(['read_at' => date('Y-m-d H:i:s')]);
+            }
+        }
 
         return view('admin.leave_document.index', PageLib::config([]), ['data' => $data]);
     }

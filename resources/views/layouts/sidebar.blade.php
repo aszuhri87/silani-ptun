@@ -148,7 +148,7 @@
                 <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
                             class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
-                            <span class="done_count badge bg-secondary"> {{ $inbox }} </span></span></a>
+                            <span class="inbox_count badge bg-secondary"> {{ $inbox }} </span></span></a>
                 </li>
                 <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span

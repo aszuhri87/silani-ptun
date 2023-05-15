@@ -31,6 +31,15 @@ class ExitPermitDocumentController extends Controller
         ->whereNull('users.deleted_at')
         ->get();
 
+        $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
+        foreach ($notify as $item1) {
+            $dat = json_decode($item1->data);
+            if ($dat->type == 'exit') {
+                $notify1 = DB::table('notifications')->where('id', $item1->id);
+                $notify1->update(['read_at' => date('Y-m-d H:i:s')]);
+            }
+        }
+
         return view('applicant.exit-permit-document.index', ['data' => $data], PageLib::config([]));
     }
 

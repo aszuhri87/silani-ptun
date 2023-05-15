@@ -35,6 +35,15 @@ class VerificationController extends Controller
         ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at'])
         ->get();
 
+        $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
+        foreach ($notify as $item1) {
+            $dat = json_decode($item1->data);
+            if ($dat->type == 'proceed') {
+                $notify1 = DB::table('notifications')->where('id', $item1->id);
+                $notify1->update(['read_at' => date('Y-m-d H:i:s')]);
+            }
+        }
+
         return view('admin.verification.index', PageLib::config([]), ['docs_req_category' => $docs_req_category]);
     }
 
