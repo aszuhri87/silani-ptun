@@ -54,15 +54,15 @@ class ProfileController extends Controller
             // dd($request->new_password);
             $user = User::where('id', Auth::id());
             $user->update([
-                'email' => $request->email ? $request->email : $user->email,
-                'username' => $request->username ? $request->username : $user->username,
-                'name' => $request->name ? $request->name : $user->name,
+                'email' => $request->email ? $request->email : $user->first()->email,
+                'username' => $request->username ? $request->username : $user->first()->username,
+                'name' => $request->name ? $request->name : $user->first()->name,
             ]);
 
-            Admin::where('user_id', Auth::id())
+            $admin = Admin::where('user_id', Auth::id())
             ->update([
                 'name' => $request->name ? $request->name : $user->name,
-                'unit_id' => $request->select_unit ? $request->select_unit : $user->unit_id,
+                'unit_id' => $request->select_unit ? $request->select_unit : $admin->first()->unit_id,
             ]);
 
             return response([
