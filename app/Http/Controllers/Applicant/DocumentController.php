@@ -159,12 +159,16 @@ class DocumentController extends Controller
 
             $doc_category = DocumentCategory::where('id', $result->document_category_id)->first();
 
-            $admin = Admin::where('unit_id', $doc_category->unit_id)->orWhere('unit_id', null)->get();
+            $admin = Admin::where('unit_id', $doc_category->unit_id)->get();
 
             foreach ($admin as $a) {
                 $user = User::where('id', $a->user_id)->first();
                 $user->notify(new NewLetter('inbox', $result->document_id, $user, 'inbox'));
             }
+
+            $super = Admin::where('unit_id', null)->first();
+            $superuser = User::where('id', $super->user_id)->first();
+            $superuser->notify(new NewLetter('inbox', $result->document_id, $superuser, 'inbox'));
 
             return response([
                 'data' => $result,
