@@ -33,10 +33,10 @@
             <div class="col-12">
                 <div class="card table-responsive">
                     <div class="card-header border-bottom row">
-                        <div class="col-xs-6 m1-1">
+                        <div class="col-xs-6 m1-1 p-1">
                             <input type="text" id="search" class="form-control" placeholder="Pencarian">
                         </div>
-                        <div class="col-xs-6 mr-1 text-right">
+                        <div class="col-xs-6 mr-1 text-right p-1">
                             <button type="button" class="btn btn-success p-1s" id="create-req-type"> Tambah </button>
                         </div>
                     </div>
