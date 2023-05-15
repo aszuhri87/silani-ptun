@@ -80,6 +80,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
+                                                  @hasrole('admin')
                                                     <div class="form-group">
                                                         <label for="select_unit">Unit</label>
                                                         <select class="form-control" name="select_unit" id="select_unit">
@@ -90,6 +91,7 @@
 
                                                         </select>
                                                     </div>
+                                                    @endhasrole
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-success mt-2 mr-1">Simpan Perubahan</button>
