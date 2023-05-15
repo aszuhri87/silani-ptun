@@ -59,9 +59,9 @@ class ProfileController extends Controller
                 'name' => $request->name ? $request->name : $user->first()->name,
             ]);
 
-            $admin = Admin::where('user_id', Auth::id())
-            ->update([
-                'name' => $request->name ? $request->name : $user->name,
+            $admin = Admin::where('user_id', Auth::id());
+            $admin->update([
+                'name' => $request->name ? $request->name : $user->first()->name,
                 'unit_id' => $request->select_unit ? $request->select_unit : $admin->first()->unit_id,
             ]);
 
