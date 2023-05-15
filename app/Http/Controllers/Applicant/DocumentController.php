@@ -167,6 +167,7 @@ class DocumentController extends Controller
             }
 
             $super = Admin::where('unit_id', null)->first();
+            dd($super);
             $superuser = User::where('id', $super->user_id)->first();
             $superuser->notify(new NewLetter('inbox', $result->document_id, $superuser, 'inbox'));
 
