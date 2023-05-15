@@ -32,12 +32,13 @@
         <div class="row id="basic-table"">
             <div class="col-12">
                 <div class="card table-responsive">
-                    <div class="card-header border-bottom">
-
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
+                    <div class="card-header border-bottom row">
+                        <div class="col-xs-8 m1-1" style="padding-left: 10px;">
+                            <input type="text" id="search" class="form-control" placeholder="Pencarian">
                         </div>
-                        <button type="button" class="btn btn-success p-1" id="create-modal-unit">Tambah</button>
+                        <div class="col-xs-4 mr-1 text-right">
+                            <button type="button" class="btn btn-success p-1" id="create-modal-unit">Tambah</button>
+                        </div>
                     </div>
                     <div class="card-datatable table-responsive">
                         <table class="table" id="init-table">

@@ -32,12 +32,13 @@
         <div class="row id="basic-table"">
             <div class="col-12">
                 <div class="card table-responsive">
-                    <div class="card-header border-bottom">
-                        {{-- <h4 class="card-title mb-auto">Tipe Kebutuhan</h4> --}}
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
+                    <div class="card-header border-bottom row">
+                        <div class="col-xs-8 m1-1" style="padding-left: 10px;">
+                            <input type="text" id="search" class="form-control" placeholder="Pencarian">
                         </div>
-                        <button type="button" class="btn btn-success p-1s" id="create-req-type"> Tambah </button>
+                        <div class="col-xs-4 mr-1 text-right">
+                            <button type="button" class="btn btn-success p-1s" id="create-req-type"> Tambah </button>
+                        </div>
                     </div>
                     <div class="card-datatable" >
                         <table class="table" id="init-table">

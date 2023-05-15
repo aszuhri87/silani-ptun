@@ -31,16 +31,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="card table-responsive">
-                    <div class="card-header border-bottom">
-
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
+                    <div class="card-header border-bottom row">
+                        <div class="col-xs-12 p-1">
+                            <input type="text" id="search" class="form-control" placeholder="Pencarian">
                         </div>
-                        <div>
+                        <div class="col-xs-12 p-1 text-right">
                             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#importModal">
                                 Import
                             </button>
-                            <button type="button" class="btn btn-success p-1" id="create-list-applicant-modal">Tambah</button>
+                            <button type="button" class="btn btn-success" id="create-list-applicant-modal">Tambah</button>
                         </div>
                     </div>
                     <div class="card-datatable table-responsive">

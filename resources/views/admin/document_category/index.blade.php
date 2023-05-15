@@ -33,11 +33,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="card table-responsive">
-                    <div class="card-header border-bottom">
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
+                    <div class="card-header border-bottom row">
+                        <div class="col-xs-8 m1-1">
+                            <input type="text" id="search" class="form-control" placeholder="Pencarian">
                         </div>
-                        <button type="button" class="btn btn-success p-1" id="create-doc-category-modal"> Tambah</button>
+                        <div class="col-xs-4 mr-1 text-right">
+                            <button type="button" class="btn btn-success" id="create-doc-category-modal"> Tambah</button>
+                        </div>
                     </div>
                     <div class="card-datatable" >
                         <table class="table" id="init-table">
