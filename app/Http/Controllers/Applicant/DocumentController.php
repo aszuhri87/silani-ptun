@@ -159,7 +159,7 @@ class DocumentController extends Controller
 
             $doc_category = DocumentCategory::where('id', $result->document_category_id)->first();
 
-            $admin = Admin::where('unit_id', $doc_category->unit_id)->get();
+            $admin = Admin::where('unit_id', $doc_category->unit_id)->orWhere('unit_id', null)->get();
 
             foreach ($admin as $a) {
                 $user = User::where('id', $a->user_id)->first();
