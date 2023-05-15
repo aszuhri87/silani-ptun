@@ -34,10 +34,10 @@
             <div class="col-12">
                 <div class="card table-responsive">
                     <div class="card-header border-bottom row">
-                        <div class="col-xs-8 m1-1" style="padding-left: 10px;">
+                        <div class="col-xs-6 m1-1">
                             <input type="text" id="search" class="form-control" placeholder="Pencarian">
                         </div>
-                        <div class="col-xs-4 mr-1 text-right">
+                        <div class="col-xs-6 mr-1 text-right">
                             <button type="button" class="btn btn-success p-1" id="create-subunit-modal">Tambah</button>
                         </div>
                     </div>
