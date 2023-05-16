@@ -14,8 +14,6 @@
                         <h3 class="content-header-title float-left mb-0">Pengaturan Profil</h3>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Beranda</a>
-                                </li>
                                 <li class="breadcrumb-item active"> Pengaturan Profil
                                 </li>
                             </ol>
