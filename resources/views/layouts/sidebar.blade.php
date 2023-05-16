@@ -73,7 +73,7 @@
                         <li class="nav-item @if (Request::is('admin/document-category')) active @endif"><a
                                 class="d-flex align-items-center" href="/admin/document-category"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Second Level">Dokumen Kategori</span></a>
+                                    data-i18n="Second Level">Kategori Dokumen</span></a>
                         </li>
                         <li class="nav-item @if (Request::is('admin/req-type')) active @endif"><a
                                 class="d-flex align-items-center" href="/admin/req-type"><i data-feather="circle"></i><span
