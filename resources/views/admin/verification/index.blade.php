@@ -13,10 +13,10 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Dokumen Dalam Proses</h3>
+                            <h3 class="content-header-title float-left mb-0">Perizinan Dokumen</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item active">Dokumen Dalam Proses
+                                    <li class="breadcrumb-item active">Perizinan Dokumen
                                     </li>
                                 </ol>
                             </div>
