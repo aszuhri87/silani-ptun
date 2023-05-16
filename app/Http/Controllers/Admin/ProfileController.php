@@ -82,7 +82,7 @@ class ProfileController extends Controller
             // dd($request->new_password);
             $user = User::where('id', Auth::id());
             $user->update([
-                'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $user->password,
+                'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $user->first()->password,
             ]);
 
             return response([
