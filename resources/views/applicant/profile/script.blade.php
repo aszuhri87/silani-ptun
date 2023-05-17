@@ -22,6 +22,15 @@
 
             });
 
+            $("#image").change(function() {
+                    $('#change-profile').submit();
+            });
+
+            $("#reset_photo").click(function() {
+                    $('#no_image').val('true');
+                    $('#change-profile').submit();
+            });
+
             $(document).on('click', '#account-pill-info', function(event){
                 event.preventDefault();
 

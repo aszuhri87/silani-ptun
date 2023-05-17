@@ -81,8 +81,9 @@
                                         <form class="validate-form mt-2" id="change-profile">
                                             <div class="media-body mt-75 ml-1">
                                                 <label for="image" class="btn btn-sm btn-success mb-75 mr-75">Upload</label>
-                                                <input type="file" id="image" name="image" hidden accept="image/*" />
-                                                <button class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
+                                                <input type="file" id="image" name="image" hidden accept="image/*"/>
+                                                <input type="hidden" id="no_image" name="no_image" value="false">
+                                                <button class="btn btn-sm btn-outline-secondary mb-75" type="button" id="reset_photo">Reset</button>
                                                 <p>Format: JPG, GIF or PNG. Max ukuran 800kB</p>
                                             </div>
                                             <!--/ upload and reset button -->

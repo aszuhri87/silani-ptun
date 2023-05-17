@@ -68,24 +68,30 @@ class ProfileController extends Controller
     public function update_profile(Request $request)
     {
         try {
+            // dd($request->all());
             $user = User::where('id', Auth::id());
             $user->update([
-                'email' => $request->email ? $request->email : $user->email,
-                'username' => $request->username ? $request->username : $user->username,
-                'name' => $request->name ? $request->name : $user->name,
+                'email' => $request->email ? $request->email : $user->first()->email,
+                'username' => $request->username ? $request->username : $user->first()->username,
+                'name' => $request->name ? $request->name : $user->first()->name,
             ]);
+
+            if ($request->no_image = 'true') {
+                $file_name = null;
+                $action = $request->no_image;
+            }
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $file_name = $file->getClientOriginalName();
                 $file->move(public_path().'/files/', $file_name);
+                $action = $request->hasFile('image');
             }
 
             $appl = Applicant::where('user_id', Auth::id());
-
             $appl->update([
                 'name' => $request->name ? $request->name : $appl->first()->name,
-                'image' => $request->hasFile('image') ? $file_name : $appl->first()->image,
+                'image' => $action ? $file_name : $appl->first()->image,
                 'nik' => $request->nik ? $request->nik : $appl->first()->nik,
             ]);
 
