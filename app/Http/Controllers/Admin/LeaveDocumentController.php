@@ -7,6 +7,9 @@ use App\Libraries\PageLib;
 use App\Models\LeaveApproval;
 use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
+use App\Models\Signature;
+use App\Models\User;
+use App\Notifications\NewLetter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +60,7 @@ class LeaveDocumentController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $sign = Signature::select([
             'photo',
         ])
@@ -66,7 +70,7 @@ class LeaveDocumentController extends Controller
         ->first();
 
         $data = LeaveDocument::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $request->user,
             'unit_id' => $request->unit,
             'reason' => $request->reason,
             'start_time' => $request->start_time,
@@ -86,6 +90,11 @@ class LeaveDocumentController extends Controller
 
         $user = User::where('id', $request->chief)->first();
         $user->notify(new NewLetter('leave', $data->id, $user, 'leave'));
+
+        $admin = User::where('category', 'admin')->get();
+        foreach ($admin as $a) {
+            $a->notify(new NewLetter('leave', $data->id, $a, 'leave'));
+        }
 
         return redirect()->back();
     }

@@ -29,16 +29,87 @@
                     cache: true
                 }
             });
+
+            $('#select-chief').select2({
+                    placeholder: "Pilih Nama Pegawai...",
+                    minimumInputLength: 2,
+                    language: { inputTooShort: function () { return 'Ketik minimal 2 karakter'; } },
+                    ajax: {
+                        method: 'GET',
+                        url: '/admin/employee/find',
+                        dataType: 'json',
+                        data: function (params) {
+                            return {
+                                q: $.trim(params.term)
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                $('#select-unit').select2({
+                    placeholder: "Pilih Unit Kerja...",
+                    minimumInputLength: 2,
+                    language: { inputTooShort: function () { return 'Ketik minimal 2 karakter'; } },
+                    ajax: {
+                        method: 'GET',
+                        url: '/admin/unit/find',
+                        dataType: 'json',
+                        data: function (params) {
+                            return {
+                                q: $.trim(params.term)
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    }
+                });
         });
 
         const initAction = () => {
+                $('#select-chief').on('select2:select', function (e) {
+                    e.preventDefault();
+
+                    var dt = e.params.data.id;
+
+                    $('input[name="chief"]').val(dt);
+
+                });
+
+                $('#select-unit').on('select2:select', function (e) {
+                    e.preventDefault();
+
+                    var dt = e.params.data.id;
+
+                    $('input[name="unit"]').val(dt);
+
+                });
+
+                $('#select-letter').on('select2:select', function (e) {
+                    e.preventDefault();
+
+                    var dt = e.params.data.id;
+
+                    $('input[name="user"]').val(dt);
+
+                });
+
                 $(document).on('click', '#create-doc-category-modal', function(event) {
                     event.preventDefault();
 
                     $('#form-doc-category').trigger("reset");
                     $('#form-doc-category').attr('action', '{{ url('admin/leave-document') }}');
                     $('#form-doc-category').attr('method', 'POST');
-                    showModal('modal-docs-category');
+                    showModal('input-docs-leave');
                 });
 
                 $(document).on('click', '.btn-edit', function(event) {
@@ -300,6 +371,7 @@
 
                             DocsCategoryTable.table().draw(false);
                             hideModal('modal-docs-category');
+                            hideModal('input-docs-leave');
                         })
                         .fail(function(res, error) {
                             toastr.error(res.responseJSON.message, 'Gagal')
