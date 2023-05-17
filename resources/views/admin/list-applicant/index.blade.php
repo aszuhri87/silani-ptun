@@ -30,7 +30,7 @@
        <section id="responsive-datatable">
         <div class="row">
             <div class="col-12">
-                <div class="card table-responsive">
+                <div class="card">
                     <div class="card-header border-bottom row">
                         <div class="col-xs-12 p-1">
                             <input type="text" id="search" class="form-control" placeholder="Pencarian">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="card-datatable table-responsive">
-                        <table class="table" id="init-table">
+                        <table class="table table-responsive" id="init-table">
                             <thead class="" width="100%">
                                 <tr>
                                     <th>#</th>

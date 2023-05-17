@@ -18,7 +18,7 @@
 
                                 <div class="form-group">
                                     <label for="select_unit">Kategori Dokumen</label>
-                                    <select class="form-control" name="select_docs_category">
+                                    <select class="form-control" name="select_docs_category" required>
                                         <option value="">-- Pilih Kategori Dokumen --</option>
                                         @foreach ($docs_category as $dc )
 
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="select_unit">Tipe Keperluan</label>
-                                    <select class="form-control" name="select_req_type">
+                                    <select class="form-control" name="select_req_type" required>
                                         <option value="">-- Pilih Keperluan --</option>
                                         @foreach ($req_type as $rt )
 
@@ -41,27 +41,27 @@
 
                                 <label for="requirement">Keperluan</label>
                                 <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="requirement" name="requirement" placeholder="Keperluan" aria-label="requirement"  aria-describedby="requirement" />
+                                    <input type="text" class="form-control" id="requirement" name="requirement" placeholder="Keperluan" aria-label="requirement"  aria-describedby="requirement" required/>
                                 </div>
 
                                 <label for="required">Diperlukan</label>
                                 <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="required" name="required" placeholder="Diperlukan" aria-label="required"  aria-describedby="required" />
+                                    <input type="text" class="form-control" id="required" name="required" placeholder="Diperlukan" aria-label="required"  aria-describedby="required"   required/>
                                 </div>
 
                                 <label for="data_min">Data Minimal</label>
                                 <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="data_min" name="data_min" placeholder="Minimal data" aria-label="data_min"  aria-describedby="data_min" />
+                                    <input type="text" class="form-control" id="data_min" name="data_min" placeholder="Minimal data" aria-label="data_min"  aria-describedby="data_min"   required/>
                                 </div>
 
                                 <label for="data_max">Data Maksimal</label>
                                 <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="data_max" name="data_max" placeholder="Maksimal data" aria-label="data_max"  aria-describedby="data_max" />
+                                    <input type="text" class="form-control" id="data_max" name="data_max" placeholder="Maksimal data" aria-label="data_max"  aria-describedby="data_max"   required/>
                                 </div>
 
                                 <label for="description" id="description" class="form-label">Deskripsi</label>
                                 <div class="input-group">
-                                    <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder=""></textarea>
+                                    <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder=""  required></textarea>
                                 </div>
                                 <small class="textarea-counter-value float-right bg-success"><span class="char-count">0</span> / 50 </small>
                         </div>
