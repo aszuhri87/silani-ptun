@@ -20,7 +20,7 @@
                 },
                 columns: [
                     { data: 'DT_RowIndex' },
-                    { data: 'name' },
+                    { data: 'name', 'name' : 'users.name'},
                     { data: 'permit_type', "searchable": false},
                     { data: 'start_time', "searchable": false },
                     { data: 'status' },

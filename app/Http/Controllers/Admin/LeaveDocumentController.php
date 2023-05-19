@@ -96,12 +96,109 @@ class LeaveDocumentController extends Controller
             $a->notify(new NewLetter('leave', $data->id, $a, 'leave'));
         }
 
+        $datas = LeaveNote::where('leave_document_id', $data->id);
+        $check = $datas->first();
+
+        if (!$check) {
+            foreach ($request->type as $i => $item) {
+                $new = LeaveNote::create([
+                    'type' => $item,
+                    'amount' => $request->amount[$i],
+                    'leave_document_id' => $data->id,
+                    // 'remain' => $item == 'Tahunan' ? $request->remain[$i] : null,
+                    'datetime' => date('Y-m-d H:i:s'),
+                ]);
+
+                if ($item == 'Tahunan-'.$i) {
+                    foreach ($request->remain as $key => $item2) {
+                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-'.$i);
+                        $remain->update([
+                            'remain' => $request->remain[$i],
+                        ]);
+                    }
+                }
+            }
+        } else {
+            foreach ($request->type as $i => $item) {
+                $data_type = LeaveNote::where('type', $item)->where('leave_document_id', $data->id);
+                $data_type->update([
+                    'type' => $item,
+                    'amount' => $request->amount[$i],
+                    'leave_document_id' => $data->id,
+                    'datetime' => date('Y-m-d H:i:s'),
+                ]);
+
+                if ($item == 'Tahunan-'.$i) {
+                    foreach ($request->remain as $key => $item2) {
+                        $remain = LeaveNote::where('id', $check->id)->where('type', 'Tahunan-'.$i);
+                        $remain->update([
+                            'remain' => $request->remain[$i],
+                        ]);
+                    }
+                }
+            }
+        }
+
         return redirect()->back();
     }
 
     public function update(Request $request, $id)
     {
-        // dd($request->remain);
+        $data_doc = LeaveDocument::find($id);
+        $approver = LeaveApproval::where('leave_document_id', $id);
+        $sign = DB::table('signatures')->select('photo')->where('user_id', $request->user)->first();
+
+        if ($request->approver) {
+            // dd($sign->first());
+            if (Auth::user()->title == 'Ketua') {
+                $type = 'PEJABAT';
+            } else {
+                $type = 'ATASAN';
+            }
+
+            $approver->where('user_id', Auth::user()->id);
+            $approver->update([
+                'note' => $request->approval_note,
+                'status' => $request->approval_status,
+                'signature' => $sign ? $sign : null,
+                'type' => $type,
+            ]);
+
+            if ($type = 'ATASAN' && $request->approval_status = 'Disetujui') {
+                $ketua = User::where('title', 'Ketua')->whereNull('deleted_at')->first();
+                $approver->create([
+                    'leave_document_id' => $id,
+                    'user_id' => $ketua->id,
+                ]);
+            }
+
+            $data_doc->update([
+                'status' => 'Disetujui oleh '.Auth::user()->name,
+            ]);
+        } else {
+            $data_doc->update([
+                'user_id' => $request->user ? $request->user : $data_doc['user_id'],
+                'unit_id' => $request->unit ? $request->unit : $data_doc['unit_id'],
+                'reason' => $request->reason,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'permit_type' => $request->permit_type,
+                'working_time' => $request->working_time,
+                'status' => 'menunggu',
+                'signature' => $sign ? $sign : null,
+            ]);
+
+            $approver->update([
+                'leave_document_id' => $data_doc->id,
+                'user_id' => $request->chief ? $request->chief : $approver->first()->user_id,
+            ]);
+
+            $user = User::where('id', $approver->first()->user_id)->first();
+            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
+        }
+
         $data = LeaveNote::where('leave_document_id', $id);
         $check = $data->first();
 
@@ -176,7 +273,6 @@ class LeaveDocumentController extends Controller
             'leave_approvals.user_id',
             'users.name as chief',
             'users.nip',
-            'users.title',
             'leave_approvals.status as approval_status',
             'leave_approvals.type as approval_type',
             'leave_approvals.signature',

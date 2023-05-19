@@ -49,10 +49,10 @@ aria-hidden="true">
                     <label class="form-label mt-1">Lamanya Cuti</label>
                     <div class="row">
                         <div class="col-6">
-                            <input class="form-control" type="date" name="start_time" id="start_time" required>
+                            <input class="form-control" type="datetime-local" name="start_time" id="start_time" required>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" type="date" name="end_time" id="end_time" required>
+                            <input class="form-control" type="datetime-local" name="end_time" id="end_time" required>
                         </div>
                     </div>
 
@@ -80,6 +80,50 @@ aria-hidden="true">
                             data-target="#timeline"></select>
                         <input type="hidden" name="chief">
                     </div>
+
+                    <br>
+                    <hr>
+                    <h5>Catatan Cuti</h5>
+                    <label for="nama">Cuti Tahunan</label>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="hidden" name="type[]" value="Tahunan-0">
+                            <div class="form-group">
+                                <label for="remain">Sisa</label>
+                                <input class="form-control" type="number" name="remain[0]" id="remain0" placeholder="N-1" required>
+                                <label for="amount">Keterangan</label>
+                                <input class="form-control" type="number" name="amount[0]" id="amount0" placeholder="Masih...hari" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <input type="hidden" name="type[]" value="Tahunan-1">
+                            <div class="form-group">
+                                <label for="remain1">Sisa</label>
+                                <input class="form-control" type="number" name="remain[1]" id="remain1" placeholder="N" required>
+                                <label for="amount1">Keterangan</label>
+                                <input class="form-control" type="number" name="amount[1]" id="amount1" placeholder="Masih...hari" required>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="address" id="address" class="form-label">Cuti Sakit</label>
+                    <input type="hidden" name="type[]" value="Sakit">
+                    <input class="form-control" type="number" name="amount[]" id="amount2" required>
+
+                    <label for="address" id="address" class="form-label">Cuti Melahirkan</label>
+                    <input type="hidden" name="type[]" value="Melahirkan">
+                    <input class="form-control" type="number" name="amount[]" id="amount3" required>
+
+                    <label for="address" id="address" class="form-label">Cuti Karena Alasan Penting</label>
+                    <input type="hidden" name="type[]" value="Karena Alasan Penting">
+                    <input class="form-control" type="number" name="amount[]" id="amount4" required>
+
+                    <label for="address" id="address" class="form-label">Cuti Besar</label>
+                    <input type="hidden" name="type[]" value="Besar">
+                    <input class="form-control" type="number" name="amount[]" id="amount5" required>
+
+                    <label for="address" id="address" class="form-label">Cuti di Luar Tanggungan Negara</label>
+                    <input type="hidden" name="type[]" value="Luar Tanggungan Negara">
+                    <input class="form-control" type="number" name="amount[]" id="amount6" required>
                 </div>
         </div>
         <div class="modal-footer">
@@ -107,6 +151,79 @@ aria-hidden="true">
                     <!-- Basic -->
                     <div class="col-md-12">
                         <form id="form-doc-category" name="form-doc-category" class="auth-register-form mt-2">
+                            <div class="col-md-12 econtent">
+                                <div class="form-group">
+                                    <label for="nama">Cari Pegawai</label>
+                                    <select class=" form-control" id="select-letter-edit" data-toggle="collapse" required
+                                        data-target="#timeline"></select>
+                                    <input type="hidden" name="user_edit">
+                                </div>
+                                <div class="form-group">
+                                    <label for="permit_type">Unit Kerja</label>
+                                    <select class=" form-control" id="select-unit" data-toggle="collapse" required
+                                        data-target="#timeline" required></select>
+                                    <input type="hidden" id="unit" name="unit_edit">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="permit_type">Jenis Cuti</label>
+                                    <select class="form-control" name="permit_type" id="permit_type" required>
+                                        <option value="">-- Pilih Cuti --</option>
+                                        <option value="Tahunan"> Tahunan </option>
+                                        <option value="Sakit"> Sakit </option>
+                                        <option value="Karena Alasan Penting"> Karena Alasan Penting </option>
+                                        <option value="Besar"> Besar </option>
+                                        <option value="Melahirkan"> Melahirkan </option>
+                                        <option value="Luar Tanggungan Negara"> di Luar Tanggungan Negara </option>
+                                    </select>
+                                </div>
+
+                                <label for="address" id="address" class="form-label">Alasan</label>
+                                <div class="input-group">
+                                    <textarea data-length="50" class="form-control char-textarea" id="reason" name="reason" required
+                                        rows="3" placeholder=""></textarea>
+                                </div>
+                                <small class="textarea-counter-value float-right bg-success"><span
+                                        class="char-count">0</span> / 50 </small>
+
+                                <label class="form-label mt-1">Lamanya Cuti</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input class="form-control" type="date" name="start_time" id="start_time" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <input class="form-control" type="date" name="end_time" id="end_time" required>
+                                    </div>
+                                </div>
+
+                                <label for="address" id="address" class="form-label mt-1">Alamat</label>
+                                <div class="input-group">
+                                    <textarea data-length="50" class="form-control char-textarea" id="address" required
+                                        name="address" rows="3" placeholder=""></textarea>
+                                </div>
+                                <small class="textarea-counter-value float-right bg-success"><span
+                                                class="char-count">0</span> / 50 </small>
+
+                                <label for="phone" id="phone" class="form-label mt-1">No HP</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="phone" id="phone" required>
+                                </div>
+
+                                <label for="phone" id="phone" class="form-label mt-1">Masa Kerja</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="working_time" id="working_time" required>
+                                </div>
+
+                                <label for="nama">Cari Atasan</label>
+                                <div class="form-group">
+                                    <select class=" form-control" id="select-chief" data-toggle="collapse" required
+                                        data-target="#timeline"></select>
+                                    <input type="hidden" name="chief_edit">
+                                </div>
+                            </div>
+                            <br>
+                            <hr>
+                            <h5>Catatan Cuti</h5>
                             <label for="nama">Cuti Tahunan</label>
                             <div class="row">
                                 <div class="col-6">

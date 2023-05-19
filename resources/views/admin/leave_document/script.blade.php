@@ -123,7 +123,83 @@
                     $('#form-doc-category').attr('action', $(this).attr('href'));
                     $('#form-doc-category').attr('method', 'PUT');
 
-                    $.get(url, function(data) {
+                    $('#select-chief').on('select2:select', function (e) {
+                        e.preventDefault();
+
+                        var dt = e.params.data.id;
+
+                        $('input[name="chief"]').val(dt);
+
+                    });
+
+                    $('#select-unit').on('select2:select', function (e) {
+                        e.preventDefault();
+
+                        var dt = e.params.data.id;
+
+                        $('input[name="unit"]').val(dt);
+
+                    });
+
+                    $('#select-letter').on('select2:select', function (e) {
+                        e.preventDefault();
+
+                        var dt = e.params.data.id;
+
+                        $('input[name="user"]').val(dt);
+
+                    });
+
+                    if (data.name){
+                        $('#form-doc-category').find('select[id="select-letter"]').append(`<option value="`+ data.name +`">`+ data.name +`</option>`)
+                    }
+
+                    if (data.chief){
+                        $('#form-doc-category').find('select[id="select-chief"]').append(`<option value="`+ data.chief +`">`+ data.chief +`</option>`)
+                    }
+
+                    $.get(url, function(data){
+                        $('select[id="permit_type"]').find('option[value=' + JSON.stringify(data.data.permit_type) + ']').prop('selected', true);
+                        $('textarea[name="reason"]').val(data.data.reason);
+                        $('textarea[name="address"]').val(data.data.address);
+                        $('input[name="phone"]').val(data.data.phone);
+                        $('input[name="working_time"]').val(data.data.working_time);
+                        console.log(data.data.start_time);
+                        $('input[name="start_time"]').val(data.data.start_time);
+                        $('input[name="end_time"]').val(data.data.end_time);
+
+                        if (data.data.unit){
+                            $('#form-doc-category').find('select[id="select-unit"]').append(`<option value="`+ data.data.unit_id +`">`+ data.data.unit +`</option>`)
+                        }
+
+                        $('#form-doc-category').find('select[id="select-chief"]').append(`<option value="`+ data.data.approval[0].user_id +`">`+ data.data.approval[0].chief +`</option>`)
+
+
+                        for(let i=0; i< data.data.approval.length; i++){
+                            if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!}){
+                                $('.econtent').html(`
+                                    <div class="form-group">
+                                        <label for="approval_status">Status Perizinan</label>
+                                        <select class="form-control" name="approval_status" id="approval_status">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Disetujui"> Disetujui </option>
+                                            <option value="Perubahan"> Perubahan </option>
+                                            <option value="Ditangguhkan Alasan Penting"> Ditangguhkan </option>
+                                            <option value="Tidak Disetujui"> Tidak Disetujui </option>
+                                        </select>
+                                    </div>
+
+                                    <label for="approval_note" id="approval_note" class="form-label">Catatan</label>
+                                    <div class="input-group">
+                                        <textarea data-length="50" class="form-control char-textarea" id="approval_note" name="approval_note"
+                                            rows="3" placeholder=""></textarea>
+                                    </div>
+
+                                    <input type="hidden" name="approver" value="true">
+                                `);
+                            }
+                        }
+
                         var leave = data.data.leave_notes;
 
                         for (let i = 0; i < leave.length; i++) {
@@ -158,7 +234,11 @@
                             }
                         }
                     });
-                    showModal('modal-docs-category');
+                    showModal('input-docs-leave');
+
+                    $(document).on('hide.bs.modal','#input-docs-leave', function(event){
+                        location.reload();
+                    });
                 });
 
                 $(document).on('click', '.btn-detail', function(event){
