@@ -29,7 +29,7 @@
        <section id="responsive-datatable">
         <div class="row">
             <div class="col-12">
-                <div class="card table-responsive">
+                <div class="card">
                     <div class="card-header border-bottom row">
                         <div class="col-xs-6 m1-1 p-1">
                             <input type="text" id="search" class="form-control" placeholder="Pencarian">

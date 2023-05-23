@@ -32,7 +32,7 @@
        <section id="responsive-datatable">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card overflow-hidden">
                     <div class="card-header border-bottom row">
                         <div class="col-xs-6 p-1">
                             <input type="text" id="search" class="form-control" placeholder="Pencarian">
@@ -41,9 +41,9 @@
                             <button type="button" class="btn btn-success" id="add-doc-category-req-modal"> Tambah</button>
                         </div>
                     </div>
-                    <div class="card-datatable" >
+                    <div class="card-datatable">
                         <small>
-                        <table class="table table-responsive" id="init-table">
+                        <table class="table" id="init-table">
                             <thead >
                                 <tr>
                                     <th>#</th>

@@ -42,7 +42,7 @@
                             <button type="button" class="btn btn-success" id="create-list-applicant-modal">Tambah</button>
                         </div>
                     </div>
-                    <div class="card-datatable table-responsive">
+                    <div class="card-datatable">
                         <table class="table table-responsive" id="init-table">
                             <thead class="" width="100%">
                                 <tr>

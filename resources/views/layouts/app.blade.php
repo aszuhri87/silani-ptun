@@ -100,6 +100,10 @@
           padding-right: 25px;
           padding-bottom: 10px;
         }
+
+        .dataTables_scrollHeadInner, .table{
+             width:100%!important
+         };
     </style>
 
     @stack('style')

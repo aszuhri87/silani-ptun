@@ -14,6 +14,7 @@
                 responsive: true,
                 serverSide: true,
                 sScrollY: ($(window).height() < 700) ? $(window).height() - 200 : $(window).height() - 400,
+                scrollX: true,
                 ajax: {
                     type: 'POST',
                     url: "{{ url('applicant/outgoing-letter/dt') }}",

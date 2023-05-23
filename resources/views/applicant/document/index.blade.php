@@ -54,7 +54,7 @@
        <section id="responsive-datatable">
         <div class="row">
             <div class="col-12">
-                <div class="card table-responsive">
+                <div class="card">
                     <div class="card-header border-bottom">
                         <div class="form-row">
                             <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
