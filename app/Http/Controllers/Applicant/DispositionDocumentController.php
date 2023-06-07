@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PDF;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 use Yajra\DataTables\Facades\DataTables;
 
 class DispositionDocumentController extends Controller
