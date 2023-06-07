@@ -79,7 +79,7 @@ class DispositionDocumentController extends Controller
 
         if ($request->uploaded_file) {
             $file = $request->file('uploaded_file');
-            $file_name = $file->getClientOriginalName();
+            $file_name = date('Y-m-d_s').'.pdf';
             $file->move(public_path().'/files/', $file_name);
         }
 
@@ -123,7 +123,7 @@ class DispositionDocumentController extends Controller
         try {
             if ($request->hasFile('uploaded_file')) {
                 $file = $request->file('uploaded_file');
-                $file_name = $file->getClientOriginalName();
+                $file_name = date('Y-m-d_s').'.pdf';
                 $file->move(public_path().'/files/', $file_name);
             }
 

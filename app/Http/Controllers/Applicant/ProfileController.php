@@ -83,7 +83,7 @@ class ProfileController extends Controller
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $file_name = $file->getClientOriginalName();
+                $file_name = date('Y-m-d_s').'.jpg';
                 $file->move(public_path().'/files/', $file_name);
                 $action = $request->hasFile('image');
             }
@@ -139,13 +139,13 @@ class ProfileController extends Controller
 
             if ($request->gol) {
                 $users->update([
-                    'gol' => $request->gol ? $request->gol : $user->gol,
+                    'gol' => $request->gol ? $request->gol : $users->first()->gol,
                 ]);
             }
 
             if ($request->nip) {
                 $users->update([
-                    'nip' => $request->nip ? $request->nip : $user->nip,
+                    'nip' => $request->nip ? $request->nip : $users->first()->nip,
                 ]);
             }
 
