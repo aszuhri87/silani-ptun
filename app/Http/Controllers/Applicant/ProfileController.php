@@ -129,6 +129,8 @@ class ProfileController extends Controller
     {
         try {
             $user = Applicant::where('user_id', Auth::id());
+            $users = User::where('id', Auth::id());
+
             $user->update([
                 'address' => $request->address ? $request->address : $user->address,
                 'phone_number' => $request->phone_number ? $request->phone_number : $user->phone_number,
@@ -136,13 +138,13 @@ class ProfileController extends Controller
             ]);
 
             if ($request->gol) {
-                $user->update([
+                $users->update([
                     'gol' => $request->gol ? $request->gol : $user->gol,
                 ]);
             }
 
             if ($request->nip) {
-                $user->update([
+                $users->update([
                     'nip' => $request->nip ? $request->nip : $user->nip,
                 ]);
             }
