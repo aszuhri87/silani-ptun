@@ -80,6 +80,7 @@ class LeaveDocumentController extends Controller
             'permit_type' => $request->permit_type,
             'working_time' => $request->working_time,
             'status' => 'menunggu',
+            'leave_long' => $request->leave_long,
             'signature' => $sign ? $sign : null,
         ]);
 
@@ -186,6 +187,7 @@ class LeaveDocumentController extends Controller
                 'phone' => $request->phone,
                 'permit_type' => $request->permit_type,
                 'working_time' => $request->working_time,
+                'leave_long' => $request->leave_long,
                 'status' => 'menunggu',
                 'signature' => $sign ? $sign : null,
             ]);

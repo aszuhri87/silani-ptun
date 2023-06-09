@@ -15,7 +15,6 @@
                 serverSide: true,
                 sScrollY: ($(window).height() < 700) ? $(window).height() - 200 : $(window).height() - 400,
                 scrollX: true,
-                // sScrollXInner": '100%',
                 ajax: {
                     type: 'POST',
                     url: "{{ url('admin/document-category-req/dt') }}",

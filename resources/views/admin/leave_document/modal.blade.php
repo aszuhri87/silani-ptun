@@ -47,6 +47,11 @@ aria-hidden="true">
                             class="char-count">0</span> / 50 </small>
 
                     <label class="form-label mt-1">Lamanya Cuti</label>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="leave_long" id="leave_long" required>
+                    </div>
+
+                    <label class="form-label mt-1">Tanggal Cuti</label>
                     <div class="row">
                         <div class="col-6">
                             <input class="form-control" type="datetime-local" name="start_time" id="start_time" required>

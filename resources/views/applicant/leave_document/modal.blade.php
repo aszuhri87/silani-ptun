@@ -44,12 +44,17 @@
                                     class="char-count">0</span> / 50 </small>
 
                             <label class="form-label mt-1">Lamanya Cuti</label>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="leave_long" id="leave_long" required>
+                            </div>
+
+                            <label class="form-label mt-1">Tanggal Cuti</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input class="form-control" type="date" name="start_time" id="start_time" required>
+                                    <input class="form-control" type="datetime-local" name="start_time" id="start_time" required>
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" type="date" name="end_time" id="end_time" required>
+                                    <input class="form-control" type="datetime-local" name="end_time" id="end_time" required>
                                 </div>
                             </div>
 
@@ -425,7 +430,7 @@
 
                             </td>
                             <td style="text-align:center; border-right: 1px solid; border-bottom: 1px solid;">
-                                <b style="text-decoration: underline; padding: 0; margin: 0;  white-space:0"><p class="name_sign" style="padding: 0; margin: 0;  white-space:0;"></p></b> 23422<b></b>
+                                <b style="text-decoration: underline; padding: 0; margin: 0;  white-space:0"><p class="name_sign" style="padding: 0; margin: 0;  white-space:0;"></p></b> <b class="nip"></b>
                             </td>
                         </tr>
                     </table>
@@ -471,7 +476,7 @@
                             <td style="border-right: 1px solid; border-left: 1px solid;" colspan="3">
                             </td>
                             <td style="border-right: 1px solid; text-align:center;">
-                                <b class="atasan_name"> <br> PTUN YOGYAKARTA </b>
+                                {{-- <b class="atasan_name"> <br> </b> --}}
 
                             </td>
                         </tr>
@@ -488,7 +493,7 @@
 
                             </td>
                             <td style="border-right: 1px solid; border-bottom: 1px solid; text-align:center;">
-                                 <p><b style="text-decoration: underline;">()</b> <br><b></b></p>
+                                 <p><b style="text-decoration: underline;" class="atasan_name">(..................)</b> <br><b class="nip_atasan"></p>
                             </td>
                         </tr>
                     </table>
@@ -534,7 +539,7 @@
                             <td style="border-right: 1px solid; border-left: 1px solid;" colspan="3">
                             </td>
                             <td style="border-right: 1px solid; text-align:center;">
-                                <b class="ketua_name"> <br> PTUN YOGYAKARTA </b>
+                                {{-- <b class=""> <br> </b> --}}
 
                             </td>
                         </tr>
@@ -549,7 +554,7 @@
 
                             </td>
                             <td style="border-right: 1px solid; border-bottom: 1px solid; text-align:center;">
-                                 <p><b style="text-decoration: underline;">()</b> <br> <b></b></p>
+                                 <p><b style="text-decoration: underline;" class="ketua_name">(..................)</b> <br> <b class="nip_ketua"></p>
                             </td>
                         </tr>
                     </td>

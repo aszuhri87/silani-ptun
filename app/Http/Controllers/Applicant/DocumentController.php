@@ -137,9 +137,9 @@ class DocumentController extends Controller
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
                             $ext = $file->extension();
-                            if ($ext = 'pdf') {
+                            if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
                                 $name = date('Y-m-d_s').'doc.'.$ext;
-                            } elseif ($ext = 'png' || $ext = 'jpg' || $ext = 'jpeg') {
+                            } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
                                 $name = date('Y-m-d_s').'doc.'.$ext;
                             } else {
                                 $name = date('Y-m-d_s').'doc.jpg';
@@ -297,9 +297,9 @@ class DocumentController extends Controller
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
                             $ext = $file->extension();
-                            if ($ext = '.pdf') {
+                            if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
                                 $name = date('Y-m-d_s').'doc.'.$ext;
-                            } elseif ($ext = '.png' || $ext = '.jpg' || $ext = '.jpeg') {
+                            } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
                                 $name = date('Y-m-d_s').'doc.'.$ext;
                             } else {
                                 $name = date('Y-m-d_s').'doc.jpg';

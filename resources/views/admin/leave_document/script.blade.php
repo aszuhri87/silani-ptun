@@ -164,9 +164,9 @@
                         $('textarea[name="address"]').val(data.data.address);
                         $('input[name="phone"]').val(data.data.phone);
                         $('input[name="working_time"]').val(data.data.working_time);
-                        console.log(data.data.start_time);
                         $('input[name="start_time"]').val(data.data.start_time);
                         $('input[name="end_time"]').val(data.data.end_time);
+                        $('input[name="leave_long"]').val(data.data.leave_long);
 
                         if (data.data.unit){
                             $('#form-doc-category').find('select[id="select-unit"]').append(`<option value="`+ data.data.unit_id +`">`+ data.data.unit +`</option>`)
@@ -292,7 +292,7 @@
                         $('.phone').text(data.data.phone);
                         $('.start_time').text(data.data.start_time);
                         $('.end_time').text(data.data.end_time);
-                        $('.count_time').text(count_time);
+                        $('.count_time').text(data.data.leave_long);
 
                         $('.user-sign').html(`
                             <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""

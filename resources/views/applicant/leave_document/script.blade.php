@@ -95,7 +95,15 @@
                     $('textarea[name="address"]').val(data.data.address);
                     $('input[name="phone"]').val(data.data.phone);
                     $('input[name="working_time"]').val(data.data.working_time);
-                    $('select[id="select-unit"]').find('option[value=' + JSON.stringify(data.data.unit) + ']').prop('selected', true);
+                    $('input[name="leave_long"]').val(data.data.leave_long);
+
+                    if (data.data.approval[0].chief){
+                        $('select[id="select-chief"]').append(`<option value="`+ data.data.approval[0].user_id  +`">`+ data.data.approval[0].chief +`</option>`)
+                    }
+
+                    if (data.data.unit){
+                        $('select[id="select-unit"]').append(`<option value="`+ data.data.unit +`">`+ data.data.unit +`</option>`)
+                    }
 
                     for(let i=0; i< data.data.approval.length; i++){
                         if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!}){
@@ -176,7 +184,7 @@
                     $('.phone').text(data.data.phone);
                     $('.start_time').text(data.data.start_time);
                     $('.end_time').text(data.data.end_time);
-                    $('.count_time').text(count_time);
+                    $('.count_time').text(data.data.leave_long);
 
                     $('.user-sign').html(`
                         <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""
@@ -205,7 +213,8 @@
                                 style="margin-left: 50%;">
                             `);
 
-                            $('.atasan_name').text(data.data.approval[i].chief.toUpperCase()+' PTUN YOGYAKARTA');
+                            $('.atasan_name').text('('+data.data.approval[i].chief.toUpperCase()+')');
+                            $('.nip_atasan').text(data.data.approval[i].nip);
                         }
 
                         if(data.data.approval[i].approval_type == 'PEJABAT'){
@@ -228,7 +237,9 @@
                                 style="margin-left: 50%;">
                             `);
 
-                            $('.ketua_name').text(data.data.approval[i].chief.toUpperCase()+' PTUN YOGYAKARTA');
+                            $('.ketua_name').text('('+data.data.approval[i].chief.toUpperCase()+')');
+                            $('.nip_ketua').text(data.data.approval[i].nip);
+
                         }
 
 

@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
-use App\Models\Admin;
 use App\Models\LeaveApproval;
 use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
 use App\Models\Signature;
-use App\Models\Unit;
 use App\Models\User;
 use App\Notifications\NewLetter;
 use Illuminate\Http\Request;
@@ -84,6 +82,7 @@ class LeaveDocumentController extends Controller
             'phone' => $request->phone,
             'permit_type' => $request->permit_type,
             'working_time' => $request->working_time,
+            'leave_long' => $request->leave_long,
             'status' => 'menunggu',
             'signature' => $sign ? $sign : null,
         ]);
@@ -100,13 +99,6 @@ class LeaveDocumentController extends Controller
         foreach ($admin as $a) {
             $a->notify(new NewLetter('leave', $data->id, $a, 'leave'));
         }
-        // $unit = Unit::where('name', 'Kepegawaian')->first();
-
-        // if ($unit) {
-        //     $admin = Admin::where('unit_id', $unit->id)->first();
-        //     $userAdmin = User::where('id', $admin->user_id)->first();
-        //     $userAdmin->notify(new NewLetter('leave', $data->id, $userAdmin, 'leave'));
-        // }
 
         return redirect()->back();
     }
@@ -118,7 +110,6 @@ class LeaveDocumentController extends Controller
         $sign = DB::table('signatures')->select('photo')->where('user_id', Auth::user()->id)->first();
 
         if ($request->approver) {
-            // dd($sign->first());
             if (Auth::user()->title == 'Ketua') {
                 $type = 'PEJABAT';
             } else {
@@ -155,6 +146,7 @@ class LeaveDocumentController extends Controller
                 'phone' => $request->phone,
                 'permit_type' => $request->permit_type,
                 'working_time' => $request->working_time,
+                'leave_long' => $request->leave_long,
                 'status' => 'menunggu',
                 'signature' => $sign ? $sign : null,
             ]);
@@ -231,11 +223,9 @@ class LeaveDocumentController extends Controller
         $data = LeaveDocument::find($id);
         $data->delete();
 
-        if ($result->trashed()) {
-            return response([
-                'message' => 'Successfully deleted!',
-            ], 200);
-        }
+        return response([
+            'message' => 'Successfully deleted!',
+        ], 200);
     }
 
     public function print($id)
