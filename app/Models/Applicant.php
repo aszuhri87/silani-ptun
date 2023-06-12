@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Support\Carbon;
 class Applicant extends Authenticatable
 {
     use HasFactory;
@@ -27,6 +27,7 @@ class Applicant extends Authenticatable
         'user_id',
         'phone_number',
         'image',
+        'unit_id',
     ];
 
     protected $dates = ['deleted_at'];

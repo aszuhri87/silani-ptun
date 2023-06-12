@@ -82,6 +82,7 @@ class LeaveDocumentController extends Controller
             'status' => 'menunggu',
             'leave_long' => $request->leave_long,
             'signature' => $sign ? $sign : null,
+            'letter_head' => $request->letter_head
         ]);
 
         $approver = LeaveApproval::create([
@@ -190,6 +191,8 @@ class LeaveDocumentController extends Controller
                 'leave_long' => $request->leave_long,
                 'status' => 'menunggu',
                 'signature' => $sign ? $sign : null,
+                'letter_head' => $request->letter_head
+
             ]);
 
             $approver->update([

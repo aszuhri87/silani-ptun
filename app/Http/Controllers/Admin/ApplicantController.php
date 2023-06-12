@@ -43,8 +43,10 @@ class ApplicantController extends Controller
             'applicants.name',
             'users.title',
             'applicants.phone_number',
+            'units.name as unit_name'
         ])
         ->join('applicants', 'applicants.user_id', 'users.id')
+        ->leftJoin('units', 'units.id', 'applicants.unit_id')
         ->where('users.category', 'karyawan')
         ->orderBy('users.created_at', 'desc')
         ->whereNull('users.deleted_at');
@@ -65,6 +67,7 @@ class ApplicantController extends Controller
                     'category' => 'karyawan',
                     'email_verified_at' => date('Y-m-d H:i:s'),
                     'gol' => $request->gol,
+                    'unit_id' => $request->unit_id
                 ]);
 
                 Applicant::create([
@@ -107,6 +110,7 @@ class ApplicantController extends Controller
 
                 $appl = Applicant::where('user_id', $id)->update([
                     'name' => $request->name ? $request->name : $appl->name,
+                    'unit_id' => $request->unit_id ? $request->unit_id : $appl->unit_id
                 ]);
 
                 $user_role = User::where('email', $user->email)->first();

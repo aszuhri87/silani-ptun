@@ -18,9 +18,9 @@ class LeaveDocument extends Model
     public $keyType = 'string';
 
     protected $fillable = [
-        'permit_notes',
+        'letter_head',
         'unit_id',
-        'notes',
+        'leave_long',
         'address',
         'phone',
         'permit_type',
