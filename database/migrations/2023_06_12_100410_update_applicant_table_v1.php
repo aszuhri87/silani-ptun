@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateDocumentsTable extends Migration
+class UpdateApplicantTableV1 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class UpdateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('documents', function (Blueprint $table) {
-            $table->uuid('user_id')->nullable();
+        Schema::table('applicants', function (Blueprint $table) {
+            $table->uuid('unit_id')->nullable();
 
-            $table->foreign('user_id')
+            $table->foreign('unit_id')
             ->references('id')
-            ->on('users')
+            ->on('units')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });
@@ -31,8 +31,8 @@ class UpdateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('documents', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+        Schema::table('applicants', function (Blueprint $table) {
+            $table->dropColumn('unit_id');
         });
     }
 }
