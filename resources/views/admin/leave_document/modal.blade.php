@@ -12,6 +12,10 @@ aria-hidden="true">
             <!-- Basic -->
             <form id="form-doc-category" name="form-doc-category" class="auth-register-form mt-2">
                 <div class="col-md-12 econtent">
+                    <label for="letter_head" id="letter_head" class="form-label mt-1">Kop Surat</label>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="letter_head" id="letter_head" required>
+                    </div>
                     <div class="form-group">
                         <label for="nama">Cari Pegawai</label>
                         <select class=" form-control" id="select-letter" data-toggle="collapse" required
@@ -157,6 +161,10 @@ aria-hidden="true">
                     <div class="col-md-12">
                         <form id="form-doc-category" name="form-doc-category" class="auth-register-form mt-2">
                             <div class="col-md-12 econtent">
+                                <label for="letter_head" id="letter_head" class="form-label mt-1">Kop Surat</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="letter_head" id="letter_head" required>
+                                </div>
                                 <div class="form-group">
                                     <label for="nama">Cari Pegawai</label>
                                     <select class=" form-control" id="select-letter-edit" data-toggle="collapse" required
@@ -343,7 +351,7 @@ aria-hidden="true">
                     <br>
                     <div style="text-align: center; font-size: 10; font-weight: 700;">
                         FORMULIR PERMINTAAN DAN PEMBERIAN CUTI <br>
-                    W3-TUN5 /               /KP.05.02/ 10 /2022
+                    <p class="letter-head"></p>
                     </div>
                     <table width="100%" >
                         <tr>

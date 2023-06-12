@@ -98,7 +98,7 @@
 <br>
 <div style="text-align: center; font-size: 8pt; font-weight: 700;">
     FORMULIR PERMINTAAN DAN PEMBERIAN CUTI <br>
-W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
+    {{$data->letter_head}}
 </div>
 <table>
     <tr>

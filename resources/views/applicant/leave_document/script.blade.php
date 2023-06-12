@@ -146,6 +146,7 @@
                     $('.nip').text(data.data.nip);
                     $('.title').text(data.data.title);
                     $('.tanggal').text(' '+data.data.tanggal);
+                    $('.letter_head').text(' '+data.data.letter_head);
 
                     if(data.data.permit_type == 'Tahunan'){
                         $('.cuti_tahunan').text('✓');
@@ -185,6 +186,8 @@
                     $('.start_time').text(data.data.start_time);
                     $('.end_time').text(data.data.end_time);
                     $('.count_time').text(data.data.leave_long);
+                    $('.letter-head').text(data.data.letter_head);
+
 
                     $('.user-sign').html(`
                         <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""

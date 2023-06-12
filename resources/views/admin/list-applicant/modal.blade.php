@@ -62,8 +62,13 @@
                                     </select>
                                 </div>
 
-                                <label for="gol">Golongan</label>
-                                <div class="input-group mb-2">
+                                <label for="permit_type">Unit Kerja</label>
+                                <select class=" form-control" id="select-unit" data-toggle="collapse" required
+                                    data-target="#timeline" required></select>
+                                <input type="hidden" id="unit" name="unit_edit">
+
+                                <label for="gol" class="mt-1">Golongan</label>
+                                <div class="input-group mb-1">
                                     <input type="text" class="form-control" id="gol" name="gol" placeholder="gol" aria-label="gol"  aria-describedby="gol" />
                                 </div>
 

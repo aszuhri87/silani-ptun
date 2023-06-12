@@ -155,7 +155,7 @@
                     <br>
                     <div style="text-align: center; font-size: 10; font-weight: 700;">
                         FORMULIR PERMINTAAN DAN PEMBERIAN CUTI <br>
-                    W3-TUN5 /               /KP.05.02/ 10 /{{date('Y')}}
+                        <p class="letter_head"></p>
                     </div>
                     <table width="100%" >
                         <tr>

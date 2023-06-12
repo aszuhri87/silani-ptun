@@ -167,6 +167,7 @@
                         $('input[name="start_time"]').val(data.data.start_time);
                         $('input[name="end_time"]').val(data.data.end_time);
                         $('input[name="leave_long"]').val(data.data.leave_long);
+                        $('input[name="letter_head"]').val(data.data.letter_head);
 
                         if (data.data.unit){
                             $('#form-doc-category').find('select[id="select-unit"]').append(`<option value="`+ data.data.unit_id +`">`+ data.data.unit +`</option>`)
@@ -254,6 +255,8 @@
                         $('.nip').text(data.data.nip);
                         $('.title').text(data.data.title);
                         $('.tanggal').text(' '+data.data.tanggal);
+                        $('.letter_head').text(' '+data.data.letter_head);
+
 
                         if(data.data.permit_type == 'Tahunan'){
                             $('.cuti_tahunan').text('✓');
@@ -293,6 +296,8 @@
                         $('.start_time').text(data.data.start_time);
                         $('.end_time').text(data.data.end_time);
                         $('.count_time').text(data.data.leave_long);
+                        $('.letter-head').text(data.data.letter_head);
+
 
                         $('.user-sign').html(`
                             <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""
