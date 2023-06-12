@@ -43,7 +43,8 @@ class ApplicantController extends Controller
             'applicants.name',
             'users.title',
             'applicants.phone_number',
-            'units.name as unit_name'
+            'units.name as unit_name',
+            'users.gol'
         ])
         ->join('applicants', 'applicants.user_id', 'users.id')
         ->leftJoin('units', 'units.id', 'applicants.unit_id')
