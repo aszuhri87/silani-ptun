@@ -106,7 +106,7 @@
                     }
 
                     for(let i=0; i< data.data.approval.length; i++){
-                        if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!}){
+                        if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!} || {!! json_encode(Auth::user()->title)!!} == 'Ketua'){
                             $('.econtent').html(`
                                 <div class="form-group">
                                     <label for="approval_status">Status Perizinan</label>
@@ -195,6 +195,9 @@
                         style="margin-left: 50%;">
                     `);
 
+                    var nip_ketua = null;
+                    var nip_atasan = null;
+
                     for(let i = 0; i < data.data.approval.length; i++){
                         if(data.data.approval[i].approval_type == 'ATASAN'){
                             if(data.data.approval[i].approval_status == 'Disetujui'){
@@ -216,8 +219,10 @@
                                 style="margin-left: 50%;">
                             `);
 
+                            nip_atasan = data.data.approval[i].nip;
+
                             $('.atasan_name').text('('+data.data.approval[i].chief.toUpperCase()+')');
-                            $('.nip_atasan').text(data.data.approval[i].nip);
+                            $('.atasan_notes').text(data.data.approval[i].note);
                         }
 
                         if(data.data.approval[i].approval_type == 'PEJABAT'){
@@ -240,13 +245,18 @@
                                 style="margin-left: 50%;">
                             `);
 
+                            nip_ketua = data.data.approval[i].nip;
+
                             $('.ketua_name').text('('+data.data.approval[i].chief.toUpperCase()+')');
-                            $('.nip_ketua').text(data.data.approval[i].nip);
+                            $('.ketua_notes').text(data.data.approval[i].note);
 
                         }
 
 
                     }
+
+                    $('.nip_ketua').text(nip_ketua);
+                    $('.nip_atasan').text(nip_atasan);
 
                     var leave = data.data.leave_notes;
 

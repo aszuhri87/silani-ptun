@@ -54,7 +54,8 @@ class LeaveDocumentController extends Controller
         ->leftJoin('leave_approvals', 'leave_approvals.leave_document_id', 'leave_documents.id')
         ->where('users.category', 'karyawan')
         ->where('leave_documents.user_id', Auth::user()->id)
-        ->orWhere('leave_approvals.user_id', Auth::user()->id)
+        ->orWhere('leave_approvals.type', 'PEJABAT')
+        ->orWhere('leave_approvals.type', 'ATASAN')
         ->whereNull('leave_documents.deleted_at')
         ->orderBy('leave_documents.created_at', 'desc')
         ->groupBy('leave_documents.id', 'users.name');
@@ -129,7 +130,20 @@ class LeaveDocumentController extends Controller
                 $approver->create([
                     'leave_document_id' => $id,
                     'user_id' => $ketua->id,
+                    'note' => null,
+                    'status' => null,
+                    'signature' => null,
+                    'type' => 'PEJABAT',
                 ]);
+            } else if (Auth::user()->title == 'Ketua' && $request->approval_status = 'Disetujui') {
+                // $approver->where('user_id', Auth::user()->id);
+                $approver->update([
+                    'note' => $request->approval_note,
+                    'status' => $request->approval_status,
+                    'signature' => $sign ? $sign : null,
+                    'type' => $type,
+                ]);
+
             }
 
             $data->update([

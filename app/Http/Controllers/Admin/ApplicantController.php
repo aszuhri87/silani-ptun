@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ApplicantController extends Controller
 {
@@ -79,7 +80,6 @@ class ApplicantController extends Controller
                 $user_role = User::where('email', $user->email)->first();
 
                 $user_role->assignRole('applicant');
-                // dd($user_role);
 
                 return $user;
             });
@@ -109,9 +109,11 @@ class ApplicantController extends Controller
                     'gol' => $request->gol,
                 ]);
 
-                $appl = Applicant::where('user_id', $id)->update([
-                    'name' => $request->name ? $request->name : $appl->name,
-                    'unit_id' => $request->unit_id ? $request->unit_id : $appl->unit_id
+
+                $appl = Applicant::where('user_id', $id);
+                $appl->update([
+                    'name' => $request->name ? $request->name : $appl->first()->name,
+                    'unit_id' => $request->unit_id ? $request->unit_id : $appl->first()->unit_id
                 ]);
 
                 $user_role = User::where('email', $user->email)->first();
@@ -151,9 +153,7 @@ class ApplicantController extends Controller
         } catch (Exception $e) {
             throw new Exception($e);
 
-            return response([
-                'message' => $e->getMessage(),
-            ]);
+            return response(['message' => $e->getMessage()]);
         }
     }
 

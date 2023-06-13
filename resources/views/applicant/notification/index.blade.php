@@ -57,7 +57,7 @@
                                     <td>Peter Charls mengajukan Surat Lamaran</td>
                                     <td>
                                         <div class="avatar-group">
-                                           {{date('Y-m-d');}}
+                                           {{date('Y-m-d')}}
                                         </div>
                                     </td>
                                     <td><span class="badge badge-pill badge-light-primary mr-1">Unread</span></td>
@@ -86,7 +86,7 @@
                                     <td>Peter Charls mengajukan Surat Lamaran</td>
                                     <td>
                                         <div class="avatar-group">
-                                           {{date('Y-m-d');}}
+                                           {{date('Y-m-d')}}
                                         </div>
                                     </td>
                                     <td><span class="badge badge-pill badge-light-primary mr-1">Unread</span></td>
@@ -116,7 +116,7 @@
                                     <td>Peter Charls mengajukan Surat Lamaran</td>
                                     <td>
                                         <div class="avatar-group">
-                                           {{date('Y-m-d');}}
+                                           {{date('Y-m-d')}}
                                         </div>
                                     </td>
                                     <td><span class="badge badge-pill badge-light-primary mr-1"></span></td>

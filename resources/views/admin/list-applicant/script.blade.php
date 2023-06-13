@@ -52,6 +52,8 @@
 
                 var data = SubUnitTable.table().row($(this).parents('tr')).data();
 
+                console.log(data);
+
                 $('#form-list-applicant').trigger("reset");
                 $('#form-list-applicant').attr('action', $(this).attr('href'));
                 $('#form-list-applicant').attr('method','PUT');

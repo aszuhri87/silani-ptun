@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\PageLib;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
@@ -24,7 +25,7 @@ class NotificationController extends Controller
         ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at'])
         ->get();
 
-        return view('admin.notification.index', PageLibib::config([]), ['docs_req_category' => $docs_req_category]);
+        return view('admin.notification.index', PageLib::config([]), ['docs_req_category' => $docs_req_category]);
     }
 
     public function dt()
@@ -43,7 +44,7 @@ class NotificationController extends Controller
         ->where('documents.status', 'Menunggu')
         ->whereNull('documents.deleted_at');
 
-        return DataTables::query($data)->addIndexColumn()->make(true);
+        return \Yajra\DataTables\Facades\DataTables::query($data)->addIndexColumn()->make(true);
     }
 
     public function store(Request $request)

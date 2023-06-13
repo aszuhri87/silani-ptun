@@ -63,8 +63,8 @@
                                 </div>
 
                                 <label for="permit_type">Unit Kerja</label>
-                                <select class=" form-control" id="select-unit" data-toggle="collapse" required
-                                    data-target="#timeline" required></select>
+                                <select class=" form-control" id="select-unit" data-toggle="collapse"
+                                    data-target="#timeline" ></select>
                                 <input type="hidden" id="unit" name="unit_edit">
 
                                 <label for="gol" class="mt-1">Golongan</label>
