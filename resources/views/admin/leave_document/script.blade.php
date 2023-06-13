@@ -306,53 +306,65 @@
                         `);
 
                         for(let i = 0; i < data.data.approval.length; i++){
-                            if(data.data.approval[i].approval_type == 'ATASAN'){
-                                if(data.data.approval[i].approval_status == 'Disetujui'){
-                                    $('.agree-1').text('✓');
-                                }
-                                else if(data.data.approval[i].approval_status == 'Perubahan'){
-                                    $('.agree-2').text('✓');
-                                }
-                                else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
-                                    $('.agree-3').text('✓');
-                                }
-                                else{
-                                    $('.agree-4').text('✓');
-                                }
-
-                                $('.atasan-sign').html(`
-                                    <img src="{{asset('/signature/`+data.data.approval[i].signature+`')}}" alt=""
-                                    style="min-height: 60px; max-height: 60px;" width="auto"
-                                    style="margin-left: 50%;">
-                                `);
-
-                                $('.atasan_name').text(data.data.approval[i].chief.toUpperCase()+' PTUN YOGYAKARTA');
+                        if(data.data.approval[i].approval_type == 'ATASAN'){
+                            if(data.data.approval[i].approval_status == 'Disetujui'){
+                                $('.agree-1').text('✓');
+                            }
+                            else if(data.data.approval[i].approval_status == 'Perubahan'){
+                                $('.agree-2').text('✓');
+                            }
+                            else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
+                                $('.agree-3').text('✓');
+                            }
+                            else{
+                                $('.agree-4').text('✓');
                             }
 
-                            if(data.data.approval[i].approval_type == 'PEJABAT'){
-                                if(data.data.approval[i].approval_status == 'Disetujui'){
-                                    $('.final-agree-1').text('✓');
-                                }
-                                else if(data.data.approval[i].approval_status == 'Perubahan'){
-                                    $('.final-agree-2').text('✓');
-                                }
-                                else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
-                                    $('.final-agree-3').text('✓');
-                                }
-                                else{
-                                    $('.final-agree-4').text('✓');
-                                }
+                            $('.atasan-sign').html(`
+                                <img src="{{asset('/signature/`+data.data.approval[i].signature+`')}}" alt=""
+                                style="min-height: 60px; max-height: 60px;" width="auto"
+                                style="margin-left: 50%;">
+                            `);
 
-                                $('.ketua-sign').html(`
-                                    <img src="{{asset('/signature/`+data.data.approval[i].signature+`')}}" alt=""
-                                    style="min-height: 60px; max-height: 60px;" width="auto"
-                                    style="margin-left: 50%;">
-                                `);
+                            nip_atasan = data.data.approval[i].nip;
 
-                                $('.ketua_name').text(data.data.approval[i].chief.toUpperCase()+' PTUN YOGYAKARTA');
+                            $('.atasan_name').text('('+data.data.approval[i].chief.toUpperCase()+')');
+                            $('.atasan_notes').text(data.data.approval[i].note);
+                        }
+
+                        if(data.data.approval[i].approval_type == 'PEJABAT'){
+                            if(data.data.approval[i].approval_status == 'Disetujui'){
+                                $('.final-agree-1').text('✓');
                             }
+                            else if(data.data.approval[i].approval_status == 'Perubahan'){
+                                $('.final-agree-2').text('✓');
+                            }
+                            else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
+                                $('.final-agree-3').text('✓');
+                            }
+                            else{
+                                $('.final-agree-4').text('✓');
+                            }
+
+                            $('.ketua-sign').html(`
+                                <img src="{{asset('/signature/`+data.data.approval[i].signature+`')}}" alt=""
+                                style="min-height: 60px; max-height: 60px;" width="auto"
+                                style="margin-left: 50%;">
+                            `);
+
+                            nip_ketua = data.data.approval[i].nip;
+
+                            $('.ketua_name').text('('+data.data.approval[i].chief.toUpperCase()+')');
+                            $('.ketua_notes').text(data.data.approval[i].note);
 
                         }
+
+
+                    }
+
+                    $('.nip_ketua').text(nip_ketua);
+                    $('.nip_atasan').text(nip_atasan);
+
 
                         var leave = data.data.leave_notes;
 

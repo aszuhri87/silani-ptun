@@ -351,7 +351,7 @@ aria-hidden="true">
                     <br>
                     <div style="text-align: center; font-size: 10; font-weight: 700;">
                         FORMULIR PERMINTAAN DAN PEMBERIAN CUTI <br>
-                    <p class="letter-head"></p>
+                        <p class="letter_head"></p>
                     </div>
                     <table width="100%" >
                         <tr>
@@ -364,13 +364,13 @@ aria-hidden="true">
                                 Nama
                             </td>
                             <td style="border: 1px solid; width: 30%;">
-                                <p class="name" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="name ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                             <td style="border: 1px solid; width: 15%;">
                                 NIP
                             </td>
                             <td style="border: 1px solid; width: 30%;">
-                                <p class="nip" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="nip ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                         </tr>
                         <tr>
@@ -378,13 +378,13 @@ aria-hidden="true">
                                 Jabatan
                             </td>
                             <td style="border: 1px solid; width: 30%;">
-                                <p class="title" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="title ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                             <td style="border: 1px solid; width: 15%;">
                                 Masa Kerja
                             </td>
                             <td style="border: 1px solid; width: 30%;">
-                                <p class="working_time"></p>
+                                <p class="working_time ml-1"></p>
                             </td>
                         </tr>
                         <tr>
@@ -392,7 +392,7 @@ aria-hidden="true">
                                 Unit Kerja
                             </td>
                             <td style="border: 1px solid;" colspan="3">
-                                <p class="unit" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="unit ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                         </tr>
                     </table>
@@ -459,7 +459,7 @@ aria-hidden="true">
                         </tr>
                         <tr>
                             <td style="border: 1px solid; height: 40px;">
-                                <p class="reason" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="reason ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                         </tr>
                     </table>
@@ -477,7 +477,7 @@ aria-hidden="true">
                                 Selama
                             </td>
                             <td style="border: 1px solid; height: 30px; width: 28%;">
-                                <p class="count_time" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="count_time ml-1"  style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                             <td style="border: 1px solid; height: 30px; width: 15%;">
                                 Mulai Tanggal
@@ -508,7 +508,7 @@ aria-hidden="true">
                                 CUTI BESAR
                             </td>
                             <td style="border: 1px solid; width: 10%;" >
-                                <p class="besar" style="padding: 0; margin: 0;  white-space:0; text-align:center"></p>
+                                <p class="besar" style="padding: 0; margin: 0;  white-space:0; text-align: center;"></p>
                             </td>
                         </tr>
                         <tr>
@@ -525,7 +525,7 @@ aria-hidden="true">
                                 CUTI SAKIT
                             </td>
                             <td style="border: 1px solid; width: 10%;">
-                                <p class="sakit" style="padding: 0; margin: 0;  white-space:0; text-align:center"></p>
+                                <p class="sakit" style="padding: 0; margin: 0;  white-space:0; text-align:center;"></p>
                             </td>
                         </tr>
                         <tr>
@@ -600,7 +600,7 @@ aria-hidden="true">
                         </tr>
                         <tr>
                             <td style="border-right: 1px solid; border-left: 1px solid; height: 15px;">
-                                <p class="address" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="address ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
                             </td>
                             <td style="border-right: 1px solid; border-left: 1px solid; height: 15px; text-align: center;">
                                 <p class="phone" style="padding: 0; margin: 0;  white-space:0;"></p>
@@ -626,7 +626,7 @@ aria-hidden="true">
 
                             </td>
                             <td style="text-align:center; border-right: 1px solid; border-bottom: 1px solid;">
-                                <b style="text-decoration: underline; padding: 0; margin: 0;  white-space:0"><p class="name_sign" style="padding: 0; margin: 0;  white-space:0;"></p></b> 23422<b></b>
+                                <b style="text-decoration: underline; padding: 0; margin: 0;  white-space:0"><p class="name_sign" style="padding: 0; margin: 0;  white-space:0;"></p></b> <b class="nip"></b>
                             </td>
                         </tr>
                     </table>
@@ -672,12 +672,13 @@ aria-hidden="true">
                             <td style="border-right: 1px solid; border-left: 1px solid;" colspan="3">
                             </td>
                             <td style="border-right: 1px solid; text-align:center;">
-                                <b class="atasan_name"> <br> PTUN YOGYAKARTA </b>
+                                {{-- <b class="atasan_name"> <br> </b> --}}
 
                             </td>
                         </tr>
                         <tr>
                             <td style="border-right: 1px solid; border-left: 1px solid;" colspan="3">
+                                <p class="atasan_notes ml-1"> </p>
                             </td>
                             <td style="border-right: 1px solid; border-left: 1px solid; text-align:center;" class="atasan_sign">
 
@@ -689,7 +690,7 @@ aria-hidden="true">
 
                             </td>
                             <td style="border-right: 1px solid; border-bottom: 1px solid; text-align:center;">
-                                 <p><b style="text-decoration: underline;">()</b> <br><b></b></p>
+                                 <p style="padding: 0; margin: 0;  white-space:0;"><b style="text-decoration: underline; margin-bottom: 0; padding: 0; margin: 0;  white-space:0;" class="atasan_name">(..................)</b> <br></p><b style="padding: 0; margin: 0;  white-space:0;" class="nip_atasan">
                             </td>
                         </tr>
                     </table>
@@ -735,12 +736,13 @@ aria-hidden="true">
                             <td style="border-right: 1px solid; border-left: 1px solid;" colspan="3">
                             </td>
                             <td style="border-right: 1px solid; text-align:center;">
-                                <b class="ketua_name"> <br> PTUN YOGYAKARTA </b>
+                                {{-- <b class=""> <br> </b> --}}
 
                             </td>
                         </tr>
                         <tr>
                             <td style="border-left: 1px solid; border-right: 1px solid;" colspan="3">
+                                <p class="ketua_notes ml-1"> </p>
                             </td>
                             <td style="border-right: 1px solid; text-align:center;" class="ketua-sign">
                             </td>
@@ -750,7 +752,7 @@ aria-hidden="true">
 
                             </td>
                             <td style="border-right: 1px solid; border-bottom: 1px solid; text-align:center;">
-                                 <p><b style="text-decoration: underline;">()</b> <br> <b></b></p>
+                                 <p style="padding: 0; margin: 0;  white-space:0;"><b style="text-decoration: underline; padding: 0; margin: 0;  white-space:0;" class="ketua_name">(..................)</b> <br> </p><b style="padding: 0; margin: 0;  white-space:0;" class="nip_ketua">
                             </td>
                         </tr>
                     </td>
@@ -776,3 +778,7 @@ aria-hidden="true">
         </div>
     </div>
 </div>
+<!-- Vertical modal end-->
+
+
+
