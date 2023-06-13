@@ -21,11 +21,11 @@
                 },
                 columns: [
                     { data: 'DT_RowIndex' },
-                    { data: 'name' },
-                    { data: 'username' },
-                    { data: 'email' },
-                    { data: 'title' },
-                    { defaultContent: '' }
+                    { data: 'name' , "width": "35%" },
+                    { data: 'username' , "width": "20%" },
+                    { data: 'email', "width": "20%"  },
+                    { data: 'title' , "width": "10%" },
+                    { defaultContent: '', "width": "5%"  }
                     ],
                 columnDefs: [
                     {

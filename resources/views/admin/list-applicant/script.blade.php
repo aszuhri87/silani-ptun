@@ -62,9 +62,8 @@
                 $('#form-list-applicant').find('input[name="email"]').val(data.email);
                 $('#form-list-applicant').find('input[name="username"]').val(data.username);
                 $('#form-list-applicant').find('option[value=' + JSON.stringify(data.title) + ']').prop('selected', true);
-
-
                 $('#form-list-applicant').find('input[name="gol"]').val(data.gol);
+                $('#form-list-applicant').find('input[name="nip"]').val(data.nip);
 
                 showModal('modal-list-applicant');
             });

@@ -45,7 +45,8 @@ class ApplicantController extends Controller
             'users.title',
             'applicants.phone_number',
             'units.name as unit_name',
-            'users.gol'
+            'users.gol',
+            'users.nip'
         ])
         ->join('applicants', 'applicants.user_id', 'users.id')
         ->leftJoin('units', 'units.id', 'applicants.unit_id')
@@ -69,7 +70,8 @@ class ApplicantController extends Controller
                     'category' => 'karyawan',
                     'email_verified_at' => date('Y-m-d H:i:s'),
                     'gol' => $request->gol,
-                    'unit_id' => $request->unit_id
+                    'unit_id' => $request->unit_id,
+                    'nip' => $request->nip
                 ]);
 
                 Applicant::create([
@@ -106,7 +108,8 @@ class ApplicantController extends Controller
                     'email' => $request->email ? $request->email : $user->email,
                     'title' => $request->title ? $request->title : $user->title,
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
-                    'gol' => $request->gol,
+                    'gol' => $request->gol ? $request->gol : $user->gol,
+                    'nip' => $request->nip ? $request->nip : $user->nip
                 ]);
 
 

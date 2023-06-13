@@ -67,6 +67,11 @@
                                     data-target="#timeline" ></select>
                                 <input type="hidden" id="unit" name="unit_edit">
 
+                                <label for="nip" class="mt-1">NIP</label>
+                                <div class="input-group mb-1">
+                                    <input type="text" class="form-control" id="nip" name="nip" placeholder="nip" aria-label="nip"  aria-describedby="nip" />
+                                </div>
+
                                 <label for="gol" class="mt-1">Golongan</label>
                                 <div class="input-group mb-1">
                                     <input type="text" class="form-control" id="gol" name="gol" placeholder="gol" aria-label="gol"  aria-describedby="gol" />

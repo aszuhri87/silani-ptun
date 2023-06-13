@@ -43,15 +43,15 @@
                         </div>
                     </div>
                     <div class="card-datatable">
-                        <table class="table table-responsive" id="init-table">
+                        <table class="table" id="init-table">
                             <thead class="" width="100%">
                                 <tr>
                                     <th>#</th>
-                                    <th width="30%">Nama</th>
+                                    <th width="35%">Nama</th>
                                     <th width="20%">Username</th>
-                                    <th width="30%">Email</th>
-                                    <th width="30%">Jabatan</th>
-                                    <th width="10%">Aksi</th>
+                                    <th width="20%">Email</th>
+                                    <th width="20%">Jabatan</th>
+                                    <th width="5%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
