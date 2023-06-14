@@ -34,7 +34,7 @@
 
                     var dt = e.params.data.id;
 
-                    $('input[name="unit"]').val(dt);
+                    $('input[name="unit_id"]').val(dt);
 
                 });
 
@@ -64,6 +64,10 @@
                 $('#form-list-applicant').find('option[value=' + JSON.stringify(data.title) + ']').prop('selected', true);
                 $('#form-list-applicant').find('input[name="gol"]').val(data.gol);
                 $('#form-list-applicant').find('input[name="nip"]').val(data.nip);
+
+                if (data.unit_name){
+                    $('#form-doc-category').find('select[id="select-unit"]').append(`<option value="`+ data.unit_id +`">`+ data.unit_name +`</option>`)
+                }
 
                 showModal('modal-list-applicant');
             });

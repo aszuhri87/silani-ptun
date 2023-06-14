@@ -65,7 +65,7 @@
                                 <label for="permit_type">Unit Kerja</label>
                                 <select class=" form-control" id="select-unit" data-toggle="collapse"
                                     data-target="#timeline" ></select>
-                                <input type="hidden" id="unit" name="unit_edit">
+                                <input type="hidden" id="unit" name="unit_id">
 
                                 <label for="nip" class="mt-1">NIP</label>
                                 <div class="input-group mb-1">

@@ -45,6 +45,7 @@ class ApplicantController extends Controller
             'users.title',
             'applicants.phone_number',
             'units.name as unit_name',
+            'applicants.unit_id',
             'users.gol',
             'users.nip'
         ])
@@ -111,7 +112,6 @@ class ApplicantController extends Controller
                     'gol' => $request->gol ? $request->gol : $user->gol,
                     'nip' => $request->nip ? $request->nip : $user->nip
                 ]);
-
 
                 $appl = Applicant::where('user_id', $id);
                 $appl->update([
