@@ -75,7 +75,7 @@
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{url('admin/applicant/import')}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('admin/applicant/import')}}" id="formImport" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Import Karyawan</h5>
@@ -92,7 +92,7 @@
                     <p class="mb-3 text-danger font-italic"> *Import hanya bekerja dengan format excel (.xls, .xlsx), pastikan isi file excel sesuai contoh format! </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn-save">Submit</button>
+                    <button type="submit" id="btn-import" class="btn btn-success btn-save">Submit</button>
                 </div>
             </form>
         </div>

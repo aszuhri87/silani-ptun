@@ -142,21 +142,20 @@ class ApplicantController extends Controller
         try {
             $result = User::find($id);
 
-            DB::transaction(function () use ($result) {
+            DB::transaction(function () use ($result, $id) {
                 $applicant = Applicant::where('user_id', $id);
                 $applicant->delete();
                 $result->delete();
             });
 
-            if ($result->trashed()) {
-                return response([
-                    'message' => 'Successfully deleted!',
-                ], 200);
-            }
-        } catch (Exception $e) {
-            throw new Exception($e);
+            return response([
+                'message' => 'Successfully deleted!',
+            ], 200);
 
-            return response(['message' => $e->getMessage()]);
+        } catch (Exception $e) {
+            return response([
+                'message' => $e->getMessage(),
+            ], 500);
         }
     }
 
@@ -170,13 +169,29 @@ class ApplicantController extends Controller
     public function import(Request $request)
     {
         try {
-            Excel::import(new UsersImport(), $request->file);
+            $file = $request->file;
+            $ext = $file->extension();
 
-            return redirect()->back();
+            if($ext == 'xlsx' || $ext == 'xls' || $ext == 'csv'){
+                $file_name = $file;
+            } else {
+                return response([
+                    'message' => 'Format tidak sesuai'
+                ], 500);
+            }
+
+            Excel::import(new UsersImport(), $file_name);
+
+            return response([
+                'message' => 'Data Tersimpan',
+            ], 200);
+
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             Alert::danger('Gagal', 'Data gagal di import! pastikan sesuai contoh format');
 
-            return redirect()->back();
+            return response([
+                'message' => $e->getMessage(),
+            ], 500);
         }
     }
 

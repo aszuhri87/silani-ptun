@@ -52,8 +52,6 @@
 
                 var data = SubUnitTable.table().row($(this).parents('tr')).data();
 
-                console.log(data);
-
                 $('#form-list-applicant').trigger("reset");
                 $('#form-list-applicant').attr('action', $(this).attr('href'));
                 $('#form-list-applicant').attr('method','PUT');
@@ -89,6 +87,25 @@
                 });
 
                 // setTimeout($.unblockUI, 2100);
+            });
+
+            $('#btn-import').click(function() {
+                $.blockUI({
+                    message:
+                    '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+                    css: {
+                    backgroundColor: 'transparent',
+                    color: '#fff',
+                    border: '0'
+                    },
+                    overlayCSS: {
+                    opacity: 0.5
+                    },
+                    timeout: 1000,
+                    baseZ: 2000
+                });
+
+                setTimeout($.unblockUI, 1100);
             });
 
             $(document).on('click', '.btn-delete', function(event){
@@ -140,6 +157,39 @@
 
                     SubUnitTable.table().draw(false);
                     hideModal('modal-list-applicant');
+                })
+                .fail(function(res, error) {
+                    toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                            title: 'Gagal!',
+                            text: "Gagal menyimpan!",
+                        })
+                })
+                .always(function() { });
+            });
+
+            $('#formImport').submit(function(event){
+                event.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                })
+                .done(function(res, xhr, meta) {
+                    toastr.success(res.message, 'Success')
+                    Swal.fire({
+                            title: 'Berhasil!',
+                            text: "Berhasil menyimpan!",
+                    });
+
+                    hideModal('importModal');
+                    window.location.reload();
+                    SubUnitTable.table().draw(false);
                 })
                 .fail(function(res, error) {
                     toastr.error(res.responseJSON.message, 'Gagal')
