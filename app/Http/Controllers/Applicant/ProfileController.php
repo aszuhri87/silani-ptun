@@ -68,7 +68,6 @@ class ProfileController extends Controller
     public function update_profile(Request $request)
     {
         try {
-            // dd($request->all());
             $user = User::where('id', Auth::id());
             $user->update([
                 'email' => $request->email ? $request->email : $user->first()->email,
@@ -132,9 +131,9 @@ class ProfileController extends Controller
             $users = User::where('id', Auth::id());
 
             $user->update([
-                'address' => $request->address ? $request->address : $user->address,
-                'phone_number' => $request->phone_number ? $request->phone_number : $user->phone_number,
-                'gender' => $request->gender ? $request->gender : $user->gender,
+                'address' => $request->address ? $request->address : $user->first()->address,
+                'phone_number' => $request->phone_number ? $request->phone_number : $user->first()->phone_number,
+                'gender' => $request->gender ? $request->gender : $user->first()->gender,
             ]);
 
             if ($request->gol) {
@@ -194,8 +193,6 @@ class ProfileController extends Controller
                 ], 200);
             }
         } catch (Exception $e) {
-            throw new Exception($e);
-
             return response([
                 'message' => $e->getMessage(),
             ]);

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Exception;
 
 class ProfileController extends Controller
 {
@@ -110,8 +111,6 @@ class ProfileController extends Controller
                 ], 200);
             }
         } catch (Exception $e) {
-            throw new Exception($e);
-
             return response([
                 'message' => $e->getMessage(),
             ]);
