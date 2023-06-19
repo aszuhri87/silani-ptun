@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Exception;
 class UnitController extends Controller
 {
     public function __construct()
@@ -93,11 +93,9 @@ class UnitController extends Controller
                 ], 200);
             }
         } catch (Exception $e) {
-            throw new Exception($e);
-
             return response([
                 'message' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
 

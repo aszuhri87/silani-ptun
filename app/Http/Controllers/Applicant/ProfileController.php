@@ -199,18 +199,18 @@ class ProfileController extends Controller
         }
     }
 
-    public function store()
+    public function store(Request $request)
     {
         try {
             $user = User::create([
-                'name' => $d->name,
-                'username' => $d->username,
-                'email' => $d->email,
-                'password' => Hash::make($d->password),
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
             ]);
 
             Applicant::create([
-                'name' => $d->name,
+                'name' => $request->name,
                 'user_id' => $user->id,
             ]);
 

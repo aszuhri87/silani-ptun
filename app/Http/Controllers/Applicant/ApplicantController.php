@@ -74,7 +74,6 @@ class ApplicantController extends Controller
                 $user_role = User::where('email', $user->email)->first();
 
                 $user_role->assignRole('applicant');
-                // dd($user_role);
 
                 return $user;
             });
@@ -103,8 +102,9 @@ class ApplicantController extends Controller
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
                 ]);
 
-                $appl = Applicant::where('user_id', $id)->update([
-                    'name' => $request->name ? $request->name : $appl->name,
+                $appl = Applicant::where('user_id', $id);
+                $appl->update([
+                    'name' => $request->name ? $request->name : $appl->first()->name,
                 ]);
 
                 $user_role = User::where('email', $user->email)->first();
@@ -130,7 +130,7 @@ class ApplicantController extends Controller
         try {
             $result = User::find($id);
 
-            DB::transaction(function () use ($result) {
+            DB::transaction(function () use ($result, $id) {
                 $applicant = Applicant::where('user_id', $id);
                 $applicant->delete();
                 $result->delete();
@@ -142,11 +142,10 @@ class ApplicantController extends Controller
                 ], 200);
             }
         } catch (Exception $e) {
-            throw new Exception($e);
 
             return response([
                 'message' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
 

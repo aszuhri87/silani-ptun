@@ -126,11 +126,10 @@ class DocumentCategoryController extends Controller
                 ], 200);
             }
         } catch (Exception $e) {
-            throw new Exception($e);
 
             return response([
                 'message' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
 }

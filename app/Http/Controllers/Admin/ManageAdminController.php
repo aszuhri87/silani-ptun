@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
-
+use Exception;
 class ManageAdminController extends Controller
 {
     public function __construct()
@@ -115,7 +115,7 @@ class ManageAdminController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'username' => $request->username,
-                    'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $user->password,
+                    'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $data->password,
                 ]);
 
                 $user = Admin::where('user_id', $id);
@@ -147,7 +147,6 @@ class ManageAdminController extends Controller
             ]);
 
             return response([
-                'data' => $data,
                 'message' => 'Data Terubah',
             ], 200);
         } catch (Exception $e) {
@@ -167,11 +166,9 @@ class ManageAdminController extends Controller
                 'message' => 'Successfully deleted!',
             ], 200);
         } catch (Exception $e) {
-            throw new Exception($e);
-
             return response([
                 'message' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
 }
