@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicant;
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
+use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
@@ -39,6 +40,8 @@ class VerificationController extends Controller
 
     public function dt()
     {
+        $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
+
         $data = DB::table('documents')
         ->select([
             'documents.id',
@@ -51,7 +54,7 @@ class VerificationController extends Controller
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->where('documents.status', 'Diproses')
-        ->where("documents.user_id", Auth::user()->id)
+        ->where("documents.applicant_id", $appl->id)
         ->whereNull('documents.deleted_at')
         ->orderBy('documents.updated_at', 'DESC');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicant;
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
+use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
@@ -39,6 +40,8 @@ class AcceptedController extends Controller
 
     public function dt()
     {
+        $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
+
         $data = DB::table('documents')
         ->select([
             'documents.id',
@@ -55,6 +58,7 @@ class AcceptedController extends Controller
             $query->where('documents.status', '=', 'Diterima')
             ->orWhere('documents.status', '=', 'Ditolak');
         })
+        ->where('documents.applicant_id', $appl->id)
         ->whereNull('documents.deleted_at')
         ->orderBy('documents.updated_at', 'DESC');
 
