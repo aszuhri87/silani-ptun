@@ -51,6 +51,7 @@ class VerificationController extends Controller
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
         ->where('documents.status', 'Diproses')
+        ->where("documents.user_id", Auth::user()->id)
         ->whereNull('documents.deleted_at')
         ->orderBy('documents.updated_at', 'DESC');
 
