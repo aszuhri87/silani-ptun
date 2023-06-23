@@ -189,4 +189,33 @@ class ApplicantController extends Controller
 
         return \Response::json($formatted_tags);
     }
+
+    public function find_pejabat(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $letters = DB::table('users')
+        ->select([
+            'users.id',
+            'users.name',
+            ])
+        ->where('users.category', 'karyawan')
+        ->orWhere('users.title', 'Ketua')
+        ->orWhere('users.title', 'Sekretaris')
+        ->orWhere('users.title', 'Panitera')
+        ->whereNull('users.deleted_at')
+        ->get();
+
+        $formatted_tags = [];
+
+        foreach ($letters as $letter) {
+            $formatted_tags[] = ['id' => $letter->id, 'text' => $letter->name];
+        }
+
+        return \Response::json($formatted_tags);
+    }
 }

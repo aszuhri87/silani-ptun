@@ -12,7 +12,7 @@
                     language: { inputTooShort: function () { return 'Ketik minimal 2 karakter'; } },
                     ajax: {
                         method: 'GET',
-                        url: '/applicant/employee/find',
+                        url: '/applicant/pejabat/find',
                         dataType: 'json',
                         data: function (params) {
                             return {

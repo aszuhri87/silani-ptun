@@ -24,9 +24,16 @@
 
                                     <label for="nama" class="mt-2">Ditujukan Kepada</label>
                                     <div class="form-group">
-                                        <select class=" form-control" id="select-chief" data-toggle="collapse"
+                                        {{-- <select class=" form-control" id="select-chief" data-toggle="collapse"
                                             data-target="#timeline" required></select>
-                                        <input type="hidden" id="chief" name="chief">
+                                        <input type="hidden" id="chief" name="chief"> --}}
+
+                                        <select class="form-control" name="chief" id="" data-toggle="collapse">
+                                            <option value=""> -- Pilih --</option>
+                                            @foreach ($pejabat as $p)
+                                                <option value="{{ $p->id }}"> {{ $p->name }} - ({{ $p->title }})</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div id="data_input" class="mb-1">

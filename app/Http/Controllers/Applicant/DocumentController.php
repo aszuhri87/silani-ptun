@@ -82,11 +82,25 @@ class DocumentController extends Controller
             '*',
         ])->whereNull('deleted_at');
 
+
+        $pejabat = DB::table('users')
+        ->select([
+            'users.id',
+            'users.name',
+            'users.title'
+            ])
+        ->where('users.title', 'Ketua')
+        ->orWhere('users.title' , 'Sekretaris')
+        ->orWhere('users.title', 'ilike', 'Panitera')
+        ->whereNull('users.deleted_at')
+        ->get();
+
         return view('applicant.document.index',
         [
             'docs_category' => $docs_category->get(),
             'req_type' => $req_type,
             'docs_req_category' => $docs_req_category,
+            'pejabat' => $pejabat
         ], PageLib::config([]));
     }
 
