@@ -11,12 +11,17 @@ class PageLib
 {
     public static function config($additional = [])
     {
-        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
-        $admin = Admin::where('user_id', Auth::user()->id)->where('unit_id', $unit->id)->first();
         $admin_kepeg = null;
+        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
 
-        if($admin){
-            $admin_kepeg = true;
+        if($unit){
+            $admin = Admin::where('user_id', Auth::user()->id)->where('unit_id', $unit->id)->first();
+
+            if($admin){
+                $admin_kepeg = true;
+            }else{
+                $admin_kepeg = false;
+            }
         }else{
             $admin_kepeg = false;
         }
