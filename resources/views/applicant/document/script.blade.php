@@ -48,8 +48,11 @@
                 $('#form-doc-create').attr('enctype','multipart/form-data');
                 $('div#data_input').html("");
 
+                console.log(id);
+
+                $('#form-doc-create').find('input[name="id_cat"]').val(id);
+
                 $.get('/applicant/document-select/'+id, function(data){
-                    $('#form-doc-create').find('input[name="id_cat"]').val(id);
                         for (i in data){
                             if(data[i].data_type == "textarea"){
 
@@ -80,15 +83,17 @@
 
                             }
 
-                            showModal('modal-document')
+                        }
+                    })
 
-                        // // $('#modal-document').modal('show');
+                showModal('modal-document')
 
-                        $(document).on('hide.bs.modal','#modal-document', function(event){
-                            location.reload();
-                        });
-                    }
-                })
+                // // $('#modal-document').modal('show');
+
+                $(document).on('hide.bs.modal','#modal-document', function(event){
+                    location.reload();
+                });
+
             });
 
             $(document).on('click', '.btn-detail', function(event){

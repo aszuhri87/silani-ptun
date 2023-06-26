@@ -33,7 +33,7 @@ class DocumentController extends Controller
 
         $docs_category = DB::table('document_categories')
         ->select([
-         'document_category_requirements.id',
+        //  'document_category_requirements.id',
          'document_category_requirements.document_category_id',
          'document_category_requirements.requirement_type',
          'document_category_requirements.requirement',
@@ -41,11 +41,12 @@ class DocumentController extends Controller
          'document_category_requirements.data_min',
          'document_category_requirements.data_max',
          'document_categories.name',
+         'document_categories.id',
          'document_categories.description',
         ])
         ->leftJoin('document_category_requirements', 'document_category_requirements.document_category_id', 'document_categories.id')
-        ->distinct('document_categories.name')
-        ->whereNotNull('document_category_requirements.document_category_id')
+        // ->distinct('document_categories.name')
+        // ->whereNotNull('document_category_requirements.document_category_id')
         ->whereNull(['document_categories.deleted_at', 'document_category_requirements.deleted_at']);
         // ->get();
 
@@ -254,26 +255,32 @@ class DocumentController extends Controller
 
     public function get_category($id)
     {
-        $data = DB::table('document_category_requirements')
-        ->select([
-            'document_category_requirements.id',
-            'document_category_requirements.requirement',
-            'document_category_requirements.required',
-            'document_category_requirements.data_min',
-            'document_category_requirements.data_max',
-            'document_category_requirements.description',
-            'document_category_requirements.document_category_id',
-            'document_categories.name as document_category',
-            'requirement_types.requirement_type as requirement_type',
-            'requirement_types.data_type as data_type',
-            'requirement_types.requirement_type as title',
-        ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
-        ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
-        ->where('document_category_requirements.document_category_id', $id)
-        ->whereNull('document_category_requirements.deleted_at')
-        ->get();
+        try {
+            $data = DB::table('document_category_requirements')
+            ->select([
+                'document_category_requirements.id',
+                'document_category_requirements.requirement',
+                'document_category_requirements.required',
+                'document_category_requirements.data_min',
+                'document_category_requirements.data_max',
+                'document_category_requirements.description',
+                'document_category_requirements.document_category_id',
+                'document_categories.name as document_category',
+                'requirement_types.requirement_type as requirement_type',
+                'requirement_types.data_type as data_type',
+                'requirement_types.requirement_type as title',
+            ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
+            ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
+            ->where('document_categories.id', $id)
+            ->whereNull('document_category_requirements.deleted_at')
+            ->get();
 
-        return Response::json($data);
+            return Response::json($data);
+        }catch(Exception $e){
+            return response([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function download($id)

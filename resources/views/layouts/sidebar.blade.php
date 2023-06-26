@@ -144,7 +144,7 @@
                 @endif
             @endrole
 
-            @hasrole('admin|super admin')
+            @hasrole('admin')
                 <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
                             class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
@@ -161,6 +161,55 @@
                          <span class="disposition_count badge bg-secondary">{{ $disposition_count }}</span></span></a>
 
                 </li>
+
+                @if ($admin_kepeg == true)
+                    <li class="nav-item @if (Request::is('admin/outgoing-letter')) active @endif"><a
+                            class="d-flex align-items-center" href="/admin/outgoing-letter"><i
+                                data-feather="arrow-up-circle"></i><span class="mr-3 menu-title text-truncate" style="margin-left: 2px;" >Surat Keluar </span>
+                                <span class="outgoing_count badge bg-secondary">{{ $outgoing_count }}</span></a>
+                    </li>
+
+                    @if (Auth::user())
+                        <li class="nav-item @if (Request::is('admin/leave-document')) active @endif"><a
+                                class="d-flex align-items-center" href="/admin/leave-document"><i
+                                    data-feather="film"></i><span class="menu-title text-truncate mr-1"
+                                    data-i18n="Todo" style="margin-left: 2px;" >Perizinan Cuti </span><span class="ml-1 leave_count badge bg-secondary">
+                                    {{ $leave_count }}</span></a>
+                        </li>
+                        <li class="nav-item @if (Request::is('admin/exit-permit-document')) active @endif"><a
+                                class="d-flex align-items-center" href="/admin/exit-permit-document" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Keluar Kantor"><i
+                                    data-feather="arrow-right-circle"></i><span class="menu-title text-truncate"
+                                    data-i18n="Todo">Perizinan Keluar Kantor</span><span class="exit_count badge bg-secondary">
+                                        {{ $exit_count }}</span></a>
+                        </li>
+                    @endif
+                @endif
+
+                <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span
+                            class="menu-title text-truncate mr-3" style="margin-left: 2px;" data-i18n="Todo">Selesai
+                            </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
+                </li>
+            @endhasrole
+
+            @hasrole('super admin')
+                <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
+                            class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
+                            <span class="inbox_count badge bg-secondary"> {{ $inbox }} </span></span></a>
+                </li>
+                <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
+                            class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
+                </li>
+
+                <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/disposition-document"><i
+                            data-feather="list"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
+                         <span class="disposition_count badge bg-secondary">{{ $disposition_count }}</span></span></a>
+
+                </li>
+
 
                 <li class="nav-item @if (Request::is('admin/outgoing-letter')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/outgoing-letter"><i
@@ -189,14 +238,17 @@
                             </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
                 </li>
             @endhasrole
+
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Akun &amp; Data</span><i
                     data-feather="more-horizontal"></i>
-                @hasrole('admin|super admin')
+
+            @hasrole('admin|super admin')
                 <li class="nav-item @if (Request::is('admin/profile')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/profile"><i data-feather="user"></i><span
                             class="menu-title text-truncate" data-i18n="Documentation">Profile</span></a>
                 </li>
             @endhasrole
+
             @role('applicant')
                 <li class="nav-item @if (Request::is('applicant/profile')) active @endif"><a
                         class="d-flex align-items-center" href="/applicant/profile"><i data-feather="user"></i><span

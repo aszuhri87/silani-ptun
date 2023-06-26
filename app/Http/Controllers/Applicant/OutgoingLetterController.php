@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Admin;
 use App\Models\OutgoingLetter;
+use App\Models\Unit;
+use App\Models\User;
+use App\Notifications\NewLetter;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -70,9 +74,16 @@ class OutgoingLetterController extends Controller
             'uploaded_document' => $file_name,
         ]);
 
-        $admin = User::where('category', 'admin')->get();
+        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
+
+        $admin = Admin::where('unit_id', $unit->id)->get();
+        $super = Admin::where('unit_id', null)->first();
+        $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
+        $userSup->notify(new NewLetter('outgoing', $docs->id, $userSup, 'outgoing'));
+
         foreach ($admin as $a) {
-            $a->notify(new NewLetter('outgoing', $docs->id, $a, 'outgoing'));
+            $userAdm = User::where('category', 'admin')->where('id', $a->user_id)->first();
+            $userAdm->notify(new NewLetter('outgoing', $docs->id, $userAdm, 'outgoing'));
         }
 
         return redirect()->back();

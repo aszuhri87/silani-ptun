@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Admin;
 use App\Models\LeaveApproval;
 use App\Models\LeaveDocument;
 use App\Models\LeaveNote;
 use App\Models\Signature;
+use App\Models\Unit;
 use App\Models\User;
 use App\Notifications\NewLetter;
 use Illuminate\Http\Request;
@@ -96,10 +98,17 @@ class LeaveDocumentController extends Controller
         $user = User::where('id', $request->chief)->first();
         $user->notify(new NewLetter('leave', $data->id, $user, 'leave'));
 
-        $admin = User::where('category', 'admin')->get();
+        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
+
+        $admin = Admin::where('unit_id', $unit->id)->get();
         foreach ($admin as $a) {
-            $a->notify(new NewLetter('leave', $data->id, $a, 'leave'));
+            $userAdm = User::where('category', 'admin')->where('id', $a->user_id)->first();
+            $userAdm->notify(new NewLetter('leave', $data->id, $userAdm, 'leave'));
         }
+
+        $super = Admin::where('unit_id', null)->first();
+        $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
+        $userSup->notify(new NewLetter('leave', $data->id, $userSup, 'leave'));
 
         return redirect()->back();
     }

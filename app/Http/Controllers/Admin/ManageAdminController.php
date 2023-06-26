@@ -115,7 +115,7 @@ class ManageAdminController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'username' => $request->username,
-                    'password' => Hash::make($request->new_password) ? Hash::make($request->new_password) : $data->password,
+                    'password' => Hash::make($request->password) ? Hash::make($request->password) : $data->password,
                 ]);
 
                 $user = Admin::where('user_id', $id);
