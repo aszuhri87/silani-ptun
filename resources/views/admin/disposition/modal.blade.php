@@ -42,6 +42,11 @@
                                     <input class="form-control" type="text" name="code" id="code" required>
                                 </div>
 
+                                <label for="date_finish">Tanggal Agenda</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="date" name="agenda_date" id="agenda_date" required>
+                                </div>
+
                                 <label for="date_finish">Tanggal Penyelesaian</label>
                                 <div class="form-group">
                                     <input class="form-control" type="date" name="date_finish" id="date_finish" required>
@@ -70,14 +75,6 @@
                                     <select class=" form-control" id="select-fordward" data-toggle="collapse"
                                         data-target="#timeline" name="role" required>
                                         <option value="Ketua">Ketua</option>
-                                        <option value="Wakil Ketua">Wakil Ketua</option>
-                                        <option value="Panitera">Panitera</option>
-                                        <option value="Sekretaris">Sekretaris</option>
-                                        <option value="Pan. Mud. Hukum">Pan. Mud. Hukum</option>
-                                        <option value="Pan. Mud. Perkara">Pan. Mud. Perkara</option>
-                                        <option value="Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan">Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</option>
-                                        <option value="Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana">Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</option>
-                                        <option value="Sub. Bagian Umum dan Keuangan">Sub. Bagian Umum dan Keuangan</option>
                                     </select>
                                 </div>
                             </div>
@@ -209,36 +206,32 @@
                                         <p class="no-space forward-1" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">2. Wakil Ketua</p>
+                                        <p class="no-space">2. Panitera</p>
                                         <p class="no-space forward-2" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">3. Panitera</p>
+                                        <p class="no-space">3. Sekretaris</p>
                                         <p class="no-space forward-3" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">4. Sekretaris</p>
+                                        <p class="no-space">4. Panitera Muda Hukum</p>
                                         <p class="no-space forward-4" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">5. Pan. Mud. Hukum</p>
+                                        <p class="no-space">5. Panitera Muda Perkara</p>
                                         <p class="no-space forward-5" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">6. Pan. Mud.Perkara</p>
+                                        <p class="no-space">6. Kasub Umum dan Keuangan</p>
                                         <p class="no-space forward-6" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">7. Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</p>
+                                        <p class="no-space">7. Kasub Kepegawaian, Ortala</p>
                                         <p class="no-space forward-7" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">8. Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</p>
+                                        <p class="no-space">8. Kasub Umum dan Keuangan</p>
                                         <p class="no-space forward-8" style="float: left;"></p>
-                                    </div>
-                                    <div style="display: flex;">
-                                        <p class="no-space">9. Sub. Bagian Umum dan Keuangan</p>
-                                        <p class="no-space forward-9" style="float: left;"></p>
                                     </div>
                                 </td>
                             </tr>

@@ -47,7 +47,7 @@
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>E-mail</th>
-                                    <th>Unit</th>
+                                    <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

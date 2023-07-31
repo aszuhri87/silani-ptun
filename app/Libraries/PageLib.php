@@ -11,19 +11,18 @@ class PageLib
 {
     public static function config($additional = [])
     {
-        $admin_kepeg = null;
-        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
+        $admin_kepeg = false;
+        $admin_surat = false;
 
-        if($unit){
-            $admin = Admin::where('user_id', Auth::user()->id)->where('unit_id', $unit->id)->first();
-
-            if($admin){
+        $admin = Admin::where('user_id', Auth::user()->id)->first();
+        if ($admin){
+            if($admin->role == 'Kepegawaian'){
                 $admin_kepeg = true;
-            }else{
-                $admin_kepeg = false;
             }
-        }else{
-            $admin_kepeg = false;
+
+            if($admin->role == 'Persuratan'){
+                $admin_surat = true;
+            }
         }
 
         $notify1 = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
@@ -90,7 +89,8 @@ class PageLib
             'inbox' => $inbox,
             'done' => $done,
             'proceed' => $proceed,
-            'admin_kepeg' => $admin_kepeg
+            'admin_kepeg' => $admin_kepeg,
+            'admin_surat' => $admin_surat,
         ])->merge($additional)->all();
     }
 }

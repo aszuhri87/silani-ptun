@@ -176,17 +176,8 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Wakil Ketua'){
-                            $('.forward-2').text('✓');
-                            $('.ketua-instruction').append(`
-                                <p class="waketua_ins-${i}"> -
-                                    ${disposition[i].instruction}
-                                </p>
-                            `);
-                        }
-
                         if(disposition[i].role == 'Panitera'){
-                            $('.forward-3').text('✓');
+                            $('.forward-2').text('✓');
                             $('.panitera-instruction').append(`
                                 <p class="panitera_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -195,7 +186,7 @@
                         }
 
                         if(disposition[i].role == 'Sekretaris'){
-                            $('.forward-4').text('✓');
+                            $('.forward-3').text('✓');
                             $('.sekretaris-instruction').append(`
                                 <p class="sekretaris_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -203,7 +194,16 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Pan. Mud. Hukum'){
+                        if(disposition[i].role == 'Panitera Muda Hukum'){
+                            $('.forward-4').text('✓');
+                            $('.panmud-instruction').append(`
+                                <p class="panmud_ins-${i}"> -
+                                    ${disposition[i].instruction}
+                                </p>
+                            `);
+                        }
+
+                        if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-5').text('✓');
                             $('.panmud-instruction').append(`
                                 <p class="panmud_ins-${i}"> -
@@ -212,16 +212,16 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Pan. Mud.Perkara'){
+                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
                             $('.forward-6').text('✓');
-                            $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
+                            $('.kasubag-instruction').append(`
+                                <p class="kasubag_ins-${i}"> -
                                     ${disposition[i].instruction}
                                 </p>
                             `);
                         }
 
-                        if(disposition[i].role == 'Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan'){
+                        if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
                             $('.forward-7').text('✓');
                             $('.kasubag-instruction').append(`
                                 <p class="kasubag_ins-${i}"> -
@@ -230,17 +230,8 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana'){
+                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
                             $('.forward-8').text('✓');
-                            $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
-                                </p>
-                            `);
-                        }
-
-                        if(disposition[i].role == 'Sub. Bagian Umum dan Keuangan'){
-                            $('.forward-9').text('✓');
                             $('.kasubag-instruction').append(`
                                 <p class="kasubag_ins-${i}"> -
                                     ${disposition[i].instruction}

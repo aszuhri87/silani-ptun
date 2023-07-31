@@ -24,7 +24,7 @@
                     { data: 'name' },
                     { data: 'username', 'name': 'users.username'},
                     { data: 'email', 'name': 'users.email'},
-                    { data: 'unit', 'name': 'units.name' },
+                    { data: 'role' },
                     { defaultContent: '' }
                     ],
                 columnDefs: [

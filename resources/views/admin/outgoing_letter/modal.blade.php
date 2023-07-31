@@ -203,23 +203,23 @@
                                         <p class="no-space forward-4" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">5. Pan. Mud. Hukum</p>
+                                        <p class="no-space">5. Panitera Muda Hukum</p>
                                         <p class="no-space forward-5" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">6. Pan. Mud.Perkara</p>
+                                        <p class="no-space">6. Panitera Muda Perkara</p>
                                         <p class="no-space forward-6" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">7. Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</p>
+                                        <p class="no-space">7. Kasub Umum dan Keuangan</p>
                                         <p class="no-space forward-7" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">8. Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</p>
+                                        <p class="no-space">8. Kasub Kepegawaian, Ortala</p>
                                         <p class="no-space forward-8" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">9. Sub. Bagian Umum dan Keuangan</p>
+                                        <p class="no-space">9. Kasub Umum dan Keuangan</p>
                                         <p class="no-space forward-9" style="float: left;"></p>
                                     </div>
                                 </td>

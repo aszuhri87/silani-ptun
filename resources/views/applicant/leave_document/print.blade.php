@@ -438,6 +438,7 @@
 
         </td>
         <td style=" border-right: 1px solid; height: 15px;">
+            {{-- @dd($data) --}}
             @if ($data->signature)
                 <img src="{{asset('/signature')/$data->signature}}" alt=""
                 style="min-height: 60px; max-height: 60px;" width="auto"

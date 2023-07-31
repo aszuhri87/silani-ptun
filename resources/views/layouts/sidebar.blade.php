@@ -107,15 +107,14 @@
 
                 @if (Auth::user()->category == 'karyawan')
                     @if (Auth::user()->title == 'Ketua' ||
-                            Auth::user()->title == 'Wakil Ketua' ||
                             Auth::user()->title == 'Sekretaris' ||
                             Auth::user()->title == 'Panitera' ||
-                            Auth::user()->title == 'Pan. Mud. Hukum' ||
-                            Auth::user()->title == 'Pan. Mud. Perkara' ||
-                            Auth::user()->title == 'Pan. Mud. Hukum' ||
-                            Auth::user()->title == 'Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan' ||
-                            Auth::user()->title == 'Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana' ||
-                            Auth::user()->title == 'Sub. Bagian Umum dan Keuangan')
+                            Auth::user()->title == 'Panitera Muda Hukum' ||
+                            Auth::user()->title == 'Panitera Muda Perkara' ||
+                            Auth::user()->title == 'Panitera Muda Hukum' ||
+                            Auth::user()->title == 'Kasub Umum dan Keuangan' ||
+                            Auth::user()->title == 'Kasub Kepegawaian, Ortala' ||
+                            Auth::user()->title == 'Kasub Umum dan Keuangan')
                         <li class="nav-item @if (Request::is('applicant/disposition-document')) active @endif"><a
                                 class="d-flex align-items-center" href="/applicant/disposition-document"><i
                                     data-feather="list"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
@@ -155,19 +154,7 @@
                             class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
                 </li>
 
-                <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/disposition-document"><i
-                            data-feather="list"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
-                         <span class="disposition_count badge bg-secondary">{{ $disposition_count }}</span></span></a>
-
-                </li>
-
                 @if ($admin_kepeg == true)
-                    <li class="nav-item @if (Request::is('admin/outgoing-letter')) active @endif"><a
-                            class="d-flex align-items-center" href="/admin/outgoing-letter"><i
-                                data-feather="arrow-up-circle"></i><span class="mr-3 menu-title text-truncate" style="margin-left: 2px;" >Surat Keluar </span>
-                                <span class="outgoing_count badge bg-secondary">{{ $outgoing_count }}</span></a>
-                    </li>
 
                     @if (Auth::user())
                         <li class="nav-item @if (Request::is('admin/leave-document')) active @endif"><a
@@ -184,6 +171,21 @@
                         </li>
                     @endif
                 @endif
+
+                @if ($admin_surat == true)
+                    <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/disposition-document"><i
+                            data-feather="list"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
+                         <span class="disposition_count badge bg-secondary">{{ $disposition_count }}</span></span></a>
+                    </li>
+
+                    <li class="nav-item @if (Request::is('admin/outgoing-letter')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/outgoing-letter"><i
+                            data-feather="arrow-up-circle"></i><span class="mr-3 menu-title text-truncate" style="margin-left: 2px;" >Surat Keluar </span>
+                            <span class="outgoing_count badge bg-secondary">{{ $outgoing_count }}</span></a>
+                    </li>
+                @endif
+
 
                 <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span

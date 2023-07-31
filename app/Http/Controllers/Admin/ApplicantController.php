@@ -44,13 +44,10 @@ class ApplicantController extends Controller
             'applicants.name',
             'users.title',
             'applicants.phone_number',
-            'units.name as unit_name',
-            'applicants.unit_id',
             'users.gol',
             'users.nip'
         ])
         ->join('applicants', 'applicants.user_id', 'users.id')
-        ->leftJoin('units', 'units.id', 'applicants.unit_id')
         ->where('users.category', 'karyawan')
         ->orderBy('users.created_at', 'desc')
         ->whereNull('users.deleted_at');

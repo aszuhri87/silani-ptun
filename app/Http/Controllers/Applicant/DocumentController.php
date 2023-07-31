@@ -10,6 +10,7 @@ use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
+use App\Models\RequirementType;
 use App\Models\User;
 use App\Notifications\NewLetter;
 use DataTables;
@@ -130,34 +131,44 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         try {
             $result = DB::transaction(function () use ($request) {
                 $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
+
+                $document_category = DocumentCategory::create([
+                    'name' => $request->doc_cat
+                ]);
+
+                if($document_category){
+                    $doc_cat_id = $document_category->id;
+                } else {
+                    $doc_cat_id = null;
+                }
 
                 $document = Document::create([
                     'name' => $request->name,
                     'applicant_id' => $appl->id,
                     'status' => 'Menunggu',
-                    'document_category_id' => $request->id_cat,
+                    'document_category_id' => $doc_cat_id,
                     'user_id' => $request->chief,
-                    ]);
+                ]);
 
-                $category_req = DocumentCategoryRequirement::select('*')
-                    ->where('document_category_id', $request->id_cat)
-                    ->get();
+                // $category_req = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
+                    // dd(count($request->requirement_value));
                     for ($index = 0; $index < count($request->requirement_value); ++$index) {
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {
                             $file = $request->file('requirement_value.'.$index);
                             $ext = $file->extension();
                             if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
-                                $name = date('Y-m-d_s').'doc.'.$ext;
+                                $name = $appl->name.'_'.$request->type_doc[$index].'_'.date('Y-m-d_s').$ext;
                             } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
-                                $name = date('Y-m-d_s').'doc.'.$ext;
+                                $name = $appl->name.'_'.$request->type_doc[$index].'_'.date('Y-m-d_s').$ext;
                             } else {
-                                $name = date('Y-m-d_s').'doc.jpg';
+                                $name = $appl->name.'_'.$request->type_doc[$index].'_'.date('Y-m-d_s').'jpg';
                             }
 
                             $file->move(public_path().'/files/', $name);
@@ -170,7 +181,8 @@ class DocumentController extends Controller
                         $data = DocumentRequirement::create([
                             'requirement_value' => $value[$index],
                             'document_id' => $document->id,
-                            'document_category_requirement_id' => $category_req[$index]->id,
+                            'type' => $request->type_doc[$index]
+                            // 'document_category_requirement_id' => $category_req[$index]->id,
                         ]);
 
                         $data['document_category_id'] = $document->document_category_id;
@@ -182,16 +194,18 @@ class DocumentController extends Controller
 
             $doc_category = DocumentCategory::where('id', $result->document_category_id)->first();
 
-            $admin = Admin::where('unit_id', $doc_category->unit_id)->get();
+            $admin = Admin::where('role', 'Persuratan')->get();
 
             foreach ($admin as $a) {
                 $user = User::where('id', $a->user_id)->first();
                 $user->notify(new NewLetter('inbox', $result->document_id, $user, 'inbox'));
             }
 
-            $super = Admin::where('unit_id', null)->first();
+            $super = Admin::where('role', null)->first();
             $superuser = User::where('id', $super->user_id)->first();
             $superuser->notify(new NewLetter('inbox', $result->document_id, $superuser, 'inbox'));
+
+            // $result['document_category'] = $request->doc_cat;
 
             return response([
                 'data' => $result,
@@ -232,6 +246,7 @@ class DocumentController extends Controller
         ])
         ->with(['doc_req' => function ($query) {
             $query->select(['document_requirements.id', 'document_requirements.requirement_value', 'document_requirements.document_id', 'document_category_requirements.data_min',
+            'document_requirements.type',
             'document_category_requirements.data_max', 'document_category_requirements.requirement_type', 'requirement_types.data_type as data_type',
             'requirement_types.requirement_type as title', ])
             ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id')

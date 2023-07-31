@@ -38,12 +38,22 @@
                                 <!-- Basic Select -->
                                 <div class="form-group">
                                     <label for="basicSelect">Kategori Dokumen</label>
-                                    <select class="form-control" id="select-docs-category" name="select_docs_category">
+                                    <select class="form-control m-1" name="document_type" id="document_type">
+                                        <option value=""> -- Pilih --</option>
+                                        <option value="Permohonan Magang">Permohonan Magang </option>
+                                        <option value="Permohonan Penelitian">Permohonan Penelitian </option>
+                                        <option value="Permohonan Sertifikat Magang">Permohonan Sertifikat Magang </option>
+                                        <option value="Surat Keterangan Bebas Perkara">Surat Keterangan Bebas Perkara </option>
+                                        <option value="Salinan Putusan">Salinan Putusan </option>
+                                        <option value="Permohonan Surat Keterangan BHT">Permohonan Surat Keterangan BHT (Berkekuatan Hukum Tetap) </option>
+                                        <option value="Lain-lain">Lain-lain </option>
+                                    </select>
+                                    {{-- <select class="form-control" id="select-docs-category" name="select_docs_category">
                                             <option value="">-- Pilih --</option>
                                         @foreach ($docs_category as $dc )
                                             <option value="{{$dc->document_category_id}}" data-id="{{$dc->document_category_id}}">{{$dc->name}}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                         </div>

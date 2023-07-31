@@ -77,14 +77,14 @@ class OutgoingLetterController extends Controller
         $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
 
         $admin = Admin::where('unit_id', $unit->id)->get();
-        $super = Admin::where('unit_id', null)->first();
-        $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
-        $userSup->notify(new NewLetter('outgoing', $docs->id, $userSup, 'outgoing'));
-
         foreach ($admin as $a) {
             $userAdm = User::where('category', 'admin')->where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('outgoing', $docs->id, $userAdm, 'outgoing'));
         }
+        
+        $super = Admin::where('unit_id', null)->first();
+        $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
+        $userSup->notify(new NewLetter('outgoing', $docs->id, $userSup, 'outgoing'));
 
         return redirect()->back();
     }

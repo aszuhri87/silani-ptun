@@ -34,6 +34,11 @@
                                                 <option value="{{ $p->id }}"> {{ $p->name }} - ({{ $p->title }})</option>
                                             @endforeach
                                         </select>
+
+                                    </div>
+
+                                    <div id="bebas_perkara" class="mb-1">
+
                                     </div>
 
                                     <div id="data_input" class="mb-1">
@@ -89,7 +94,7 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="document_category" name="document_category" placeholder="Nilai Keperluan" aria-label="requirement_value"  aria-describedby="requirement_value" readonly />
                                     </div>
-                                    <label for="requirement_value">Keperluan</label>
+                                    {{-- <label for="requirement_value">Keperluan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="requirement" name="requirement" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/>
                                     </div>
@@ -97,7 +102,7 @@
                                     <label for="requirement_value">Dibutuhkan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="required" name="required" placeholder="Nilai Keperluan" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/>
-                                    </div>
+                                    </div> --}}
 
                                     <label for="description" id="description" class="form-label">Deskripsi</label>
                                     <div class="input-group mb-2">

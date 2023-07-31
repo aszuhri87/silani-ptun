@@ -25,7 +25,7 @@ class Admin extends Authenticatable
         'name',
         'address',
         'user_id',
-        'unit_id',
+        'role',
         'image',
     ];
 

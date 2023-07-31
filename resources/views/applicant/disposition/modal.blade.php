@@ -35,15 +35,17 @@
                                 <div class="form-group">
                                     <select class=" form-control" id="select-fordward" data-toggle="collapse" required
                                         data-target="#timeline" name="role" required>
-                                        <option value="Ketua">Ketua</option>
-                                        <option value="Wakil Ketua">Wakil Ketua</option>
-                                        <option value="Panitera">Panitera</option>
-                                        <option value="Sekretaris">Sekretaris</option>
-                                        <option value="Pan. Mud. Hukum">Pan. Mud. Hukum</option>
-                                        <option value="Pan. Mud. Perkara">Pan. Mud. Perkara</option>
-                                        <option value="Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan">Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</option>
-                                        <option value="Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana">Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</option>
-                                        <option value="Sub. Bagian Umum dan Keuangan">Sub. Bagian Umum dan Keuangan</option>
+                                        @if (Auth::user()->title == 'Ketua')
+                                            <option value="Panitera">Panitera</option>
+                                            <option value="Sekretaris">Sekretaris</option>
+                                        @elseif (Str::contains(Auth::user()->title, 'Penitera'))
+                                            <option value="Panitera Muda Hukum">Panitera Muda Hukum</option>
+                                            <option value="Panitera Muda Perkara">Panitera Muda Perkara</option>
+                                        @elseif (Str::contains(Auth::user()->title, 'Sekretaris'))
+                                            <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
+                                            <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
+                                            <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
+                                        @endif
                                     </select>
                                 </div>
                                 {{-- <div class="form-group">
@@ -174,36 +176,32 @@
                                         <p class="no-space forward-1" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">2. Wakil Ketua</p>
+                                        <p class="no-space">3. Panitera</p>
                                         <p class="no-space forward-2" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">3. Panitera</p>
+                                        <p class="no-space">4. Sekretaris</p>
                                         <p class="no-space forward-3" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">4. Sekretaris</p>
+                                        <p class="no-space">5. Panitera Muda Hukum</p>
                                         <p class="no-space forward-4" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">5. Pan. Mud. Hukum</p>
+                                        <p class="no-space">6. Panitera Muda Perkara</p>
                                         <p class="no-space forward-5" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">6. Pan. Mud.Perkara</p>
+                                        <p class="no-space">7. Kasub Umum dan Keuangan</p>
                                         <p class="no-space forward-6" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">7. Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</p>
+                                        <p class="no-space">8. Kasub Kepegawaian, Ortala</p>
                                         <p class="no-space forward-7" style="float: left;"></p>
                                     </div>
                                     <div style="display: flex;">
-                                        <p class="no-space">8. Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</p>
+                                        <p class="no-space">9. Kasub Umum dan Keuangan</p>
                                         <p class="no-space forward-8" style="float: left;"></p>
-                                    </div>
-                                    <div style="display: flex;">
-                                        <p class="no-space">9. Sub. Bagian Umum dan Keuangan</p>
-                                        <p class="no-space forward-9" style="float: left;"></p>
                                     </div>
                                 </td>
                             </tr>

@@ -42,30 +42,30 @@
                                             placeholder="Nama Pemohon" aria-label="pemohon" aria-describedby="pemohon"
                                             readonly />
                                     </div>
-                                    <label for="requirement_type">Jenis Keperluan</label>
+                                    {{-- <label for="requirement_type">Jenis Keperluan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="requirement_type"
                                             name="requirement_type" placeholder="Jenis Keperluan"
                                             aria-label="requirement_type" aria-describedby="requirement_type"
                                             readonly />
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <div class="col-3">
 
-                                    <label for="requirement">Keperluan</label>
+                                    {{-- <label for="requirement">Keperluan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="requirement" name="requirement"
                                             placeholder="Keperluan" aria-label="requirement"
                                             aria-describedby="requirement" readonly />
-                                    </div>
+                                    </div> --}}
 
-                                    <label for="required">Dibutuhkan</label>
+                                    {{-- <label for="required">Dibutuhkan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="required" name="required"
                                             placeholder="Dibutuhkan" aria-label="required" aria-describedby="required"
                                             readonly />
-                                    </div>
+                                    </div> --}}
 
                                     <label for="description" id="description" class="form-label">Deskripsi</label>
                                     <div class="input-group mb-2">

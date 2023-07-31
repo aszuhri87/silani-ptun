@@ -37,6 +37,211 @@
 
             });
 
+            $(document).on('change','#document_type', function(event){
+                event.preventDefault();
+                var id = $(this).find('option:selected').data('id');
+                var id_req = $(this).find('option:selected').val();
+
+                console.log(id_req);
+                $('#form-doc-create').trigger("reset");
+                $('#form-doc-create').attr('action','{{url('applicant/document')}}');
+                $('#form-doc-create').attr('method','POST');
+                $('#form-doc-create').attr('enctype','multipart/form-data');
+                $('div#data_input').html("");
+                $('#form-doc-create').find('input[name="id_cat"]').val(id);
+
+                if (id_req == 'Permohonan Magang') {
+
+                    $('div#data_input').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+
+                        <label class="form-label mt-1 label"> Surat Permohonan Magang </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan Magang">
+                            </div>
+                        </div>
+                    `);
+
+                    showModal('modal-document')
+                } else if (id_req == 'Permohonan Sertifikat Magang') {
+                    $('div#data_input').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+                        <label class="form-label mt-1 label"> Surat Permohonan Seritifikat Magang </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan Seritifikat Magang">
+                            </div>
+                        </div>
+                    `);
+
+                    showModal('modal-document')
+                } else if(id_req == "Permohonan Penelitian"){
+                    $('div#data_input').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+                        <label class="form-label mt-1 label"> Surat Permohonan atau Pengantar </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan atau Pengantar">
+                            </div>
+                        </div>
+                        <label class="form-label mt-1 label"> Proposal Penelitian </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Proposal Penelitian">
+                            </div>
+                        </div>
+                    `);
+
+                    showModal('modal-document')
+                } else if (id_req == "Surat Keterangan Bebas Perkara"){
+                    $('div#bebas_perkara').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+                        <label class="form-label mt-1 label"> Jenis </label>
+                            <select class="form-control" name="jenis_perkara" id="jenis_perkara">
+                                <option value=""> -- Pilih -- </option>
+                                <option value="perorangan"> Perorangan </option>
+                                <option value="perusahaan"> Perusahaan/Badan Hukum </option>
+                            </select>
+                        </div>
+                    `);
+
+                    $(document).on('change','#bebas_perkara', function(event){
+
+                        var jenis = $(this).find('option:selected').val();
+
+                        if(jenis == "perorangan"){
+                            $('div#data_input').html(`
+                                <label class="form-label mt-1 label"> Fotocopy KTP </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                        <input type="hidden" name="type_doc[0]" value="Fotocopy KTP">
+                                    </div>
+                                </div>
+                                <label class="form-label mt-1 label"> Fotocopy KK </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                        <input type="hidden" name="type_doc[1]" value="Fotocopy KK">
+                                    </div>
+                                </div>
+                                <label class="form-label mt-1 label"> Fotocopy SKCK </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                        <input type="hidden" name="type_doc[2]" value="Fotocopy SKCK">
+                                    </div>
+                                </div>
+                            `);
+                        } else if (jenis == "perusahaan") {
+                            $('div#data_input').html(`
+                                <label class="form-label mt-1 label"> Fotocopy KTP Direksi </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                        <input type="hidden" name="type_doc[0]" value="Fotocopy KTP Direksi">
+                                    </div>
+                                </div>
+                                <label class="form-label mt-1 label"> Fotocopy TDP/SIUP/Akta Pendirian </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                        <input type="hidden" name="type_doc[1]" value="Fotocopy TDP/SIUP/Akta Pendirian">
+                                    </div>
+                                </div>
+                                <label class="form-label mt-1 label"> Fotocopy Domisili </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                        <input type="hidden" name="type_doc[2]" value="Fotocopy Domisili">
+                                    </div>
+                                </div>
+                                <label class="form-label mt-1 label"> Fotocopy Surat Kuasa </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[3]">
+                                        <input type="hidden" name="type_doc[3]" value="Fotocopy Surat Kuasa">
+                                    </div>
+                                </div>
+                            `);
+                        } else {
+                            $('div#data_input').html(``);
+                        }
+                    });
+
+                    showModal('modal-document')
+                } else if (id_req == "Salinan Putusan"){
+                    $('div#data_input').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+                        <label class="form-label mt-1 label"> Surat Kuasa (Pihak Tergugat/Penggugat)  </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Kuasa (Pihak Tergugat/Penggugat)">
+                            </div>
+                        </div>
+                        <label class="form-label mt-1 label"> Identitas pemohon (KTP) </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
+                            </div>
+                        </div>
+                    `);
+                    showModal('modal-document')
+                } else if (id_req == "Permohonan Surat Keterangan BHT"){
+                    $('div#data_input').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+                        <label class="form-label mt-1 label"> Surat Kuasa (Pihak Tergugat/Penggugat)  </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Kuasa (Pihak Tergugat/Penggugat)">
+                            </div>
+                        </div>
+                        <label class="form-label mt-1 label"> Identitas pemohon (KTP) </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
+                            </div>
+                        </div>
+                    `);
+                    showModal('modal-document')
+                }
+                else {
+                    $('div#data_input').append(`
+                        <input type="hidden" name="doc_cat" value="`+id_req+`">
+                        <label class="form-label mt-1 label"> Identitas diri  </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Identitas diri">
+                            </div>
+                        </div>
+                        <label class="form-label mt-1 label"> Surat Pengantar Tujuan </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Surat Pengantar Tujuan">
+                            </div>
+                        </div>
+                    `);
+                    showModal('modal-document')
+                }
+
+                $(document).on('hide.bs.modal','#modal-document', function(event){
+                    location.reload();
+                });
+
+            });
+
+
 
             $(document).on('change','#select-docs-category', function(event){
                 event.preventDefault();
@@ -114,18 +319,18 @@
                         $('input[name="chief_name"]').val(data.chief_name);
                         $('input[name="date"]').val(data.date_create);
                         $('input[name="document_category"]').val(data.document_category);
-                        $('input[name="requirement"]').val(data.requirement);
+                        $('input[name="requirement"]').val(data.type);
                         $('input[name="required"]').val(data.required);
                         $('textarea[name="description"]').val(data.description);
 
                         for (i in data.doc_req){
-                        var str = data.doc_req[i].requirement_value;
-                            var dotIndex= str.lastIndexOf('.');
-                            var ext = str.substring(dotIndex);
+                        // var str = data.doc_req[i].requirement_value;
+                        //     var dotIndex= str.lastIndexOf('.');
+                        //     var ext = str.substring(dotIndex);
 
-                            if(ext=='.jpg'||ext=='.jpeg'||ext=='.png'||ext=='.pdf'){
+                        //     if(ext=='.jpg'||ext=='.jpeg'||ext=='.png'||ext=='.pdf'){
                                 $('div#doc_file').append(`
-                                    <label for="basicadd`+i+`">`+data.doc_req[i].requirement_type+`</label>
+                                    <label for="basicadd`+i+`">`+data.doc_req[i].type+`</label>
                                     <div class="input-group mb-1">
 
                                         <span class="input-group-text " id="basicadd`+i+`" style="width:100%; ">
@@ -138,14 +343,14 @@
                                         </span>
                                     </div>
                                 `);
-                            }else{
-                                $('div#doc_file').append(`
-                                    <label for="basicadd`+i+`">`+data.doc_req[i].requirement_type+`</label>
-                                    <div class="input-group mb-1 ">
-                                        <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
-                                    </div>
-                                `);
-                            }
+                            // }else{
+                            //     $('div#doc_file').append(`
+                            //         <label for="basicadd`+i+`">`+data.doc_req[i].type+`</label>
+                            //         <div class="input-group mb-1 ">
+                            //             <span class="input-group-text" id="basicadd`+i+`" style="width:100%"> `+data.doc_req[i].requirement_value+`</span>
+                            //         </div>
+                            //     `);
+                            // }
                         }
 
                         if (data.status=="Diproses") {

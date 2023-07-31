@@ -90,7 +90,7 @@ class ExitPermitDocumentController extends Controller
 
         $admin = Admin::where('unit_id', $unit->id)->get();
         foreach ($admin as $a) {
-            $userAdm = User::where('category', 'admin')->where('id', $a->user_id)->first();
+            $userAdm = User::where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('exit', $data->id, $userAdm, 'exit'));
         }
 
@@ -226,6 +226,9 @@ class ExitPermitDocumentController extends Controller
             'approver' => Auth::user()->name,
             'notes' => $request->notes,
         ]);
+
+        $user = User::where('id', $data->user_id)->first();
+        $user->notify(new NewLetter('exit', $id, $user, 'exit'));
 
         return response([
             'data' => $data,

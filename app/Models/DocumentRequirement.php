@@ -22,6 +22,7 @@ class DocumentRequirement extends Model
         'document_id',
         'document_category_requirement_id',
         'requirement_value',
+        'type'
     ];
 
     protected $dates = ['deleted_at'];

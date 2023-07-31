@@ -51,14 +51,16 @@ class LeaveDocumentController extends Controller
         ->select([
             'users.name',
             'leave_documents.*',
+            // 'leave_approvals.user_id as approval_id'
         ])
         ->join('users', 'users.id', 'leave_documents.user_id')
-        ->leftJoin('leave_approvals', 'leave_approvals.leave_document_id', 'leave_documents.id')
+        ->join('leave_approvals', 'leave_approvals.leave_document_id', 'leave_documents.id')
         ->where('users.category', 'karyawan')
-        ->where('leave_documents.user_id', Auth::user()->id)
-        ->orWhere('leave_approvals.type', 'PEJABAT')
-        ->orWhere('leave_approvals.type', 'ATASAN')
         ->whereNull('leave_documents.deleted_at')
+        ->where(function ($query) {
+            $query->where('leave_documents.user_id', Auth::user()->id)
+            ->orWhere('leave_approvals.user_id', Auth::user()->id);
+        })
         ->orderBy('leave_documents.created_at', 'desc')
         ->groupBy('leave_documents.id', 'users.name');
 
@@ -68,7 +70,7 @@ class LeaveDocumentController extends Controller
     public function store(Request $request)
     {
         $sign = Signature::select([
-            'photo',
+            'photo'
         ])
         ->where('user_id', Auth::user()->id)
         ->whereNull('deleted_at')
@@ -87,7 +89,7 @@ class LeaveDocumentController extends Controller
             'working_time' => $request->working_time,
             'leave_long' => $request->leave_long,
             'status' => 'menunggu',
-            'signature' => $sign ? $sign : null,
+            'signature' => $sign->photo ? $sign->photo : null,
         ]);
 
         $approver = LeaveApproval::create([
@@ -102,7 +104,7 @@ class LeaveDocumentController extends Controller
 
         $admin = Admin::where('unit_id', $unit->id)->get();
         foreach ($admin as $a) {
-            $userAdm = User::where('category', 'admin')->where('id', $a->user_id)->first();
+            $userAdm = User::where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('leave', $data->id, $userAdm, 'leave'));
         }
 
@@ -152,12 +154,15 @@ class LeaveDocumentController extends Controller
                     'signature' => $sign ? $sign : null,
                     'type' => $type,
                 ]);
-
             }
 
             $data->update([
                 'status' => 'Disetujui oleh '.Auth::user()->name,
             ]);
+
+            $user = User::where("title", "Ketua")->first();
+            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
+
         } else {
             $data->update([
                 'user_id' => Auth::user()->id,
@@ -232,7 +237,13 @@ class LeaveDocumentController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        $data->approval = $user ? $user : [];
+        if($user){
+            $appr = $user;
+        } else{
+            $appr = [];
+        }
+
+        $data->approval = $appr;
         $data->leave_notes = $notes ? $notes : [];
 
         return response([
@@ -243,12 +254,25 @@ class LeaveDocumentController extends Controller
 
     public function destroy($id)
     {
-        $data = LeaveDocument::find($id);
-        $data->delete();
+        try{
+            $data = LeaveDocument::find($id);
 
-        return response([
-            'message' => 'Successfully deleted!',
-        ], 200);
+            DB::transaction(function () use ($data) {
+                $data->delete();
+            });
+
+            if ($data->trashed()) {
+                return response([
+                    'message' => 'Successfully deleted!',
+                ], 200);
+            }
+
+        }catch (\Exception $e) {
+
+            return response([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function print($id)
@@ -320,15 +344,22 @@ class LeaveDocumentController extends Controller
 
         $datetime = $request->date.' '.$request->time;
 
+        $user = User::where('id', $data->user_id)->first();
+
         if (Auth::user()->title == 'Ketua') {
             $data->update([
                 'chief_approval' => $request->approve,
             ]);
+
+            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
         } else {
             $data->update([
                 'officer_approval' => $request->approve,
             ]);
+
+            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
         }
+
 
         return response([
             'data' => $data,

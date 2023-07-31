@@ -144,31 +144,31 @@
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                     <span>
-                        <p class="no-space">5. Pan. Mud. Hukum</p>
+                        <p class="no-space">5. Panitera Muda Hukum</p>
                     </span>
                     <p class="no-space forward-5" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                     <span>
-                        <p class="no-space">6. Pan. Mud.Perkara</p>
+                        <p class="no-space">6. Panitera Muda Perkara</p>
                     </span>
                     <p class="no-space forward-6" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                     <span>
-                        <p class="no-space">7. Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan</p>
+                        <p class="no-space">7. Kasub Umum dan Keuangan</p>
                     </span>
                     <p class="no-space forward-7" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                 <span>
-                    <p class="no-space">8. Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana</p>
+                    <p class="no-space">8. Kasub Kepegawaian, Ortala</p>
                 </span>
                     <p class="no-space forward-8" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                 <span>
-                    <p class="no-space">9. Sub. Bagian Umum dan Keuangan</p>
+                    <p class="no-space">9. Kasub Umum dan Keuangan</p>
                 </span>
                     <p class="no-space forward-9" style="float: left;"></p>
                 </div>
@@ -178,11 +178,11 @@
                 <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Wakil Ketua') checked  @endif @endforeach>
                 <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera')  checked @endif @endforeach>
                 <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Sekretaris')checked @endif @endforeach>
-                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Pan. Mud. Hukum') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Pan. Mud.Perkara') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input  type="checkbox" style="padding-top: 18px;"  @foreach ($data->disposition as $d) @if ($d->role == 'Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input type="checkbox" style="padding-top: 20px;" @foreach ($data->disposition as $d) @if ($d->role == 'Sub. Bagian Umum dan Keuangan') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
+                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Hukum') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
+                <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Perkara') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
+                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
+                <input  type="checkbox" style="padding-top: 18px;"  @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Kepegawaian, Ortala') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
+                <input type="checkbox" style="padding-top: 20px;" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
             </td>
         </tr>
         <tr>
@@ -215,7 +215,7 @@
                     <h5 class="no-space" style="width: 170px;">DISPOSISI PANMUD : </h5>
                     <div class="panmud-instruction" height="100px">
                     @foreach ($data->disposition as $d)
-                        @if ($d->role == 'Pan. Mud. Hukum' || $d->role == 'Pan. Mud.Perkara')
+                        @if ($d->role == 'Panitera Muda Hukum' || $d->role == 'Panitera Muda Perkara')
                         <p>- {{$d->instruction}}</p>
                         @endif
                     @endforeach
@@ -225,7 +225,7 @@
                 <div style="display: flex; margin-bottom: 3px;">
                     <h5 class="no-space" style="width: 170px;">DISPOSISI KASUBAG : </h5>
                     @foreach ($data->disposition as $d)
-                        @if ($d->role == 'Sub. Bagian Perencanaan, Teknologi Informasi dan Pelaporan' || $d->role == 'Sub. Bagian Kepegawaian, Organisasi dan Tata Laksana' || $d->role == 'Sub. Bagian Umum dan Keuangan')
+                        @if ($d->role == 'Kasub Umum dan Keuangan' || $d->role == 'Kasub Kepegawaian, Ortala' || $d->role == 'Kasub Umum dan Keuangan')
                         <p>- {{$d->instruction}}</p>
                         @endif
                     @endforeach

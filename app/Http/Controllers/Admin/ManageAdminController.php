@@ -43,11 +43,12 @@ class ManageAdminController extends Controller
             'users.username',
             'users.email',
             'users.id',
-            'admins.unit_id',
-            'units.name as unit',
+            "admins.role"
+            // 'admins.unit_id',
+            // 'units.name as unit',
             ])
         ->leftJoin('users', 'users.id', 'admins.user_id')
-        ->leftJoin('units', 'units.id', 'admins.unit_id')
+        // ->leftJoin('units', 'units.id', 'admins.unit_id')
         ->orderBy('admins.created_at', 'desc')
         ->whereNull('admins.deleted_at');
 
@@ -57,7 +58,7 @@ class ManageAdminController extends Controller
     public function show($id)
     {
         $data = DB::table('admins')
-        ->select('admins.unit_id', '*')
+        ->select('*')
         ->leftJoin('users', 'users.id', 'admins.user_id')
         ->where('admins.user_id', $id)
         ->first();
@@ -85,7 +86,7 @@ class ManageAdminController extends Controller
                 $data = Admin::create([
                     'name' => $request->name,
                     'user_id' => $user->id,
-                    'unit_id' => $request->select_unit,
+                    'role' => $request->role,
                 ]);
 
                 $user_role = User::where('username', $user->username)->first();
@@ -121,7 +122,7 @@ class ManageAdminController extends Controller
                 $user = Admin::where('user_id', $id);
                 $user->update([
                     'name' => $request->name,
-                    'unit_id' => $request->select_unit ? $request->select_unit : $user->unit_id,
+                    'role' => $request->role ? $request->role : $user->role,
                 ]);
 
                 return $data;

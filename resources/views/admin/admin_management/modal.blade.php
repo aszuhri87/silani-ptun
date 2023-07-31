@@ -31,12 +31,11 @@
                                 <input type="password" class="form-control" id="password" name="password" placeholder="password" aria-label="password"  aria-describedby="password"   />
                             </div>
                             <div class="form-group">
-                                <label for="select_unit">Unit</label>
-                                <select class="form-control" name="select_unit">
+                                <label for="role">Unit</label>
+                                <select class="form-control" name="role">
                                     <option value="">-- Pilih Unit --</option>
-                                    @foreach ($unit as $dt )
-                                    <option value="{{$dt->id}}">{{$dt->name}}</option>
-                                    @endforeach
+                                    <option value="Persuratan"> Persuratan </option>
+                                    <option value="Kepegawaian"> Kepegawaian </option>
                                     </select>
                                 </div>
                             </div>
