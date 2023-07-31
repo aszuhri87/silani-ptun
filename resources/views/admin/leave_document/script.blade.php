@@ -245,6 +245,9 @@
                 $(document).on('click', '.btn-detail', function(event){
                     event.preventDefault();
 
+                    var nip_ketua = null
+                    var nip_atasan = null
+
                     var id = $(this).data('id');
                     var url = $(this).attr('href');
                     var dt = DocsCategoryTable.table().row($(this).parents('tr')).data();
@@ -359,8 +362,8 @@
 
                         }
 
-
                     }
+
 
                     $('.nip_ketua').text(nip_ketua);
                     $('.nip_atasan').text(nip_atasan);

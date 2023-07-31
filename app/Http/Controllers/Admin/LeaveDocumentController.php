@@ -286,7 +286,7 @@ class LeaveDocumentController extends Controller
         ])
         ->join('users', 'users.id', 'leave_approvals.user_id')
         ->where('leave_approvals.leave_document_id', $id)
-        ->whereNotNull('leave_approvals.status')
+        // ->whereNotNull('leave_approvals.status')
         ->whereNull('leave_approvals.deleted_at')
         ->get();
 
