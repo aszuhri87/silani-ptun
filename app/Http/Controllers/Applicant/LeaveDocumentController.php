@@ -195,7 +195,7 @@ class LeaveDocumentController extends Controller
             $user->notify(new NewLetter('leave', $id, $user, 'leave'));
         }
 
-        $result = $data;
+        $result = $data->first();
 
         return response([
             'data' => $result,
