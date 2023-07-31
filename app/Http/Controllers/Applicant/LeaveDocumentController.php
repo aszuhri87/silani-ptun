@@ -125,7 +125,7 @@ class LeaveDocumentController extends Controller
     {
         $data = LeaveDocument::where('id', $id);
         $approver = LeaveApproval::where('leave_document_id', $id);
-        $sign = DB::table('signatures')->select('photo')->where('user_id', Auth::user()->id)->first();
+        $sign = Signature::select('photo')->where('user_id', Auth::user()->id)->first();
 
 
         if ($request->approver) {
