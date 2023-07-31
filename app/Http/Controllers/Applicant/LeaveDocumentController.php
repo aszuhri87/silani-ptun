@@ -129,9 +129,9 @@ class LeaveDocumentController extends Controller
 
         if ($request->approver) {
             if (Auth::user()->title == 'Ketua') {
-                $type = 'PEJABAT';
+                $type = "PEJABAT";
             } else {
-                $type = 'ATASAN';
+                $type = "ATASAN";
             }
 
             $approver->where('user_id', Auth::user()->id);
