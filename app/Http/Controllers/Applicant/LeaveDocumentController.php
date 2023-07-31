@@ -123,6 +123,7 @@ class LeaveDocumentController extends Controller
 
     public function update(Request $request, $id)
     {
+        try{
         $data = LeaveDocument::find($id);
         $approver = LeaveApproval::where('leave_document_id', $id);
         $sign = DB::table('signatures')->select('photo')->where('user_id', Auth::user()->id)->first();
@@ -135,7 +136,7 @@ class LeaveDocumentController extends Controller
             }
 
             $approver->where('user_id', Auth::user()->id);
-            $approve = $approver->update([
+            $approver->update([
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
                 'signature' => $sign ? $sign : null,
@@ -200,6 +201,12 @@ class LeaveDocumentController extends Controller
             'data' => $result,
             'message' => 'Data Terubah',
         ], 200);
+
+    } catch (\Exception $e) {
+        return response([
+            'message' => $e->getMessage(),
+        ], 500);
+    }
     }
 
     public function show($id)
