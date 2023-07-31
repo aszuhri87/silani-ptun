@@ -138,7 +138,7 @@ class LeaveDocumentController extends Controller
             $approver->where('user_id', Auth::user()->id);
 
             if ($types = 'ATASAN' && $request->approval_status = 'Disetujui') {
-                $approver->update([
+                LeaveApproval::where('leave_document_id', $id)->update([
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
                     'signature' => $sign ? $sign : null,
