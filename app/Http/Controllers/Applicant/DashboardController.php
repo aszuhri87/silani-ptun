@@ -63,6 +63,8 @@ class DashboardController extends Controller
         ->groupBy(DB::raw("date_part('month', created_at)"), 'month_name')
         ->get();
 
+
+
         $c_leave = MonthNameApplicant::chart_data($leave_count);
 
 

@@ -174,7 +174,7 @@ class DispositionDocumentController extends Controller
 
     public function update_disposition(Request $request, $id)
     {
-        $check = DispositionUser::where('role', $request->role);
+        $check = DispositionUser::where('role', $request->role)->where('disposition_document_id', $id);;
 
         if ($check->first()) {
             $check->update([
@@ -182,10 +182,10 @@ class DispositionDocumentController extends Controller
                 ]);
         } else {
             DispositionUser::create([
-                    'role' => $request->role,
-                    'status' => 'Menunggu',
-                    'disposition_document_id' => $id,
-                ]);
+                'role' => $request->role,
+                'status' => 'Menunggu',
+                'disposition_document_id' => $id,
+            ]);
         }
 
         $data = DispositionDocument::find($id);
@@ -193,8 +193,7 @@ class DispositionDocumentController extends Controller
                 'status' => 'Disetujui '.Auth::user()->title,
             ]);
 
-        $user = DispositionUser::where('role', Auth::user()->title)
-            ->orWhere('user_id', Auth::user()->id);
+        $user = DispositionUser::where('role', Auth::user()->title)->where('disposition_document_id', $id);
 
         $user->update([
                 'status' => $request->status,
@@ -203,7 +202,9 @@ class DispositionDocumentController extends Controller
             ]);
 
         $users = User::where('title', $request->role)->first();
-        $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
+        if ($users){
+            $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
+        }
 
         $admin = User::where('category', 'admin')->get();
         foreach ($admin as $a) {
@@ -224,6 +225,7 @@ class DispositionDocumentController extends Controller
             'disposition_users.status as status_user',
         ])
         ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+        ->where('disposition_document_id', $id)
         ->whereNull('disposition_users.deleted_at')
         ->get();
 

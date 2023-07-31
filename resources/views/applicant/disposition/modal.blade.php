@@ -38,10 +38,10 @@
                                         @if (Auth::user()->title == 'Ketua')
                                             <option value="Panitera">Panitera</option>
                                             <option value="Sekretaris">Sekretaris</option>
-                                        @elseif (Str::contains(Auth::user()->title, 'Penitera'))
+                                        @elseif (Auth::user()->title == 'Penitera')
                                             <option value="Panitera Muda Hukum">Panitera Muda Hukum</option>
                                             <option value="Panitera Muda Perkara">Panitera Muda Perkara</option>
-                                        @elseif (Str::contains(Auth::user()->title, 'Sekretaris'))
+                                        @elseif (Auth::user()->title == 'Sekretaris')
                                             <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
                                             <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
                                             <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>

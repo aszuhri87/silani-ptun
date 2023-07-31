@@ -141,6 +141,8 @@
                 $.get(url, function(data){
                     let disposition = data.data.disposition;
 
+                    console.log(data.data.disposition);
+
                     $('.index').text(data.data.index);
                     $('.code').text(data.data.code);
                     $('.date_finish').text(data.data.date_finish);

@@ -77,27 +77,52 @@
             <!--/ Statistics Card -->
 
             <!-- apex charts section start -->
-            <section id="apexchart">
-                <div class="row">
-                    <!-- Area Chart starts -->
-                    <div class="col-xl-12 col-md-12 col-12"">
-                                <div class=" card">
-                        <div
-                            class="card-header d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start">
-                            <div>
-                                <h4 class="card-title">Total Dokumen Tahun {{date('Y')}}</h4>
-                                <span class="card-subtitle text-muted">Dihitung berdasarkan bulan</span>
+            @if (Auth::user()->category == 'karyawan')
+                <section id="apexchart">
+                        <div class="row">
+                            <!-- Area Chart starts -->
+                            <div class="col-xl-12 col-md-12 col-12">
+                                        <div class=" card">
+                                <div
+                                    class="card-header d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start">
+                                    <div>
+                                        <h4 class="card-title">Total Dokumen Tahun {{date('Y')}}</h4>
+                                        <span class="card-subtitle text-muted">Dihitung berdasarkan bulan</span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="karyawan-chart"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div id="applicant-chart"></div>
+                        <!-- Area Chart ends -->
+                        <!-- Apex charts section end -->
+                </div>
+                </section>
+            @else
+                <!-- apex charts section start -->
+                <section id="apexchart">
+                    <div class="row">
+                        <!-- Area Chart starts -->
+                        <div class="col-xl-12 col-md-12 col-12"">
+                                    <div class=" card">
+                            <div
+                                class="card-header d-flex flex-sm-row flex-column justify-content-md-between align-items-start justify-content-start">
+                                <div>
+                                    <h4 class="card-title">Total Dokumen Tahun {{date('Y')}}</h4>
+                                    <span class="card-subtitle text-muted">Dihitung berdasarkan bulan</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="applicant-chart"></div>
+                            </div>
                         </div>
                     </div>
+                    <!-- Area Chart ends -->
+                    <!-- Apex charts section end -->
                 </div>
-                <!-- Area Chart ends -->
-                <!-- Apex charts section end -->
-        </div>
-        </section>
+                </section>
+            @endif
 
         </tbody>
         </table>

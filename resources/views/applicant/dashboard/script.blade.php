@@ -128,6 +128,68 @@ $(function () {
           name: 'Document',
           data: jumlah
         },
+      ],
+      xaxis: {
+
+        categories: bulan
+      },
+      fill: {
+        opacity:1,
+        type:'solid'
+      },
+      tooltip: {
+        shared: false
+      },
+      yaxis: {
+        opposite: isRtl,
+      }
+    };
+  if (typeof areaChartEl !== undefined && areaChartEl !== null) {
+    var areaChart = new ApexCharts(areaChartEl, areaChartConfig);
+    areaChart.render();
+  }
+
+
+  var areaChartEl = document.querySelector('#karyawan-chart'),
+    areaChartConfig = {
+      chart: {
+        height: 400,
+        type: 'area',
+        stacked:true,
+        parentHeightOffset: 0,
+        toolbar: {
+          show: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        curve: 'straight'
+      },
+      markers: {
+        size: [5, 7]
+        },
+      legend: {
+        show: true,
+        position: 'top',
+        horizontalAlign: 'start'
+      },
+      grid: {
+        xaxis: {
+          lines: {
+            show: true
+          }
+        }
+      },
+      colors: [chartColors.area.series3, chartColors.area.series2, chartColors.area.series1],
+      series: [
+
+        {
+          name: 'Document',
+          data: jumlah
+        },
         {
           name: 'Cuti',
           data: jumlah_doc
@@ -153,6 +215,9 @@ $(function () {
     areaChart.render();
   }
 });
+
+
+
 
 </script>
 
