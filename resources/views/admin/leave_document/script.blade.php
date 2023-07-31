@@ -339,11 +339,11 @@
                             else if(data.data.approval[i].approval_status == 'Perubahan'){
                                 $('.final-agree-2').text('✓');
                             }
-                            else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
-                                $('.final-agree-3').text('✓');
+                            else if(data.data.approval[i].approval_status == 'Tidak Disetujui'){
+                                $('.final-agree-4').text('✓');
                             }
                             else{
-                                $('.final-agree-4').text('✓');
+                                $('.final-agree-4').text('');
                             }
 
                             $('.ketua-sign').html(`
