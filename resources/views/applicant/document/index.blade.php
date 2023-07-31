@@ -77,7 +77,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
-                                    <th>Kepada</th>
+                                    {{-- <th>Kepada</th> --}}
                                     <th>Kategori Dokumen</th>
                                     <th>Tanggal</th>
                                     <th>Status</th>
