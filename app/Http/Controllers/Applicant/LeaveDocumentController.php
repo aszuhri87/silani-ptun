@@ -142,7 +142,7 @@ class LeaveDocumentController extends Controller
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
                     'signature' => $sign ? $sign : null,
-                    'type' => '',
+                    'type' => "ATASAN",
                 ]);
 
                 $ketua = User::where('title', 'Ketua')->whereNull('deleted_at')->first();
@@ -152,7 +152,7 @@ class LeaveDocumentController extends Controller
                     'note' => null,
                     'status' => null,
                     'signature' => null,
-                    'type' => 'PEJABAT',
+                    'type' => "PEJABAT",
                 ]);
             } else if (Auth::user()->title == 'Ketua' && $request->approval_status = 'Disetujui') {
                 // $approver->where('user_id', Auth::user()->id);
@@ -160,7 +160,7 @@ class LeaveDocumentController extends Controller
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
                     'signature' => $sign ? $sign : null,
-                    'type' => $types,
+                    'type' => "PEJABAT",
                 ]);
             }
 
