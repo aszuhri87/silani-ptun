@@ -136,6 +136,7 @@ class AcceptedController extends Controller
             $query->select([
                 'document_requirements.requirement_value',
                 'document_requirements.document_id',
+                'document_requirements.type',
                 'document_category_requirements.requirement_type', ])
             ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id');
         },

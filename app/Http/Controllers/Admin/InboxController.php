@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
+use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
@@ -160,7 +161,9 @@ class InboxController extends Controller
                 'notes' => $request->notes ? $request->notes : $data->first()->notes,
             ]);
 
-            $user = User::where('id', $data->first()->user_id)->first();
+
+            $appl = Applicant::where('id', $data->first()->applicant_id)->first();
+            $user = User::where('id', $appl->user_id)->first();
 
             if ($request->status_edit == 'Diproses') {
                 $user->notify(new NewLetter('proceed', $data->first()->id, $user, 'proceed'));
