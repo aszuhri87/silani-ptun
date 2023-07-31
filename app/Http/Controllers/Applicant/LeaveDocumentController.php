@@ -135,7 +135,7 @@ class LeaveDocumentController extends Controller
             }
 
             $approver->where('user_id', Auth::user()->id);
-            $approver->update([
+            $approve = $approver->update([
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
                 'signature' => $sign ? $sign : null,
