@@ -136,14 +136,15 @@ class LeaveDocumentController extends Controller
             }
 
             $approver->where('user_id', Auth::user()->id);
-            $approver->update([
-                'note' => $request->approval_note,
-                'status' => $request->approval_status,
-                'signature' => $sign ? $sign : null,
-                'type' => $types,
-            ]);
 
             if ($types = 'ATASAN' && $request->approval_status = 'Disetujui') {
+                $approver->update([
+                    'note' => $request->approval_note,
+                    'status' => $request->approval_status,
+                    'signature' => $sign ? $sign : null,
+                    'type' => '',
+                ]);
+
                 $ketua = User::where('title', 'Ketua')->whereNull('deleted_at')->first();
                 $approver->create([
                     'leave_document_id' => $id,
