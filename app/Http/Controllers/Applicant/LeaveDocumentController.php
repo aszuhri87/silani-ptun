@@ -129,9 +129,9 @@ class LeaveDocumentController extends Controller
 
         if ($request->approver) {
             if (Auth::user()->title == 'Ketua') {
-                $type = "PEJABAT";
+                $types = "PEJABAT";
             } else {
-                $type = "ATASAN";
+                $types = "ATASAN";
             }
 
             $approver->where('user_id', Auth::user()->id);
@@ -139,10 +139,10 @@ class LeaveDocumentController extends Controller
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
                 'signature' => $sign ? $sign : null,
-                'type' => $type,
+                'type' => $types,
             ]);
 
-            if ($type = 'ATASAN' && $request->approval_status = 'Disetujui') {
+            if ($types = 'ATASAN' && $request->approval_status = 'Disetujui') {
                 $ketua = User::where('title', 'Ketua')->whereNull('deleted_at')->first();
                 $approver->create([
                     'leave_document_id' => $id,
@@ -158,7 +158,7 @@ class LeaveDocumentController extends Controller
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
                     'signature' => $sign ? $sign : null,
-                    'type' => $type,
+                    'type' => $types,
                 ]);
             }
 
