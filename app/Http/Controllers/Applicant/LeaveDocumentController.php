@@ -123,10 +123,10 @@ class LeaveDocumentController extends Controller
 
     public function update(Request $request, $id)
     {
-        try{
         $data = LeaveDocument::find($id);
         $approver = LeaveApproval::where('leave_document_id', $id);
         $sign = DB::table('signatures')->select('photo')->where('user_id', Auth::user()->id)->first();
+        $types = "";
 
         if ($request->approver) {
             if (Auth::user()->title == 'Ketua') {
@@ -136,15 +136,14 @@ class LeaveDocumentController extends Controller
             }
 
             $approver->where('user_id', Auth::user()->id);
+            $approver->update([
+                'note' => $request->approval_note,
+                'status' => $request->approval_status,
+                'signature' => $sign ? $sign : null,
+                'type' => $types,
+            ]);
 
             if ($types = 'ATASAN' && $request->approval_status = 'Disetujui') {
-                LeaveApproval::where('leave_document_id', $id)->update([
-                    'note' => $request->approval_note,
-                    'status' => $request->approval_status,
-                    'signature' => $sign ? $sign : null,
-                    'type' => "ATASAN",
-                ]);
-
                 $ketua = User::where('title', 'Ketua')->whereNull('deleted_at')->first();
                 $approver->create([
                     'leave_document_id' => $id,
@@ -152,7 +151,7 @@ class LeaveDocumentController extends Controller
                     'note' => null,
                     'status' => null,
                     'signature' => null,
-                    'type' => "PEJABAT",
+                    'type' => 'PEJABAT',
                 ]);
             } else if (Auth::user()->title == 'Ketua' && $request->approval_status = 'Disetujui') {
                 // $approver->where('user_id', Auth::user()->id);
@@ -160,7 +159,7 @@ class LeaveDocumentController extends Controller
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
                     'signature' => $sign ? $sign : null,
-                    'type' => "PEJABAT",
+                    'type' => $types,
                 ]);
             }
 
@@ -202,12 +201,6 @@ class LeaveDocumentController extends Controller
             'data' => $result,
             'message' => 'Data Terubah',
         ], 200);
-
-    } catch (\Exception $e) {
-        return response([
-            'message' => $e->getMessage(),
-        ], 500);
-    }
     }
 
     public function show($id)
