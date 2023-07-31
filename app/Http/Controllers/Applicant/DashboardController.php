@@ -8,6 +8,7 @@ use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentRequirement;
+use App\Models\LeaveDocument;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -55,6 +56,19 @@ class DashboardController extends Controller
         ->groupBy(DB::raw("date_part('month',document_requirements.created_at)"), 'documents.month_name')
         ->get();
 
+        $leave_count = LeaveDocument::select(DB::raw('COUNT(DISTINCT(id)) as count'), DB::raw("to_char(created_at, 'FMMonth') as month_name"))
+        ->whereYear('created_at', date('Y'))
+        ->where('user_id', Auth::user()->id)
+        ->whereNull('deleted_at')
+        ->groupBy(DB::raw("date_part('month', created_at)"), 'month_name')
+        ->get();
+
+        $c_leave = MonthNameApplicant::chart_data($leave_count);
+
+
+        // dd($c_leave);
+
+
         $c_docs = MonthNameApplicant::chart_data($count_docs);
 
         return view('applicant.dashboard.index', [
@@ -63,6 +77,7 @@ class DashboardController extends Controller
             'reject' => $reject->count,
             'queue' => $queue->count,
             'c_docs' => $c_docs,
+            'c_leave' => $c_leave
         ], PageLib::config([]));
     }
 }

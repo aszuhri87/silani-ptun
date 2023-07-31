@@ -71,14 +71,21 @@ $(function () {
 
 
   var docs = {!! json_encode($c_docs) !!};
+  var cuti = {!! json_encode($c_leave) !!};
+
 
 
   var bulan = [];
   var jumlah = [];
+  var jumlah_doc = [];
 
   docs.forEach(element => {
       bulan.push(element.bulan);
-      jumlah.push(element.jumlah)
+      jumlah.push(element.jumlah);
+  });
+
+  cuti.forEach(element => {
+    jumlah_doc.push(element.jumlah)
   })
 
   var areaChartEl = document.querySelector('#applicant-chart'),
@@ -120,6 +127,10 @@ $(function () {
         {
           name: 'Document',
           data: jumlah
+        },
+        {
+          name: 'Cuti',
+          data: jumlah_doc
         },
       ],
       xaxis: {

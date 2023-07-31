@@ -77,6 +77,12 @@ class LeaveDocumentController extends Controller
         ->orderBy('created_at', 'desc')
         ->first();
 
+        if($sign){
+            $signature = $sign->photo;
+        } else {
+            $signature = null;
+        }
+
         $data = LeaveDocument::create([
             'user_id' => Auth::user()->id,
             'unit_id' => $request->unit,
@@ -89,7 +95,7 @@ class LeaveDocumentController extends Controller
             'working_time' => $request->working_time,
             'leave_long' => $request->leave_long,
             'status' => 'menunggu',
-            'signature' => $sign->photo ? $sign->photo : null,
+            'signature' => $signature,
         ]);
 
         $approver = LeaveApproval::create([
@@ -100,15 +106,15 @@ class LeaveDocumentController extends Controller
         $user = User::where('id', $request->chief)->first();
         $user->notify(new NewLetter('leave', $data->id, $user, 'leave'));
 
-        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
+        // $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
 
-        $admin = Admin::where('unit_id', $unit->id)->get();
+        $admin = Admin::where('role', 'Kepegawaian')->get();
         foreach ($admin as $a) {
             $userAdm = User::where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('leave', $data->id, $userAdm, 'leave'));
         }
 
-        $super = Admin::where('unit_id', null)->first();
+        $super = Admin::where('role', null)->first();
         $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
         $userSup->notify(new NewLetter('leave', $data->id, $userSup, 'leave'));
 
