@@ -127,7 +127,7 @@ class LeaveDocumentController extends Controller
     {
         $data = LeaveDocument::where('id', $id);
         $approver = LeaveApproval::where('leave_document_id', $id);
-        $sign = Signature::select('photo')->where('user_id', Auth::user()->id)->first();
+        $sign = Signature::select('photo')->where('user_id', Auth::user()->id)->first()->photo;
 
 
         if ($request->approver) {
@@ -320,7 +320,6 @@ class LeaveDocumentController extends Controller
         ->whereNull('leave_approvals.deleted_at')
         ->get();
 
-        dd($user);
 
         $notes = LeaveNote::select([
             'amount',
