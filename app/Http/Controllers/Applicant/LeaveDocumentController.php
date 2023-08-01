@@ -337,7 +337,7 @@ class LeaveDocumentController extends Controller
         $pdf = PDF::loadView('/applicant/leave_document/print',
         [
                 'data' => $data,
-                'logo' => base64_encode(file_get_contents(public_path('logo.png'))),
+                // 'logo' => base64_encode(file_get_contents(public_path('logo.png'))),
             ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
