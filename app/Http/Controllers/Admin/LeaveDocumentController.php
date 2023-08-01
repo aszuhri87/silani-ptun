@@ -53,8 +53,8 @@ class LeaveDocumentController extends Controller
         ])
         ->join('users', 'users.id', 'leave_documents.user_id')
         // ->where('users.category', 'admin')
-        ->orderBy('leave_documents.created_at', 'desc')
-        ->whereNull('leave_documents.deleted_at');
+        ->whereNull('leave_documents.deleted_at')
+        ->orderBy('leave_documents.created_at', 'desc');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }

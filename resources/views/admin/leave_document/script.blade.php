@@ -427,7 +427,7 @@
                                 })
                                 .done(function(res, xhr, meta) {
                                     toastr.success(res.message, 'Success')
-                                    // DocsCategoryTable.table().draw(false);
+                                    DocsCategoryTable.table().draw(false);
                                 })
                                 .fail(function(res, error) {
                                     toastr.error(res.responseJSON.message, 'Gagal')
