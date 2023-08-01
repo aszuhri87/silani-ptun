@@ -284,6 +284,7 @@
                     role == 'Kasub Perencanaan, TI dan Pelaporan'
                 ){
                     $('#select-fordward').remove()
+                    $('#label-forward').remove()
                 }
 
                 showModal('modal-disposition');

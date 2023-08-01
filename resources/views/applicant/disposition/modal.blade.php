@@ -31,7 +31,7 @@
                                     <input type="radio" name="status" id="status_false" value="tolak">
                                     <label for="status_disagree">Tolak</label>
                                 </div>
-                                <label for="nama" class="mt-2">Diteruskan kepada</label>
+                                <label for="nama" class="mt-2" id="label-forward">Diteruskan kepada</label>
                                 <div class="form-group">
                                     <select class=" form-control" id="select-fordward" data-toggle="collapse" required
                                         data-target="#timeline" name="role" required>
