@@ -127,7 +127,14 @@ class LeaveDocumentController extends Controller
     {
         $data = LeaveDocument::where('id', $id);
         $approver = LeaveApproval::where('leave_document_id', $id);
-        $sign = Signature::select('photo')->where('user_id', Auth::user()->id)->first()->photo;
+        $sign = Signature::where('user_id', Auth::user()->id)->first();
+
+
+        if($sign){
+            $signature = $sign->photo;
+        } else {
+            $signature = null;
+        }
 
 
         if ($request->approver) {
@@ -141,7 +148,7 @@ class LeaveDocumentController extends Controller
             $approver->update([
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
-                'signature' => $sign ? $sign : null,
+                'signature' =>  $signature,
                 'type' => $types,
             ]);
 
@@ -160,7 +167,7 @@ class LeaveDocumentController extends Controller
                 $approver->update([
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
-                    'signature' => $sign ? $sign : null,
+                    'signature' =>  $signature,
                     'type' => $types,
                 ]);
             }
@@ -185,7 +192,7 @@ class LeaveDocumentController extends Controller
                 'working_time' => $request->working_time,
                 'leave_long' => $request->leave_long,
                 'status' => 'menunggu',
-                'signature' => $sign ? $sign : null,
+                'signature' =>  $signature,
             ]);
 
             $approver->update([
