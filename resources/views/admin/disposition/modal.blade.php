@@ -75,8 +75,14 @@
                                     <select class=" form-control" id="select-fordward" data-toggle="collapse"
                                         data-target="#timeline" name="role" required>
                                         <option value="Ketua">Ketua</option>
+                                        <option value="Wakil Ketua">Wakil Ketua</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploaded_file">File Surat</label>
+                                <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" accept=".pdf" data-allowed-file-extensions="pdf">
+                                <label style="font-size: 8pt;">*Format harus pdf</label>
                             </div>
                             <div class="form-group">
                                 <label for="uploaded_file">File Surat</label>

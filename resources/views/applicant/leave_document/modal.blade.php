@@ -71,10 +71,10 @@
                                 <input class="form-control" type="text" name="phone" id="phone" required>
                             </div>
 
-                            <label for="phone" id="phone" class="form-label mt-1">Masa Kerja</label>
+                            {{-- <label for="phone" id="phone" class="form-label mt-1">Masa Kerja</label>
                             <div class="form-group">
                                 <input class="form-control" type="text" name="working_time" id="working_time" required>
-                            </div>
+                            </div> --}}
 
                             <label for="nama">Cari Atasan</label>
                             <div class="form-group">

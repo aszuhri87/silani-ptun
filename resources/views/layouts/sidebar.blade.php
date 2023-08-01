@@ -276,15 +276,23 @@
                             data-i18n="Documentation">Manajemen Admin</span></a>
                 </li>
 
+                <li class="nav-item @if (Request::is('admin/list-applicant')) active @endif"><a
+                    class="d-flex align-items-center" href="/admin/list-applicant" data-toggle="tooltip"
+                    data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
+                        class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
+                </li>
             @endrole
 
-            {{-- @if ($admin_kepeg == true) --}}
-            <li class="nav-item @if (Request::is('admin/list-applicant')) active @endif"><a
-                class="d-flex align-items-center" href="/admin/list-applicant" data-toggle="tooltip"
-                data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
-                    class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
-            </li>
-            {{-- @endif --}}
+            @role('admin')
+                @if ($admin_kepeg == true)
+                    <li class="nav-item @if (Request::is('admin/list-applicant')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/list-applicant" data-toggle="tooltip"
+                        data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
+                            class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
+                    </li>
+                @endif
+            @endrole
+
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i
                         data-feather="log-out"></i><span class="menu-title text-truncate"

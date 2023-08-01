@@ -116,7 +116,9 @@ class LeaveDocumentController extends Controller
 
         $super = Admin::where('role', null)->first();
         $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
-        $userSup->notify(new NewLetter('leave', $data->id, $userSup, 'leave'));
+        if($userSup){
+            $userSup->notify(new NewLetter('leave', $data->id, $userSup, 'leave'));
+        }
 
         return redirect()->back();
     }

@@ -55,11 +55,19 @@
                     $('div#data_input').append(`
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
 
-                        <label class="form-label mt-1 label"> Surat Permohonan Magang </label>
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
                             <div class="input-group">
                                 <div class="custom-file">
                                 <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan Magang">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+
+                        <label class="form-label mt-1 label"> Surat Permohonan Magang </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Surat Permohonan Magang">
                             </div>
                         </div>
                     `);
@@ -67,12 +75,20 @@
                     showModal('modal-document')
                 } else if (id_req == 'Permohonan Sertifikat Magang') {
                     $('div#data_input').append(`
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
                         <label class="form-label mt-1 label"> Surat Permohonan Seritifikat Magang </label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan Seritifikat Magang">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Surat Permohonan Seritifikat Magang">
                             </div>
                         </div>
                     `);
@@ -81,18 +97,25 @@
                 } else if(id_req == "Permohonan Penelitian"){
                     $('div#data_input').append(`
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
-                        <label class="form-label mt-1 label"> Surat Permohonan atau Pengantar </label>
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
                             <div class="input-group">
                                 <div class="custom-file">
                                 <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan atau Pengantar">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+                        <label class="form-label mt-1 label"> Surat Permohonan atau Pengantar </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Surat Permohonan atau Pengantar">
                             </div>
                         </div>
                         <label class="form-label mt-1 label"> Proposal Penelitian </label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                <input type="hidden" name="type_doc[1]" value="Proposal Penelitian">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                <input type="hidden" name="type_doc[2]" value="Proposal Penelitian">
                             </div>
                         </div>
                     `);
@@ -101,6 +124,15 @@
                 } else if (id_req == "Surat Keterangan Bebas Perkara"){
                     $('div#bebas_perkara').append(`
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
+
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+
                         <label class="form-label mt-1 label"> Jenis </label>
                             <select class="form-control" name="jenis_perkara" id="jenis_perkara">
                                 <option value=""> -- Pilih -- </option>
@@ -119,53 +151,61 @@
                                 <label class="form-label mt-1 label"> Fotocopy KTP </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                        <input type="hidden" name="type_doc[0]" value="Fotocopy KTP">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                        <input type="hidden" name="type_doc[1]" value="Fotocopy KTP">
                                     </div>
                                 </div>
                                 <label class="form-label mt-1 label"> Fotocopy KK </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                        <input type="hidden" name="type_doc[1]" value="Fotocopy KK">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                        <input type="hidden" name="type_doc[2]" value="Fotocopy KK">
                                     </div>
                                 </div>
                                 <label class="form-label mt-1 label"> Fotocopy SKCK </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
-                                        <input type="hidden" name="type_doc[2]" value="Fotocopy SKCK">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[3]">
+                                        <input type="hidden" name="type_doc[3]" value="Fotocopy SKCK">
                                     </div>
                                 </div>
                             `);
                         } else if (jenis == "perusahaan") {
                             $('div#data_input').html(`
+                                <label class="form-label mt-1 label"> Surat Permohonan </label>
+                                <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
+                                        <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                                    </div>
+                                </div>
+
                                 <label class="form-label mt-1 label"> Fotocopy KTP Direksi </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                        <input type="hidden" name="type_doc[0]" value="Fotocopy KTP Direksi">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                        <input type="hidden" name="type_doc[1]" value="Fotocopy KTP Direksi">
                                     </div>
                                 </div>
                                 <label class="form-label mt-1 label"> Fotocopy TDP/SIUP/Akta Pendirian </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                        <input type="hidden" name="type_doc[1]" value="Fotocopy TDP/SIUP/Akta Pendirian">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                        <input type="hidden" name="type_doc[2]" value="Fotocopy TDP/SIUP/Akta Pendirian">
                                     </div>
                                 </div>
                                 <label class="form-label mt-1 label"> Fotocopy Domisili </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
-                                        <input type="hidden" name="type_doc[2]" value="Fotocopy Domisili">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[3]">
+                                        <input type="hidden" name="type_doc[3]" value="Fotocopy Domisili">
                                     </div>
                                 </div>
                                 <label class="form-label mt-1 label"> Fotocopy Surat Kuasa </label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[3]">
-                                        <input type="hidden" name="type_doc[3]" value="Fotocopy Surat Kuasa">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[4]">
+                                        <input type="hidden" name="type_doc[4]" value="Fotocopy Surat Kuasa">
                                     </div>
                                 </div>
                             `);
@@ -178,18 +218,26 @@
                 } else if (id_req == "Salinan Putusan"){
                     $('div#data_input').append(`
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
-                        <label class="form-label mt-1 label"> Surat Kuasa (Pihak Tergugat/Penggugat)  </label>
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
                             <div class="input-group">
                                 <div class="custom-file">
                                 <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                <input type="hidden" name="type_doc[0]" value="Surat Kuasa (Pihak Tergugat/Penggugat)">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+
+                        <label class="form-label mt-1 label"> Surat Kuasa (Pihak Tergugat/Penggugat)  </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Surat Kuasa (Pihak Tergugat/Penggugat)">
                             </div>
                         </div>
                         <label class="form-label mt-1 label"> Identitas pemohon (KTP) </label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                <input type="hidden" name="type_doc[2]" value="Identitas pemohon (KTP)">
                             </div>
                         </div>
                     `);
@@ -197,18 +245,26 @@
                 } else if (id_req == "Permohonan Surat Keterangan BHT"){
                     $('div#data_input').append(`
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
-                        <label class="form-label mt-1 label"> Surat Kuasa (Pihak Tergugat/Penggugat)  </label>
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
                             <div class="input-group">
                                 <div class="custom-file">
                                 <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                <input type="hidden" name="type_doc[0]" value="Surat Kuasa (Pihak Tergugat/Penggugat)">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+
+                        <label class="form-label mt-1 label"> Surat Kuasa (Pihak Tergugat/Penggugat)  </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Surat Kuasa (Pihak Tergugat/Penggugat)">
                             </div>
                         </div>
                         <label class="form-label mt-1 label"> Identitas pemohon (KTP) </label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                <input type="hidden" name="type_doc[2]" value="Identitas pemohon (KTP)">
                             </div>
                         </div>
                     `);
@@ -217,18 +273,26 @@
                 else {
                     $('div#data_input').append(`
                         <input type="hidden" name="doc_cat" value="`+id_req+`">
-                        <label class="form-label mt-1 label"> Identitas diri  </label>
+                        <label class="form-label mt-1 label"> Surat Permohonan </label>
                             <div class="input-group">
                                 <div class="custom-file">
                                 <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[0]">
-                                <input type="hidden" name="type_doc[0]" value="Identitas diri">
+                                <input type="hidden" name="type_doc[0]" value="Surat Permohonan">
+                            </div>
+                        </div>
+
+                        <label class="form-label mt-1 label"> Identitas diri  </label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
+                                <input type="hidden" name="type_doc[1]" value="Identitas diri">
                             </div>
                         </div>
                         <label class="form-label mt-1 label"> Surat Pengantar Tujuan </label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                <input type="hidden" name="type_doc[1]" value="Surat Pengantar Tujuan">
+                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
+                                <input type="hidden" name="type_doc[2]" value="Surat Pengantar Tujuan">
                             </div>
                         </div>
                     `);

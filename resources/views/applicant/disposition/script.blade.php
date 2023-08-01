@@ -141,8 +141,6 @@
                 $.get(url, function(data){
                     let disposition = data.data.disposition;
 
-                    console.log(data.data.disposition);
-
                     $('.index').text(data.data.index);
                     $('.code').text(data.data.code);
                     $('.date_finish').text(data.data.date_finish);
@@ -178,8 +176,17 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Panitera'){
+                        if(disposition[i].role == 'Wakil Ketua'){
                             $('.forward-2').text('✓');
+                            $('.ketua-instruction').append(`
+                                <p class="waketua_ins-${i}"> -
+                                    ${disposition[i].instruction}
+                                </p>
+                            `);
+                        }
+
+                        if(disposition[i].role == 'Panitera'){
+                            $('.forward-3').text('✓');
                             $('.panitera-instruction').append(`
                                 <p class="panitera_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -188,7 +195,7 @@
                         }
 
                         if(disposition[i].role == 'Sekretaris'){
-                            $('.forward-3').text('✓');
+                            $('.forward-4').text('✓');
                             $('.sekretaris-instruction').append(`
                                 <p class="sekretaris_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -197,15 +204,6 @@
                         }
 
                         if(disposition[i].role == 'Panitera Muda Hukum'){
-                            $('.forward-4').text('✓');
-                            $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
-                                    ${disposition[i].instruction}
-                                </p>
-                            `);
-                        }
-
-                        if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-5').text('✓');
                             $('.panmud-instruction').append(`
                                 <p class="panmud_ins-${i}"> -
@@ -214,16 +212,16 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
+                        if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-6').text('✓');
-                            $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
+                            $('.panmud-instruction').append(`
+                                <p class="panmud_ins-${i}"> -
                                     ${disposition[i].instruction}
                                 </p>
                             `);
                         }
 
-                        if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
+                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
                             $('.forward-7').text('✓');
                             $('.kasubag-instruction').append(`
                                 <p class="kasubag_ins-${i}"> -
@@ -232,8 +230,17 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
+                        if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
                             $('.forward-8').text('✓');
+                            $('.kasubag-instruction').append(`
+                                <p class="kasubag_ins-${i}"> -
+                                    ${disposition[i].instruction}
+                                </p>
+                            `);
+                        }
+
+                        if(disposition[i].role == 'Kasub Perencanaan, TI dan Pelaporan'){
+                            $('.forward-9').text('✓');
                             $('.kasubag-instruction').append(`
                                 <p class="kasubag_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -260,6 +267,7 @@
                 event.preventDefault();
                 var data = DocsCategoryTable.table().row($(this).parents('tr')).data();
                 var auth = {!! json_encode(Auth::user()->name) !!}
+                var role = {!! json_encode(Auth::user()->title) !!}
 
                 $('#form-disposition').trigger("reset");
                 $('#form-disposition').attr('action', `{{url('applicant/disposition-update/${data.id}')}}`);
@@ -269,6 +277,13 @@
                     $('#status_true').prop('checked', true);
                 } else {
                     $('#status_false').prop('checked', true);
+                }
+
+                if(role == 'Kasub Umum dan Keuangan' || role == 'Kasub Kepegawaian, Ortala' ||
+                    role == 'Panitera Muda Hukum' || role == 'Panitera Muda Perkara' ||
+                    role == 'Kasub Perencanaan, TI dan Pelaporan'
+                ){
+                    $('#select-fordward').remove()
                 }
 
                 showModal('modal-disposition');

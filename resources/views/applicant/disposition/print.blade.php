@@ -133,41 +133,44 @@
                 <div class="no-space" style="display: flex; margin-bottom: 3px;">
                     <p class="no-space"> 1. Ketua </p>
                 </div>
+                <div class="no-space" style="display: flex; margin-bottom: 3px;">
+                    <p class="no-space"> 2. Wakil Ketua </p>
+                </div>
                 <div class="no-space"style="display: flex; margin-bottom: 3px;">
-                    <p class="no-space">2. Panitera</p>
+                    <p class="no-space">3. Panitera</p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
-                    <p class="no-space">3. Sekretaris</p>
-                </div>
-                <div style="display: flex; margin-bottom: 3px;">
-                    <span>
-                        <p class="no-space">4. Panitera Muda Hukum</p>
-                    </span>
-                    <p class="no-space forward-4" style="float: left;"></p>
+                    <p class="no-space">4. Sekretaris</p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                     <span>
-                        <p class="no-space">5. Panitera Muda Perkara</p>
+                        <p class="no-space">5. Panitera Muda Hukum</p>
                     </span>
                     <p class="no-space forward-5" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                     <span>
-                        <p class="no-space">6. Kasub Umum dan Keuangan</p>
+                        <p class="no-space">6. Panitera Muda Perkara</p>
                     </span>
                     <p class="no-space forward-6" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
-                <span>
-                    <p class="no-space">7. Kasub Kepegawaian, Ortala</p>
-                </span>
+                    <span>
+                        <p class="no-space">7. Kasub Umum dan Keuangan</p>
+                    </span>
                     <p class="no-space forward-7" style="float: left;"></p>
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                 <span>
-                    <p class="no-space">8. Kasub Umum dan Keuangan</p>
+                    <p class="no-space">8. Kasub Kepegawaian, Ortala</p>
                 </span>
                     <p class="no-space forward-8" style="float: left;"></p>
+                </div>
+                <div style="display: flex; margin-bottom: 3px;">
+                <span>
+                    <p class="no-space">9. Kasub Umum dan Keuangan</p>
+                </span>
+                    <p class="no-space forward-9" style="float: left;"></p>
                 </div>
             </td>
             <td valign="top" style="border-left: none;" width="20px">

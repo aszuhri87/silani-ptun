@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <select class=" form-control" id="select-fordward" data-toggle="collapse" required
                                         data-target="#timeline" name="role" required>
-                                        @if (Auth::user()->title == 'Ketua')
+                                        @if (Auth::user()->title == 'Ketua' || Auth::user()->title == 'Wakil Ketua')
                                             <option value="Panitera">Panitera</option>
                                             <option value="Sekretaris">Sekretaris</option>
                                         @elseif (Auth::user()->title == 'Panitera')
@@ -44,7 +44,7 @@
                                         @elseif (Auth::user()->title == 'Sekretaris')
                                             <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
                                             <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
-                                            <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
+                                            <option value="Kasub Perencanaan, TI dan Pelaporan">Kasub Perencanaan, TI dan Pelaporan</option>
                                         @endif
                                     </select>
                                 </div>

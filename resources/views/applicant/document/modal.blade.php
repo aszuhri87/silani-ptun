@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col-12 form-add">
                                     <input type="hidden"  class="form-control" name="id_cat">
-                                    <label class="form-label mt-auto">Nama</label>
+                                    <label class="form-label mt-auto">Nama Dokumen</label>
                                     <div class="input-group">
                                         <input type="text"  class="form-control" placeholder="Nama dokumen" name="name" required>
                                     </div>
@@ -78,7 +78,7 @@
                         <form id="form-doc-create-2" name="form-doc-create" enctype="multipart/form-data" >
                             <div class="row">
                                 <div class="col-12 col-md-6 col-lg-6">
-                                    <label for="requirement_value">Nama</label>
+                                    <label for="requirement_value">Nama Dokumen</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nilai Keperluan" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/>
                                     </div>

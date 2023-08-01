@@ -29,6 +29,7 @@ class DispositionDocument extends Model
         'agenda_date',
         'status',
         'uploaded_document',
+        'document_id'
     ];
 
     protected $dates = ['deleted_at'];

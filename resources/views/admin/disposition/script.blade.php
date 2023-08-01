@@ -210,8 +210,17 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Panitera'){
+                        if(disposition[i].role == 'Wakil Ketua'){
                             $('.forward-2').text('✓');
+                            $('.ketua-instruction').append(`
+                                <p class="waketua_ins-${i}"> -
+                                    ${disposition[i].instruction}
+                                </p>
+                            `);
+                        }
+
+                        if(disposition[i].role == 'Panitera'){
+                            $('.forward-3').text('✓');
                             $('.panitera-instruction').append(`
                                 <p class="panitera_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -220,7 +229,7 @@
                         }
 
                         if(disposition[i].role == 'Sekretaris'){
-                            $('.forward-3').text('✓');
+                            $('.forward-4').text('✓');
                             $('.sekretaris-instruction').append(`
                                 <p class="sekretaris_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -229,15 +238,6 @@
                         }
 
                         if(disposition[i].role == 'Panitera Muda Hukum'){
-                            $('.forward-4').text('✓');
-                            $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
-                                    ${disposition[i].instruction}
-                                </p>
-                            `);
-                        }
-
-                        if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-5').text('✓');
                             $('.panmud-instruction').append(`
                                 <p class="panmud_ins-${i}"> -
@@ -246,16 +246,16 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
+                        if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-6').text('✓');
-                            $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
+                            $('.panmud-instruction').append(`
+                                <p class="panmud_ins-${i}"> -
                                     ${disposition[i].instruction}
                                 </p>
                             `);
                         }
 
-                        if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
+                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
                             $('.forward-7').text('✓');
                             $('.kasubag-instruction').append(`
                                 <p class="kasubag_ins-${i}"> -
@@ -264,8 +264,17 @@
                             `);
                         }
 
-                        if(disposition[i].role == 'Kasub Umum dan Keuangan'){
+                        if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
                             $('.forward-8').text('✓');
+                            $('.kasubag-instruction').append(`
+                                <p class="kasubag_ins-${i}"> -
+                                    ${disposition[i].instruction}
+                                </p>
+                            `);
+                        }
+
+                        if(disposition[i].role == 'Kasub Perencanaan, TI dan Pelaporan'){
+                            $('.forward-9').text('✓');
                             $('.kasubag-instruction').append(`
                                 <p class="kasubag_ins-${i}"> -
                                     ${disposition[i].instruction}
@@ -349,7 +358,6 @@
                 $('#form-disposition').find('input[name="from"]').val(data.from);
                 $('#form-disposition').find('textarea[name="resume_content"]').val(data.resume_content);
                 $('#form-disposition').find('input[name="uploaded_file"]').attr("data-default-file", "{{asset('files/"+ data.uploaded_document +"')}}");
-                console.log(data.uploaded_document);
                 $('textarea[name="notes"]').val(data.notes);
 
                 showModal('modal-disposition');
