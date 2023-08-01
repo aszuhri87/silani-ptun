@@ -72,12 +72,12 @@ $(function () {
 
   var docs = {!! json_encode($c_docs) !!};
   var cuti = {!! json_encode($c_leave) !!};
-
-
+  var exit = {!! json_encode($c_exit) !!};
 
   var bulan = [];
   var jumlah = [];
   var jumlah_doc = [];
+  var jumlah_exit = [];
 
   docs.forEach(element => {
       bulan.push(element.bulan);
@@ -85,7 +85,13 @@ $(function () {
   });
 
   cuti.forEach(element => {
+    bulan.push(element.bulan);
     jumlah_doc.push(element.jumlah)
+  })
+
+  exit.forEach(element => {
+    bulan.push(element.bulan);
+    jumlah_exit.push(element.jumlah)
   })
 
   var areaChartEl = document.querySelector('#applicant-chart'),
@@ -185,14 +191,13 @@ $(function () {
       },
       colors: [chartColors.area.series3, chartColors.area.series2, chartColors.area.series1],
       series: [
-
-        {
-          name: 'Document',
-          data: jumlah
-        },
         {
           name: 'Cuti',
           data: jumlah_doc
+        },
+        {
+          name: 'Keluar Kantor',
+          data: jumlah_exit
         },
       ],
       xaxis: {

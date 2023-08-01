@@ -90,6 +90,8 @@
             @endrole
 
             @role('applicant')
+
+            @if (Auth::user()->category == 'umum')
                 <li class="nav-item @if (Request::is('applicant/document')) active @endif"><a class="d-flex align-items-center"
                         href="/applicant/document"><i data-feather="file-plus"></i><span class="menu-item text-truncate"
                             data-i18n="Second Level">Buat Dokumen</span></a>
@@ -104,6 +106,7 @@
                             class="menu-title text-truncate mr-3" style="margin-left: 2px;" data-i18n="Todo">Selesai
                             </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
                 </li>
+            @endif
 
                 @if (Auth::user()->category == 'karyawan')
                     @if (Auth::user()->title == 'Ketua' ||

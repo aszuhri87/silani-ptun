@@ -9,11 +9,12 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
+            @if (Auth::user()->category == 'umum')
             <!-- Statistics Card -->
             <div class="col-xl-12 col-md-12 col-12">
                 <div class="card card-statistics">
                     <div class="card-header">
-                        <h4 class="card-title">Statistics</h4>
+                        <h4 class="card-title">Statistik</h4>
 
                     </div>
                     <div class="card-body statistics-body">
@@ -75,6 +76,7 @@
                 </div>
             </div>
             <!--/ Statistics Card -->
+            @endif
 
             <!-- apex charts section start -->
             @if (Auth::user()->category == 'karyawan')

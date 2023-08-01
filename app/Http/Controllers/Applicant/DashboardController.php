@@ -8,6 +8,7 @@ use App\Libraries\PageLib;
 use App\Models\Applicant;
 use App\Models\Document;
 use App\Models\DocumentRequirement;
+use App\Models\ExitPermitDocument;
 use App\Models\LeaveDocument;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -63,10 +64,15 @@ class DashboardController extends Controller
         ->groupBy(DB::raw("date_part('month', created_at)"), 'month_name')
         ->get();
 
-
+        $exit_count = ExitPermitDocument::select(DB::raw('COUNT(DISTINCT(id)) as count'), DB::raw("to_char(created_at, 'FMMonth') as month_name"))
+        ->whereYear('created_at', date('Y'))
+        ->where('user_id', Auth::user()->id)
+        ->whereNull('deleted_at')
+        ->groupBy(DB::raw("date_part('month', created_at)"), 'month_name')
+        ->get();
 
         $c_leave = MonthNameApplicant::chart_data($leave_count);
-
+        $c_exit = MonthNameApplicant::chart_data($exit_count);
 
         // dd($c_leave);
 
@@ -79,7 +85,8 @@ class DashboardController extends Controller
             'reject' => $reject->count,
             'queue' => $queue->count,
             'c_docs' => $c_docs,
-            'c_leave' => $c_leave
+            'c_leave' => $c_leave,
+            'c_exit' => $c_exit,
         ], PageLib::config([]));
     }
 }
