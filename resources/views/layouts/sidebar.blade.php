@@ -31,7 +31,7 @@
                             data-i18n="Dashboards">Dashboards</span></a>
                 </li>
             @endrole
-            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps</span><i
+            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Internal</span><i
                     data-feather="more-horizontal"></i>
             </li>
             @role('super admin')
@@ -47,7 +47,7 @@
                                 class="d-flex align-items-center" href="/admin/sub-unit"><i data-feather="circle"></i><span
                                     class="menu-item text-truncate" data-i18n="Second Level">Sub Unit/Bidang</span></a>
                         </li>
-                        <li class="nav-item @if (Request::is('admin/document-category')) active @endif"><a
+                        {{-- <li class="nav-item @if (Request::is('admin/document-category')) active @endif"><a
                                 class="d-flex align-items-center" href="/admin/document-category"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Second Level">Kategori Dokumen</span></a>
@@ -61,11 +61,11 @@
                                 data-bs-placement="right" title="Kategori Keperluan Dokumen"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Second Level">Kategori Keperluan Dokumen </span></a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             @endrole
-            @role('admin')
+            {{-- @role('admin')
                 <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
                             data-feather="database"></i><span class="menu-title text-truncate"
                             data-i18n="Menu Levels">Master Data</span></a>
@@ -87,7 +87,7 @@
                         </li>
                     </ul>
                 </li>
-            @endrole
+            @endrole --}}
 
             @role('applicant')
 
@@ -147,16 +147,6 @@
             @endrole
 
             @hasrole('admin')
-                <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
-                            class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
-                            <span class="inbox_count badge bg-secondary"> {{ $inbox }} </span></span></a>
-                </li>
-                <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
-                            class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
-                </li>
-
                 @if ($admin_kepeg == true)
 
                     @if (Auth::user())
@@ -187,26 +177,30 @@
                             data-feather="arrow-up-circle"></i><span class="mr-3 menu-title text-truncate" style="margin-left: 2px;" >Surat Keluar </span>
                             <span class="outgoing_count badge bg-secondary">{{ $outgoing_count }}</span></a>
                     </li>
+
+                    <li class=" navigation-header"><span data-i18n="Dokumen Umum ">Dokumen Umum</span><i
+                        data-feather="more-horizontal"></i>
+
+                    <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
+                                class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
+                                <span class="inbox_count badge bg-secondary"> {{ $inbox }} </span></span></a>
+                    </li>
+                    <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
+                            class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
+                                class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
+                    </li>
+                    <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
+                            class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span
+                                class="menu-title text-truncate mr-3" style="margin-left: 2px;" data-i18n="Todo">Selesai
+                                </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
+                    </li>
                 @endif
 
 
-                <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span
-                            class="menu-title text-truncate mr-3" style="margin-left: 2px;" data-i18n="Todo">Selesai
-                            </span><span class="ml-3 done_count badge bg-secondary"> {{ $done }} </span></a>
-                </li>
             @endhasrole
 
             @hasrole('super admin')
-                <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
-                            class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
-                            <span class="inbox_count badge bg-secondary"> {{ $inbox }} </span></span></a>
-                </li>
-                <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
-                            class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
-                </li>
 
                 <li class="nav-item @if (Request::is('admin/disposition-document')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/disposition-document"><i
@@ -236,6 +230,20 @@
                                     {{ $exit_count }}</span></a>
                     </li>
                 @endif
+
+                <li class=" navigation-header"><span data-i18n="Dokumen Umum ">Dokumen Umum</span><i
+                    data-feather="more-horizontal"></i>
+
+                <li class="nav-item @if (Request::is('admin/inbox')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/inbox"><i data-feather="inbox"></i><span
+                            class="menu-title text-truncate" data-i18n="Chat">Dokumen Masuk
+                            <span class="inbox_count badge bg-secondary"> {{ $inbox }} </span></span></a>
+                </li>
+
+                <li class="nav-item @if (Request::is('admin/verification')) active @endif"><a
+                        class="d-flex align-items-center" href="/admin/verification" data-toggle="tooltip" data-bs-placement="right" title="Perizinan Dokumen"><i data-feather="edit-3"></i><span
+                            class="menu-title text-truncate">Perizinan Dokumen</span></span><span class="ml-1 proceed_count badge bg-secondary"> {{ $proceed }} </span></a>
+                </li>
 
                 <li class="nav-item @if (Request::is('admin/accepted')) active @endif"><a
                         class="d-flex align-items-center" href="/admin/accepted"><i data-feather="check-square"></i><span
@@ -267,12 +275,17 @@
                             data-feather="user-plus"></i><span class="menu-title text-truncate"
                             data-i18n="Documentation">Manajemen Admin</span></a>
                 </li>
-                <li class="nav-item @if (Request::is('admin/list-applicant')) active @endif"><a
-                        class="d-flex align-items-center" href="/admin/list-applicant" data-toggle="tooltip"
-                        data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
-                            class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
-                </li>
+
             @endrole
+
+            @if ($admin_kepeg == true)
+                <li class="nav-item @if (Request::is('admin/list-applicant')) active @endif"><a
+                    class="d-flex align-items-center" href="/admin/list-applicant" data-toggle="tooltip"
+                    data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
+                        class="menu-item text-truncate" data-i18n="Second Level">Daftar Karyawan</span></a>
+                </li>
+            @endif
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i
                         data-feather="log-out"></i><span class="menu-title text-truncate"
                         data-i18n="Raise Support">Logout</span></a>
