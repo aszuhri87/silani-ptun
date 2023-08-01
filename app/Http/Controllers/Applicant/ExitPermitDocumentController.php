@@ -21,6 +21,7 @@ class ExitPermitDocumentController extends Controller
     public function __construct()
     {
         date_default_timezone_set('Asia/Jakarta');
+        setlocale(LC_TIME, 'Indonesia');
     }
 
     public function index()
@@ -53,6 +54,9 @@ class ExitPermitDocumentController extends Controller
             'users.name',
             'units.name as unit',
             'exit_permit_documents.*',
+            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay TMMonth YYYY') as date_sign"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             DB::raw("
                 CASE WHEN exit_permit_documents.approver = '".Auth::user()->name."' AND exit_permit_documents.status IS NULL THEN 'Menunggu Konfirmasi Anda'
                 WHEN exit_permit_documents.approver != users.name AND exit_permit_documents.status IS NULL THEN CONCAT('Menunggu persetujuan ', exit_permit_documents.approver)
@@ -128,15 +132,15 @@ class ExitPermitDocumentController extends Controller
 
     public function show($id)
     {
-        $data = DB::table('exit_permit_documents')
-        ->select([
+        $data = ExitPermitDocument::
+        select([
             'exit_permit_documents.id',
             'users.name',
             'users.nip',
             'users.gol',
             'units.name as unit',
             DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
-            DB::raw("to_char(exit_permit_documents.datetime, 'dd TMMonth YYYY') as date_sign"),
+            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay TMMonth YYYY') as date_sign"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',
             'exit_permit_documents.approver',

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,4 +31,10 @@ class OutgoingLetter extends Model
     ];
 
     protected $dates = ['deleted_at'];
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+        ->diffForHumans();
+    }
 }
+

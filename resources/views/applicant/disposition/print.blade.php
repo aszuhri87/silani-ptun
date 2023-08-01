@@ -168,7 +168,7 @@
                 </div>
                 <div style="display: flex; margin-bottom: 3px;">
                 <span>
-                    <p class="no-space">9. Kasub Umum dan Keuangan</p>
+                    <p class="no-space">9. Kasub Perencanaan, TI dan Pelaporan</p>
                 </span>
                     <p class="no-space forward-9" style="float: left;"></p>
                 </div>
@@ -178,11 +178,11 @@
                 <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Wakil Ketua') checked  @endif @endforeach>
                 <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera')  checked @endif @endforeach>
                 <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Sekretaris')checked @endif @endforeach>
-                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Hukum') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Perkara') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input  type="checkbox" style="padding-top: 18px;"  @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Kepegawaian, Ortala') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
-                <input type="checkbox" style="padding-top: 20px;" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') style="background-color: red; border-radius: 5px; color: white; " @endif @endforeach>
+                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Hukum') checked @endif @endforeach>
+                <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Perkara') checked @endif @endforeach>
+                <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') checked @endif @endforeach>
+                <input  class="no-space" type="checkbox" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Kepegawaian, Ortala') checked @endif @endforeach>
+                <input class="no-space" type="checkbox" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') checked @endif @endforeach>
             </td>
         </tr>
         <tr>
