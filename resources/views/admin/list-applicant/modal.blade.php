@@ -50,6 +50,7 @@
                                         <option value="Analis Perencanaan">Analis Perencanaan</option>
                                         <option value="Analis Perencanaan, Evaluasi, dan Pelaporan">Analis Perencanaan, Evaluasi, dan Pelaporan</option>
                                         <option value="Analis Pengelolaan Keuangan APBN">Analis Pengelola APBN</option>
+                                        <option value="Pranata Keuangan APBN">Pranata Keuangan APBN</option>
                                         <option value="Analis Kepegawaian">Analis Kepegawaian</option>
                                         <option value="Analis Perkara Peradilan">Analis Perkara Peradilan</option>
                                         <option value="Analis SDM Aparatur">Analis SDM Aparatur</option>
