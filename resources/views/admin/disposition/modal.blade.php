@@ -81,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="uploaded_file">File Surat</label>
-                                <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" accept=".pdf" data-allowed-file-extensions="pdf">
+                                <input type="file" name="uploaded_file" id="uploaded_file" class="dropify" accept=".pdf" data-allowed-file-extensions="pdf" data-max-file-size-preview="5M">
                                 <label style="font-size: 8pt;">*Format harus pdf</label>
                             </div>
                             {{-- <div class="form-group">
