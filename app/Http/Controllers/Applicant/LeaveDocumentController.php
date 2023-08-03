@@ -101,6 +101,7 @@ class LeaveDocumentController extends Controller
         $approver = LeaveApproval::create([
             'leave_document_id' => $data->id,
             'user_id' => $request->chief,
+            'type' => "ATASAN"
         ]);
 
         $user = User::where('id', $request->chief)->first();
@@ -125,6 +126,7 @@ class LeaveDocumentController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $data = LeaveDocument::where('id', $id);
         $approver = LeaveApproval::where('leave_document_id', $id);
         $sign = Signature::where('user_id', Auth::user()->id)->first();
@@ -136,12 +138,11 @@ class LeaveDocumentController extends Controller
             $signature = null;
         }
 
-
         if ($request->approver) {
-            if (Auth::user()->title == 'Ketua') {
-                $types = "PEJABAT";
-            } else {
+            if ($request->chief_final) {
                 $types = "ATASAN";
+            } else {
+                $types = "PEJABAT";
             }
 
             $approver->where('user_id', Auth::user()->id);
@@ -149,26 +150,24 @@ class LeaveDocumentController extends Controller
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
                 'signature' =>  $signature,
-                'type' => $types,
+                'type' =>  $types,
             ]);
 
-            if ($types = 'ATASAN' && $request->approval_status = 'Disetujui') {
-                $ketua = User::where('title', 'Ketua')->whereNull('deleted_at')->first();
+            if ($request->chief_final && $request->approval_status = 'Disetujui') {
                 $approver->create([
                     'leave_document_id' => $id,
-                    'user_id' => $ketua->id,
+                    'user_id' => $request->chief_final,
                     'note' => null,
                     'status' => null,
                     'signature' => null,
                     'type' => 'PEJABAT',
                 ]);
-            } else if (Auth::user()->title == 'Ketua' && $request->approval_status = 'Disetujui') {
-                // $approver->where('user_id', Auth::user()->id);
+            } else if ($approver->where('user_id', Auth::user()->id)->first()->type == "PEJABAT" && $request->approval_status = 'Disetujui') {
                 $approver->update([
                     'note' => $request->approval_note,
                     'status' => $request->approval_status,
                     'signature' =>  $signature,
-                    'type' => $types,
+                    'type' => "PEJABAT",
                 ]);
             }
 
@@ -176,9 +175,10 @@ class LeaveDocumentController extends Controller
                 'status' => 'Disetujui oleh '.Auth::user()->name,
             ]);
 
-            $user = User::where("title", "Ketua")->first();
-            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
-
+            if($request->chief_final){
+                $user = User::where("id", $request->chief_final)->first();
+                $user->notify(new NewLetter('leave', $id, $user, 'leave'));
+            }
         } else {
             $data->update([
                 'user_id' => Auth::user()->id,

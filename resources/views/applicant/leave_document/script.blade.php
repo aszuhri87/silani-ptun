@@ -26,6 +26,7 @@
                     }
                 });
 
+
                 $('#select-unit').select2({
                     placeholder: "Pilih Unit Kerja...",
                     minimumInputLength: 2,
@@ -56,6 +57,15 @@
                 var dt = e.params.data.id;
 
                 $('input[name="chief"]').val(dt);
+
+            });
+
+            $('#select-chief').on('select2:select', function (e) {
+                e.preventDefault();
+
+                var dt = e.params.data.id;
+
+                $('input[name="chief_final"]').val(dt);
 
             });
 
@@ -106,7 +116,7 @@
                     }
 
                     for(let i=0; i< data.data.approval.length; i++){
-                        if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!} || {!! json_encode(Auth::user()->title)!!} == 'Ketua'){
+                        if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!}){
                             // console.log({!! json_encode(Auth::user()->id)!!});
                             $('.econtent').html(`
                                 <div class="form-group">
@@ -128,6 +138,15 @@
 
                                 <input type="hidden" name="approver" value="true">
                             `);
+
+                            console.log(data.data.approval[i].approval_type);
+
+                            if(data.data.approval[i].approval_type == "ATASAN"){
+                                $('#select-atasan').text("Cari Pejabat");
+                                $('#atasan').attr('name', 'chief_final');
+                            } else {
+                                $('#atasan-div').remove();
+                            }
                         }
                     }
                 });

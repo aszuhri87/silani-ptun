@@ -182,7 +182,7 @@
                 <input class="no-space"  type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Panitera Muda Perkara') checked @endif @endforeach>
                 <input class="no-space" type="checkbox"  @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') checked @endif @endforeach>
                 <input  class="no-space" type="checkbox" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Kepegawaian, Ortala') checked @endif @endforeach>
-                <input class="no-space" type="checkbox" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Umum dan Keuangan') checked @endif @endforeach>
+                <input class="no-space" type="checkbox" @foreach ($data->disposition as $d) @if ($d->role == 'Kasub Perencanaan, TI dan Pelaporan') checked @endif @endforeach>
             </td>
         </tr>
         <tr>

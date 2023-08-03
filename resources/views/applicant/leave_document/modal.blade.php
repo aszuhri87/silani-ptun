@@ -70,17 +70,13 @@
                             <div class="form-group">
                                 <input class="form-control" type="text" name="phone" id="phone" required>
                             </div>
-
-                            {{-- <label for="phone" id="phone" class="form-label mt-1">Masa Kerja</label>
+                        </div>
+                        <div class="col-md-12 mt-1" id="atasan-div">
+                            <label for="nama" id="select-atasan">Cari Atasan</label>
                             <div class="form-group">
-                                <input class="form-control" type="text" name="working_time" id="working_time" required>
-                            </div> --}}
-
-                            <label for="nama">Cari Atasan</label>
-                            <div class="form-group">
-                                <select class=" form-control" id="select-chief" data-toggle="collapse" required
+                                <select class="select-pejat form-control" id="select-chief" data-toggle="collapse" required
                                     data-target="#timeline"></select>
-                                <input type="hidden" name="chief">
+                                <input id="atasan" type="hidden" name="chief">
                             </div>
                         </div>
                 </div>

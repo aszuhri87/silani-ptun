@@ -216,6 +216,7 @@ class DispositionDocumentController extends Controller
             'users.name',
         ])
         ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+        ->where('disposition_users.disposition_document_id', $id)
         ->whereNull('disposition_users.deleted_at')
         ->get();
 
