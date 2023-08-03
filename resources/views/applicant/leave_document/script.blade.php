@@ -227,7 +227,7 @@
                             else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
                                 $('.agree-3').text('✓');
                             }
-                            else{
+                            else if(data.data.approval[i].approval_status == 'Tidak Disetujui'){
                                 $('.agree-4').text('✓');
                             }
 
