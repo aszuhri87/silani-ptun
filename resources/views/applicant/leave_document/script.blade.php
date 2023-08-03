@@ -139,8 +139,6 @@
                                 <input type="hidden" name="approver" value="true">
                             `);
 
-                            console.log(data.data.approval[i].approval_type);
-
                             if(data.data.approval[i].approval_type == "ATASAN"){
                                 $('#select-atasan').text("Cari Pejabat");
                                 $('#atasan').attr('name', 'chief_final');

@@ -337,16 +337,16 @@
 
                         if(data.data.approval[i].approval_type == 'PEJABAT'){
                             if(data.data.approval[i].approval_status == 'Disetujui'){
-                                $('.final-agree-1').text('✓');
+                                $('.agree-1').text('✓');
                             }
                             else if(data.data.approval[i].approval_status == 'Perubahan'){
-                                $('.final-agree-2').text('✓');
+                                $('.agree-2').text('✓');
+                            }
+                            else if(data.data.approval[i].approval_status == 'Ditangguhkan'){
+                                $('.agree-3').text('✓');
                             }
                             else if(data.data.approval[i].approval_status == 'Tidak Disetujui'){
-                                $('.final-agree-4').text('✓');
-                            }
-                            else{
-                                $('.final-agree-4').text('');
+                                $('.agree-4').text('✓');
                             }
 
                             $('.ketua-sign').html(`
