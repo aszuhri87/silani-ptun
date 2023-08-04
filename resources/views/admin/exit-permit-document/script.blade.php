@@ -148,6 +148,8 @@
                     $('.name_sign').text('( '+data.data.name+' )');
                     $('.time').text(' : '+data.data.time);
                     $('.approver').text(data.data.approver);
+                    $('.title_approver').text(data.data.title);
+
 
                     if (data.data.status == 'Ditolak'){
                         $('.status-note').html(

@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Basic -->
-                    <div class="col-md-12" >
+                    <div class="col-md-12">
                         <form id="form-doc-category" name="form-doc-category" class="auth-register-form mt-2">
                             <div class="main">
                                 <label for="nama">Nama</label>
@@ -32,8 +32,8 @@
 
                                 <label for="reason" id="reason" class="form-label">Alasan</label>
                                 <div class="input-group">
-                                    <textarea data-length="50" class="form-control char-textarea" id="reason" name="reason" required
-                                        rows="3" placeholder="" required></textarea>
+                                    <textarea data-length="50" class="form-control char-textarea" id="reason" name="reason" required rows="3"
+                                        placeholder="" required></textarea>
                                 </div>
                                 <small class="textarea-counter-value float-right bg-success"><span
                                         class="char-count">0</span> / 50 </small>
@@ -41,11 +41,13 @@
                                 <div class="row mt-1">
                                     <div class="col-6">
                                         <label class="form-label">Tanggal</label>
-                                        <input class="form-control" type="date" name="date" id="date" required>
+                                        <input class="form-control" type="date" name="date" id="date"
+                                            required>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-label">Waktu</label>
-                                        <input class="form-control" type="time" name="time" id="time" required>
+                                        <input class="form-control" type="time" name="time" id="time"
+                                            required>
                                     </div>
                                 </div>
 
@@ -95,15 +97,17 @@
                                 <!-- Basic -->
                                 <div class="row mt-2">
                                     <div class="col-2">
-                                        <img src="{{asset('logo.png')}}" alt=""
+                                        <img src="{{ asset('logo.png') }}" alt=""
                                             style="min-height: 50px; max-height: 100px;" width="auto"
                                             style="margin-left: 30%;">
 
                                     </div>
                                     <div class="col-10 text-center">
                                         <div style="margin-right: 15%;">
-                                            <h3 style="font-family: 'Times New Roman', Times, serif; font-weight: 700;">
-                                                <b>PENGADILAN TATA USAHA NEGARA YOGYAKARTA </b></h3>
+                                            <h3
+                                                style="font-family: 'Times New Roman', Times, serif; font-weight: 700;">
+                                                <b>PENGADILAN TATA USAHA NEGARA YOGYAKARTA </b>
+                                            </h3>
                                             <p style="font-size:11px; font-weight: 700;">Jl. Janti No.66 Banguntapan
                                                 Telp. (0274) 520502 Faks. (0274)581675 <br>
                                                 Yogyakarta 5518</p>
@@ -122,10 +126,9 @@
 
                                 <div class="mt-5"
                                     style="font-family: 'Times New Roman', Times, serif; margin-left: 3%;">
-                                    Pejabat : <input type="text" name="from" style="border: 0;">
-                                    <input class="form-control" style="border: 0;" type="text" name="name" id="name"
-                                        placeholder="...........................................................................................................................................................................................................................................................................................">
-                                    <hr style="border-top: dotted 1px;" />
+                                    Pejabat :
+                                    <p class="approver"></p>
+
                                     <p> Memberikan izin keluar kantor kepada:</p>
                                     <table class="mb-5">
                                         <tr>
@@ -134,7 +137,8 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="name" style="white-space: none; margin: 0; ">...........................................</p>
+                                                    <p class="name" style="white-space: none; margin: 0; ">
+                                                        ...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -144,7 +148,8 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="nip" style="white-space: none; margin: 0; "> :...........................................</p>
+                                                    <p class="nip" style="white-space: none; margin: 0; ">
+                                                        :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -154,7 +159,8 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="unit" style="white-space: none; margin: 0; "> :...........................................</p>
+                                                    <p class="unit" style="white-space: none; margin: 0; ">
+                                                        :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -171,7 +177,8 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="date" style="white-space: none; margin: 0; "> :...........................................</p>
+                                                    <p class="date" style="white-space: none; margin: 0; ">
+                                                        :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -181,7 +188,8 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="time" style="white-space: none; margin: 0; "> :...........................................</p>
+                                                    <p class="time" style="white-space: none; margin: 0; ">
+                                                        :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -191,7 +199,8 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="reason" style="white-space: none; margin: 0; "> :...........................................</p>
+                                                    <p class="reason" style="white-space: none; margin: 0; ">
+                                                        :...........................................</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -202,9 +211,9 @@
                                             <td width="10%"></td>
                                             <td width="10%"></td>
                                             <td class="" width="50%" style="margin:0; white-space: nowrap;">
-                                                <div class="d-flex pl-1">
-                                                  Yogyakarta, &nbsp
-                                                    <p class="date_sign"> </p>
+                                                <div class="d-flex pl-1" style="white-space: nowrap; ">
+                                                    Yogyakarta, &nbsp
+                                                    <p class="date_sign" style="white-space: nowrap; "> </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -212,9 +221,14 @@
                                             <td width="25%"></td>
                                             <td width="10%"></td>
                                             <td width="10%"></td>
-                                            <td class="" width="50%" style="white-space: nowrap;">
-                                                <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang memberikan izin: </p>
-                                                <p class="approver text-center" style="white-space: none; margin: 0; ">...........................................</p>
+                                            <td class="" width="50%"
+                                                style="white-space: nowrap; text-align:center;">
+                                                <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang
+                                                    memberikan izin: </p>
+                                                <p class="title_approver text-center mt-1"
+                                                    style="white-space: none; margin: 0; ">
+                                                    ...........................................</p>
+                                                PTUN YOGYAKARTA
                                             </td>
                                         </tr>
                                         <tr>
@@ -231,7 +245,8 @@
                                             <td width="10%"></td>
                                             <td width="10%"></td>
                                             <td width="50%" height="30%" style="white-space: nowrap;">
-                                                <p class="name_sign text-center" style="white-space: none; margin: 0; ">(....................)</p>
+                                                <p class="approver text-center"
+                                                    style="white-space: none; margin: 0; ">(....................)</p>
                                             </td>
                                         </tr>
                                     </table>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\IdDate;
 use App\Libraries\PageLib;
 use App\Models\ExitPermitDocument;
 use App\Models\User;
@@ -116,9 +117,8 @@ class ExitPermitDocumentController extends Controller
             'users.nip',
             'users.gol',
             'units.name as unit',
-            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            'exit_permit_documents.datetime',
             DB::raw("to_char(exit_permit_documents.datetime, 'yyyy-MM-dd') as date_input"),
-            DB::raw("to_char(exit_permit_documents.datetime, 'dd TMMonth YYYY') as date_sign"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',
             'exit_permit_documents.approver',
@@ -131,6 +131,14 @@ class ExitPermitDocumentController extends Controller
         ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->whereNull('users.deleted_at')
         ->first();
+
+        $approver = User::where('name', 'ilike', '%'.$data->approver)->first();
+
+        $date = IdDate::translate($data->datetime);
+
+        $data->title = strtoupper($approver->title);
+        $data->date = $date->format('l/j F Y');
+        $data->date_sign = $date->format('l/j F Y');
 
         return response([
             'data' => $data,
@@ -166,7 +174,7 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.approver',
             'exit_permit_documents.status',
             'exit_permit_documents.signature',
-            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
+            // DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
@@ -174,6 +182,13 @@ class ExitPermitDocumentController extends Controller
         ->where('exit_permit_documents.id', $id)
         ->whereNull('exit_permit_documents.deleted_at')
         ->first();
+
+        $approver = User::where('name', 'ilike', '%'.$data->approver)->first();
+        $data->title =  strtoupper($approver->title);
+
+        $date = IdDate::translate($data->datetime);
+        $data->datetime = $date->format('l/j F Y');
+        $data->date = $date->format('l/j F Y');
 
         if ($data->signature) {
             $sign = base64_encode(file_get_contents(public_path('/signature/'.$data->signature)));

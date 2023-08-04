@@ -116,7 +116,7 @@ class DocumentController extends Controller
             'documents.name',
             'documents.status',
             'users.name as chief_name',
-             DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
+             'documents.updated_at as date_create',
             'document_categories.name as document_category',
         ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
         ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
@@ -233,7 +233,7 @@ class DocumentController extends Controller
             'documents.name',
             'documents.status',
             'users.name as receiver_name',
-             DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
+             'documents.updated_at as date_create',
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',

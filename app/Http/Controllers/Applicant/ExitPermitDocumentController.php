@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\IdDate;
 use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\ExitPermitDocument;
 use App\Models\Unit;
 use App\Models\User;
 use App\Notifications\NewLetter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -139,8 +141,7 @@ class ExitPermitDocumentController extends Controller
             'users.nip',
             'users.gol',
             'units.name as unit',
-            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
-            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay TMMonth YYYY') as date_sign"),
+            'exit_permit_documents.datetime',
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',
             'exit_permit_documents.approver',
@@ -154,9 +155,16 @@ class ExitPermitDocumentController extends Controller
         ->whereNull('users.deleted_at')
         ->first();
 
+        $approver = User::where('name', 'ilike', '%'.$data->approver)->first();
+        $data->title = strtoupper($approver->title);
+
+        $date = IdDate::translate($data->datetime);
+        $data->date = $date->format('l/j F Y');
+        $data->date_sign = $date->format('l/j F Y');
+
         return response([
             'data' => $data,
-            'message' => 'Data Terubah',
+            'message' => 'Data loaded',
         ], 200);
     }
 
@@ -176,8 +184,7 @@ class ExitPermitDocumentController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
 
-        $data = DB::table('exit_permit_documents')
-        ->select([
+        $data = ExitPermitDocument::select([
             'exit_permit_documents.id',
             'users.name',
             'units.name as unit',
@@ -188,7 +195,6 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.approver',
             'exit_permit_documents.status',
             'exit_permit_documents.signature',
-            DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
@@ -202,6 +208,13 @@ class ExitPermitDocumentController extends Controller
         } else {
             $sign = null;
         }
+
+        $approver = User::where('name', 'ilike', '%'.$data->approver)->first();
+        $data->title =  strtoupper($approver->title);
+
+        $date = IdDate::translate($data->datetime);
+        $data->datetime = $date->format('l/j F Y');
+        $data->date = $date->format('l/j F Y');
 
         $pdf = PDF::loadView('/applicant/exit-permit-document/print',
         [

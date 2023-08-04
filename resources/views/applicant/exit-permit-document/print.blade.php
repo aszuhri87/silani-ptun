@@ -116,9 +116,11 @@
                <td></td>
                <!-- <td></td> -->
                <!-- <td></td> -->
-               <td style="white-space: nowrap;">
+               <td style="white-space: nowrap; text-align: center;">
                     Pejabat yang memberikan izin: <br>
-                    {{$data->approver}}
+                    <div style="margin-top: 10px;">
+                    {{$data->title}} <br>
+                    PTUN YOGYAKARTA
                </td>
            </tr>
            <tr>
@@ -141,7 +143,7 @@
                <!-- <td></td> -->
                <!-- <td></td> -->
                <td style="white-space: nowrap;">
-                   <p style="margin-top: 100px; text-align:center;"> ( {{$data->name}} )</p>
+                   <p style="margin-top: 100px; text-align:center;"> ( {{$data->approver}} )</p>
                </td>
            </tr>
        </table>

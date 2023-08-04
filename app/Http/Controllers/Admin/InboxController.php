@@ -54,7 +54,7 @@ class InboxController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
-            DB::raw("to_char(documents.created_at , 'dd TMMonth YYYY, HH24:mi' ) as date_create"),
+            'documents.updated_at as date_create',
             'document_categories.name as document_category',
             'document_categories.unit_id',
             'applicants.name as applicant',
