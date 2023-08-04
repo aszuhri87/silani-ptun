@@ -61,7 +61,7 @@ class ApplicantController extends Controller
             $result = DB::transaction(function () use ($request) {
                 $user = User::create([
                     'name' => $request->name,
-                    'username' => $request->username,
+                    'username' => (string)$request->username,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'title' => $request->title,
@@ -102,7 +102,7 @@ class ApplicantController extends Controller
                 $user = User::find($id);
                 $user->update([
                     'name' => $request->name ? $request->name : $user->name,
-                    'username' => $request->username ? $request->username : $user->username,
+                    'username' => (string)$request->username ? (string)$request->username : (string)$user->username,
                     'email' => $request->email ? $request->email : $user->email,
                     'title' => $request->title ? $request->title : $user->title,
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
