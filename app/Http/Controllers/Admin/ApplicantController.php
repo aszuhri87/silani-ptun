@@ -107,7 +107,8 @@ class ApplicantController extends Controller
                     'title' => $request->title ? $request->title : $user->title,
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
                     'gol' => $request->gol ? $request->gol : $user->gol,
-                    'nip' => $request->nip ? $request->nip : $user->nip
+                    'nip' => $request->nip ? $request->nip : $user->nip,
+                    'email_verified_at' => $user->email_verified_at ? $user->email_verified_at : date('Y-m-d H:i:s'),
                 ]);
 
                 $appl = Applicant::where('user_id', $id);
