@@ -35,6 +35,38 @@
             margin: 0;
             padding: 5px;
         }
+
+        #tick-mark {
+            position: relative;
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+        }
+
+        #tick-mark::before {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: 50%;
+            width: 2px;
+            background-color: #000000;
+            content: "";
+            transform: translateX(10px) rotate(-45deg);
+            transform-origin: left bottom;
+        }
+
+        #tick-mark::after {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background-color: #000000;
+            content: "";
+            transform: translateX(10px) rotate(-45deg);
+            transform-origin: left bottom;
+        }
+
     </style>
 </head>
 <body>
@@ -64,22 +96,19 @@
             </td>
             <td colspan="2">
                 <div class="d-flex">
-                    <p class="no-space">
-                        Rahasia : @if ($data->letter_type == 'Rahasia') Ya @endif
-                    </p>
-                    <p class="no-space code" style="float: left;"></p>
+                    <div class="no-space">
+                        Rahasia : @if ($data->letter_type == 'Rahasia') <p class="no-space" id="tick-mark"></p> @endif
+                    </div>
                 </div>
                 <div class="d-flex">
-                    <p class="no-space">
-                        Penting : @if ($data->letter_type == 'Penting') Ya @endif
-                    </p>
-                    <p class="no-space code" style="float: left;"></p>
+                    <div class="no-space">
+                        Penting : @if ($data->letter_type == 'Penting') <p class="no-space" id="tick-mark"></p> @endif
+                    </div>
                 </div>
                 <div class="d-flex">
-                    <p class="no-space">
-                        Biasa : @if ($data->letter_type == 'Biasa') Ya @endif
-                    </p>
-                    <p class="no-space code" style="float: left;"></p>
+                    <div class="no-space">
+                        Biasa : @if ($data->letter_type == 'Biasa') <p class="no-space" id="tick-mark"></p> @endif
+                    </div>
                 </div>
             </td>
         </tr>

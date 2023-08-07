@@ -64,22 +64,19 @@
             </td>
             <td colspan="2">
                 <div class="d-flex">
-                    <p class="no-space">
-                        Rahasia : @if ($data->letter_type == 'Rahasia') Ya @endif
-                    </p>
-                    <p class="no-space code" style="float: left;"></p>
+                    <div class="no-space">
+                        Rahasia : @if ($data->letter_type == 'Rahasia') <p class="no-space" id="tick-mark"></p> @endif
+                    </div>
                 </div>
                 <div class="d-flex">
-                    <p class="no-space">
-                        Penting : @if ($data->letter_type == 'Penting') Ya @endif
-                    </p>
-                    <p class="no-space code" style="float: left;"></p>
+                    <div class="no-space">
+                        Penting : @if ($data->letter_type == 'Penting') <p class="no-space" id="tick-mark"></p> @endif
+                    </div>
                 </div>
                 <div class="d-flex">
-                    <p class="no-space">
-                        Biasa : @if ($data->letter_type == 'Biasa') Ya @endif
-                    </p>
-                    <p class="no-space code" style="float: left;"></p>
+                    <div class="no-space">
+                        Biasa : @if ($data->letter_type == 'Biasa') <p class="no-space" id="tick-mark"></p> @endif
+                    </div>
                 </div>
             </td>
         </tr>

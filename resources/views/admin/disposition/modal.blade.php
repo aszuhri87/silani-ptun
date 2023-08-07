@@ -31,8 +31,9 @@
 
                                 <div class="form-group">
                                     <label for="letter_type">Jenis Surat</label>
-                                    <select class=" form-control" id="letter_type" data-toggle="collapse"
+                                    <select class=" form-control" id="letter_type" data-toggle="collapse" name="letter_type"
                                         data-target="#timeline" required>
+                                        <option value="">-- Pilih --</option>
                                         <option value="Rahasia">Rahasia</option>
                                         <option value="Penting">Penting</option>
                                         <option value="Biasa">Biasa</option>

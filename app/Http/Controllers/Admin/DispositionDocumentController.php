@@ -121,13 +121,13 @@ class DispositionDocumentController extends Controller
         $file_name = null;
 
         try {
+            dd($request->letter_type);
             if ($request->hasFile('uploaded_file')) {
                 $file = $request->file('uploaded_file');
                 $file_name = date('Y-m-d_s').'.pdf';
                 $file->move(public_path().'/files/', $file_name);
             }
 
-            // dd($file_name);
             // dd($request->index);
 
             $data = DispositionDocument::find($id);

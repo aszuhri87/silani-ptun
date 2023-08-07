@@ -348,7 +348,7 @@
                 if (data.unit){
                     $('#form-disposition').find('select[id="select-unit"]').append(`<option value="`+ data.unit +`">`+ data.unit +`</option>`)
                 }
-
+                $('#form-disposition').find('select[id="letter_type"]').find('option[value=' + data.letter_type + ']').prop('selected', true);
                 $('#form-disposition').find('input[name="index"]').val(data.index);
                 $('#form-disposition').find('input[name="agenda_number"]').val(data.agenda_number);
                 $('#form-disposition').find('input[name="code"]').val(data.code);
