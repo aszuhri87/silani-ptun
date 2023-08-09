@@ -36,7 +36,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return route('applicant.dashboard');
+                return "applicant/dashboard";
             }
         }
         // if (Auth::check()) {
