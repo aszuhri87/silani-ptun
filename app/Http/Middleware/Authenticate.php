@@ -19,7 +19,9 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
             Alert::error('Gagal', 'Email atau password salah!');
 
-            return redirect('login');
+            return redirect('login')->withErrors([
+                'email' => 'Email atau password salah!',
+            ]);
         }
     }
 }
