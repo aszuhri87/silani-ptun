@@ -107,7 +107,7 @@
                     $('input[name="working_time"]').val(data.data.working_time);
                     $('input[name="leave_long"]').val(data.data.leave_long);
                     // console.log(data.data.approval);
-                    if (data.data.approval[0].chief){
+                    if (data.data.approval[0].chief && data.data.user_id == {!! json_encode(Auth::user()->id)!!}){
                         $('select[id="select-chief"]').append(`<option value="`+ data.data.approval[0].user_id  +`">`+ data.data.approval[0].chief +`</option>`)
                     }
 
@@ -139,12 +139,25 @@
                                 <input type="hidden" name="approver" value="true">
                             `);
 
+                            var approv = null;
+
                             if(data.data.approval[i].approval_type == "ATASAN"){
+                                $('#approval_status').change(function(event){
+                                    approv = $(this).val();
+
+                                    if (approv != 'Disetujui'){
+                                        $('#select-chief').prop('disabled', true);
+                                    } else {
+                                        $('#select-chief').prop('disabled', false);
+                                    }
+                                });
+
                                 $('#select-atasan').text("Cari Pejabat");
                                 $('#atasan').attr('name', 'chief_final');
                             } else {
                                 $('#atasan-div').remove();
                             }
+
                         }
                     }
                 });

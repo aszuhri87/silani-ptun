@@ -392,7 +392,7 @@ aria-hidden="true">
                                 Unit Kerja
                             </td>
                             <td style="border: 1px solid;" colspan="3">
-                                <p class="unit ml-1" style="padding: 0; margin: 0;  white-space:0;"></p>
+                                <p class="ml-1" style="padding: 0; margin: 0;  white-space:0;"> Pengadilan Tata Usaha Negara Yogyakarta </p>
                             </td>
                         </tr>
                     </table>
@@ -614,7 +614,7 @@ aria-hidden="true">
                             <td style="border-right: 1px solid;">
 
                             </td>
-                            <td style="border-right: 1px solid; border-left: 1px solid;" class="user-sign">
+                            <td style="border-right: 1px solid; border-left: 1px solid; padding-left: 55px;" class="user-sign">
 
                             </td>
                         </tr>
@@ -680,7 +680,7 @@ aria-hidden="true">
                             <td style="border-right: 1px solid; border-left: 1px solid;" colspan="3">
                                 <p class="atasan_notes ml-1"> </p>
                             </td>
-                            <td style="border-right: 1px solid; border-left: 1px solid; text-align:center;" class="atasan_sign">
+                            <td style="border-right: 1px solid; border-left: 1px solid; text-align:center;" class="atasan-sign">
 
 
                             </td>

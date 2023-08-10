@@ -127,7 +127,7 @@
                                 <div class="mt-5"
                                     style="font-family: 'Times New Roman', Times, serif; margin-left: 3%;">
                                     Pejabat :
-                                    <p class="approver"></p>
+                                    <p class="jabatan"></p>
 
                                     <p> Memberikan izin keluar kantor kepada:</p>
                                     <table class="mb-5">
@@ -213,7 +213,7 @@
                                             <td class="" width="50%" style="margin:0; white-space: nowrap;">
                                                 <div class="d-flex pl-1" style="white-space: nowrap; ">
                                                     Yogyakarta, &nbsp
-                                                    <p class="date_sign" style="white-space: nowrap; "> </p>
+                                                    <p class="date_sign" style="white-space: nowrap; margin:0;"> </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -222,7 +222,7 @@
                                             <td width="10%"></td>
                                             <td width="10%"></td>
                                             <td class="" width="50%"
-                                                style="white-space: nowrap; text-align:center;">
+                                                style="white-space: nowrap; text-align:center; ">
                                                 <p class="pl-1" style="white-space: none; margin: 0;">Pejabat yang
                                                     memberikan izin: </p>
                                                 <p class="title_approver text-center mt-1"
@@ -236,7 +236,7 @@
                                             <td width="20%"></td>
                                             <td width="25%"></td>
                                             <td width="30%" height="30%">
-                                                <div class="signature">
+                                                <div class="signature" style="padding-left: 37px;">
                                                 </div>
                                             </td>
                                         </tr>

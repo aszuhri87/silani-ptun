@@ -133,7 +133,8 @@
             $(document).on('click', '.btn-detail', function(event){
                 event.preventDefault();
 
-                var id = $(this).data('id');
+                var id =  DocsCategoryTable.table().row($(this).parents('tr')).data().id;
+
                 var url = $(this).attr('href');
                 var dt = DocsCategoryTable.table().row($(this).parents('tr')).data();
                 var data_unit = <?php echo json_encode($data)?>;
@@ -167,11 +168,19 @@
 
 
                     for(let i = 0; i < disposition.length; i++){
+                        console.log(disposition[i].instruction);
+                        let instruction = null;
+                        if(disposition[i].instruction == null || disposition[i].instruction == "null"){
+                            instruction = "";
+                        } else {
+                            instruction = "- "+disposition[i].instruction;
+                        }
+
                         if(disposition[i].role == 'Ketua'){
                             $('.forward-1').text('✓');
                             $('.ketua-instruction').append(`
-                                <p class="ketua_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="ketua_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -179,8 +188,8 @@
                         if(disposition[i].role == 'Wakil Ketua'){
                             $('.forward-2').text('✓');
                             $('.ketua-instruction').append(`
-                                <p class="waketua_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="waketua_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -188,8 +197,8 @@
                         if(disposition[i].role == 'Panitera'){
                             $('.forward-3').text('✓');
                             $('.panitera-instruction').append(`
-                                <p class="panitera_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="panitera_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -197,8 +206,8 @@
                         if(disposition[i].role == 'Sekretaris'){
                             $('.forward-4').text('✓');
                             $('.sekretaris-instruction').append(`
-                                <p class="sekretaris_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="sekretaris_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -206,8 +215,8 @@
                         if(disposition[i].role == 'Panitera Muda Hukum'){
                             $('.forward-5').text('✓');
                             $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="panmud_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -215,8 +224,8 @@
                         if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-6').text('✓');
                             $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="panmud_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -224,8 +233,8 @@
                         if(disposition[i].role == 'Kasub Umum dan Keuangan'){
                             $('.forward-7').text('✓');
                             $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="kasubag_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -233,8 +242,8 @@
                         if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
                             $('.forward-8').text('✓');
                             $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="kasubag_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -242,11 +251,27 @@
                         if(disposition[i].role == 'Kasub Perencanaan, TI dan Pelaporan'){
                             $('.forward-9').text('✓');
                             $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="kasubag_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
+                    }
+
+
+                    for (i in data.data.document_file){
+                        $('div#doc_file').append(`
+                            <label for="basicadd`+i+`">`+data.data.document_file[i].type+`</label>
+                            <div class="input-group mb-1">
+                                <span class="input-group-text " id="basicadd`+i+` ">
+                                    <a href="/applicant/document/download/`+data.data.id+`" style="padding-right: 10px;">`+data.data.document_file[i].requirement_value+`</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16"> <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/> <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/> </svg>
+                                    <div class="tooltipLink" style="position:absolute; left:135%; width:50px;">
+                                        <embed src="{{ asset('files/`+data.data.document_file[i].requirement_value+`') }}">
+                                    <div>
+                                </span>
+                            </div>
+                        `);
                     }
 
                     $('div#link_pdf').html(`
@@ -273,10 +298,47 @@
                 $('#form-disposition').attr('action', `{{url('applicant/disposition-update/${data.id}')}}`);
                 $('#form-disposition').attr('method','POST');
 
+                $('#status_false').on('change', function(event){
+                    status = $(this).val()
+                    if(status == 'tolak'){
+                        $('#select-fordward').remove()
+                        $('#label-forward').remove()
+                    }
+                })
+
+                $('#status_true').on('change', function(event){
+                    status = $(this).val()
+                    if(status == 'setuju'){
+                        $('.forward-form').html(
+                            `
+                            <label for="nama" class="mt-2" id="label-forward">Diteruskan kepada</label>
+                                    <div class="form-group">
+                                        <select class=" form-control" id="select-fordward" data-toggle="collapse" required
+                                            data-target="#timeline" name="role" required>
+                                            @if (Auth::user()->title == 'Ketua' || Auth::user()->title == 'Wakil Ketua')
+                                                <option value="Panitera">Panitera</option>
+                                                <option value="Sekretaris">Sekretaris</option>
+                                            @elseif (Auth::user()->title == 'Panitera')
+                                                <option value="Panitera Muda Hukum">Panitera Muda Hukum</option>
+                                                <option value="Panitera Muda Perkara">Panitera Muda Perkara</option>
+                                            @elseif (Auth::user()->title == 'Sekretaris')
+                                                <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
+                                                <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
+                                                <option value="Kasub Perencanaan, TI dan Pelaporan">Kasub Perencanaan, TI dan Pelaporan</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                            `
+                        )
+                    }
+                })
+
                 if(data.status_user == 'setuju'){
                     $('#status_true').prop('checked', true);
+                    // $('#select-fordward').prop('disable', false);
                 } else {
                     $('#status_false').prop('checked', true);
+                    // $('#select-fordward').prop('disable', true);
                 }
 
                 if(role == 'Kasub Umum dan Keuangan' || role == 'Kasub Kepegawaian, Ortala' ||

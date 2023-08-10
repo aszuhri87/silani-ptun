@@ -59,6 +59,8 @@
                     $('#form-doc-verification').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     $('#form-doc-verification').find('textarea[name="notes"]').val(data.notes);
 
+                    console.log(data);
+
                     for (i in data.doc_req){
                         $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].type+`</label>

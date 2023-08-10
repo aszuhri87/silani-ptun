@@ -408,6 +408,34 @@ class LeaveDocumentController extends Controller
         ->whereNull('leave_approvals.deleted_at')
         ->get();
 
+        $signature_pejabat = null;
+        $signature_atasan = null;
+        $signature_pemohon = null;
+
+        if($data->signature){
+            $signature_pemohon = base64_encode(file_get_contents(public_path('signature/'.$data->signature)));
+        } else {
+            $signature_pemohon = null;
+        }
+
+        foreach($user as $u){
+            if($u->approval_type == 'PEJABAT'){
+                if($u->signature){
+                    $signature_pejabat = base64_encode(file_get_contents(public_path('signature/'.$u->signature )));
+                } else {
+                    $signature_pejabat = null;
+                }
+            }
+
+            if($u->approval_type == 'ATASAN'){
+                if ($u->signature){
+                    $signature_atasan = base64_encode(file_get_contents(public_path('signature/'.$u->signature )));
+                } else {
+                    $signature_atasan = null;
+                }
+            }
+        }
+
         $notes = LeaveNote::select([
             'amount',
             'remain',
@@ -426,6 +454,9 @@ class LeaveDocumentController extends Controller
         [
                 'data' => $data,
                 'logo' => base64_encode(file_get_contents(public_path('logo.png'))),
+                'sign_atasan' => $signature_atasan,
+                'sign_pejabat' => $signature_pejabat,
+                'sign_pemohon' => $signature_pemohon
             ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 

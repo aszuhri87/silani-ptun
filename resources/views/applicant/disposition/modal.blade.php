@@ -31,22 +31,24 @@
                                     <input type="radio" name="status" id="status_false" value="tolak">
                                     <label for="status_disagree">Tolak</label>
                                 </div>
-                                <label for="nama" class="mt-2" id="label-forward">Diteruskan kepada</label>
-                                <div class="form-group">
-                                    <select class=" form-control" id="select-fordward" data-toggle="collapse" required
-                                        data-target="#timeline" name="role" required>
-                                        @if (Auth::user()->title == 'Ketua' || Auth::user()->title == 'Wakil Ketua')
-                                            <option value="Panitera">Panitera</option>
-                                            <option value="Sekretaris">Sekretaris</option>
-                                        @elseif (Auth::user()->title == 'Panitera')
-                                            <option value="Panitera Muda Hukum">Panitera Muda Hukum</option>
-                                            <option value="Panitera Muda Perkara">Panitera Muda Perkara</option>
-                                        @elseif (Auth::user()->title == 'Sekretaris')
-                                            <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
-                                            <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
-                                            <option value="Kasub Perencanaan, TI dan Pelaporan">Kasub Perencanaan, TI dan Pelaporan</option>
-                                        @endif
-                                    </select>
+                                <div class="forward-form">
+                                    <label for="nama" class="mt-2" id="label-forward">Diteruskan kepada</label>
+                                    <div class="form-group">
+                                        <select class=" form-control" id="select-fordward" data-toggle="collapse" required
+                                            data-target="#timeline" name="role" required>
+                                            @if (Auth::user()->title == 'Ketua' || Auth::user()->title == 'Wakil Ketua')
+                                                <option value="Panitera">Panitera</option>
+                                                <option value="Sekretaris">Sekretaris</option>
+                                            @elseif (Auth::user()->title == 'Panitera')
+                                                <option value="Panitera Muda Hukum">Panitera Muda Hukum</option>
+                                                <option value="Panitera Muda Perkara">Panitera Muda Perkara</option>
+                                            @elseif (Auth::user()->title == 'Sekretaris')
+                                                <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
+                                                <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
+                                                <option value="Kasub Perencanaan, TI dan Pelaporan">Kasub Perencanaan, TI dan Pelaporan</option>
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
                                 {{-- <div class="form-group">
                                     <label for="uploaded_file">File Surat</label>
@@ -236,7 +238,14 @@
                             </tr>
                         </table>
                         <hr>
-                        <div class="row justify-content-center mt-3" id="files"></div>
+                        <div class="col-12 col-md-6 col-lg-6" >
+                            <label for="requirement_value">Dokumen/File</label>
+
+                            <div class="mt-1" id="doc_file">
+
+                            </div>
+                        </div>
+                        {{-- <div class="row justify-content-center mt-3" id="files"></div> --}}
                             </form>
                         </div>
                     </div>

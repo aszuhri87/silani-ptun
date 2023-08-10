@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
+use App\Models\DocumentRequirement;
 use App\Models\User;
 use App\Notifications\NewLetter;
 use Exception;
@@ -63,7 +64,23 @@ class DispositionDocumentController extends Controller
 
     public function dt()
     {
-        $data = DB::table('disposition_users')->select([
+        // $data = DB::table('disposition_users')->select([
+        //     'disposition_users.user_id',
+        //     'disposition_users.role',
+        //     'disposition_users.note',
+        //     'disposition_users.instruction',
+        //     'disposition_users.status as status_user',
+        //     'disposition_documents.*',
+        //     DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
+        // ])
+        // ->leftJoin('disposition_documents', 'disposition_documents.id', 'disposition_users.disposition_document_id')
+        // ->where('disposition_users.user_id', Auth::user()->id)
+        // ->orWhere('disposition_users.role', Auth::user()->title)
+        // ->whereNull('disposition_documents.deleted_at')
+        // ->orderBy('disposition_documents.created_at', 'desc');
+
+        $data = DB::table('disposition_documents')
+        ->select([
             'disposition_users.user_id',
             'disposition_users.role',
             'disposition_users.note',
@@ -72,13 +89,19 @@ class DispositionDocumentController extends Controller
             'disposition_documents.*',
             DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
         ])
-        ->leftJoin('disposition_documents', 'disposition_documents.id', 'disposition_users.disposition_document_id')
-        ->where('disposition_users.user_id', Auth::user()->id)
-        ->orWhere('disposition_users.role', Auth::user()->title)
+        ->leftJoin('disposition_users', 'disposition_users.disposition_document_id', 'disposition_documents.id')
+        ->where(function ($query) {
+            $query->where('disposition_users.user_id', Auth::user()->id)
+            ->orWhere('disposition_users.role', Auth::user()->title);
+        })
         ->whereNull('disposition_documents.deleted_at')
         ->orderBy('disposition_documents.created_at', 'desc');
 
+        // dd($data->get());
+
         return DataTables::query($data)->addIndexColumn()->make(true);
+
+        // return DataTables::query($data)->addIndexColumn()->make(true);
     }
 
     public function store(Request $request)
@@ -216,20 +239,28 @@ class DispositionDocumentController extends Controller
 
     public function show($id)
     {
-        $data = DispositionDocument::select('*')->where('id', $id)->first();
+        $data = DispositionDocument::select(
+            'disposition_documents.*',
+        )
+        ->where('disposition_documents.id', $id)->first();
+
+        $doc_file = DocumentRequirement::select('requirement_value', 'type')
+        ->where('document_id', $data->document_id)
+        ->whereNull('deleted_at')
+        ->get();
 
         $user = DispositionUser::select([
             'disposition_users.role',
             'disposition_users.instruction',
             'users.name',
-            'disposition_users.status as status_user',
         ])
         ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-        ->where('disposition_document_id', $id)
+        ->where('disposition_users.disposition_document_id', $id)
         ->whereNull('disposition_users.deleted_at')
         ->get();
 
         $data->disposition = $user;
+        $data->document_file = $doc_file;
 
         return response()->json([
             'data' => $data,
@@ -283,6 +314,8 @@ class DispositionDocumentController extends Controller
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
         $name = date('Y-m-d_s').' '.'.pdf';
+
+        // Storage::put('public/pdf/'.$name, $pdf->output());
 
         $pdfVersion = '1.4';
         $newFile = public_path('files/'.$id.'.pdf');

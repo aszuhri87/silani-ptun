@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
+use App\Models\Document;
+use App\Models\DocumentRequirement;
 use App\Models\User;
 use App\Notifications\NewLetter;
 use Exception;
@@ -98,6 +100,7 @@ class DispositionDocumentController extends Controller
 
         $user = User::where('title', $request->role)->first();
 
+
         // if ($user->id == Auth::user()->id) {
         // }
 
@@ -121,7 +124,7 @@ class DispositionDocumentController extends Controller
         $file_name = null;
 
         try {
-            dd($request->letter_type);
+            // dd($request->letter_type);
             if ($request->hasFile('uploaded_file')) {
                 $file = $request->file('uploaded_file');
                 $file_name = date('Y-m-d_s').'.pdf';
@@ -132,7 +135,7 @@ class DispositionDocumentController extends Controller
 
             $data = DispositionDocument::find($id);
             $data->update([
-                'user_id' => $request->role,
+                // 'user_id' => $request->role,
                 'index' => $request->index,
                 'letter_type' => $request->letter_type,
                 'code' => $request->code,
@@ -148,6 +151,13 @@ class DispositionDocumentController extends Controller
             ]);
 
             $user = User::where('title', $request->role)->first();
+
+            $user_disposition = DispositionUser::create([
+                'user_id' => $user->id,
+                'disposition_document_id' => $data->id,
+                'role' => $request->role,
+            ]);
+
             $user->notify(new NewLetter('disposition', $id, $user, 'disposition'));
 
             return response([
@@ -163,7 +173,16 @@ class DispositionDocumentController extends Controller
 
     public function show($id)
     {
-        $data = DispositionDocument::select('*')->where('id', $id)->first();
+
+        $data = DispositionDocument::select(
+            'disposition_documents.*',
+        )
+        ->where('disposition_documents.id', $id)->first();
+
+        $doc_file = DocumentRequirement::select('requirement_value', 'type')
+        ->where('document_id', $data->document_id)
+        ->whereNull('deleted_at')
+        ->get();
 
         $user = DispositionUser::select([
             'disposition_users.role',
@@ -176,6 +195,7 @@ class DispositionDocumentController extends Controller
         ->get();
 
         $data->disposition = $user;
+        $data->document_file = $doc_file;
 
         return response()->json([
             'data' => $data,

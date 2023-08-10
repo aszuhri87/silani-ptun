@@ -201,11 +201,19 @@
 
 
                     for(let i = 0; i < disposition.length; i++){
+                        console.log(disposition[i].instruction);
+                        let instruction = null;
+                        if(disposition[i].instruction == null || disposition[i].instruction == "null"){
+                            instruction = "";
+                        } else {
+                            instruction = "- "+disposition[i].instruction;
+                        }
+
                         if(disposition[i].role == 'Ketua'){
                             $('.forward-1').text('✓');
                             $('.ketua-instruction').append(`
-                                <p class="ketua_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="ketua_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -213,8 +221,8 @@
                         if(disposition[i].role == 'Wakil Ketua'){
                             $('.forward-2').text('✓');
                             $('.ketua-instruction').append(`
-                                <p class="waketua_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="waketua_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -222,8 +230,8 @@
                         if(disposition[i].role == 'Panitera'){
                             $('.forward-3').text('✓');
                             $('.panitera-instruction').append(`
-                                <p class="panitera_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="panitera_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -231,8 +239,8 @@
                         if(disposition[i].role == 'Sekretaris'){
                             $('.forward-4').text('✓');
                             $('.sekretaris-instruction').append(`
-                                <p class="sekretaris_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="sekretaris_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -240,8 +248,8 @@
                         if(disposition[i].role == 'Panitera Muda Hukum'){
                             $('.forward-5').text('✓');
                             $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="panmud_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -249,8 +257,8 @@
                         if(disposition[i].role == 'Panitera Muda Perkara'){
                             $('.forward-6').text('✓');
                             $('.panmud-instruction').append(`
-                                <p class="panmud_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="panmud_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -258,8 +266,8 @@
                         if(disposition[i].role == 'Kasub Umum dan Keuangan'){
                             $('.forward-7').text('✓');
                             $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="kasubag_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -267,8 +275,8 @@
                         if(disposition[i].role == 'Kasub Kepegawaian, Ortala'){
                             $('.forward-8').text('✓');
                             $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="kasubag_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
@@ -276,11 +284,26 @@
                         if(disposition[i].role == 'Kasub Perencanaan, TI dan Pelaporan'){
                             $('.forward-9').text('✓');
                             $('.kasubag-instruction').append(`
-                                <p class="kasubag_ins-${i}"> -
-                                    ${disposition[i].instruction}
+                                <p class="kasubag_ins-${i}">
+                                    ${instruction}
                                 </p>
                             `);
                         }
+                    }
+
+                    for (i in data.data.document_file){
+                        $('div#doc_file').append(`
+                            <label for="basicadd`+i+`">`+data.data.document_file[i].type+`</label>
+                            <div class="input-group mb-1">
+                                <span class="input-group-text " id="basicadd`+i+`">
+                                    <a href="/applicant/document/download/`+data.data.id+`" style="padding-right: 10px;">`+data.data.document_file[i].requirement_value+`</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16"> <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/> <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/> </svg>
+                                    <div class="tooltipLink" style="position:absolute; left:135%; width:50px;">
+                                        <embed src="{{ asset('files/`+data.data.document_file[i].requirement_value+`') }}">
+                                    <div>
+                                </span>
+                            </div>
+                        `);
                     }
 
 

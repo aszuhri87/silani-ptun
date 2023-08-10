@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\Applicant;
+use App\Models\DispositionDocument;
 use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\DocumentCategoryRequirement;
@@ -152,6 +153,20 @@ class DocumentController extends Controller
                     'status' => 'Menunggu',
                     'document_category_id' => $doc_cat_id,
                     'user_id' => $request->chief,
+                ]);
+
+                $disposition = DispositionDocument::create([
+                    'index' => "-",
+                    'letter_type' => "-",
+                    'code' => "-",
+                    'date_finish' => null,
+                    'date_number' => null,
+                    'from' => Auth::user()->name,
+                    'document_id' => $document->id,
+                    'resume_content' => null,
+                    'agenda_number' =>  null,
+                    'agenda_date' => null,
+                    'uploaded_document' => null,
                 ]);
 
                 // $category_req = Applicant::select('*')->where('user_id', Auth::user()->id)->first();

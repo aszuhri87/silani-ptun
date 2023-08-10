@@ -148,6 +148,7 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.status',
             'exit_permit_documents.signature',
             'exit_permit_documents.notes',
+            'exit_permit_documents.user_id',
         ])
         ->where('exit_permit_documents.id', $id)
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
@@ -157,6 +158,9 @@ class ExitPermitDocumentController extends Controller
 
         $approver = User::where('name', 'ilike', '%'.$data->approver)->first();
         $data->title = strtoupper($approver->title);
+
+        $jabatan = User::where('id', $data->user_id)->first();
+        $data->jabatan = strtoupper($jabatan->title);
 
         $date = IdDate::translate($data->datetime);
         $data->date = $date->format('l/j F Y');
@@ -196,6 +200,7 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.status',
             'exit_permit_documents.signature',
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
+            'exit_permit_documents.user_id'
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
         ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
@@ -211,6 +216,9 @@ class ExitPermitDocumentController extends Controller
 
         $approver = User::where('name', 'ilike', '%'.$data->approver)->first();
         $data->title =  strtoupper($approver->title);
+
+        $jabatan = User::where('id', $data->user_id)->first();
+        $data->jabatan = strtoupper($jabatan->title);
 
         $date = IdDate::translate($data->datetime);
         $data->datetime = $date->format('l/j F Y');

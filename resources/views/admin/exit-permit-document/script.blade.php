@@ -147,9 +147,9 @@
                     $('.date_sign').text(data.data.date_sign);
                     $('.name_sign').text('( '+data.data.name+' )');
                     $('.time').text(' : '+data.data.time);
-                    $('.approver').text(data.data.approver);
+                    $('.approver').text('(' + data.data.approver + ')');
                     $('.title_approver').text(data.data.title);
-
+                    $('.jabatan').text(data.data.jabatan);
 
                     if (data.data.status == 'Ditolak'){
                         $('.status-note').html(
@@ -164,7 +164,7 @@
 
                     $('.signature').html(`
                         <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""
-                            style="min-height: 60px; max-height: 60px;" width="auto"
+                            style="min-height: 100px; max-height: 100px;" width="auto"
                             style="margin-left: 50%;">
                     `)
 

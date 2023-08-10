@@ -293,7 +293,14 @@
                                 </div>
 
                                 <hr>
-                                <div class="row justify-content-center mt-3" id="files"></div>
+                                <div class="col-12 col-md-6 col-lg-6" >
+                                    <label for="requirement_value">Dokumen/File</label>
+
+                                    <div class="mt-1" id="doc_file">
+
+                                    </div>
+                                </div>
+                                {{-- <div class="row justify-content-center mt-3" id="files"></div> --}}
                             </form>
                         </div>
                     </div>

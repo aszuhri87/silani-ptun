@@ -35,6 +35,38 @@
             margin: 0;
             padding: 5px;
         }
+
+        #tick-mark {
+            position: relative;
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+        }
+
+        #tick-mark::before {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: 50%;
+            width: 2px;
+            background-color: #000000;
+            content: "";
+            transform: translateX(10px) rotate(-45deg);
+            transform-origin: left bottom;
+        }
+
+        #tick-mark::after {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background-color: #000000;
+            content: "";
+            transform: translateX(10px) rotate(-45deg);
+            transform-origin: left bottom;
+        }
+
     </style>
 </head>
 <body>

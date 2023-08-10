@@ -104,6 +104,7 @@ class VerificationController extends Controller
             'documents.id',
             'documents.name',
             'documents.status',
+            'documents.notes',
              'documents.updated_at as date_create',
             'document_categories.name as document_category',
             'applicants.name as applicant',

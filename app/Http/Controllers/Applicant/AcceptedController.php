@@ -109,7 +109,7 @@ class AcceptedController extends Controller
             'documents.name',
             'documents.status',
             'documents.notes',
-             'documents.updated_at as date_create',
+            'documents.updated_at as date_create',
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',
