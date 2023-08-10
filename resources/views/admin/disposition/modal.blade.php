@@ -300,7 +300,10 @@
 
                                     </div>
                                 </div>
-                                {{-- <div class="row justify-content-center mt-3" id="files"></div> --}}
+                                <div class="col-12 col-md-6 col-lg-6 mt-2" >
+                                    <label for="requirement_value">Dokumen/File Upload Manual</label>
+                                    <div class="row justify-content-center" id="files"></div>
+                                </div>
                             </form>
                         </div>
                     </div>
