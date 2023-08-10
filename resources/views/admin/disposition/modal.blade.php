@@ -121,8 +121,8 @@
                     </button>
                 </div>
                 <div>
-                    <div class="container">
-                        <div class="modal-body " style="overflow:visible; ">
+                    <div class="container-fluid">
+                        <div class="modal-body ">
 
                             <div class="status-note">
 
@@ -294,15 +294,14 @@
 
                                 <hr>
                                 <div class="col-12 col-md-6 col-lg-6" >
-                                    <label for="requirement_value">Dokumen/File</label>
+                                    <label for="requirement_value">Dokumen/File: </label>
 
                                     <div class="mt-1" id="doc_file">
 
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-6 mt-2" >
-                                    <label for="requirement_value">Dokumen/File Upload Manual</label>
-                                    <div class="row justify-content-center" id="files"></div>
+
+                                    <label for="requirement_value" class="mt-2">Dokumen/File Upload Manual: </label>
+                                    <div class="justify-content-center" id="files"></div>
                                 </div>
                             </form>
                         </div>
