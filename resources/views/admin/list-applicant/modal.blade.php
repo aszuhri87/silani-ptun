@@ -41,7 +41,7 @@
                                         <option value="Panitera Muda Hukum">Panitera Muda Hukum</option>
                                         <option value="Kasub Kepegawaian, Ortala">Kasub Kepegawaian, Ortala</option>
                                         <option value="Kasub Umum dan Keuangan">Kasub Umum dan Keuangan</option>
-                                        <option value="Kasub Perencanaan, TI dan Pelaporan">Kasub Umum dan Keuangan</option>
+                                        <option value="Kasub Perencanaan, TI dan Pelaporan">Kasub Perencanaan, TI dan Pelaporan</option>
                                         <option value="Hakim">Hakim</option>
                                         <option value="Panitera Pengganti">Panitera Pengganti</option>
                                         <option value="Juru Sita Pengganti">Juru Sita Pengganti</option>
