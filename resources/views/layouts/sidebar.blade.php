@@ -117,7 +117,7 @@
                             Auth::user()->title == 'Panitera Muda Hukum' ||
                             Auth::user()->title == 'Kasub Umum dan Keuangan' ||
                             Auth::user()->title == 'Kasub Kepegawaian, Ortala' ||
-                            Auth::user()->title == 'Kasub Umum dan Keuangan')
+                            Auth::user()->title == 'Kasub Perencanaan, TI dan Pelaporan')
                         <li class="nav-item @if (Request::is('applicant/disposition-document')) active @endif"><a
                                 class="d-flex align-items-center" href="/applicant/disposition-document"><i
                                     data-feather="list"></i><span class="menu-title text-truncate" style="margin-left: 2px;" >Lembar Disposisi
