@@ -293,19 +293,19 @@
                                 </div>
 
                                 <hr>
-                                <div class="col-12 col-md-6 col-lg-6" >
-                                    <label for="requirement_value">Dokumen/File: </label>
+                            </div>
+                            <div class="col-12">
+                                <label for="requirement_value">Dokumen/File: </label>
 
-                                    <div class="mt-1" id="doc_file">
+                                <div class="mt-1" id="doc_file">
 
-                                    </div>
-
-                                    <label for="requirement_value" class="mt-2">Dokumen/File Upload Manual: </label>
-                                    <div class="justify-content-center" id="files"></div>
                                 </div>
-                            </form>
+
+                                <label for="requirement_value" class="mt-2">Dokumen/File Upload Manual: </label>
+                                <div class="row" id="files"></div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
