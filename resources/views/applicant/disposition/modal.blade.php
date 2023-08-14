@@ -22,15 +22,20 @@
                                     <textarea class="form-control" name="instruction" id="instruction" cols="30" rows="10" required></textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <input type="radio" name="status" id="status_true" value="setuju">
-                                    <label for="status_agree">Setuju</label>
-                                </div>
+                                @if (Auth::user()->title == 'Ketua' || Auth::user()->title == 'Wakil Ketua' || Auth::user()->title == 'Panitera' || Auth::user()->title == 'Sekretaris')
+                                    <div class="form-group">
+                                        <input type="radio" name="status" id="status_true" value="setuju">
+                                        <label for="status_agree">Setuju</label>
+                                    </div>
 
-                                <div class="form-group">
-                                    <input type="radio" name="status" id="status_false" value="tolak">
-                                    <label for="status_disagree">Tolak</label>
-                                </div>
+                                    <div class="form-group">
+                                        <input type="radio" name="status" id="status_false" value="tolak">
+                                        <label for="status_disagree">Tolak</label>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="status" value="setuju">
+                                @endif
+
                                 <div class="forward-form">
                                     <label for="nama" class="mt-2" id="label-forward">Diteruskan kepada</label>
                                     <div class="form-group">
