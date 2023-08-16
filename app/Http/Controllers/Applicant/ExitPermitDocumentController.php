@@ -54,7 +54,7 @@ class ExitPermitDocumentController extends Controller
         ->select([
             'exit_permit_documents.id',
             'users.name',
-            'units.name as unit',
+            // 'units.name as unit',
             'exit_permit_documents.*',
             DB::raw("to_char(exit_permit_documents.datetime, 'TMDay/dd TMMonth YYYY') as date"),
             DB::raw("to_char(exit_permit_documents.datetime, 'TMDay TMMonth YYYY') as date_sign"),
@@ -66,7 +66,7 @@ class ExitPermitDocumentController extends Controller
             "),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
-        ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->where(function ($query) {
             $query->where('exit_permit_documents.user_id', Auth::user()->id)
             ->orWhere('exit_permit_documents.approver', Auth::user()->name);
@@ -83,7 +83,7 @@ class ExitPermitDocumentController extends Controller
 
         $data = ExitPermitDocument::create([
             'user_id' => $request->name,
-            'unit_id' => $request->unit,
+            // 'unit_id' => $request->unit,
             'reason' => $request->reason,
             'datetime' => $datetime,
             'approver' => $request->chief,
@@ -92,9 +92,9 @@ class ExitPermitDocumentController extends Controller
         $user = User::where('name', $request->chief)->first();
         $user->notify(new NewLetter('exit', $data->id, $user, 'exit'));
 
-        $unit = Unit::where('name', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
+        // $unit = Admin::where('role', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
 
-        $admin = Admin::where('unit_id', $unit->id)->get();
+        $admin = Admin::where('role', 'ilike', '%Kepegawaian%')->orWhere('role', 'ilike', '%kepegawaian%')->get();
         foreach ($admin as $a) {
             $userAdm = User::where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('exit', $data->id, $userAdm, 'exit'));
@@ -117,7 +117,7 @@ class ExitPermitDocumentController extends Controller
 
         $data->update([
             'user_id' => $request->name ? $request->name : $item->name,
-            'unit_id' => $request->unit ? $request->unit : $item->unit_id,
+            // 'unit_id' => $request->unit ? $request->unit : $item->unit_id,
             'reason' => $request->reason ? $request->reason : $item->reason,
             'datetime' => $datetime ? $datetime : $item->datetime,
             'approver' => $request->chief ? $request->chief : $item->approver,
@@ -140,7 +140,7 @@ class ExitPermitDocumentController extends Controller
             'users.name',
             'users.nip',
             'users.gol',
-            'units.name as unit',
+            // 'units.name as unit',
             'exit_permit_documents.datetime',
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
             'exit_permit_documents.reason',
@@ -152,7 +152,7 @@ class ExitPermitDocumentController extends Controller
         ])
         ->where('exit_permit_documents.id', $id)
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
-        ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->whereNull('users.deleted_at')
         ->first();
 
@@ -191,7 +191,7 @@ class ExitPermitDocumentController extends Controller
         $data = ExitPermitDocument::select([
             'exit_permit_documents.id',
             'users.name',
-            'units.name as unit',
+            // 'units.name as unit',
             'exit_permit_documents.datetime',
             'users.nip',
             'users.gol',
@@ -203,7 +203,7 @@ class ExitPermitDocumentController extends Controller
             'exit_permit_documents.user_id'
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
-        ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->where('exit_permit_documents.id', $id)
         ->whereNull('exit_permit_documents.deleted_at')
         ->first();

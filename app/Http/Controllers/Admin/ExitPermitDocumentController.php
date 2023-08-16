@@ -49,7 +49,7 @@ class ExitPermitDocumentController extends Controller
         ->select([
             'exit_permit_documents.id',
             'users.name',
-            'units.name as unit',
+            // 'units.name as unit',
             'exit_permit_documents.*',
             DB::raw("
                 CASE WHEN exit_permit_documents.approver = '".Auth::user()->name."' AND exit_permit_documents.status IS NULL THEN 'Menunggu Konfirmasi Anda'
@@ -58,7 +58,7 @@ class ExitPermitDocumentController extends Controller
             "),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
-        ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->whereNull('exit_permit_documents.deleted_at')
         ->orderBy('exit_permit_documents.created_at', 'desc');
 
@@ -71,7 +71,7 @@ class ExitPermitDocumentController extends Controller
 
         $data = ExitPermitDocument::create([
             'user_id' => $request->name,
-            'unit_id' => $request->unit,
+            // 'unit_id' => $request->unit,
             'reason' => $request->reason,
             'datetime' => $datetime,
             'approver' => $request->chief,
@@ -93,7 +93,7 @@ class ExitPermitDocumentController extends Controller
 
         $data->update([
             'user_id' => $request->name ? $request->name : $item->user_id,
-            'unit_id' => $request->unit ? $request->unit : $item->unit_id,
+            // 'unit_id' => $request->unit ? $request->unit : $item->unit_id,
             'reason' => $request->reason ? $request->reason : $item->reason,
             'datetime' => $datetime ? $datetime : $item->datetime,
             'approver' => $request->chief ? $request->chief : $item->approver,
@@ -116,7 +116,7 @@ class ExitPermitDocumentController extends Controller
             'users.name',
             'users.nip',
             'users.gol',
-            'units.name as unit',
+            // 'units.name as unit',
             'exit_permit_documents.datetime',
             DB::raw("to_char(exit_permit_documents.datetime, 'yyyy-MM-dd') as date_input"),
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
@@ -129,7 +129,7 @@ class ExitPermitDocumentController extends Controller
         ])
         ->where('exit_permit_documents.id', $id)
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
-        ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->whereNull('users.deleted_at')
         ->first();
 
@@ -170,7 +170,7 @@ class ExitPermitDocumentController extends Controller
         ->select([
             'exit_permit_documents.id',
             'users.name',
-            'units.name as unit',
+            // 'units.name as unit',
             'exit_permit_documents.datetime',
             'users.nip',
             'users.gol',
@@ -183,7 +183,7 @@ class ExitPermitDocumentController extends Controller
             DB::raw("to_char(exit_permit_documents.datetime, 'HH:mi') as time"),
         ])
         ->leftJoin('users', 'users.id', 'exit_permit_documents.user_id')
-        ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->leftJoin('units', 'units.id', 'exit_permit_documents.unit_id')
         ->where('exit_permit_documents.id', $id)
         ->whereNull('exit_permit_documents.deleted_at')
         ->first();
