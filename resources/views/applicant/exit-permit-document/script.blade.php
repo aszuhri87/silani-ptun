@@ -238,6 +238,10 @@
                 $('textarea[name="notes"]').val(data.notes);
 
                 showModal('modal-docs-category');
+
+                $(document).on('hide.bs.modal','#modal-docs-category', function(event){
+                    location.reload();
+                });
             });
 
             $(document).on('click', '.btn-delete', function(event){

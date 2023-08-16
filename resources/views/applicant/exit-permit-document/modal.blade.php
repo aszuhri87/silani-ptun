@@ -23,13 +23,6 @@
                                     <input type="hidden" id="name" name="name">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="permit_type">Unit Kerja</label>
-                                    <select class=" form-control" id="select-unit" data-toggle="collapse" required
-                                        data-target="#timeline" required></select>
-                                    <input type="hidden" id="unit" name="unit">
-                                </div>
-
                                 <label for="reason" id="reason" class="form-label">Alasan</label>
                                 <div class="input-group">
                                     <textarea data-length="50" class="form-control char-textarea" id="reason" name="reason" required rows="3"
