@@ -85,7 +85,7 @@ class LeaveDocumentController extends Controller
 
         $data = LeaveDocument::create([
             'user_id' => Auth::user()->id,
-            'unit_id' => $request->unit,
+            // 'unit_id' => $request->unit,
             'reason' => $request->reason,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
@@ -182,7 +182,7 @@ class LeaveDocumentController extends Controller
         } else {
             $data->update([
                 'user_id' => Auth::user()->id,
-                'unit_id' => $request->unit,
+                // 'unit_id' => $request->unit,
                 'reason' => $request->reason,
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
@@ -217,13 +217,11 @@ class LeaveDocumentController extends Controller
             'users.name',
             'users.nip',
             'users.title',
-            'units.name as unit',
             'leave_documents.*',
             DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
             DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
         ])
         ->join('users', 'users.id', 'leave_documents.user_id')
-        ->join('units', 'units.id', 'leave_documents.unit_id')
         ->where('leave_documents.id', $id)
         ->whereNull('leave_documents.deleted_at')
         ->first();

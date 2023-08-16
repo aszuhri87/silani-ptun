@@ -15,12 +15,12 @@
                     <!-- Basic -->
                     <form id="form-doc-category" name="form-doc-category" class="auth-register-form mt-2">
                         <div class="col-md-12 econtent">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="permit_type">Unit Kerja</label>
                                 <select class=" form-control" id="select-unit" data-toggle="collapse" required
                                     data-target="#timeline" required></select>
                                 <input type="hidden" id="unit" name="unit">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="permit_type">Jenis Cuti</label>
