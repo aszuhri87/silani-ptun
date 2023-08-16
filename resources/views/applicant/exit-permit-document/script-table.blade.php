@@ -22,7 +22,6 @@
                 columns: [
                     { data: 'DT_RowIndex' },
                     { data: 'name' },
-                    { data: 'unit' },
                     { data: 'datetime', "searchable": false},
                     { data: 'status' },
                     { defaultContent: '' }

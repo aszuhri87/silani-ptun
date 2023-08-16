@@ -73,7 +73,7 @@
                         <p style="padding: 1; margin: 1;  white-space:0;"> Unit Kerja</p>
                     </td>
                     <td>
-                        : {{ $data->unit }}
+                        : Pengadilan Tata Usaha Negara Yogyakarta
                     </td>
                 </tr>
                 <tr>

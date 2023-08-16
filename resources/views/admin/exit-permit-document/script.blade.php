@@ -141,7 +141,7 @@
                     $('input[name="name"]').val(data.data.name);
                     $('.name').text(' : '+data.data.name);
                     $('.nip').text(' : '+data.data.nip+' / '+data.data.gol);
-                    $('.unit').text(' : '+data.data.unit);
+                    // $('.unit').text(' : '+data.data.unit);
                     $('.reason').text(' : '+data.data.reason);
                     $('.date').text(' : '+data.data.date);
                     $('.date_sign').text(data.data.date_sign);

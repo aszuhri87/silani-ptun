@@ -160,7 +160,7 @@
                                             <td>
                                                 <div class="form-group">
                                                     <p class="unit" style="white-space: none; margin: 0; ">
-                                                        :...........................................</p>
+                                                        : Pengadilan Tata Usaha Negara Yogyakartap>
                                                 </div>
                                             </td>
                                         </tr>

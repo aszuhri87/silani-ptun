@@ -44,8 +44,8 @@
                             <thead class="" width="100%">
                                 <tr>
                                     <th width="5%">#</th>
-                                    <th width="15%">Nama</th>
-                                    <th width="15%">Unit</th>
+                                    <th width="40%">Nama</th>
+                                    {{-- <th width="15%">Unit</th> --}}
                                     <th width="10%">Tanggal/Waktu</th>
                                     <th width="15%">status</th>
                                     <th width="10%">Aksi</th>
