@@ -150,7 +150,7 @@
                     $('.time').text(' : '+data.data.time);
                     $('.approver').text(data.data.approver);
                     $('.title_approver').text(data.data.title);
-                    $('.jabatan').text(data.data.jabatan);
+                    $('.jabatan').text(data.data.title);
 
                     if (data.data.status == 'Ditolak'){
                         $('.status-note').html(

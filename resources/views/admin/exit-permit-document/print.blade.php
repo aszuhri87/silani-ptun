@@ -46,7 +46,7 @@
 
         <div style="font-family: 'Times New Roman', Times, serif; margin-left: 3%; margin-top: 5%;">
             Pejabat : <br>
-            {{ $data->jabatan }}
+            {{ $data->title }}
             <hr style="border: dotted black; border-top:none;">
             <hr style="border: dotted black; border-top:none;">
 
