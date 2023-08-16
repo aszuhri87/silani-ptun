@@ -27,7 +27,7 @@ class ExitPermitDocumentController extends Controller
         $data = DB::table('exit_permit_documents')
         ->select('*')
         ->join('users', 'users.id', 'exit_permit_documents.user_id')
-        ->join('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->join('units', 'units.id', 'exit_permit_documents.unit_id')
         ->whereNull('users.deleted_at')
         ->get();
 

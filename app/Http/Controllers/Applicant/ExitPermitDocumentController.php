@@ -31,7 +31,7 @@ class ExitPermitDocumentController extends Controller
         $data = DB::table('exit_permit_documents')
         ->select('*')
         ->join('users', 'users.id', 'exit_permit_documents.user_id')
-        ->join('units', 'units.id', 'exit_permit_documents.unit_id')
+        // ->join('units', 'units.id', 'exit_permit_documents.unit_id')
         // ->join('admins', 'admins.id', 'exit_permit_documents.admin_id')
         ->whereNull('users.deleted_at')
         ->get();
@@ -94,13 +94,13 @@ class ExitPermitDocumentController extends Controller
 
         // $unit = Admin::where('role', 'ilike', '%Kepegawaian%')->orWhere('name', 'ilike', '%kepegawaian%')->first();
 
-        $admin = Admin::where('role', 'ilike', '%Kepegawaian%')->orWhere('role', 'ilike', '%kepegawaian%')->get();
+        $admin = Admin::where('role', 'Kepegawaian')->get();
         foreach ($admin as $a) {
             $userAdm = User::where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('exit', $data->id, $userAdm, 'exit'));
         }
 
-        $super = Admin::where('unit_id', null)->first();
+        $super = Admin::where('role', null)->first();
         $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
         $userSup->notify(new NewLetter('exit', $data->id, $userSup, 'exit'));
 
