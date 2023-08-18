@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Events\DispositionNotif;
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Applicant;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
 use App\Models\Document;
@@ -157,6 +158,24 @@ class DispositionDocumentController extends Controller
                 'disposition_document_id' => $data->id,
                 'role' => $request->role,
             ]);
+
+            if (strpos($data->status, 'Disetujui') == false){
+                $document = Document::where('id', $data->document_id);
+                $document->update([
+                    'status' => "Diproses"
+                ]);
+
+                $appl = Applicant::where('id', $document->first()->applicant_id)->first();
+
+                $users = User::where('id', $appl->user_id)->first();
+                $users->notify(new NewLetter('proceed', $document->first()->id, $users, 'proceed'));
+
+                $admin = User::where('category', 'admin')->get();
+                foreach ($admin as $a) {
+                    $a->notify(new NewLetter('proceed', $document->first()->id, $a, 'proceed'));
+                }
+            }
+
 
             $user->notify(new NewLetter('disposition', $id, $user, 'disposition'));
 

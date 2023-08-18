@@ -169,10 +169,19 @@ class DocumentController extends Controller
                     'uploaded_document' => null,
                 ]);
 
-                // $category_req = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
+
+                $admin = Admin::where('role', 'Persuratan')->get();
+
+                foreach ($admin as $a) {
+                    $user = User::where('id', $a->user_id)->first();
+                    $user->notify(new NewLetter('disposition', $disposition->document_id, $user, 'disposition'));
+                }
+
+                $super = Admin::where('role', null)->first();
+                $superuser = User::where('id', $super->user_id)->first();
+                $superuser->notify(new NewLetter('disposition', $disposition->document_id, $superuser, 'disposition'));
 
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
-                    // dd(count($request->requirement_value));
                     for ($index = 0; $index < count($request->requirement_value); ++$index) {
                         $value = [];
                         if ($request->hasFile('requirement_value.'.$index)) {

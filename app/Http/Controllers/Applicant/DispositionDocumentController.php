@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Applicant;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
+use App\Models\Document;
 use App\Models\DocumentRequirement;
 use App\Models\User;
 use App\Notifications\NewLetter;
@@ -64,21 +66,6 @@ class DispositionDocumentController extends Controller
 
     public function dt()
     {
-        // $data = DB::table('disposition_users')->select([
-        //     'disposition_users.user_id',
-        //     'disposition_users.role',
-        //     'disposition_users.note',
-        //     'disposition_users.instruction',
-        //     'disposition_users.status as status_user',
-        //     'disposition_documents.*',
-        //     DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
-        // ])
-        // ->leftJoin('disposition_documents', 'disposition_documents.id', 'disposition_users.disposition_document_id')
-        // ->where('disposition_users.user_id', Auth::user()->id)
-        // ->orWhere('disposition_users.role', Auth::user()->title)
-        // ->whereNull('disposition_documents.deleted_at')
-        // ->orderBy('disposition_documents.created_at', 'desc');
-
         $data = DB::table('disposition_documents')
         ->select([
             'disposition_users.user_id',
@@ -97,11 +84,8 @@ class DispositionDocumentController extends Controller
         ->whereNull('disposition_documents.deleted_at')
         ->orderBy('disposition_documents.created_at', 'desc');
 
-        // dd($data->get());
-
         return DataTables::query($data)->addIndexColumn()->make(true);
 
-        // return DataTables::query($data)->addIndexColumn()->make(true);
     }
 
     public function store(Request $request)
@@ -223,6 +207,28 @@ class DispositionDocumentController extends Controller
                 'instruction' => $request->instruction.' ('.Auth::user()->title.')',
                 'user_id' => Auth::user()->id,
             ]);
+
+        $document = Document::where('id', $data->document_id);
+
+        if ($request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
+        Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
+        Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara")
+        {
+            $document->update([
+                'status' => "Diterima"
+            ]);
+
+            $appl = Applicant::where('id', $document->first()->applicant_id)->first();
+
+            $users = User::where('id', $appl->user_id)->first();
+            $users->notify(new NewLetter('done', $document->first()->id, $users, 'done'));
+
+            $admin = User::where('category', 'admin')->get();
+            foreach ($admin as $a) {
+                $a->notify(new NewLetter('done', $document->first()->id, $a, 'done'));
+            }
+        }
+
 
         $users = User::where('title', $request->role)->first();
         if ($users){

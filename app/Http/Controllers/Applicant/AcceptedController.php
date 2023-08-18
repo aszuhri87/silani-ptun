@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\Applicant;
+use App\Models\DispositionDocument;
+use App\Models\DispositionUser;
 use App\Models\Document;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
@@ -16,6 +18,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use PDF;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 
 class AcceptedController extends Controller
 {
@@ -168,5 +173,55 @@ class AcceptedController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function print($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $data = DispositionDocument::select('*')->where('document_id', $id)->first();
+
+        $user = DispositionUser::select([
+            'disposition_users.role',
+            'disposition_users.instruction',
+            'users.name',
+        ])
+        ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+        ->where('disposition_users.disposition_document_id', $data->id)
+        ->whereNull('disposition_users.deleted_at')
+        ->get();
+
+        $data->disposition = $user;
+
+        $pdf = PDF::loadView('/applicant/accepted/print',
+        [
+            'data' => $data,
+        ]
+        )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
+
+        $name = date('Y-m-d_s').' '.'.pdf';
+
+        // Storage::put('public/pdf/'.$name, $pdf->output());
+
+        $pdfVersion = '1.4';
+        $newFile = public_path('files/'.$id.'.pdf');
+        $currentFile = public_path('files/"'.$data->uploaded_document.'"');
+
+        echo shell_exec("gs -sDEVICE=pdfwrite  -dPDFFitPage -dCompatibilityLevel=1.4 -dEmbedAllFonts=true -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false -f -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile");
+
+        ob_end_clean();
+
+        Storage::put('public/pdf/'.$name, $pdf->output());
+
+        $pdfMerge = PDFMerger::init();
+
+        $pdfMerge->addPDF(storage_path('app/public/pdf/'.$name), 'all');
+        $pdfMerge->addPDF($newFile, 'all');
+
+        $fileName = 'dokumen_lengkap_'.time().'.pdf';
+        $pdfMerge->merge();
+        $pdfMerge->save(public_path('files/merged/'.$fileName));
+
+        return $pdfMerge->stream(public_path($fileName));
     }
 }

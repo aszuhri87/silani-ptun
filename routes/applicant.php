@@ -35,8 +35,11 @@ Route::group(['prefix' => 'applicant', 'middleware' => 'role:applicant'], functi
     Route::post('/leave-document/dt', [LeaveDocumentController::class, 'dt']);
     Route::put('/exit-permit-document/update_approval/{id}', [ExitPermitDocumentController::class, 'update_approval']);
     Route::get('/exit-permit-document/download_pdf/{id}', [ExitPermitDocumentController::class, 'print']);
+    Route::get('/done-docs/download_pdf/{id}', [AcceptedController::class, 'print']);
     Route::get('/leave-document/download_pdf/{id}', [LeaveDocumentController::class, 'print']);
     Route::get('/employee/find', [ApplicantController::class, 'find_employee']);
+    Route::get('/pejabat/find', [ApplicantController::class, 'find_pejabat']);
+
     Route::get('/unit/find', [UnitController::class, 'find_unit']);
     Route::post('/disposition-document/dt', [DispositionDocumentController::class, 'dt']);
     Route::post('/disposition-update/{id}', [DispositionDocumentController::class, 'update_disposition']);
