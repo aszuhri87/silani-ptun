@@ -81,9 +81,9 @@ class OutgoingLetterController extends Controller
             $userAdm = User::where('category', 'admin')->where('id', $a->user_id)->first();
             $userAdm->notify(new NewLetter('outgoing', $docs->id, $userAdm, 'outgoing'));
         }
-        
+
         $super = Admin::where('role', null)->first();
-        $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
+        $userSup = User::where('id', $super->user_id)->first();
         $userSup->notify(new NewLetter('outgoing', $docs->id, $userSup, 'outgoing'));
 
         return redirect()->back();
