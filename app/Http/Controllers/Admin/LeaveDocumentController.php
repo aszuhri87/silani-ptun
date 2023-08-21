@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\IdDate;
 use App\Libraries\PageLib;
 use App\Models\ExitPermitDocument;
 use App\Models\LeaveApproval;
@@ -266,7 +267,7 @@ class LeaveDocumentController extends Controller
             'users.title',
             'leave_documents.*',
             DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
-            DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
+            // DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
         ])
         ->join('users', 'users.id', 'leave_documents.user_id')
         // ->join('units', 'units.id', 'leave_documents.unit_id')
@@ -299,6 +300,10 @@ class LeaveDocumentController extends Controller
         ->whereNull('deleted_at')
         ->orderBy('created_at', 'desc')
         ->get();
+
+
+        $date = IdDate::translate($data->created_at);
+        $data->tanggal = $date->format('j F Y');
 
         $data->approval = $user ? $user : [];
         $data->leave_notes = $notes ? $notes : [];
@@ -384,7 +389,7 @@ class LeaveDocumentController extends Controller
             // 'units.name as unit',
             'leave_documents.*',
             DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
-            DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
+            // DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
         ])
         ->join('users', 'users.id', 'leave_documents.user_id')
         // ->join('units', 'units.id', 'leave_documents.unit_id')
@@ -445,6 +450,9 @@ class LeaveDocumentController extends Controller
         ->whereNull('deleted_at')
         ->orderBy('created_at', 'desc')
         ->get();
+
+        $date = IdDate::translate($data->created_at);
+        $data->tanggal = $date->format('j F Y');
 
         $data->approval = $user ? $user : [];
         $data->leave_notes = $notes ? $notes : [];

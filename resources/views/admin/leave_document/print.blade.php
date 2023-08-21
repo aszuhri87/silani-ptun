@@ -91,7 +91,7 @@
                                 <br>
                             </div>
                             <div style="padding-top: 15px;">
-                                Yogyakarta,
+                                Yogyakarta, {{ $data->tanggal }}
                                 <br>
                                 Kepada
                                 <br>
