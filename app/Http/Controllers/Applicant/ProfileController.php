@@ -158,7 +158,7 @@ class ProfileController extends Controller
 
             if (!$signature->first()) {
                 Signature::create([
-                    'photo' => $request->hasFile('signature') ? $sign_file_name : null,
+                    'photo' => $request->hasFile('signature') ? $sign_file_name : $signature->first()->photo,
                     'user_id' => Auth::user()->id,
                 ]);
             } else {

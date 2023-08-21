@@ -102,6 +102,7 @@ class ExitPermitDocumentController extends Controller
 
         $super = Admin::where('role', null)->first();
         $userSup = User::where('category', 'admin')->where('id', $super->user_id)->first();
+        dd($userSup);
         $userSup->notify(new NewLetter('exit', $data->id, $userSup, 'exit'));
 
         return redirect()->back();

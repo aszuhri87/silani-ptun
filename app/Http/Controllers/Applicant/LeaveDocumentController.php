@@ -197,12 +197,14 @@ class LeaveDocumentController extends Controller
             ]);
 
             $approver->update([
-                'leave_document_id' => $data->id,
-                'user_id' => $request->chief,
+                'leave_document_id' => $data->first()->id,
+                'user_id' => $request->chief ? $request->chief : $approver->first()->user_id,
             ]);
 
-            $user = User::where('id', $request->chief)->first();
-            $user->notify(new NewLetter('leave', $id, $user, 'leave'));
+            $chief_id = $request->chief ? $request->chief : $approver->first()->user_id;
+
+            // $user = User::where('id', $request->chief)->first();
+            // $user->notify(new NewLetter('leave', $id, $user, 'leave'));
         }
 
         return response([
