@@ -17,36 +17,19 @@ class RedirectIfAuthenticated
      *
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    // public function handle(Request $request, Closure $next, ...$guards)
-    // {
-    //     // $guards = empty($guards) ? [null] : $guards;
 
-    //     // foreach ($guards as $guard) {
-    //     //     if (Auth::guard($guard)->check()) {
-    //     //         return redirect(RouteServiceProvider::HOME);
-    //     //     }
-    //     // }
-
-    //     return $next($request);
-    // }
-
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next, $guard=null)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return "applicant/dashboard";
+        if (Auth::guard($guard)->check()) {
+            if(Auth::user()->category == 'admin'){
+                return redirect('admin/dashboard');
+            } else if (Auth::user()->category == 'umum' || Auth::user()->category == null){
+                return redirect('applicant/dashboard');
+            } else{
+                return redirect('login');
             }
+        } else {
+            return $next($request);
         }
-        // if (Auth::check()) {
-        //     if (Auth::user()->admin_id != null) {
-        //         return redirect('admin/dashboard');
-        //     } elseif (Auth::user()->applicant_id != null) {
-        //         return redirect('applicant/dashboard');
-        //     }
-        // } else {
-        return $next($request);
-        // }
     }
 }

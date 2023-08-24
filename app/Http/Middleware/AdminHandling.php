@@ -20,6 +20,8 @@ class AdminHandling
         if (Auth::guard('admin')->check()) {
             if (Auth::guard('admin')->user()->user_id != null) {
                 return $next($request);
+            } else {
+                return redirect('login')->with('error', "You don't have admin access.");
             }
         } else {
             return redirect('login')->with('error', "You don't have admin access.");

@@ -17,11 +17,12 @@ class ApplicantHandling
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd(Auth::guard('applicant')->id());
         if (Auth::guard('applicant')->check()) {
-            // if (isset(Auth::guard('applicant')->user()->user_id)) {
-            return $next($request);
-        // }
+            if (isset(Auth::guard('applicant')->user()->user_id)) {
+                return $next($request);
+            }  else {
+                return redirect('login')->with('error', "You don't have admin access.");
+            }
         } else {
             return redirect('login')->with('error', "You don't have applicant access.");
         }
