@@ -57,7 +57,7 @@ class ProfileController extends Controller
                 'email' => $request->email ? $request->email : $user->first()->email,
                 'username' => $request->username ? $request->username : $user->first()->username,
                 'name' => $request->name ? $request->name : $user->first()->name,
-                'category' => "admin";
+                'category' => "admin",
             ]);
 
             $admin = Admin::where('user_id', Auth::id());
