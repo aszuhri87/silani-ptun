@@ -23,17 +23,17 @@ class ProfileController extends Controller
     public function index()
     {
         $data = DB::table('admins')
-        ->select('*')
-        ->join('users', 'users.id', 'admins.user_id')
-        ->where('admins.user_id', Auth::guard('admin')->id())
-        ->orWhere('admins.user_id', Auth::guard('super-admin')->id())
-        ->first();
+            ->select('*')
+            ->join('users', 'users.id', 'admins.user_id')
+            ->where('admins.user_id', Auth::guard('admin')->id())
+            ->orWhere('admins.user_id', Auth::guard('super-admin')->id())
+            ->first();
 
         $unit = DB::table('units')
-        ->select([
-         '*',
-        ])
-        ->whereNull('deleted_at')->get();
+            ->select([
+                '*',
+            ])
+            ->whereNull('deleted_at')->get();
 
         return view('admin.profile.index', PageLib::config([]), ['data' => $data, 'unit' => $unit]);
     }
@@ -41,10 +41,10 @@ class ProfileController extends Controller
     public function show($id)
     {
         $data = DB::table('admins')
-        ->select('admins.unit_id', '*')
-        ->leftJoin('users', 'users.id', 'admins.user_id')
-        ->where('admins.user_id', $id)
-        ->first();
+            ->select('admins.unit_id', '*')
+            ->leftJoin('users', 'users.id', 'admins.user_id')
+            ->where('admins.user_id', $id)
+            ->first();
 
         return Response::json($data);
     }
@@ -52,12 +52,12 @@ class ProfileController extends Controller
     public function update_profile(Request $request)
     {
         try {
-            // dd($request->new_password);
             $user = User::where('id', Auth::id());
             $user->update([
                 'email' => $request->email ? $request->email : $user->first()->email,
                 'username' => $request->username ? $request->username : $user->first()->username,
                 'name' => $request->name ? $request->name : $user->first()->name,
+                'category' => "admin";
             ]);
 
             $admin = Admin::where('user_id', Auth::id());

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Exception;
+
 class ManageAdminController extends Controller
 {
     public function __construct()
@@ -22,15 +23,15 @@ class ManageAdminController extends Controller
     public function index()
     {
         $data = DB::table('admins')
-        ->select('*')
-        ->leftJoin('users', 'users.id', 'admins.user_id')
-        ->get();
+            ->select('*')
+            ->leftJoin('users', 'users.id', 'admins.user_id')
+            ->get();
 
         $unit = DB::table('units')
-        ->select([
-         '*',
-        ])
-        ->whereNull('deleted_at')->get();
+            ->select([
+                '*',
+            ])
+            ->whereNull('deleted_at')->get();
 
         return view('admin.admin_management.index', PageLib::config([]), ['data' => $data, 'unit' => $unit]);
     }
@@ -38,19 +39,16 @@ class ManageAdminController extends Controller
     public function dt()
     {
         $data = DB::table('admins')
-        ->select([
-            'admins.name',
-            'users.username',
-            'users.email',
-            'users.id',
-            "admins.role"
-            // 'admins.unit_id',
-            // 'units.name as unit',
+            ->select([
+                'admins.name',
+                'users.username',
+                'users.email',
+                'users.id',
+                "admins.role"
             ])
-        ->leftJoin('users', 'users.id', 'admins.user_id')
-        // ->leftJoin('units', 'units.id', 'admins.unit_id')
-        ->orderBy('admins.created_at', 'desc')
-        ->whereNull('admins.deleted_at');
+            ->leftJoin('users', 'users.id', 'admins.user_id')
+            ->orderBy('admins.created_at', 'desc')
+            ->whereNull('admins.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -58,10 +56,10 @@ class ManageAdminController extends Controller
     public function show($id)
     {
         $data = DB::table('admins')
-        ->select('*')
-        ->leftJoin('users', 'users.id', 'admins.user_id')
-        ->where('admins.user_id', $id)
-        ->first();
+            ->select('*')
+            ->leftJoin('users', 'users.id', 'admins.user_id')
+            ->where('admins.user_id', $id)
+            ->first();
 
         return Response::json($data);
     }
@@ -82,6 +80,7 @@ class ManageAdminController extends Controller
                     'email' => $request->email,
                     'username' => $request->username,
                     'password' => Hash::make($request->password),
+                    'category' => "admin"
                 ]);
                 $data = Admin::create([
                     'name' => $request->name,
@@ -110,13 +109,14 @@ class ManageAdminController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $result = DB::transaction(function () use ($request,$id) {
+            $result = DB::transaction(function () use ($request, $id) {
                 $data = User::find($id);
                 $data->update([
                     'name' => $request->name,
                     'email' => $request->email,
                     'username' => $request->username,
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $data->password,
+                    'category' => "admin"
                 ]);
 
                 $user = Admin::where('user_id', $id);
