@@ -11,10 +11,10 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h3 class="content-header-title float-left mb-0">Daftar Karyawan</h3>
+                            <h3 class="content-header-title float-left mb-0">Daftar Pemohon Umum</h3>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item active">Daftar Karyawan
+                                    <li class="breadcrumb-item active">Daftar Pemohon Umum
                                     </li>
                                 </ol>
                             </div>
@@ -34,12 +34,6 @@
                                         <input type="text" id="search" class="form-control" placeholder="Pencarian">
                                     </div>
                                     <div class="col-xs-12 p-1 text-right">
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                            data-target="#importModal">
-                                            Import
-                                        </button>
-                                        <button type="button" class="btn btn-success"
-                                            id="create-list-applicant-modal">Tambah</button>
                                     </div>
                                 </div>
                                 <div class="card-datatable">
@@ -50,7 +44,7 @@
                                                 <th width="35%">Nama</th>
                                                 <th width="20%">Username</th>
                                                 <th width="20%">Email</th>
-                                                <th width="20%">Jabatan</th>
+                                                <th width="20%">No. HP</th>
                                                 <th width="5%">Aksi</th>
                                             </tr>
                                         </thead>
@@ -105,10 +99,10 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
-    @include('admin.list-applicant.modal')
+    @include('admin.list-general-applicant.modal')
 @endsection
 
 @push('script')
-    @include('admin.list-applicant.script')
-    @include('admin.list-applicant.script-table')
+    @include('admin.list-general-applicant.script')
+    @include('admin.list-general-applicant.script-table')
 @endpush

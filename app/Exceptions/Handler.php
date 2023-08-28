@@ -38,5 +38,11 @@ class Handler extends ExceptionHandler
                 app('sentry')->captureException($e);
             }
         });
+
+        $this->renderable(function (\Exception $e) {
+            if ($e->getPrevious() instanceof \Illuminate\Session\TokenMismatchException) {
+                return redirect()->route('login');
+            };
+        });
     }
 }

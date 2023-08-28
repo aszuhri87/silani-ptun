@@ -46,13 +46,12 @@
                     $('#form-doc-accepted').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     $('#form-doc-accepted').find('textarea[name="notes"]').val(data.notes);
-
+                    $('#form-doc-accepted').find('input[name="phone_number"]').val(data.phone_number);
 
                     for (i in data.doc_req){
                         $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].type+`</label>
                                     <div class="input-group mb-1">
-
                                         <span class="input-group-text " id="basicadd`+i+`" style="width:100%; ">
                                             <a style="font-size:12px;" href="/admin/verification/download/`+data.id+`">`+data.doc_req[i].requirement_value+`</a>
                                             <div class="tooltipLink" style="position:absolute;left:93%; width:50px;">

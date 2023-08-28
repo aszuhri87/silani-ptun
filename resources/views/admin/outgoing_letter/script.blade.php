@@ -47,7 +47,6 @@
 
                 $('#form-outgoing').trigger("reset");
                 $('#form-outgoing').attr('action','{{url('admin/outgoing-letter')}}');
-                // $('#form-outgoing').attr('enctype', 'multipart/form-data')
                 $('#form-outgoing').attr('method','POST');
 
                 showModal('modal-outgoing');
@@ -118,14 +117,12 @@
 
             $(document).on('click', '.btn-edit', function(event){
                 event.preventDefault();
-                // var id = $(this).data('id');
                 var url = $(this).attr('href');
                 var data = OutgoingTable.table().row($(this).parents('tr')).data();
 
                 $('#form-outgoing').trigger("reset");
                 $('#form-outgoing').attr('method','POST');
                 $('#form-outgoing').attr('action', $(this).attr('href'));
-                // $('#form-outgoing').attr('enctype','multipart/form-data');
 
                 $.get(url, function(data){
                     $('.form-method').html(`{{ method_field('put') }}`);

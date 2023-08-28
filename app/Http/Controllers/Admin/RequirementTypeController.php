@@ -26,14 +26,14 @@ class RequirementTypeController extends Controller
     public function dt()
     {
         $data = DB::table('requirement_types')
-        ->select([
-            'requirement_type',
-            'description',
-            'data_type',
-            'data_unit',
-        ])
-        ->orderBy('requirement_types.created_at', 'desc')
-        ->whereNull('deleted_at');
+            ->select([
+                'requirement_type',
+                'description',
+                'data_type',
+                'data_unit',
+            ])
+            ->orderBy('requirement_types.created_at', 'desc')
+            ->whereNull('deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -41,11 +41,11 @@ class RequirementTypeController extends Controller
     public function store(Request $request)
     {
         $data = RequirementType::create([
-                'requirement_type' => $request->requirement_type,
-                'description' => $request->description,
-                'data_type' => $request->data_type,
-                'data_unit' => $request->data_unit,
-            ]);
+            'requirement_type' => $request->requirement_type,
+            'description' => $request->description,
+            'data_type' => $request->data_type,
+            'data_unit' => $request->data_unit,
+        ]);
 
         Alert::success('Sukses', 'Berhasil Menambahkan Data!');
 

@@ -2,8 +2,6 @@
 
 
 @section('content')
-
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -24,58 +22,59 @@
                     </div>
                 </div>
             </div>
-        <!-- Basic table -->
-        <div class="content-body">
-       <!-- Responsive Datatable -->
-       <section id="responsive-datatable">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
-                        </div>
-                        <div class="col-xs-6 mr-1 text-right p-1">
-                            <button type="button" class="btn btn-success p-1" id="create-doc-category-modal"> Tambah</button>
-                        </div>
-                    </div>
-                    <div class="card-datatable" >
-                        <table class="table" id="init-table">
-                            <thead class="" width="100%">
-                                <tr>
-                                    <th>#</th>
-                                    <th width="25%">Nama</th>
-                                    <th width="15%">Jenis Perizinan</th>
-                                    <th width="25%">Waktu</th>
-                                    <th width="20%">Status</th>
-                                    <th width="10%">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+            <!-- Basic table -->
+            <div class="content-body">
+                <!-- Responsive Datatable -->
+                <section id="responsive-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <div class="form-row">
+                                        <input type="text" id="search" class="form-control mr-1"
+                                            placeholder="Pencarian">
+                                    </div>
+                                    <div class="col-xs-6 mr-1 text-right p-1">
+                                        <button type="button" class="btn btn-success p-1" id="create-doc-category-modal">
+                                            Tambah</button>
+                                    </div>
+                                </div>
+                                <div class="card-datatable">
+                                    <table class="table" id="init-table">
+                                        <thead class="" width="100%">
+                                            <tr>
+                                                <th>#</th>
+                                                <th width="25%">Nama</th>
+                                                <th width="15%">Jenis Perizinan</th>
+                                                <th width="25%">Waktu</th>
+                                                <th width="20%">Status</th>
+                                                <th width="10%">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                            </tbody>
-                        </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <!--/ Responsive Datatable -->
+
             </div>
         </div>
-    </section>
+    </div>
+    <!-- END: Content-->
 
-    <!--/ Responsive Datatable -->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
 
-</div>
-</div>
-</div>
-<!-- END: Content-->
-
-<div class="sidenav-overlay"></div>
-<div class="drag-target"></div>
-
-@include('admin.leave_document.modal')
-
+    @include('admin.leave_document.modal')
 @endsection
 
 @push('script')
-@include('admin.leave_document.script')
-@include('admin.leave_document.script-table')
+    @include('admin.leave_document.script')
+    @include('admin.leave_document.script-table')
 @endpush

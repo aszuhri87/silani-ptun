@@ -370,7 +370,6 @@
                     $('.nip_ketua').text(nip_ketua);
                     $('.nip_atasan').text(nip_atasan);
 
-
                         var leave = data.data.leave_notes;
 
                         for (let i = 0; i < leave.length; i++) {

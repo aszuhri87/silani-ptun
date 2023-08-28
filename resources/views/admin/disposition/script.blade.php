@@ -34,7 +34,6 @@
                       icon: 'info',
                       title: data.message
                     })
-                    // alert();
                 }
             });
 

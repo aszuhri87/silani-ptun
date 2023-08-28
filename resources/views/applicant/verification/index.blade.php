@@ -2,8 +2,6 @@
 
 
 @section('content')
-
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -24,56 +22,55 @@
                     </div>
                 </div>
             </div>
-        <!-- Basic table -->
-        <div class="content-body">
-       <!-- Responsive Datatable -->
-       <section id="responsive-datatable">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header border-bottom">
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
+            <!-- Basic table -->
+            <div class="content-body">
+                <!-- Responsive Datatable -->
+                <section id="responsive-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <div class="form-row">
+                                        <input type="text" id="search" class="form-control mr-1"
+                                            placeholder="Pencarian">
+                                    </div>
+                                </div>
+                                <div class="card-datatable">
+                                    <table class="table" id="init-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nama</th>
+                                                <th>Pemohon</th>
+                                                <th>Kategori Dokumen</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        {{-- <button type="button" class="btn btn-success" id="create-doc-req-modal"> Tambah</button> --}}
                     </div>
-                    <div class="card-datatable" >
-                        <table class="table"  id="init-table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Pemohon</th>
-                                    <th>Kategori Dokumen</th>
-                                    <th>Tanggal</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </section>
+
+                <!--/ Responsive Datatable -->
+
             </div>
         </div>
-    </section>
+    </div>
+    <!-- END: Content-->
 
-    <!--/ Responsive Datatable -->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
 
-</div>
-</div>
-</div>
-<!-- END: Content-->
-
-<div class="sidenav-overlay"></div>
-<div class="drag-target"></div>
-
-@include('applicant.verification.modal')
-
+    @include('applicant.verification.modal')
 @endsection
 
 @push('script')
-@include('applicant.verification.script')
-@include('applicant.verification.script-table')
+    @include('applicant.verification.script')
+    @include('applicant.verification.script-table')
 @endpush

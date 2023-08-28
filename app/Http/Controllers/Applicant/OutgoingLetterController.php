@@ -23,10 +23,10 @@ class OutgoingLetterController extends Controller
     public function index()
     {
         $data = DB::table('outgoing_letters')->select('*')
-        ->whereNull('deleted_at')
-        ->where('user_id', Auth::user()->id)
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->whereNull('deleted_at')
+            ->where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
         foreach ($notify as $item1) {
@@ -43,12 +43,12 @@ class OutgoingLetterController extends Controller
     public function dt()
     {
         $data = DB::table('outgoing_letters')
-        ->select([
-            '*',
-        ])
-        ->where('user_id', Auth::user()->id)
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc');
+            ->select([
+                '*',
+            ])
+            ->where('user_id', Auth::user()->id)
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -59,8 +59,8 @@ class OutgoingLetterController extends Controller
 
         if ($request->uploaded_file) {
             $file = $request->file('uploaded_file');
-            $file_name = date('Y-m-d_s').'.pdf';
-            $file->move(public_path().'/files/', $file_name);
+            $file_name = date('Y-m-d_s') . '.pdf';
+            $file->move(public_path() . '/files/', $file_name);
         }
 
         $docs = OutgoingLetter::create([
@@ -94,8 +94,8 @@ class OutgoingLetterController extends Controller
         try {
             if ($request->hasFile('uploaded_file')) {
                 $file = $request->file('uploaded_file');
-                $file_name = date('Y-m-d_s').'.pdf';
-                $file->move(public_path().'/files/', $file_name);
+                $file_name = date('Y-m-d_s') . '.pdf';
+                $file->move(public_path() . '/files/', $file_name);
             }
 
             $data = OutgoingLetter::find($id);
@@ -127,10 +127,10 @@ class OutgoingLetterController extends Controller
             'outgoing_letters.*',
             'users.name',
         ])
-        ->leftJoin('users', 'users.id', 'outgoing_letters.user_id')
-        ->where('outgoing_letters.id', $id)
-        ->whereNull('outgoing_letters.deleted_at')
-        ->first();
+            ->leftJoin('users', 'users.id', 'outgoing_letters.user_id')
+            ->where('outgoing_letters.id', $id)
+            ->whereNull('outgoing_letters.deleted_at')
+            ->first();
 
         return response()->json([
             'data' => $data,
@@ -158,34 +158,4 @@ class OutgoingLetterController extends Controller
             ], 500);
         }
     }
-
-    // public function print($id)
-    // {
-    //     date_default_timezone_set('Asia/Jakarta');
-
-    //     $data = OutgoingLetter::select('*')->where('id', $id)->first();
-
-    //     $user = OutgoingLetter::select([
-    //         'outgoing_letter_users.role',
-    //         'outgoing_letter_users.instruction',
-    //         'users.name',
-    //     ])
-    //     ->leftJoin('users', 'users.id', 'outgoing_letter_users.user_id')
-    //     ->whereNull('outgoing_letter_users.deleted_at')
-    //     ->get();
-
-    //     $data->outgoing_letter = $user;
-
-    //     $pdf = PDF::loadView('/applicant/outgoing_letter/print',
-    //     [
-    //         'data' => $data,
-    //     ]
-    //     )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
-
-    //     $name = date('Y-m-d_s').' '.'.pdf';
-
-    //     Storage::put('public/pdf/'.$name, $pdf->output());
-
-    //     return $pdf->stream($name);
-    // }
 }

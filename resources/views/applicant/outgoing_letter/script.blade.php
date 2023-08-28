@@ -47,7 +47,6 @@
 
                 $('#form-outgoing').trigger("reset");
                 $('#form-outgoing').attr('action','{{url('applicant/outgoing-letter')}}');
-                // $('#form-outgoing').attr('enctype', 'multipart/form-data')
                 $('#form-outgoing').attr('method','POST');
 
                 showModal('modal-outgoing');

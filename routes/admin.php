@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DocumentCategoryController;
 use App\Http\Controllers\Admin\DocumentCategoryRequirementController;
 use App\Http\Controllers\Admin\DocumentRequirementController;
 use App\Http\Controllers\Admin\ExitPermitDocumentController;
+use App\Http\Controllers\Admin\GeneralApplicantController;
 use App\Http\Controllers\Admin\InboxController;
 use App\Http\Controllers\Admin\LeaveDocumentController;
 use App\Http\Controllers\Admin\ManageAdminController;
@@ -53,6 +54,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::get('/exit-permit-document/download_pdf/{id}', [ExitPermitDocumentController::class, 'print']);
     Route::get('/leave-document/download_pdf/{id}', [LeaveDocumentController::class, 'print']);
 
+    Route::get('/list-general-applicant/{id}', [GeneralApplicantController::class, 'show']);
+    Route::post('/list-general-applicant/dt', [GeneralApplicantController::class, 'dt']);
+    Route::delete('/list-general-applicant/{id}', [GeneralApplicantController::class, 'destroy']);
+
     Route::resource('/notification', NotificationController::class);
     Route::resource('/manage-admin', ManageAdminController::class);
     Route::resource('/accepted', AcceptedController::class);
@@ -69,5 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::resource('/leave-document', LeaveDocumentController::class);
     Route::resource('/disposition-document', DispositionDocumentController::class);
     Route::resource('/outgoing-letter', OutgoingLetterController::class);
+    Route::resource('/list-general-applicant', GeneralApplicantController::class);
+
 }
 );

@@ -68,10 +68,11 @@
 
                         <div class="card-body">
                             <a href="javascript:void(0);" class="brand-logo text-center">
-                                <img src="{{asset('app-assets/images/logo.png')}}" alt=""
+                                <img src="{{ asset('app-assets/images/logo.png') }}" alt=""
                                     style="width:auto; height:50px">
                             </a>
-                            <h2 class="d-flex justify-content-center brand-text text-center text-success">SILANI | PTUN Yogyakarta</h2>
+                            <h2 class="d-flex justify-content-center brand-text text-center text-success">SILANI | PTUN
+                                Yogyakarta</h2>
                             <p class="card-text mb-2">Silahkan mendaftar!</p>
 
                             <form method="POST" action="{{ route('register') }}" class="auth-register-form mt-2">
@@ -79,12 +80,13 @@
                                 <div class="form-group">
                                     <label for="name" class="form-label">Nama</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" value="{{ old('name') }}" placeholder="Nama anda"
-                                        aria-describedby="name" tabindex="1" required autocomplete="name" autofocus />
+                                        id="name" name="name" value="{{ old('name') }}"
+                                        placeholder="Nama anda" aria-describedby="name" tabindex="1" required
+                                        autocomplete="name" autofocus />
                                     @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
 
@@ -92,24 +94,25 @@
                                     <label for="username" class="form-label">Username</label>
                                     <input type="text" class="form-control @error('username') is-invalid @enderror"
                                         id="username" name="username" placeholder="Username"
-                                        value="{{ old('username') }}" aria-describedby="username" tabindex="1" required
-                                        autocomplete="username" autofocus />
+                                        value="{{ old('username') }}" aria-describedby="username" tabindex="1"
+                                        required autocomplete="username" autofocus />
                                     @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        id="email" name="email" value="{{ old('email') }}" placeholder="Email"
-                                        aria-describedby="email" tabindex="2" required autocomplete="email" />
+                                        id="email" name="email" value="{{ old('email') }}"
+                                        placeholder="Email" aria-describedby="email" tabindex="2" required
+                                        autocomplete="email" />
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
 
@@ -125,9 +128,9 @@
                                             tabindex="3" />
 
                                         @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                         <div class="input-group-append">
                                             <span class="input-group-text cursor-pointer"><i
@@ -151,12 +154,13 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-success btn-block" tabindex="5">Daftar</button>
+                                <button type="submit" class="btn btn-success btn-block"
+                                    tabindex="5">Daftar</button>
                             </form>
 
                             <p class="text-center mt-2">
                                 <span>Sudah punya akun?</span>
-                                <a href="{{route('login')}}">
+                                <a href="{{ route('login') }}">
                                     <span>Masuk</span>
                                 </a>
                             </p>
@@ -172,15 +176,15 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
+    <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{asset('app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.date.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.time.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/pickers/pickadate/legacy.js')}}"></script>
+    <script src="{{ asset('app-assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.date.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.time.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/legacy.js') }}"></script>
     <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/wizard/bs-stepper.min.js"></script>
     <script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
@@ -188,19 +192,19 @@
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{asset('app-assets/js/core/app-menu.js')}}"></script>
-    <script src="{{asset('app-assets/js/core/app.js')}}"></script>
+    <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('app-assets/js/core/app.js') }}"></script>
 
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{asset('app-assets/js/scripts/pages/page-auth-register.js')}}"></script>
-    <script src="{{asset('app-assets/js/scripts/forms/pickers/form-pickers.js')}}"></script>
+    <script src="{{ asset('app-assets/js/scripts/pages/page-auth-register.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/forms/pickers/form-pickers.js') }}"></script>
     <script src="../../../app-assets/js/scripts/forms/form-wizard.js"></script>
     <!-- END: Page JS-->
 
     <script>
-        $(window).on('load', function () {
+        $(window).on('load', function() {
             if (feather) {
                 feather.replace({
                     width: 14,
@@ -208,11 +212,8 @@
                 });
             }
         })
-
     </script>
 </body>
 <!-- END: Body-->
 
 </html>
-
-

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 use Exception;
+
 class UnitController extends Controller
 {
     public function __construct()
@@ -26,13 +27,13 @@ class UnitController extends Controller
     public function dt()
     {
         $data = DB::table('units')
-        ->select([
-            'id',
-            'name',
-            'description',
-        ])
-        ->orderBy('created_at', 'desc')
-        ->whereNull('deleted_at');
+            ->select([
+                'id',
+                'name',
+                'description',
+            ])
+            ->orderBy('created_at', 'desc')
+            ->whereNull('deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -40,11 +41,9 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $data = Unit::create([
-                'name' => $request->name,
-                'description' => $request->description,
-            ]);
-
-        // return $data;
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
 
         Alert::success('Sukses', 'Berhasil Menambahkan Data!');
 
@@ -108,13 +107,13 @@ class UnitController extends Controller
         }
 
         $letters = DB::table('units')
-        ->select([
-            'units.id',
-            'units.name',
+            ->select([
+                'units.id',
+                'units.name',
             ])
-        ->where('units.name', 'ilike', '%'.$term.'%')
-        ->whereNull('units.deleted_at')
-        ->get();
+            ->where('units.name', 'ilike', '%' . $term . '%')
+            ->whereNull('units.deleted_at')
+            ->get();
 
         $formatted_tags = [];
 

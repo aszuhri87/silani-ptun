@@ -164,14 +164,4 @@
 
     });
 
-        // var channel = pusher.subscribe('my-channel');
-        // channel.bind('App\\Events\\DispositionNotif', function(data) {
-        //     if(data){
-        //         Toast.fire({
-        //           icon: 'info',
-        //           title: data.message
-        //         })
-        //     }
-        // });
-
 </script>

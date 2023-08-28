@@ -454,7 +454,8 @@
                             @endif
                             <p><b
                                     style="text-decoration: underline; white-space: nowrap; margin:0;">({{ $data->name }})</b>
-                                <br>{{ $data->nip }} <b></b></p>
+                                <br>{{ $data->nip }} <b></b>
+                            </p>
                         </td>
                     </tr>
                 </table>
@@ -554,7 +555,8 @@
                             @foreach ($data->approval as $approve)
                                 @if ($approve->approval_type == 'ATASAN')
                                     <p><b style="text-decoration: underline;">({{ strtoupper($approve->chief) }})</b>
-                                        <br>{{ $approve->nip }} <b></b></p>
+                                        <br>{{ $approve->nip }} <b></b>
+                                    </p>
                                 @endif
                             @endforeach
                         </td>
@@ -651,7 +653,8 @@
                             @foreach ($data->approval as $approve)
                                 @if ($approve->approval_type == 'PEJABAT')
                                     <p><b style="text-decoration: underline;">({{ $approve->chief }})</b>
-                                        <br>{{ $approve->nip }} <b></b></p>
+                                        <br>{{ $approve->nip }} <b></b>
+                                    </p>
                                 @endif
                             @endforeach
                         </td>

@@ -74,17 +74,6 @@
                     lengthMenu: '<span>Show:</span> _MENU_',
                     processing: '<div class="text-center"> <div class="spinner-border text-primary" role="status"> <span class="sr-only">Loading...</span> </div> </div>',
                 },
-                // rowCallback: function(row, data, index){
-                //             if (data.status=='Menunggu Konfirmasi Anda') {
-                //                 $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
-                //             }else if (data.status=='Disetujui') {
-                //                 $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-success mr-1">'+data.status+'</span>');
-                //             }else if (data.status=='Ditolak') {
-                //                 $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-danger mr-1">'+data.status+'</span>');
-                //             }else{
-                //                 $(row).find('td:eq(4)').html('<span class="badge badge-pill badge-light-secondary mr-1">'+data.status+'</span>');
-                //             }
-                //         },
             });
         },
         actionTable = () => {

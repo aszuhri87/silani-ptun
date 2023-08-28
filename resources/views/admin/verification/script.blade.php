@@ -58,8 +58,7 @@
                     $('#form-doc-verification').find('textarea[name="description"]').val(data.description);
                     $('#form-doc-verification').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     $('#form-doc-verification').find('textarea[name="notes"]').val(data.notes);
-
-                    console.log(data);
+                    $('#form-doc-verification').find('input[name="phone_number"]').val(data.phone_number);
 
                     for (i in data.doc_req){
                         $('div#doc_file').append(`

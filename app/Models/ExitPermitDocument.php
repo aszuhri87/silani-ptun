@@ -27,6 +27,7 @@ class ExitPermitDocument extends Model
         'signature',
         'approver',
         'status',
+        'end_time'
     ];
 
     protected $dates = ['deleted_at'];

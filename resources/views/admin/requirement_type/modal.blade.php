@@ -1,7 +1,8 @@
 <!-- Vertical modal -->
 <div class="vertical-modal-ex">
     <!-- Modal -->
-    <div class="modal fade" id="modal-req-type" tabindex="-1" role="dialog" aria-labelledby="unitModalTitle" aria-hidden="true">
+    <div class="modal fade" id="modal-req-type" tabindex="-1" role="dialog" aria-labelledby="unitModalTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -11,21 +12,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                     <!-- Basic -->
-                     <div class="col-md-12">
-                        <form id="form-req-type" name="form-req-type" class="auth-register-form mt-2" >
-
+                    <!-- Basic -->
+                    <div class="col-md-12">
+                        <form id="form-req-type" name="form-req-type" class="auth-register-form mt-2">
                             <label for="name">Tipe Keperluan</label>
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="requirement_type" placeholder="Nama" aria-label="Name" aria-describedby="requirement_type" />
+                                <input type="text" class="form-control" name="requirement_type" placeholder="Nama"
+                                    aria-label="Name" aria-describedby="requirement_type" />
                             </div>
 
                             <label for="description" class="form-label">Deskripsi</label>
                             <div class="input-group">
 
-                            <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3" placeholder="" required></textarea>
+                                <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="3"
+                                    placeholder="" required></textarea>
                             </div>
-                            <small class="textarea-counter-value float-right bg-success"><span class="char-count">0</span> / 50 </small>
+                            <small class="textarea-counter-value float-right bg-success"><span
+                                    class="char-count">0</span> / 50 </small>
 
                             <div class="form-group">
                                 <label for="data_type">Tipe Data</label>
@@ -38,17 +41,15 @@
 
                             <label for="data_unit">Data Unit</label>
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="data_unit" placeholder="Data Unit" aria-label="Data Unit" aria-describedby="data_unit" />
+                                <input type="text" class="form-control" name="data_unit" placeholder="Data Unit"
+                                    aria-label="Data Unit" aria-describedby="data_unit" />
                             </div>
-
-
                     </div>
-
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" id="btn-save" >Simpan</button>
+                    <button type="submit" class="btn btn-success" id="btn-save">Simpan</button>
                 </div>
-            </form>
+                </form>
             </div>
         </div>
     </div>

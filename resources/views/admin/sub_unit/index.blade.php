@@ -2,8 +2,6 @@
 
 
 @section('content')
-
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -27,56 +25,56 @@
                 </div>
             </div>
             <!-- Basic table -->
-        <div class="content-body">
-       <!-- Responsive Datatable -->
-       <section id="responsive-datatable">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header border-bottom row">
-                        <div class="col-xs-6 m1-1 p-1">
-                            <input type="text" id="search" class="form-control" placeholder="Pencarian">
-                        </div>
-                        <div class="col-xs-6 mr-1 text-right p-1">
-                            <button type="button" class="btn btn-success p-1" id="create-subunit-modal">Tambah</button>
-                        </div>
-                    </div>
-                    <div class="card-datatable">
-                        <table class="table" id="init-table">
-                            <thead class="" width="100%">
-                                <tr>
-                                    <th>#</th>
-                                    <th width="25%">Nama</th>
-                                    <th width="25%">Unit</th>
-                                    <th width="30%">Deskripsi</th>
-                                    <th width="10%">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+            <div class="content-body">
+                <!-- Responsive Datatable -->
+                <section id="responsive-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom row">
+                                    <div class="col-xs-6 m1-1 p-1">
+                                        <input type="text" id="search" class="form-control" placeholder="Pencarian">
+                                    </div>
+                                    <div class="col-xs-6 mr-1 text-right p-1">
+                                        <button type="button" class="btn btn-success p-1"
+                                            id="create-subunit-modal">Tambah</button>
+                                    </div>
+                                </div>
+                                <div class="card-datatable">
+                                    <table class="table" id="init-table">
+                                        <thead class="" width="100%">
+                                            <tr>
+                                                <th>#</th>
+                                                <th width="25%">Nama</th>
+                                                <th width="25%">Unit</th>
+                                                <th width="30%">Deskripsi</th>
+                                                <th width="10%">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                            </tbody>
-                        </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <!--/ Responsive Datatable -->
+
             </div>
         </div>
-    </section>
+    </div>
+    <!-- END: Content-->
 
-    <!--/ Responsive Datatable -->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
 
-</div>
-</div>
-</div>
-<!-- END: Content-->
-
-<div class="sidenav-overlay"></div>
-<div class="drag-target"></div>
-
-@include('admin.sub_unit.modal')
-
+    @include('admin.sub_unit.modal')
 @endsection
 
 @push('script')
-@include('admin.sub_unit.script')
-@include('admin.sub_unit.script-table')
+    @include('admin.sub_unit.script')
+    @include('admin.sub_unit.script-table')
 @endpush

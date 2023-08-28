@@ -27,9 +27,9 @@ class DispositionDocumentController extends Controller
     public function index()
     {
         $docs = DB::table('disposition_documents')->select('*')
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $data = [];
 
@@ -41,10 +41,10 @@ class DispositionDocumentController extends Controller
                 'note',
                 'instruction',
             ])
-            ->where('disposition_document_id', $item->id)
-            ->whereNull('deleted_at')
-            ->orderBy('created_at', 'desc')
-            ->get();
+                ->where('disposition_document_id', $item->id)
+                ->whereNull('deleted_at')
+                ->orderBy('created_at', 'desc')
+                ->get();
 
             $item->user_disposition = $user_disposition;
             $data[] = $item;
@@ -65,25 +65,25 @@ class DispositionDocumentController extends Controller
     public function dt()
     {
         $data = DB::table('disposition_documents')
-        ->select([
-            '*',
-            DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
-        ])
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc');
+            ->select([
+                '*',
+                DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
+            ])
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
+
         $file_name = null;
 
         if ($request->uploaded_file) {
             $file = $request->file('uploaded_file');
-            $file_name = date('Y-m-d_s').'.pdf';
-            $file->move(public_path().'/files/', $file_name);
+            $file_name = date('Y-m-d_s') . '.pdf';
+            $file->move(public_path() . '/files/', $file_name);
         }
 
         $docs = DispositionDocument::create([
@@ -101,20 +101,15 @@ class DispositionDocumentController extends Controller
 
         $user = User::where('title', $request->role)->first();
 
-
-        // if ($user->id == Auth::user()->id) {
-        // }
-
         $user_disposition = DispositionUser::create([
-                'user_id' => $user->id,
-                'disposition_document_id' => $docs->id,
-                'role' => $request->role,
-                'note' => $request->note,
-                'instruction' => $request->instruction,
-                'status' => 'Menunggu',
-            ]);
+            'user_id' => $user->id,
+            'disposition_document_id' => $docs->id,
+            'role' => $request->role,
+            'note' => $request->note,
+            'instruction' => $request->instruction,
+            'status' => 'Menunggu',
+        ]);
 
-        // event(new DispositionNotif('Permintaan Disposisi baru'));
         $user->notify(new NewLetter('disposition', $docs->id, $user, 'disposition'));
 
         return redirect()->back();
@@ -125,18 +120,15 @@ class DispositionDocumentController extends Controller
         $file_name = null;
 
         try {
-            // dd($request->letter_type);
             if ($request->hasFile('uploaded_file')) {
                 $file = $request->file('uploaded_file');
-                $file_name = date('Y-m-d_s').'.pdf';
-                $file->move(public_path().'/files/', $file_name);
+                $file_name = date('Y-m-d_s') . '.pdf';
+                $file->move(public_path() . '/files/', $file_name);
             }
-
-            // dd($request->index);
+            ;
 
             $data = DispositionDocument::find($id);
             $data->update([
-                // 'user_id' => $request->role,
                 'index' => $request->index,
                 'letter_type' => $request->letter_type,
                 'code' => $request->code,
@@ -159,7 +151,7 @@ class DispositionDocumentController extends Controller
                 'role' => $request->role,
             ]);
 
-            if (strpos($data->status, 'Disetujui') == false){
+            if (strpos($data->status, 'Disetujui') == false) {
                 $document = Document::where('id', $data->document_id);
                 $document->update([
                     'status' => "Diproses"
@@ -196,22 +188,22 @@ class DispositionDocumentController extends Controller
         $data = DispositionDocument::select(
             'disposition_documents.*',
         )
-        ->where('disposition_documents.id', $id)->first();
+            ->where('disposition_documents.id', $id)->first();
 
         $doc_file = DocumentRequirement::select('requirement_value', 'type')
-        ->where('document_id', $data->document_id)
-        ->whereNull('deleted_at')
-        ->get();
+            ->where('document_id', $data->document_id)
+            ->whereNull('deleted_at')
+            ->get();
 
         $user = DispositionUser::select([
             'disposition_users.role',
             'disposition_users.instruction',
             'users.name',
         ])
-        ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-        ->where('disposition_users.disposition_document_id', $id)
-        ->whereNull('disposition_users.deleted_at')
-        ->get();
+            ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+            ->where('disposition_users.disposition_document_id', $id)
+            ->whereNull('disposition_users.deleted_at')
+            ->get();
 
         $data->disposition = $user;
         $data->document_file = $doc_file;
@@ -254,44 +246,41 @@ class DispositionDocumentController extends Controller
             'disposition_users.instruction',
             'users.name',
         ])
-        ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-        ->where('disposition_users.disposition_document_id', $id)
-        ->whereNull('disposition_users.deleted_at')
-        ->get();
+            ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+            ->where('disposition_users.disposition_document_id', $id)
+            ->whereNull('disposition_users.deleted_at')
+            ->get();
 
         $data->disposition = $user;
 
-        $pdf = PDF::loadView('/admin/disposition/print',
-        [
-            'data' => $data,
-        ]
+        $pdf = PDF::loadView(
+            '/admin/disposition/print',
+            [
+                'data' => $data,
+            ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
-        $name = date('Y-m-d_s').' '.'.pdf';
-
-        // Storage::put('public/pdf/'.$name, $pdf->output());
+        $name = date('Y-m-d_s') . ' ' . '.pdf';
 
         $pdfVersion = '1.4';
-        $newFile = public_path('files/'.$id.'.pdf');
-        $currentFile = public_path('files/"'.$data->uploaded_document.'"');
+        $newFile = public_path('files/' . $id . '.pdf');
+        $currentFile = public_path('files/"' . $data->uploaded_document . '"');
 
         echo shell_exec("gs -sDEVICE=pdfwrite  -dPDFFitPage -dCompatibilityLevel=1.4 -dEmbedAllFonts=true -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false -f -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile");
 
         ob_end_clean();
 
-        Storage::put('public/pdf/'.$name, $pdf->output());
+        Storage::put('public/pdf/' . $name, $pdf->output());
 
         $pdfMerge = PDFMerger::init();
 
-        $pdfMerge->addPDF(storage_path('app/public/pdf/'.$name), 'all');
+        $pdfMerge->addPDF(storage_path('app/public/pdf/' . $name), 'all');
         $pdfMerge->addPDF($newFile, 'all');
 
-        $fileName = 'dokumen_lengkap_'.time().'.pdf';
+        $fileName = 'dokumen_lengkap_' . time() . '.pdf';
         $pdfMerge->merge();
-        $pdfMerge->save(public_path('files/merged/'.$fileName));
+        $pdfMerge->save(public_path('files/merged/' . $fileName));
 
         return $pdfMerge->stream(public_path($fileName));
-
-        // return $pdf->stream($name);
     }
 }

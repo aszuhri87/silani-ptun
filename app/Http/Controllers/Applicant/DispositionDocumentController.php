@@ -26,9 +26,9 @@ class DispositionDocumentController extends Controller
     public function index()
     {
         $docs = DB::table('disposition_documents')->select('*')
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $data = [];
 
@@ -41,12 +41,12 @@ class DispositionDocumentController extends Controller
                 'instruction',
                 'status as status_user',
             ])
-            ->where('disposition_document_id', $item->id)
-            ->where('user_id', Auth::user()->id)
-            ->orWhere('role', Auth::user()->title)
-            ->whereNull('deleted_at')
-            ->orderBy('created_at', 'desc')
-            ->get();
+                ->where('disposition_document_id', $item->id)
+                ->where('user_id', Auth::user()->id)
+                ->orWhere('role', Auth::user()->title)
+                ->whereNull('deleted_at')
+                ->orderBy('created_at', 'desc')
+                ->get();
 
             $item->user_disposition = $user_disposition;
             $data[] = $item;
@@ -67,22 +67,22 @@ class DispositionDocumentController extends Controller
     public function dt()
     {
         $data = DB::table('disposition_documents')
-        ->select([
-            'disposition_users.user_id',
-            'disposition_users.role',
-            'disposition_users.note',
-            'disposition_users.instruction',
-            'disposition_users.status as status_user',
-            'disposition_documents.*',
-            DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
-        ])
-        ->leftJoin('disposition_users', 'disposition_users.disposition_document_id', 'disposition_documents.id')
-        ->where(function ($query) {
-            $query->where('disposition_users.user_id', Auth::user()->id)
-            ->orWhere('disposition_users.role', Auth::user()->title);
-        })
-        ->whereNull('disposition_documents.deleted_at')
-        ->orderBy('disposition_documents.created_at', 'desc');
+            ->select([
+                'disposition_users.user_id',
+                'disposition_users.role',
+                'disposition_users.note',
+                'disposition_users.instruction',
+                'disposition_users.status as status_user',
+                'disposition_documents.*',
+                DB::raw("CASE WHEN disposition_documents.status IS NULL THEN 'Menunggu' ELSE disposition_documents.status END as status"),
+            ])
+            ->leftJoin('disposition_users', 'disposition_users.disposition_document_id', 'disposition_documents.id')
+            ->where(function ($query) {
+                $query->where('disposition_users.user_id', Auth::user()->id)
+                    ->orWhere('disposition_users.role', Auth::user()->title);
+            })
+            ->whereNull('disposition_documents.deleted_at')
+            ->orderBy('disposition_documents.created_at', 'desc');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
 
@@ -92,8 +92,8 @@ class DispositionDocumentController extends Controller
     {
         if ($request->hasFile('uploaded_file')) {
             $file = $request->file('uploaded_file');
-            $file_name = date('Y-m-d_s').'.pdf';
-            $file->move(public_path().'/files/', $file_name);
+            $file_name = date('Y-m-d_s') . '.pdf';
+            $file->move(public_path() . '/files/', $file_name);
         }
 
         $docs = DispositionDocument::create([
@@ -148,15 +148,15 @@ class DispositionDocumentController extends Controller
 
             $data = DispositionDocument::find($id);
             $data->update([
-                'status' => 'Disetujui '.Auth::user()->title,
+                'status' => 'Disetujui ' . Auth::user()->title,
             ]);
 
             $user = DispositionUser::where('role', Auth::user()->title)
-            ->orWhere('user_id', Auth::user()->id);
+                ->orWhere('user_id', Auth::user()->id);
 
             $user->update([
                 'status' => $request->status,
-                'instruction' => $request->instruction.' ('.Auth::user()->title.')',
+                'instruction' => $request->instruction . ' (' . Auth::user()->title . ')',
                 'user_id' => Auth::user()->id,
             ]);
 
@@ -181,12 +181,13 @@ class DispositionDocumentController extends Controller
 
     public function update_disposition(Request $request, $id)
     {
-        $check = DispositionUser::where('role', $request->role)->where('disposition_document_id', $id);;
+        $check = DispositionUser::where('role', $request->role)->where('disposition_document_id', $id);
+        ;
 
         if ($check->first()) {
             $check->update([
-                    'role' => $request->role,
-                ]);
+                'role' => $request->role,
+            ]);
         } else {
             DispositionUser::create([
                 'role' => $request->role,
@@ -197,23 +198,24 @@ class DispositionDocumentController extends Controller
 
         $data = DispositionDocument::find($id);
         $data->update([
-                'status' => 'Disetujui '.Auth::user()->title,
-            ]);
+            'status' => 'Disetujui ' . Auth::user()->title,
+        ]);
 
         $user = DispositionUser::where('role', Auth::user()->title)->where('disposition_document_id', $id);
 
         $user->update([
-                'status' => $request->status,
-                'instruction' => $request->instruction.' ('.Auth::user()->title.')',
-                'user_id' => Auth::user()->id,
-            ]);
+            'status' => $request->status,
+            'instruction' => $request->instruction . ' (' . Auth::user()->title . ')',
+            'user_id' => Auth::user()->id,
+        ]);
 
         $document = Document::where('id', $data->document_id);
 
-        if ($request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
-        Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
-        Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara")
-        {
+        if (
+            $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
+            Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
+            Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
+        ) {
             $document->update([
                 'status' => "Diterima"
             ]);
@@ -231,7 +233,7 @@ class DispositionDocumentController extends Controller
 
 
         $users = User::where('title', $request->role)->first();
-        if ($users){
+        if ($users) {
             $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
         }
 
@@ -248,22 +250,22 @@ class DispositionDocumentController extends Controller
         $data = DispositionDocument::select(
             'disposition_documents.*',
         )
-        ->where('disposition_documents.id', $id)->first();
+            ->where('disposition_documents.id', $id)->first();
 
         $doc_file = DocumentRequirement::select('requirement_value', 'type')
-        ->where('document_id', $data->document_id)
-        ->whereNull('deleted_at')
-        ->get();
+            ->where('document_id', $data->document_id)
+            ->whereNull('deleted_at')
+            ->get();
 
         $user = DispositionUser::select([
             'disposition_users.role',
             'disposition_users.instruction',
             'users.name',
         ])
-        ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-        ->where('disposition_users.disposition_document_id', $id)
-        ->whereNull('disposition_users.deleted_at')
-        ->get();
+            ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+            ->where('disposition_users.disposition_document_id', $id)
+            ->whereNull('disposition_users.deleted_at')
+            ->get();
 
         $data->disposition = $user;
         $data->document_file = $doc_file;
@@ -306,41 +308,40 @@ class DispositionDocumentController extends Controller
             'disposition_users.instruction',
             'users.name',
         ])
-        ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-        ->where('disposition_users.disposition_document_id', $id)
-        ->whereNull('disposition_users.deleted_at')
-        ->get();
+            ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+            ->where('disposition_users.disposition_document_id', $id)
+            ->whereNull('disposition_users.deleted_at')
+            ->get();
 
         $data->disposition = $user;
 
-        $pdf = PDF::loadView('/applicant/disposition/print',
-        [
-            'data' => $data,
-        ]
+        $pdf = PDF::loadView(
+            '/applicant/disposition/print',
+            [
+                'data' => $data,
+            ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
-        $name = date('Y-m-d_s').' '.'.pdf';
-
-        // Storage::put('public/pdf/'.$name, $pdf->output());
+        $name = date('Y-m-d_s') . ' ' . '.pdf';
 
         $pdfVersion = '1.4';
-        $newFile = public_path('files/'.$id.'.pdf');
-        $currentFile = public_path('files/"'.$data->uploaded_document.'"');
+        $newFile = public_path('files/' . $id . '.pdf');
+        $currentFile = public_path('files/"' . $data->uploaded_document . '"');
 
         echo shell_exec("gs -sDEVICE=pdfwrite  -dPDFFitPage -dCompatibilityLevel=1.4 -dEmbedAllFonts=true -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false -f -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile");
 
         ob_end_clean();
 
-        Storage::put('public/pdf/'.$name, $pdf->output());
+        Storage::put('public/pdf/' . $name, $pdf->output());
 
         $pdfMerge = PDFMerger::init();
 
-        $pdfMerge->addPDF(storage_path('app/public/pdf/'.$name), 'all');
+        $pdfMerge->addPDF(storage_path('app/public/pdf/' . $name), 'all');
         $pdfMerge->addPDF($newFile, 'all');
 
-        $fileName = 'dokumen_lengkap_'.time().'.pdf';
+        $fileName = 'dokumen_lengkap_' . time() . '.pdf';
         $pdfMerge->merge();
-        $pdfMerge->save(public_path('files/merged/'.$fileName));
+        $pdfMerge->save(public_path('files/merged/' . $fileName));
 
         return $pdfMerge->stream(public_path($fileName));
     }

@@ -117,7 +117,6 @@
 
                     for(let i=0; i< data.data.approval.length; i++){
                         if(data.data.approval[i].user_id == {!! json_encode(Auth::user()->id)!!}){
-                            // console.log({!! json_encode(Auth::user()->id)!!});
                             $('.econtent').html(`
                                 <div class="form-group">
                                     <label for="approval_status">Status Perizinan</label>
@@ -219,7 +218,6 @@
                     $('.count_time').text(data.data.leave_long);
                     $('.letter-head').text(data.data.letter_head);
 
-
                     $('.user-sign').html(`
                         <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""
                         style="min-height: 60px; max-height: 60px;" width="auto"
@@ -259,6 +257,10 @@
                         if(data.data.approval[i].approval_type == 'PEJABAT'){
                             if(data.data.approval[i].approval_status == 'Disetujui'){
                                 $('.final-agree-1').text('✓');
+                                $('div#link_pdf').html(`
+                                    <a href="{{url('applicant/leave-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
+                                `);
                             }
                             else if(data.data.approval[i].approval_status == 'Perubahan'){
                                 $('.final-agree-2').text('✓');
@@ -313,11 +315,6 @@
                                $('.tanggungan').text(leave[i].amount);
                            }
                         }
-
-                    $('div#link_pdf').html(`
-                        <a href="{{url('applicant/leave-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
-                    `);
                 });
 
                 showModal('modal-document');

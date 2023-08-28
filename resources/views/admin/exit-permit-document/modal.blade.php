@@ -23,13 +23,6 @@
                                     <input type="hidden" id="name" name="name">
                                 </div>
 
-                                {{-- <div class="form-group">
-                                    <label for="permit_type">Unit Kerja</label>
-                                    <select class=" form-control" id="select-unit" data-toggle="collapse" required
-                                        data-target="#timeline" required></select>
-                                    <input type="hidden" id="unit" name="unit">
-                                </div> --}}
-
                                 <label for="reason" id="reason" class="form-label">Alasan</label>
                                 <div class="input-group">
                                     <textarea data-length="50" class="form-control char-textarea" id="reason" name="reason" required rows="3"
@@ -187,9 +180,12 @@
                                                 <p> Jam </p>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                    <p class="time" style="white-space: none; margin: 0; ">
-                                                        :...........................................</p>
+                                                <div class="d-flex" style="margin:0; white-space: nowrap; text-emphasis: none;">
+                                                    <p class="time" style="white-space: nowrap; margin:0;">
+                                                        :........</p>
+                                                    <p style="white-space: nowrap; margin-left:5px; margin-right:5px;">s.d</p>
+                                                    <p class="end_time" style="white-space: nowrap; margin:0;">
+                                                        .......</p>
                                                 </div>
                                             </td>
                                         </tr>

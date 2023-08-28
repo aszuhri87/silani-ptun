@@ -31,8 +31,8 @@
 
                                 <div class="form-group">
                                     <label for="letter_type">Jenis Surat</label>
-                                    <select class=" form-control" id="letter_type" data-toggle="collapse" name="letter_type"
-                                        data-target="#timeline" required>
+                                    <select class=" form-control" id="letter_type" data-toggle="collapse"
+                                        name="letter_type" data-target="#timeline" required>
                                         <option value="">-- Pilih --</option>
                                         <option value="Rahasia">Rahasia</option>
                                         <option value="Penting">Penting</option>
@@ -293,18 +293,18 @@
                                 </div>
 
                                 <hr>
-                            </div>
-                            <div class="col-12">
-                                <label for="requirement_value">Dokumen/File: </label>
-
-                                <div class="mt-1" id="doc_file">
-
-                                </div>
-
-                                <label for="requirement_value" class="mt-2">Dokumen/File Upload Manual: </label>
-                                <div class="row" id="files"></div>
-                            </div>
                         </div>
+                        <div class="col-12">
+                            <label for="requirement_value">Dokumen/File: </label>
+
+                            <div class="mt-1" id="doc_file">
+
+                            </div>
+
+                            <label for="requirement_value" class="mt-2">Dokumen/File Upload Manual: </label>
+                            <div class="row " id="files"></div>
+                        </div>
+                    </div>
                     </form>
                 </div>
             </div>

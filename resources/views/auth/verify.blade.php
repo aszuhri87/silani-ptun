@@ -58,10 +58,11 @@
                     <div class="misc-inner p-2 p-sm-3">
                         <div class="w-100 text-center">
                             <h2 class="mb-1">Verifikasi Email Anda</h2>
-                            <p class="mb-2"> @if (session('resent'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ __('Link verifikasi baru sudah terkirim di email anda.') }}
-                                </div>
+                            <p class="mb-2">
+                                @if (session('resent'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ __('Link verifikasi baru sudah terkirim di email anda.') }}
+                                    </div>
                                 @endif
                             </p>
 
@@ -73,15 +74,16 @@
                             <br>
                             <hr>
                             <p>Sudah Verifikasi?</p>
-                            <a class="btn btn-success mb-2 btn-sm-block" href="{{route('login')}}">Masuk</a>
+                            <a class="btn btn-success mb-2 btn-sm-block" href="{{ route('login') }}">Masuk</a>
                             <br>
                             <img class="img-fluid" src="../../../app-assets/images/pages/error.svg" alt="Error page"
                                 style="width: 55%; height:55%" />
-                                <br>
-                                <br>
+                            <br>
+                            <br>
                             <a class="mt-5" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">Klik disini untuk keluar</a>
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Klik
+                                disini untuk keluar</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
@@ -111,7 +113,7 @@
     <!-- END: Page JS-->
 
     <script>
-        $(window).on('load', function () {
+        $(window).on('load', function() {
             if (feather) {
                 feather.replace({
                     width: 14,
@@ -119,10 +121,8 @@
                 });
             }
         })
-
     </script>
 </body>
 <!-- END: Body-->
 
 </html>
-

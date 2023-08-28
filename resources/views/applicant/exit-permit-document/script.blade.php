@@ -148,7 +148,8 @@
                     $('.date_sign').text(data.data.date_sign);
                     $('.name_sign').text('( '+data.data.name+' )');
                     $('.time').text(' : '+data.data.time);
-                    $('.approver').text(data.data.approver);
+                    $('.end_time').text(data.data.end_time);
+                    $('.approver').text('('+data.data.approver+')');
                     $('.title_approver').text(data.data.title);
                     $('.jabatan').text(data.data.title);
 
@@ -163,16 +164,22 @@
                         )
                     }
 
-                    $('.signature').html(`
-                        <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""
-                            style="min-height: 100px; max-height: 100px;" width="auto"
-                            style="margin-left: 50%;">
-                    `)
+                    if(data.data.status == 'Disetujui'){
+                        $('div#link_pdf').html(`
+                            <a href="{{url('applicant/exit-permit-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
+                        `);
 
-                    $('div#link_pdf').html(`
-                        <a href="{{url('applicant/exit-permit-document/download_pdf/`+data.data.id+`')}}" class="btn btn-light btn-sm btn-clean btn-icon" data-toggle="tooltip" data-placement="top" title="Print Lembar Disposisi"  >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#44559f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
-                    `);
+                        $('.space').remove();
+
+                        $('.signature').html(`
+                            <img src="{{asset('/signature/`+data.data.signature+`')}}" alt=""
+                                style="min-height: 100px; max-height: 100px;" width="auto"
+                                style="margin-left: 50%;">
+                        `)
+                    }
+
+
                 });
 
                 showModal('modal-document');
@@ -204,8 +211,17 @@
                               </div>
                             </div>
 
-                            <br>
+                            <div class="notes_div"></div>
 
+                            <br>
+                        `
+                    )
+
+                    $('#status_edit2').change(function(event){
+                        approv = $(this).val();
+
+                        $('.notes_div').html(`
+                            <div class="notes_group">
                             <label for="notes" id="notes" class="form-label">Catatan</label>
                             <div class="input-group">
                                 <textarea data-length="50" class="form-control char-textarea" id="notes" name="notes"
@@ -213,13 +229,17 @@
                             </div>
                             <small class="textarea-counter-value float-right bg-success"><span
                                     class="char-count">0</span> / 50 </small>
-                        `
-                    )
+                            </div>
+                        `)
+                    });
+
+                    $('#status_edit1').change(function(event){
+                        $('.notes_group').remove();
+                    });
                 }
                 else{
                     $('#form-doc-category').attr('action', $(this).attr('href'));
                 }
-
 
                 $('#form-doc-category').trigger("reset");
                 $('#form-doc-category').attr('method','PUT');

@@ -14,7 +14,7 @@ use App\Http\Controllers\Applicant\UnitController;
 use App\Http\Controllers\Applicant\VerificationController;
 
 Route::group(['prefix' => 'applicant', 'middleware' => 'role:applicant'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('applicant.dashboard');
     Route::get('/profile', [ProfileController::class, 'index'])->middleware('verified');
     Route::resource('/profile', ProfileController::class);
     Route::get('/notification', [NotificationController::class, 'index'])->middleware('verified');

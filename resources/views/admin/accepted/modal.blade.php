@@ -42,43 +42,24 @@
                                             placeholder="Nama Pemohon" aria-label="pemohon" aria-describedby="pemohon"
                                             readonly />
                                     </div>
-                                    {{-- <label for="requirement_type">Jenis Keperluan</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="requirement_type"
-                                            name="requirement_type" placeholder="Jenis Keperluan"
-                                            aria-label="requirement_type" aria-describedby="requirement_type"
-                                            readonly />
-                                    </div> --}}
-
                                 </div>
                                 <div class="col-3">
-
-                                    {{-- <label for="requirement">Keperluan</label>
+                                    <label for="pemohon">No. HP</label>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="requirement" name="requirement"
-                                            placeholder="Keperluan" aria-label="requirement"
-                                            aria-describedby="requirement" readonly />
-                                    </div>
-
-                                    <label for="required">Dibutuhkan</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="required" name="required"
-                                            placeholder="Dibutuhkan" aria-label="required" aria-describedby="required"
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number"
+                                            placeholder="No. HP" aria-label="phone_number" aria-describedby="phone_number"
                                             readonly />
-                                    </div> --}}
-
+                                    </div>
                                     <label for="description" id="description" class="form-label">Deskripsi</label>
                                     <div class="input-group mb-2">
-                                        <textarea data-length="50" class="form-control char-textarea" id="description"
-                                            name="description" rows="4" placeholder="" readonly></textarea>
+                                        <textarea data-length="50" class="form-control char-textarea" id="description" name="description" rows="4"
+                                            placeholder="" readonly></textarea>
                                     </div>
 
                                     <label for="status">Status</label>
                                     <div class="input-group mb-2">
-
-                                        {{-- <input type="text" class="form-control" style="border: none; border-color: transparent; background:white;" id="status" name="status" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" disabled/> --}}
-                                        <h4 class="mt-1" style="border: none; border-color: transparent;" id="status"
-                                            name="status"></h4>
+                                        <h4 class="mt-1" style="border: none; border-color: transparent;"
+                                            id="status" name="status"></h4>
                                     </div>
 
                                 </div>
@@ -108,11 +89,8 @@
                             </div>
                             <label for="keterangan" id="keterangan" class="form-label">Keterangan</label>
                             <div class="input-group mb-2">
-                                <textarea data-length="50" class="form-control char-textarea" id="keterangan"
-                                    name="notes" placeholder=""></textarea>
+                                <textarea data-length="50" class="form-control char-textarea" id="keterangan" name="notes" placeholder=""></textarea>
                             </div>
-
-                            {{-- <input type="hidden" class="form-control" id="status_edit" name="status_edit" value="diproses" placeholder="Status" aria-label="requirement_value"  aria-describedby="requirement_value" readonly/> --}}
                     </div>
                 </div>
                 <div class="modal-footer">

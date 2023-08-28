@@ -2,8 +2,6 @@
 
 
 @section('content')
-
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -24,55 +22,52 @@
                     </div>
                 </div>
             </div>
-        <!-- Basic table -->
-        <div class="content-body">
-       <!-- Responsive Datatable -->
-       <section id="responsive-datatable">
-        <div class="row">
-            <div class="col-12">
-                <div class="card table-responsive">
-                    <div class="card-header border-bottom">
-                        <div class="form-row">
-                            <input type="text" id="search" class="form-control mr-1" placeholder="Pencarian">
+            <!-- Basic table -->
+            <div class="content-body">
+                <!-- Responsive Datatable -->
+                <section id="responsive-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card table-responsive">
+                                <div class="card-header border-bottom">
+                                    <div class="form-row">
+                                        <input type="text" id="search" class="form-control mr-1"
+                                            placeholder="Pencarian">
+                                    </div>
+                                </div>
+                                <div class="card-datatable">
+                                    <table class="table" id="init-table">
+                                        <thead width="100%">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Kategori</th>
+                                                <th>Pemohon</th>
+                                                <th>Text</th>
+                                                <th>Tanggal</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        {{-- <button type="button" class="btn btn-success" id="create-doc-req-modal"> Tambah</button> --}}
                     </div>
-                    <div class="card-datatable" >
-                        <table class="table" id="init-table">
-                            <thead width="100%">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Kategori</th>
-                                    <th>Pemohon</th>
-                                    <th>Text</th>
-                                    <th>Tanggal</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </section>
+
+                <!--/ Responsive Datatable -->
+
             </div>
         </div>
-    </section>
+    </div>
+    <!-- END: Content-->
 
-    <!--/ Responsive Datatable -->
-
-</div>
-</div>
-</div>
-<!-- END: Content-->
-
-<div class="sidenav-overlay"></div>
-<div class="drag-target"></div>
-
-
-
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
 @endsection
 
 @push('script')
-@include('admin.notification.script')
-@include('admin.notification.script-table')
+    @include('admin.notification.script')
+    @include('admin.notification.script-table')
 @endpush

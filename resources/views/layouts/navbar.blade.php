@@ -24,13 +24,13 @@
                                  @elserole ('super admin')
                                  Super Admin
 
-                            @elserole('applicant')
-                                @if (Auth::user()->category == 'karyawan')
-                                    Pemohon Karyawan
-                                @else
-                                    Pemohon Umum
-                                @endif
-                            @endhasrole
+                                 @elserole('applicant')
+                                 @if (Auth::user()->category == 'karyawan')
+                                     Pemohon Karyawan
+                                 @else
+                                     Pemohon Umum
+                                 @endif
+                             @endhasrole
 
                              @hasrole('applicant')
                                  @if (Auth::user()->join('applicants', 'applicants.user_id', 'users.id')->where('users.id', Auth::id())->first()->image != null)
@@ -58,8 +58,7 @@
              <a class="dropdown-item" href="/admin/profile"><i class="mr-50" data-feather="user"></i> Profile</a>
          @endhasrole
          <div class="dropdown-divider"></div>
-         <a class="dropdown-item" href="{{ route('logout') }}"><i
-                 class="mr-50" data-feather="log-out"></i> Logout</a>
+         <a class="dropdown-item" href="{{ route('logout') }}"><i class="mr-50" data-feather="log-out"></i> Logout</a>
      </div>
      </li>
      </ul>

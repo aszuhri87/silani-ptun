@@ -39,7 +39,6 @@
                     $('#form-doc-verification').find('textarea[name="description"]').val(data.description);
 
 
-
                     if (data.status=='Diproses') {
                         $('#form-doc-verification').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-warning mr-1">'+data.status+'</span>');
                     }else if (data.status=='Ditolak') {

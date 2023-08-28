@@ -48,24 +48,24 @@ class AcceptedController extends Controller
         $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
         $data = DB::table('documents')
-        ->select([
-            'documents.id',
-            'documents.name',
-            'documents.status',
-            'documents.notes',
-            'documents.updated_at as date_create',
-            'document_categories.name as document_category',
-            'document_categories.unit_id',
-            'applicants.name as applicant',
-        ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->where(function ($query) {
-            $query->where('documents.status', '=', 'Diterima')
-            ->orWhere('documents.status', '=', 'Ditolak');
-        })
-        ->where('documents.applicant_id', $appl->id)
-        ->whereNull('documents.deleted_at')
-        ->orderBy('documents.updated_at', 'DESC');
+            ->select([
+                'documents.id',
+                'documents.name',
+                'documents.status',
+                'documents.notes',
+                'documents.updated_at as date_create',
+                'document_categories.name as document_category',
+                'document_categories.unit_id',
+                'applicants.name as applicant',
+            ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->where(function ($query) {
+                $query->where('documents.status', '=', 'Diterima')
+                    ->orWhere('documents.status', '=', 'Ditolak');
+            })
+            ->where('documents.applicant_id', $appl->id)
+            ->whereNull('documents.deleted_at')
+            ->orderBy('documents.updated_at', 'DESC');
 
         $admin = Admin::where('user_id', Auth::id())->first();
 
@@ -84,9 +84,9 @@ class AcceptedController extends Controller
         try {
             $result = DB::transaction(function () use ($request) {
                 $data = DocumentRequirement::create([
-                        'requirement_value' => $request->requirement_value,
-                        'document_id' => $request->select_docs,
-                        'document_category_requirement_id' => $request->select_docs_category_req,
+                    'requirement_value' => $request->requirement_value,
+                    'document_id' => $request->select_docs,
+                    'document_category_requirement_id' => $request->select_docs_category_req,
                 ]);
 
                 return $data;
@@ -122,14 +122,14 @@ class AcceptedController extends Controller
             'document_category_req.required',
             'document_category_req.description',
         ])
-        ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
-            $join->on('document_category_req.document_category_id', 'document_categories.id');
-        })
-        ->where('documents.id', $id)
-        ->whereNull('documents.deleted_at')
-        ->first();
+            ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
+                $join->on('document_category_req.document_category_id', 'document_categories.id');
+            })
+            ->where('documents.id', $id)
+            ->whereNull('documents.deleted_at')
+            ->first();
 
         return Response::json($data);
     }
@@ -186,42 +186,22 @@ class AcceptedController extends Controller
             'disposition_users.instruction',
             'users.name',
         ])
-        ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-        ->where('disposition_users.disposition_document_id', $data->id)
-        ->whereNull('disposition_users.deleted_at')
-        ->get();
+            ->leftJoin('users', 'users.id', 'disposition_users.user_id')
+            ->where('disposition_users.disposition_document_id', $data->id)
+            ->whereNull('disposition_users.deleted_at')
+            ->get();
 
         $data->disposition = $user;
 
-        $pdf = PDF::loadView('/applicant/accepted/print',
-        [
-            'data' => $data,
-        ]
+        $pdf = PDF::loadView(
+            '/applicant/accepted/print',
+            [
+                'data' => $data,
+            ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
-        $name = date('Y-m-d_s').' '.'.pdf';
+        $fileName = 'dokumen_lengkap_' . time() . '.pdf';
 
-        // Storage::put('public/pdf/'.$name, $pdf->output());
-
-        $pdfVersion = '1.4';
-        $newFile = public_path('files/'.$id.'.pdf');
-        $currentFile = public_path('files/"'.$data->uploaded_document.'"');
-
-        echo shell_exec("gs -sDEVICE=pdfwrite  -dPDFFitPage -dCompatibilityLevel=1.4 -dEmbedAllFonts=true -dDownsampleColorImages=false -dDownsampleGrayImages=false -dDownsampleMonoImages=false -f -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile");
-
-        ob_end_clean();
-
-        Storage::put('public/pdf/'.$name, $pdf->output());
-
-        $pdfMerge = PDFMerger::init();
-
-        $pdfMerge->addPDF(storage_path('app/public/pdf/'.$name), 'all');
-        $pdfMerge->addPDF($newFile, 'all');
-
-        $fileName = 'dokumen_lengkap_'.time().'.pdf';
-        $pdfMerge->merge();
-        $pdfMerge->save(public_path('files/merged/'.$fileName));
-
-        return $pdfMerge->stream(public_path($fileName));
+        return $pdf->download(public_path($fileName));
     }
 }

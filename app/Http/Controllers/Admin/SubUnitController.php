@@ -21,10 +21,10 @@ class SubUnitController extends Controller
     public function index()
     {
         $data = DB::table('units')
-        ->select([
-         '*',
-        ])
-        ->whereNull('deleted_at')->get();
+            ->select([
+                '*',
+            ])
+            ->whereNull('deleted_at')->get();
 
         return view('admin.sub_unit.index', PageLib::config([]), ['data' => $data]);
     }
@@ -32,15 +32,15 @@ class SubUnitController extends Controller
     public function dt()
     {
         $data = DB::table('sub_units')
-        ->select([
-            'sub_units.id',
-            'sub_units.name',
-            'sub_units.description',
-            'units.name as unit',
-            'sub_units.unit_id',
-        ])->leftJoin('units', 'units.id', 'sub_units.unit_id')
-        ->orderBy('sub_units.created_at', 'desc')
-        ->whereNull('sub_units.deleted_at');
+            ->select([
+                'sub_units.id',
+                'sub_units.name',
+                'sub_units.description',
+                'units.name as unit',
+                'sub_units.unit_id',
+            ])->leftJoin('units', 'units.id', 'sub_units.unit_id')
+            ->orderBy('sub_units.created_at', 'desc')
+            ->whereNull('sub_units.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -48,12 +48,10 @@ class SubUnitController extends Controller
     public function store(Request $request)
     {
         $data = SubUnit::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'unit_id' => $request->select_unit,
-            ]);
-
-        // return $data;
+            'name' => $request->name,
+            'description' => $request->description,
+            'unit_id' => $request->select_unit,
+        ]);
 
         Alert::success('Sukses', 'Berhasil Menambahkan Data!');
 

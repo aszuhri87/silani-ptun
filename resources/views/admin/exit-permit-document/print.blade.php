@@ -96,7 +96,7 @@
                         <p style="padding: 1; margin: 1;  white-space:0;"> Jam</p>
                     </td>
                     <td>
-                        : {{ $data->time }}
+                        : {{ $data->time }} s.d {{ $data->end_time }}
                     </td>
                 </tr>
                 <tr>

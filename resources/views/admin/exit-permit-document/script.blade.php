@@ -141,12 +141,12 @@
                     $('input[name="name"]').val(data.data.name);
                     $('.name').text(' : '+data.data.name);
                     $('.nip').text(' : '+data.data.nip+' / '+data.data.gol);
-                    // $('.unit').text(' : '+data.data.unit);
                     $('.reason').text(' : '+data.data.reason);
                     $('.date').text(' : '+data.data.date);
                     $('.date_sign').text(data.data.date_sign);
                     $('.name_sign').text('( '+data.data.name+' )');
                     $('.time').text(' : '+data.data.time);
+                    $('.end_time').text(data.data.end_time);
                     $('.approver').text('(' + data.data.approver + ')');
                     $('.title_approver').text(data.data.title);
                     $('.jabatan').text(data.data.title);
@@ -223,7 +223,7 @@
 
                 $('#form-doc-category').trigger("reset");
                 $('#form-doc-category').attr('method','PUT');
-                // $('#form-doc-category').find('input[name="name"]').val(data.name);
+
                 if (data.name){
                     $('#form-doc-category').find('select[id="select-letter"]').append(`<option value="`+ data.name +`">`+ data.name +`</option>`)
                 }

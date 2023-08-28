@@ -3,7 +3,7 @@
     <!-- Modal -->
     <div class="modal fade" id="modal-docs-category" tabindex="-1" role="dialog" aria-labelledby="SubUnitModalTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="SubUnitModalTitle"></h5>
@@ -37,9 +37,14 @@
                                         <input class="form-control" type="date" name="date" id="date"
                                             required>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-3">
                                         <label class="form-label">Waktu</label>
                                         <input class="form-control" type="time" name="time" id="time"
+                                            required>
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="form-label">Berakhir</label>
+                                        <input class="form-control" type="time" name="end_time" id="end_time"
                                             required>
                                     </div>
                                 </div>
@@ -153,7 +158,7 @@
                                             <td>
                                                 <div class="form-group">
                                                     <p class="unit" style="white-space: none; margin: 0; ">
-                                                        : Pengadilan Tata Usaha Negara Yogyakartap>
+                                                        : Pengadilan Tata Usaha Negara Yogyakarta </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -181,8 +186,13 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <p class="time" style="white-space: none; margin: 0; ">
-                                                        :...........................................</p>
+                                                    <div class="d-flex" style="margin:0; white-space: nowrap; text-emphasis: none;">
+                                                        <p class="time" style="white-space: nowrap; margin:0;">
+                                                            :........</p>
+                                                        <p style="white-space: nowrap; margin-left:5px; margin-right:5px;">s.d</p>
+                                                        <p class="end_time" style="white-space: nowrap; margin:0;">
+                                                            .......</p>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -238,6 +248,7 @@
                                             <td width="10%"></td>
                                             <td width="10%"></td>
                                             <td width="50%" height="30%" style="white-space: nowrap;">
+                                                <div class="space mt-5"></div>
                                                 <p class="approver text-center"
                                                     style="white-space: none; margin: 0; ">(....................)</p>
                                             </td>

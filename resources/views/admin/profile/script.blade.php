@@ -8,7 +8,6 @@
             $('#change-profile').attr('enctype','multipart/form-data');
 
             $('#change-profile').find('select[name="select_unit"]').find('option[value=' + data.unit_id + ']').prop('selected', true);
-            // $('#form-doc-verification').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
 
             formSubmit();
             initAction();
@@ -109,8 +108,6 @@
                             title: 'Berhasil!',
                             text: "Berhasil ganti password!",
                         })
-                        // SubUnitTable.table().draw(false);
-                        // hideModal('modal-subunit');
                     })
                     .fail(function(res, error) {
                         toastr.error(res.responseJSON.message, 'Gagal')

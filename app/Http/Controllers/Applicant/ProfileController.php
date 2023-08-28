@@ -24,15 +24,15 @@ class ProfileController extends Controller
     public function index()
     {
         $data = DB::table('applicants')
-        ->select('*')
-        ->join('users', 'users.id', 'applicants.user_id')
-        ->where('applicants.user_id', Auth::user()->id)
-        ->first();
+            ->select('*')
+            ->join('users', 'users.id', 'applicants.user_id')
+            ->where('applicants.user_id', Auth::user()->id)
+            ->first();
 
         $signature = DB::table('signatures')
-        ->select('photo')
-        ->where('user_id', Auth::user()->id)
-        ->first();
+            ->select('photo')
+            ->where('user_id', Auth::user()->id)
+            ->first();
 
         if ($signature) {
             $data->signature = $signature->photo;
@@ -46,15 +46,15 @@ class ProfileController extends Controller
     public function show($id)
     {
         $data = DB::table('applicants')
-        ->select('*')
-        ->leftJoin('users', 'users.id', 'applicants.user_id')
-        ->where('applicants.user_id', $id)
-        ->first();
+            ->select('*')
+            ->leftJoin('users', 'users.id', 'applicants.user_id')
+            ->where('applicants.user_id', $id)
+            ->first();
 
         $signature = DB::table('signatures')
-        ->select('photo')
-        ->where('user_id', Auth::user()->id)
-        ->first();
+            ->select('photo')
+            ->where('user_id', Auth::user()->id)
+            ->first();
 
         if ($signature) {
             $data->signature = $signature->photo;
@@ -79,12 +79,21 @@ class ProfileController extends Controller
                 $file_name = null;
                 $action = $request->no_image;
             }
+            // dd($request->file('image'));
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $file_name = date('Y-m-d_s').'.jpg';
-                $file->move(public_path().'/files/', $file_name);
-                $action = $request->hasFile('image');
+                $ext = $file->extension();
+
+                if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
+                    $file_name = date('Y-m-d_s') . '.' . $ext;
+                    $file->move(public_path() . '/files/', $file_name);
+                    $action = $request->hasFile('image');
+                } else {
+                    return response([
+                        'message' => "File harus jpg, jpeg, png",
+                    ], 400);
+                }
             }
 
             $appl = Applicant::where('user_id', Auth::id());
@@ -151,7 +160,7 @@ class ProfileController extends Controller
             if ($request->hasFile('signature')) {
                 $sign_file = $request->file('signature');
                 $sign_file_name = $sign_file->getClientOriginalName();
-                $sign_file->move(public_path().'/signature/', $sign_file_name);
+                $sign_file->move(public_path() . '/signature/', $sign_file_name);
             }
 
             $signature = Signature::where('user_id', Auth::user()->id);

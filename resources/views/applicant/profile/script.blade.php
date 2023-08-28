@@ -11,7 +11,6 @@
         });
 
         const initAction = () => {
-
             $(document).on('click', '#account-pill-password', function(event){
                 event.preventDefault();
 
@@ -23,7 +22,27 @@
             });
 
             $("#image").change(function() {
-                    $('#change-profile').submit();
+                var img = $(this).val();
+                var ext = img.split('.').pop();
+                var size = this.files[0].size;
+                var limit_size = 2048;
+                var size_cal = size/1024;
+
+                if (ext == "jpg" || ext == "jpeg" || ext == "png"){
+                    if(size_cal > limit_size){
+                        Swal.fire({
+                                title: 'Kesalahan!',
+                                text: "Ukuran gambar terlalu besar, maksimal 2MB!",
+                            })
+                    } else {
+                        $('#change-profile').submit();
+                    }
+                } else {
+                    Swal.fire({
+                            title: 'Kesalahan!',
+                            text: "Format gambar harus jpeg, jpeg atau png!",
+                        })
+                }
             });
 
             $("#reset_photo").click(function() {

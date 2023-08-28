@@ -6,8 +6,6 @@
 $(function () {
     'use strict';
 
-
-
     var flatPicker = $('.flat-picker'),
     isRtl = $('html').attr('data-textdirection') === 'rtl',
     chartColors = {

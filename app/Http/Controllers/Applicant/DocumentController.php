@@ -34,23 +34,20 @@ class DocumentController extends Controller
         $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
         $docs_category = DB::table('document_categories')
-        ->select([
-        //  'document_category_requirements.id',
-         'document_category_requirements.document_category_id',
-         'document_category_requirements.requirement_type',
-         'document_category_requirements.requirement',
-         'document_category_requirements.required',
-         'document_category_requirements.data_min',
-         'document_category_requirements.data_max',
-         'document_categories.name',
-         'document_categories.id',
-         'document_categories.description',
-        ])
-        ->leftJoin('document_category_requirements', 'document_category_requirements.document_category_id', 'document_categories.id')
-        // ->distinct('document_categories.name')
-        // ->whereNotNull('document_category_requirements.document_category_id')
-        ->whereNull(['document_categories.deleted_at', 'document_category_requirements.deleted_at']);
-        // ->get();
+            ->select([
+                'document_category_requirements.document_category_id',
+                'document_category_requirements.requirement_type',
+                'document_category_requirements.requirement',
+                'document_category_requirements.required',
+                'document_category_requirements.data_min',
+                'document_category_requirements.data_max',
+                'document_categories.name',
+                'document_categories.id',
+                'document_categories.description',
+            ])
+            ->leftJoin('document_category_requirements', 'document_category_requirements.document_category_id', 'document_categories.id')
+            ->whereNull(['document_categories.deleted_at', 'document_category_requirements.deleted_at']);
+
 
         if (Auth::user()->category == 'umum') {
             $docs_category->where('document_categories.category', 'umum');
@@ -59,27 +56,27 @@ class DocumentController extends Controller
         }
 
         $docs_req_category = DB::table('document_category_requirements')
-        ->select([
-            'document_category_requirements.id',
-            'document_category_requirements.requirement',
-            'document_category_requirements.required',
-            'document_category_requirements.data_min',
-            'document_category_requirements.data_max',
-            'document_category_requirements.description',
-            'document_category_requirements.document_category_id',
-            'document_categories.name as document_category',
-            'requirement_types.requirement_type as requirement_type',
-            'requirement_types.data_type as data_type',
-        ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
-        ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
-        ->whereNull('document_category_requirements.deleted_at')
-        ->get();
+            ->select([
+                'document_category_requirements.id',
+                'document_category_requirements.requirement',
+                'document_category_requirements.required',
+                'document_category_requirements.data_min',
+                'document_category_requirements.data_max',
+                'document_category_requirements.description',
+                'document_category_requirements.document_category_id',
+                'document_categories.name as document_category',
+                'requirement_types.requirement_type as requirement_type',
+                'requirement_types.data_type as data_type',
+            ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
+            ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
+            ->whereNull('document_category_requirements.deleted_at')
+            ->get();
 
         $req_type = DB::table('requirement_types')
-        ->select([
-         '*',
-        ])
-        ->whereNull('deleted_at')->get();
+            ->select([
+                '*',
+            ])
+            ->whereNull('deleted_at')->get();
 
         $doc_category_req = DocumentCategoryRequirement::select([
             '*',
@@ -87,24 +84,26 @@ class DocumentController extends Controller
 
 
         $pejabat = DB::table('users')
-        ->select([
-            'users.id',
-            'users.name',
-            'users.title'
+            ->select([
+                'users.id',
+                'users.name',
+                'users.title'
             ])
-        ->where('users.title', 'Ketua')
-        ->orWhere('users.title' , 'Sekretaris')
-        ->orWhere('users.title', 'ilike', 'Panitera')
-        ->whereNull('users.deleted_at')
-        ->get();
+            ->where('users.title', 'Ketua')
+            ->orWhere('users.title', 'Sekretaris')
+            ->orWhere('users.title', 'ilike', 'Panitera')
+            ->whereNull('users.deleted_at')
+            ->get();
 
-        return view('applicant.document.index',
-        [
-            'docs_category' => $docs_category->get(),
-            'req_type' => $req_type,
-            'docs_req_category' => $docs_req_category,
-            'pejabat' => $pejabat
-        ], PageLib::config([]));
+        return view(
+            'applicant.document.index',
+            [
+                'docs_category' => $docs_category->get(),
+                'req_type' => $req_type,
+                'docs_req_category' => $docs_req_category,
+                'pejabat' => $pejabat
+            ], PageLib::config([])
+        );
     }
 
     public function dt()
@@ -112,27 +111,26 @@ class DocumentController extends Controller
         $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
         $data = DB::table('documents')
-        ->select([
-            'documents.id',
-            'documents.name',
-            'documents.status',
-            'users.name as chief_name',
-             'documents.updated_at as date_create',
-            'document_categories.name as document_category',
-        ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->leftJoin('users', 'users.id', 'documents.user_id')
-        ->where('documents.status', 'Menunggu')
-        ->where('documents.applicant_id', $appl->id)
-        ->whereNull('documents.deleted_at')
-        ->orderBy('documents.created_at', 'DESC');
+            ->select([
+                'documents.id',
+                'documents.name',
+                'documents.status',
+                'users.name as chief_name',
+                'documents.updated_at as date_create',
+                'document_categories.name as document_category',
+            ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->leftJoin('users', 'users.id', 'documents.user_id')
+            ->where('documents.status', 'Menunggu')
+            ->where('documents.applicant_id', $appl->id)
+            ->whereNull('documents.deleted_at')
+            ->orderBy('documents.created_at', 'DESC');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         try {
             $result = DB::transaction(function () use ($request) {
                 $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
@@ -141,7 +139,7 @@ class DocumentController extends Controller
                     'name' => $request->doc_cat
                 ]);
 
-                if($document_category){
+                if ($document_category) {
                     $doc_cat_id = $document_category->id;
                 } else {
                     $doc_cat_id = null;
@@ -164,7 +162,7 @@ class DocumentController extends Controller
                     'from' => Auth::user()->name,
                     'document_id' => $document->id,
                     'resume_content' => null,
-                    'agenda_number' =>  null,
+                    'agenda_number' => null,
                     'agenda_date' => null,
                     'uploaded_document' => null,
                 ]);
@@ -184,18 +182,18 @@ class DocumentController extends Controller
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
                     for ($index = 0; $index < count($request->requirement_value); ++$index) {
                         $value = [];
-                        if ($request->hasFile('requirement_value.'.$index)) {
-                            $file = $request->file('requirement_value.'.$index);
+                        if ($request->hasFile('requirement_value.' . $index)) {
+                            $file = $request->file('requirement_value.' . $index);
                             $ext = $file->extension();
                             if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
-                                $name = $appl->name.'_'.$request->type_doc[$index].'_'.date('Y-m-d_s').$ext;
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . $ext;
                             } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
-                                $name = $appl->name.'_'.$request->type_doc[$index].'_'.date('Y-m-d_s').$ext;
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . $ext;
                             } else {
-                                $name = $appl->name.'_'.$request->type_doc[$index].'_'.date('Y-m-d_s').'jpg';
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . 'jpg';
                             }
 
-                            $file->move(public_path().'/files/', $name);
+                            $file->move(public_path() . '/files/', $name);
 
                             $value[$index] = $name;
                         } else {
@@ -206,7 +204,6 @@ class DocumentController extends Controller
                             'requirement_value' => $value[$index],
                             'document_id' => $document->id,
                             'type' => $request->type_doc[$index]
-                            // 'document_category_requirement_id' => $category_req[$index]->id,
                         ]);
 
                         $data['document_category_id'] = $document->document_category_id;
@@ -229,7 +226,6 @@ class DocumentController extends Controller
             $superuser = User::where('id', $super->user_id)->first();
             $superuser->notify(new NewLetter('inbox', $result->document_id, $superuser, 'inbox'));
 
-            // $result['document_category'] = $request->doc_cat;
 
             return response([
                 'data' => $result,
@@ -249,15 +245,15 @@ class DocumentController extends Controller
             'requirement_types.requirement_type as title',
             'document_category_requirements.*',
         ])
-        ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
-        ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
+            ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
+            ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
 
         $data = Document::select([
             'documents.id',
             'documents.name',
             'documents.status',
             'users.name as receiver_name',
-             'documents.updated_at as date_create',
+            'documents.updated_at as date_create',
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',
@@ -268,26 +264,34 @@ class DocumentController extends Controller
             'document_category_req.data_type',
             'users.name as chief_name',
         ])
-        ->with(['doc_req' => function ($query) {
-            $query->select(['document_requirements.id', 'document_requirements.requirement_value', 'document_requirements.document_id', 'document_category_requirements.data_min',
-            'document_requirements.type',
-            'document_category_requirements.data_max', 'document_category_requirements.requirement_type', 'requirement_types.data_type as data_type',
-            'requirement_types.requirement_type as title', ])
-            ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id')
-            ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
-            ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
-        },
-        ])
-        ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
-        ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->leftJoin('users', 'users.id', 'documents.user_id')
-        ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
-            $join->on('document_category_req.id', 'document_requirements.document_category_requirement_id');
-        })
-        ->where('document_requirements.document_id', $id)
-        ->whereNull('documents.deleted_at')
-        ->first();
+            ->with([
+                'doc_req' => function ($query) {
+                    $query->select([
+                        'document_requirements.id',
+                        'document_requirements.requirement_value',
+                        'document_requirements.document_id',
+                        'document_category_requirements.data_min',
+                        'document_requirements.type',
+                        'document_category_requirements.data_max',
+                        'document_category_requirements.requirement_type',
+                        'requirement_types.data_type as data_type',
+                        'requirement_types.requirement_type as title',
+                    ])
+                        ->leftJoin('document_category_requirements', 'document_category_requirements.id', 'document_requirements.document_category_requirement_id')
+                        ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
+                        ->whereNull(['document_category_requirements.deleted_at', 'requirement_types.deleted_at']);
+                },
+            ])
+            ->leftJoin('document_requirements', 'document_requirements.document_id', 'documents.id')
+            ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->leftJoin('users', 'users.id', 'documents.user_id')
+            ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
+                $join->on('document_category_req.id', 'document_requirements.document_category_requirement_id');
+            })
+            ->where('document_requirements.document_id', $id)
+            ->whereNull('documents.deleted_at')
+            ->first();
 
         return Response::json($data);
     }
@@ -296,26 +300,26 @@ class DocumentController extends Controller
     {
         try {
             $data = DB::table('document_category_requirements')
-            ->select([
-                'document_category_requirements.id',
-                'document_category_requirements.requirement',
-                'document_category_requirements.required',
-                'document_category_requirements.data_min',
-                'document_category_requirements.data_max',
-                'document_category_requirements.description',
-                'document_category_requirements.document_category_id',
-                'document_categories.name as document_category',
-                'requirement_types.requirement_type as requirement_type',
-                'requirement_types.data_type as data_type',
-                'requirement_types.requirement_type as title',
-            ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
-            ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
-            ->where('document_categories.id', $id)
-            ->whereNull('document_category_requirements.deleted_at')
-            ->get();
+                ->select([
+                    'document_category_requirements.id',
+                    'document_category_requirements.requirement',
+                    'document_category_requirements.required',
+                    'document_category_requirements.data_min',
+                    'document_category_requirements.data_max',
+                    'document_category_requirements.description',
+                    'document_category_requirements.document_category_id',
+                    'document_categories.name as document_category',
+                    'requirement_types.requirement_type as requirement_type',
+                    'requirement_types.data_type as data_type',
+                    'requirement_types.requirement_type as title',
+                ])->leftJoin('document_categories', 'document_categories.id', 'document_category_requirements.document_category_id')
+                ->leftJoin('requirement_types', 'requirement_types.requirement_type', 'document_category_requirements.requirement_type')
+                ->where('document_categories.id', $id)
+                ->whereNull('document_category_requirements.deleted_at')
+                ->get();
 
             return Response::json($data);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return response([
                 'message' => $e->getMessage(),
             ], 500);
@@ -328,17 +332,17 @@ class DocumentController extends Controller
             'id',
             'requirement_value',
         ])
-        ->where('document_id', $id)
-        ->whereNull('deleted_at')
-        ->first();
+            ->where('document_id', $id)
+            ->whereNull('deleted_at')
+            ->first();
 
-        return response()->download(public_path('/files/'.$data->requirement_value));
+        return response()->download(public_path('/files/' . $data->requirement_value));
     }
 
     public function update(Request $request, $id)
     {
         try {
-            $result = DB::transaction(function () use ($request,$id) {
+            $result = DB::transaction(function () use ($request, $id) {
                 $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
                 $document = Document::find($id);
@@ -354,25 +358,25 @@ class DocumentController extends Controller
                 if (is_array($request->requirement_value) && count($request->requirement_value) > 0) {
                     for ($index = 0; $index < count($request->requirement_value); ++$index) {
                         $value = [];
-                        if ($request->hasFile('requirement_value.'.$index)) {
-                            $file = $request->file('requirement_value.'.$index);
+                        if ($request->hasFile('requirement_value.' . $index)) {
+                            $file = $request->file('requirement_value.' . $index);
                             $ext = $file->extension();
                             if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
-                                $name = date('Y-m-d_s').'doc.'.$ext;
+                                $name = date('Y-m-d_s') . 'doc.' . $ext;
                             } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
-                                $name = date('Y-m-d_s').'doc.'.$ext;
+                                $name = date('Y-m-d_s') . 'doc.' . $ext;
                             } else {
-                                $name = date('Y-m-d_s').'doc.jpg';
+                                $name = date('Y-m-d_s') . 'doc.jpg';
                             }
-                            $file->move(public_path().'/files/', $name);
+                            $file->move(public_path() . '/files/', $name);
 
                             $value[$index] = $name;
                         } else {
                             $value[$index] = $request->requirement_value[$index];
                         }
                         $file_doc = DocumentRequirement::whereIn('document_category_requirement_id', [$data[$index]->document_category_requirement_id])->update([
-                                'requirement_value' => $value[$index] ? $value[$index] : $data[$index]->requirement_value,
-                            ]);
+                            'requirement_value' => $value[$index] ? $value[$index] : $data[$index]->requirement_value,
+                        ]);
                     }
                 }
 
@@ -395,10 +399,10 @@ class DocumentController extends Controller
         try {
             $result = Document::find($id);
 
-            DB::transaction(function () use ($result,$id) {
+            DB::transaction(function () use ($result, $id) {
                 $file = DocumentRequirement::where('document_id', $id)->get();
                 foreach ($file as $f) {
-                    $destinationPath[] = public_path().'/files/'.$f->requirement_value;
+                    $destinationPath[] = public_path() . '/files/' . $f->requirement_value;
                     File::delete($destinationPath);
                 }
 

@@ -29,9 +29,9 @@ class LeaveDocumentController extends Controller
     public function index()
     {
         $data = DB::table('leave_documents')
-        ->select('*')
-        ->join('users', 'users.id', 'leave_documents.user_id')
-        ->get();
+            ->select('*')
+            ->join('users', 'users.id', 'leave_documents.user_id')
+            ->get();
 
         $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
         foreach ($notify as $item1) {
@@ -48,32 +48,29 @@ class LeaveDocumentController extends Controller
     public function dt()
     {
         $data = DB::table('leave_documents')
-        ->select([
-            'users.name',
-            'leave_documents.*',
-        ])
-        ->join('users', 'users.id', 'leave_documents.user_id')
-        // ->where('users.category', 'admin')
-        ->whereNull('leave_documents.deleted_at')
-        ->orderBy('leave_documents.created_at', 'desc');
+            ->select([
+                'users.name',
+                'leave_documents.*',
+            ])
+            ->join('users', 'users.id', 'leave_documents.user_id')
+            ->whereNull('leave_documents.deleted_at')
+            ->orderBy('leave_documents.created_at', 'desc');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $sign = Signature::select([
             'photo',
         ])
-        ->where('user_id', Auth::user()->id)
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc')
-        ->first();
+            ->where('user_id', Auth::user()->id)
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->first();
 
         $data = LeaveDocument::create([
             'user_id' => $request->user,
-            // 'unit_id' => $request->unit,
             'reason' => $request->reason,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
@@ -109,13 +106,12 @@ class LeaveDocumentController extends Controller
                     'type' => $item,
                     'amount' => $request->amount[$i],
                     'leave_document_id' => $data->id,
-                    // 'remain' => $item == 'Tahunan' ? $request->remain[$i] : null,
                     'datetime' => date('Y-m-d H:i:s'),
                 ]);
 
-                if ($item == 'Tahunan-'.$i) {
+                if ($item == 'Tahunan-' . $i) {
                     foreach ($request->remain as $key => $item2) {
-                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-'.$i);
+                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-' . $i);
                         $remain->update([
                             'remain' => $request->remain[$i],
                         ]);
@@ -132,9 +128,9 @@ class LeaveDocumentController extends Controller
                     'datetime' => date('Y-m-d H:i:s'),
                 ]);
 
-                if ($item == 'Tahunan-'.$i) {
+                if ($item == 'Tahunan-' . $i) {
                     foreach ($request->remain as $key => $item2) {
-                        $remain = LeaveNote::where('id', $check->id)->where('type', 'Tahunan-'.$i);
+                        $remain = LeaveNote::where('id', $check->id)->where('type', 'Tahunan-' . $i);
                         $remain->update([
                             'remain' => $request->remain[$i],
                         ]);
@@ -153,7 +149,6 @@ class LeaveDocumentController extends Controller
         $sign = Signature::select('photo')->where('user_id', $request->user)->first();
 
         if ($request->approver) {
-            // dd($sign->first());
             if (Auth::user()->title == 'Ketua') {
                 $type = 'PEJABAT';
             } else {
@@ -164,7 +159,7 @@ class LeaveDocumentController extends Controller
             $approver->update([
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
-                'signature' => $sign ? $sign : null,
+                // 'signature' => $sign ? $sign : null,
                 'type' => $type,
             ]);
 
@@ -177,12 +172,11 @@ class LeaveDocumentController extends Controller
             }
 
             $data_doc->update([
-                'status' => 'Disetujui oleh '.Auth::user()->name,
+                'status' => 'Disetujui oleh ' . Auth::user()->name,
             ]);
         } else {
             $data_doc->update([
                 'user_id' => $request->user ? $request->user : $data_doc['user_id'],
-                // 'unit_id' => $request->unit ? $request->unit : $data_doc['unit_id'],
                 'reason' => $request->reason,
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
@@ -192,7 +186,7 @@ class LeaveDocumentController extends Controller
                 'working_time' => $request->working_time,
                 'leave_long' => $request->leave_long,
                 'status' => 'menunggu',
-                'signature' => $sign ? $sign : null,
+                // 'signature' => $sign ? $sign : null,
                 'letter_head' => $request->letter_head
 
             ]);
@@ -209,7 +203,6 @@ class LeaveDocumentController extends Controller
         $data = LeaveNote::where('leave_document_id', $id);
         $check = $data->first();
 
-        // dd($request->all());
 
         if (!$check) {
             foreach ($request->type as $i => $item) {
@@ -217,13 +210,12 @@ class LeaveDocumentController extends Controller
                     'type' => $item,
                     'amount' => $request->amount[$i],
                     'leave_document_id' => $id,
-                    // 'remain' => $item == 'Tahunan' ? $request->remain[$i] : null,
                     'datetime' => date('Y-m-d H:i:s'),
                 ]);
 
-                if ($item == 'Tahunan-'.$i) {
+                if ($item == 'Tahunan-' . $i) {
                     foreach ($request->remain as $key => $item2) {
-                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-'.$i);
+                        $remain = LeaveNote::where('id', $new->id)->where('type', 'Tahunan-' . $i);
                         $remain->update([
                             'remain' => $request->remain[$i],
                         ]);
@@ -237,13 +229,12 @@ class LeaveDocumentController extends Controller
                     'type' => $item,
                     'amount' => $request->amount[$i],
                     'leave_document_id' => $id,
-                    // 'remain' => $request->remain[$i] ? $request->remain[$i] : null,
                     'datetime' => date('Y-m-d H:i:s'),
                 ]);
 
-                if ($item == 'Tahunan-'.$i) {
+                if ($item == 'Tahunan-' . $i) {
                     foreach ($request->remain as $key => $item2) {
-                        $remain = LeaveNote::where('id', $check->id)->where('type', 'Tahunan-'.$i);
+                        $remain = LeaveNote::where('id', $check->id)->where('type', 'Tahunan-' . $i);
                         $remain->update([
                             'remain' => $request->remain[$i],
                         ]);
@@ -261,19 +252,17 @@ class LeaveDocumentController extends Controller
     public function show($id)
     {
         $data = DB::table('leave_documents')
-        ->select([
-            'users.name',
-            'users.nip',
-            'users.title',
-            'leave_documents.*',
-            DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
-            // DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
-        ])
-        ->join('users', 'users.id', 'leave_documents.user_id')
-        // ->join('units', 'units.id', 'leave_documents.unit_id')
-        ->where('leave_documents.id', $id)
-        ->whereNull('leave_documents.deleted_at')
-        ->first();
+            ->select([
+                'users.name',
+                'users.nip',
+                'users.title',
+                'leave_documents.*',
+                DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
+            ])
+            ->join('users', 'users.id', 'leave_documents.user_id')
+            ->where('leave_documents.id', $id)
+            ->whereNull('leave_documents.deleted_at')
+            ->first();
 
         $user = LeaveApproval::select([
             'leave_approvals.user_id',
@@ -284,11 +273,10 @@ class LeaveDocumentController extends Controller
             'leave_approvals.signature',
             'leave_approvals.note',
         ])
-        ->join('users', 'users.id', 'leave_approvals.user_id')
-        ->where('leave_approvals.leave_document_id', $id)
-        // ->whereNotNull('leave_approvals.status')
-        ->whereNull('leave_approvals.deleted_at')
-        ->get();
+            ->join('users', 'users.id', 'leave_approvals.user_id')
+            ->where('leave_approvals.leave_document_id', $id)
+            ->whereNull('leave_approvals.deleted_at')
+            ->get();
 
         $notes = LeaveNote::select([
             'amount',
@@ -296,10 +284,10 @@ class LeaveDocumentController extends Controller
             'type',
             'datetime',
         ])
-        ->where('leave_document_id', $id)
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->where('leave_document_id', $id)
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
 
         $date = IdDate::translate($data->created_at);
@@ -382,20 +370,17 @@ class LeaveDocumentController extends Controller
         date_default_timezone_set('Asia/Jakarta');
 
         $data = DB::table('leave_documents')
-        ->select([
-            'users.name',
-            'users.nip',
-            'users.title',
-            // 'units.name as unit',
-            'leave_documents.*',
-            DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
-            // DB::raw("to_char(leave_documents.created_at , 'dd TMMonth YYYY' ) as tanggal"),
-        ])
-        ->join('users', 'users.id', 'leave_documents.user_id')
-        // ->join('units', 'units.id', 'leave_documents.unit_id')
-        ->where('leave_documents.id', $id)
-        ->whereNull('leave_documents.deleted_at')
-        ->first();
+            ->select([
+                'users.name',
+                'users.nip',
+                'users.title',
+                'leave_documents.*',
+                DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
+            ])
+            ->join('users', 'users.id', 'leave_documents.user_id')
+            ->where('leave_documents.id', $id)
+            ->whereNull('leave_documents.deleted_at')
+            ->first();
 
         $user = LeaveApproval::select([
             'leave_approvals.user_id',
@@ -407,33 +392,33 @@ class LeaveDocumentController extends Controller
             'leave_approvals.signature',
             'leave_approvals.note',
         ])
-        ->join('users', 'users.id', 'leave_approvals.user_id')
-        ->where('leave_approvals.leave_document_id', $id)
-        ->whereNull('leave_approvals.deleted_at')
-        ->get();
+            ->join('users', 'users.id', 'leave_approvals.user_id')
+            ->where('leave_approvals.leave_document_id', $id)
+            ->whereNull('leave_approvals.deleted_at')
+            ->get();
 
         $signature_pejabat = null;
         $signature_atasan = null;
         $signature_pemohon = null;
 
-        if($data->signature){
-            $signature_pemohon = base64_encode(file_get_contents(public_path('signature/'.$data->signature)));
+        if ($data->signature) {
+            $signature_pemohon = base64_encode(file_get_contents(public_path('signature/' . $data->signature)));
         } else {
             $signature_pemohon = null;
         }
 
-        foreach($user as $u){
-            if($u->approval_type == 'PEJABAT'){
-                if($u->signature){
-                    $signature_pejabat = base64_encode(file_get_contents(public_path('signature/'.$u->signature )));
+        foreach ($user as $u) {
+            if ($u->approval_type == 'PEJABAT') {
+                if ($u->signature) {
+                    $signature_pejabat = base64_encode(file_get_contents(public_path('signature/' . $u->signature)));
                 } else {
                     $signature_pejabat = null;
                 }
             }
 
-            if($u->approval_type == 'ATASAN'){
-                if ($u->signature){
-                    $signature_atasan = base64_encode(file_get_contents(public_path('signature/'.$u->signature )));
+            if ($u->approval_type == 'ATASAN') {
+                if ($u->signature) {
+                    $signature_atasan = base64_encode(file_get_contents(public_path('signature/' . $u->signature)));
                 } else {
                     $signature_atasan = null;
                 }
@@ -446,10 +431,10 @@ class LeaveDocumentController extends Controller
             'type',
             'datetime',
         ])
-        ->where('leave_document_id', $id)
-        ->whereNull('deleted_at')
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->where('leave_document_id', $id)
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         $date = IdDate::translate($data->created_at);
         $data->tanggal = $date->format('j F Y');
@@ -457,8 +442,9 @@ class LeaveDocumentController extends Controller
         $data->approval = $user ? $user : [];
         $data->leave_notes = $notes ? $notes : [];
 
-        $pdf = PDF::loadView('/admin/leave_document/print',
-        [
+        $pdf = PDF::loadView(
+            '/admin/leave_document/print',
+            [
                 'data' => $data,
                 'logo' => base64_encode(file_get_contents(public_path('logo.png'))),
                 'sign_atasan' => $signature_atasan,
@@ -467,9 +453,9 @@ class LeaveDocumentController extends Controller
             ]
         )->setOptions(['defaultFont' => 'sans-serif'])->setPaper('A4', 'potrait');
 
-        $name = date('Y-m-d_s').' '.'.pdf';
+        $name = date('Y-m-d_s') . ' ' . '.pdf';
 
-        Storage::put('public/pdf/'.$name, $pdf->output());
+        Storage::put('public/pdf/' . $name, $pdf->output());
 
         return $pdf->stream($name);
     }

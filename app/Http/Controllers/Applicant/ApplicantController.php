@@ -26,9 +26,9 @@ class ApplicantController extends Controller
     public function index()
     {
         $data = DB::table('applicants')
-        ->select('*')
-        ->join('users', 'users.id', 'applicants.user_id')
-        ->get();
+            ->select('*')
+            ->join('users', 'users.id', 'applicants.user_id')
+            ->get();
 
         return view('admin.list-applicant.index', PageLib::config([]), ['data' => $data]);
     }
@@ -36,18 +36,18 @@ class ApplicantController extends Controller
     public function dt()
     {
         $data = DB::table('users')
-        ->select([
-            'users.id',
-            'users.username',
-            'users.email',
-            'applicants.name',
-            'users.title',
-            'applicants.phone_number',
-        ])
-        ->join('applicants', 'applicants.user_id', 'users.id')
-        ->where('users.category', 'karyawan')
-        ->orderBy('users.created_at', 'desc')
-        ->whereNull('users.deleted_at');
+            ->select([
+                'users.id',
+                'users.username',
+                'users.email',
+                'applicants.name',
+                'users.title',
+                'applicants.phone_number',
+            ])
+            ->join('applicants', 'applicants.user_id', 'users.id')
+            ->where('users.category', 'karyawan')
+            ->orderBy('users.created_at', 'desc')
+            ->whereNull('users.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -151,7 +151,7 @@ class ApplicantController extends Controller
 
     public function download_format()
     {
-        $file = public_path().'/format-list-pegawai.xlsx';
+        $file = public_path() . '/format-list-pegawai.xlsx';
 
         return Response::download($file, 'format list pegawai.xlsx');
     }
@@ -172,14 +172,14 @@ class ApplicantController extends Controller
         }
 
         $letters = DB::table('users')
-        ->select([
-            'users.id',
-            'users.name',
+            ->select([
+                'users.id',
+                'users.name',
             ])
-        ->where('users.name', 'ilike', '%'.$term.'%')
-        ->where('users.category', 'karyawan')
-        ->whereNull('users.deleted_at')
-        ->get();
+            ->where('users.name', 'ilike', '%' . $term . '%')
+            ->where('users.category', 'karyawan')
+            ->whereNull('users.deleted_at')
+            ->get();
 
         $formatted_tags = [];
 
@@ -199,16 +199,16 @@ class ApplicantController extends Controller
         }
 
         $letters = DB::table('users')
-        ->select([
-            'users.id',
-            'users.name',
+            ->select([
+                'users.id',
+                'users.name',
             ])
-        ->where('users.category', 'karyawan')
-        ->orWhere('users.title', 'Ketua')
-        ->orWhere('users.title', 'Sekretaris')
-        ->orWhere('users.title', 'Panitera')
-        ->whereNull('users.deleted_at')
-        ->get();
+            ->where('users.category', 'karyawan')
+            ->orWhere('users.title', 'Ketua')
+            ->orWhere('users.title', 'Sekretaris')
+            ->orWhere('users.title', 'Panitera')
+            ->whereNull('users.deleted_at')
+            ->get();
 
         $formatted_tags = [];
 

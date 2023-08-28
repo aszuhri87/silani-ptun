@@ -43,20 +43,20 @@ class VerificationController extends Controller
         $appl = Applicant::select('*')->where('user_id', Auth::user()->id)->first();
 
         $data = DB::table('documents')
-        ->select([
-            'documents.id',
-            'documents.name',
-            'documents.status',
-            'documents.updated_at as date_create',
-            'document_categories.name as document_category',
-            'document_categories.unit_id',
-            'applicants.name as applicant',
-        ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->where('documents.status', 'Diproses')
-        ->where("documents.applicant_id", $appl->id)
-        ->whereNull('documents.deleted_at')
-        ->orderBy('documents.updated_at', 'DESC');
+            ->select([
+                'documents.id',
+                'documents.name',
+                'documents.status',
+                'documents.updated_at as date_create',
+                'document_categories.name as document_category',
+                'document_categories.unit_id',
+                'applicants.name as applicant',
+            ])->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->where('documents.status', 'Diproses')
+            ->where("documents.applicant_id", $appl->id)
+            ->whereNull('documents.deleted_at')
+            ->orderBy('documents.updated_at', 'DESC');
 
         $admin = Admin::where('user_id', Auth::id())->first();
 
@@ -75,9 +75,9 @@ class VerificationController extends Controller
         try {
             $result = DB::transaction(function () use ($request) {
                 $data = DocumentRequirement::create([
-                        'requirement_value' => $request->requirement_value,
-                        'document_id' => $request->select_docs,
-                        'document_category_requirement_id' => $request->select_docs_category_req,
+                    'requirement_value' => $request->requirement_value,
+                    'document_id' => $request->select_docs,
+                    'document_category_requirement_id' => $request->select_docs_category_req,
                 ]);
 
                 return $data;
@@ -105,7 +105,7 @@ class VerificationController extends Controller
             'documents.name',
             'documents.status',
             'documents.notes',
-             'documents.updated_at as date_create',
+            'documents.updated_at as date_create',
             'document_categories.name as document_category',
             'applicants.name as applicant',
             'document_category_req.requirement_type',
@@ -113,14 +113,14 @@ class VerificationController extends Controller
             'document_category_req.required',
             'document_category_req.description',
         ])
-        ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
-        ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-        ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
-            $join->on('document_category_req.document_category_id', 'document_categories.id');
-        })
-        ->where('documents.id', $id)
-        ->whereNull('documents.deleted_at')
-        ->first();
+            ->leftJoin('applicants', 'applicants.id', 'documents.applicant_id')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->leftJoinSub($doc_category_req, 'document_category_req', function ($join) {
+                $join->on('document_category_req.document_category_id', 'document_categories.id');
+            })
+            ->where('documents.id', $id)
+            ->whereNull('documents.deleted_at')
+            ->first();
 
         return Response::json($data);
     }

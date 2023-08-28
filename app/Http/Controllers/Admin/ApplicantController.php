@@ -27,9 +27,9 @@ class ApplicantController extends Controller
     public function index()
     {
         $data = DB::table('applicants')
-        ->select('*')
-        ->join('users', 'users.id', 'applicants.user_id')
-        ->get();
+            ->select('*')
+            ->join('users', 'users.id', 'applicants.user_id')
+            ->get();
 
         return view('admin.list-applicant.index', PageLib::config([]), ['data' => $data]);
     }
@@ -37,20 +37,20 @@ class ApplicantController extends Controller
     public function dt()
     {
         $data = DB::table('users')
-        ->select([
-            'users.id',
-            'users.username',
-            'users.email',
-            'applicants.name',
-            'users.title',
-            'applicants.phone_number',
-            'users.gol',
-            'users.nip'
-        ])
-        ->join('applicants', 'applicants.user_id', 'users.id')
-        ->where('users.category', 'karyawan')
-        ->orderBy('users.created_at', 'desc')
-        ->whereNull('users.deleted_at');
+            ->select([
+                'users.id',
+                'users.username',
+                'users.email',
+                'applicants.name',
+                'users.title',
+                'applicants.phone_number',
+                'users.gol',
+                'users.nip'
+            ])
+            ->join('applicants', 'applicants.user_id', 'users.id')
+            ->where('users.category', 'karyawan')
+            ->orderBy('users.created_at', 'desc')
+            ->whereNull('users.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -61,7 +61,7 @@ class ApplicantController extends Controller
             $result = DB::transaction(function () use ($request) {
                 $user = User::create([
                     'name' => $request->name,
-                    'username' => (string)$request->username,
+                    'username' => (string) $request->username,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'title' => $request->title,
@@ -102,7 +102,7 @@ class ApplicantController extends Controller
                 $user = User::find($id);
                 $user->update([
                     'name' => $request->name ? $request->name : $user->name,
-                    'username' => (string)$request->username ? (string)$request->username : (string)$user->username,
+                    'username' => (string) $request->username ? (string) $request->username : (string) $user->username,
                     'email' => $request->email ? $request->email : $user->email,
                     'title' => $request->title ? $request->title : $user->title,
                     'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
@@ -159,7 +159,7 @@ class ApplicantController extends Controller
 
     public function download_format()
     {
-        $file = public_path().'/format-list-pegawai.xlsx';
+        $file = public_path() . '/format-list-pegawai.xlsx';
 
         return Response::download($file, 'format list pegawai.xlsx');
     }
@@ -170,7 +170,7 @@ class ApplicantController extends Controller
             $file = $request->file;
             $ext = $file->extension();
 
-            if($ext == 'xlsx' || $ext == 'xls' || $ext == 'csv'){
+            if ($ext == 'xlsx' || $ext == 'xls' || $ext == 'csv') {
                 $file_name = $file;
             } else {
                 return response([
@@ -202,14 +202,14 @@ class ApplicantController extends Controller
         }
 
         $letters = DB::table('users')
-        ->select([
-            'users.id',
-            'users.name',
+            ->select([
+                'users.id',
+                'users.name',
             ])
-        ->where('users.name', 'ilike', '%'.$term.'%')
-        ->where('users.category', 'karyawan')
-        ->whereNull('users.deleted_at')
-        ->get();
+            ->where('users.name', 'ilike', '%' . $term . '%')
+            ->where('users.category', 'karyawan')
+            ->whereNull('users.deleted_at')
+            ->get();
 
         $formatted_tags = [];
 

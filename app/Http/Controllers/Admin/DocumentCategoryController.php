@@ -21,16 +21,16 @@ class DocumentCategoryController extends Controller
     public function index()
     {
         $sub_unit = DB::table('sub_units')
-        ->select([
-         '*',
-        ])
-        ->whereNull('deleted_at')->get();
+            ->select([
+                '*',
+            ])
+            ->whereNull('deleted_at')->get();
 
         $unit = DB::table('units')
-        ->select([
-         '*',
-        ])
-        ->whereNull('deleted_at')->get();
+            ->select([
+                '*',
+            ])
+            ->whereNull('deleted_at')->get();
 
         return view('admin.document_category.index', PageLib::config([]), ['unit' => $unit, 'sub_unit' => $sub_unit]);
     }
@@ -38,19 +38,19 @@ class DocumentCategoryController extends Controller
     public function dt()
     {
         $data = DB::table('document_categories')
-        ->select([
-            'document_categories.id',
-            'document_categories.name',
-            'document_categories.description',
-            'document_categories.category',
-            'document_categories.unit_id',
-            'document_categories.sub_unit_id',
-            'sub_units.name as sub_unit',
-            'units.name as unit',
-        ])->join('units', 'units.id', 'document_categories.unit_id')
-        ->join('sub_units', 'sub_units.id', 'document_categories.sub_unit_id')
-        ->orderBy('document_categories.created_at', 'desc')
-        ->whereNull('document_categories.deleted_at');
+            ->select([
+                'document_categories.id',
+                'document_categories.name',
+                'document_categories.description',
+                'document_categories.category',
+                'document_categories.unit_id',
+                'document_categories.sub_unit_id',
+                'sub_units.name as sub_unit',
+                'units.name as unit',
+            ])->join('units', 'units.id', 'document_categories.unit_id')
+            ->join('sub_units', 'sub_units.id', 'document_categories.sub_unit_id')
+            ->orderBy('document_categories.created_at', 'desc')
+            ->whereNull('document_categories.deleted_at');
 
         return DataTables::query($data)->addIndexColumn()->make(true);
     }
@@ -60,11 +60,11 @@ class DocumentCategoryController extends Controller
         try {
             $result = DB::transaction(function () use ($request) {
                 $data = DocumentCategory::create([
-                        'name' => $request->name,
-                        'description' => $request->description,
-                        'unit_id' => $request->unit,
-                        'sub_unit_id' => $request->sub_unit,
-                        'category' => $request->category,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'unit_id' => $request->unit,
+                    'sub_unit_id' => $request->sub_unit,
+                    'category' => $request->category,
                 ]);
 
                 return $data;
