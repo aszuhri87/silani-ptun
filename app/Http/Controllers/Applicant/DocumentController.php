@@ -186,11 +186,11 @@ class DocumentController extends Controller
                             $file = $request->file('requirement_value.' . $index);
                             $ext = $file->extension();
                             if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
-                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . $ext;
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . '.' .$ext;
                             } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
-                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . $ext;
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . '.' .$ext;
                             } else {
-                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . 'jpg';
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . '.' .'jpg';
                             }
 
                             $file->move(public_path() . '/files/', $name);
@@ -332,7 +332,7 @@ class DocumentController extends Controller
             'id',
             'requirement_value',
         ])
-            ->where('document_id', $id)
+            ->where('id', $id)
             ->whereNull('deleted_at')
             ->first();
 
@@ -362,11 +362,11 @@ class DocumentController extends Controller
                             $file = $request->file('requirement_value.' . $index);
                             $ext = $file->extension();
                             if ($ext == 'pdf' || $ext == 'doc' || $ext == 'docx') {
-                                $name = date('Y-m-d_s') . 'doc.' . $ext;
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . '.' .$ext;
                             } elseif ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
-                                $name = date('Y-m-d_s') . 'doc.' . $ext;
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . '.' .$ext;
                             } else {
-                                $name = date('Y-m-d_s') . 'doc.jpg';
+                                $name = $appl->name . '_' . $request->type_doc[$index] . '_' . date('Y-m-d_s') . '.' .'jpg';
                             }
                             $file->move(public_path() . '/files/', $name);
 

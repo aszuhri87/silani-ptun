@@ -190,7 +190,7 @@ class DispositionDocumentController extends Controller
         )
             ->where('disposition_documents.id', $id)->first();
 
-        $doc_file = DocumentRequirement::select('requirement_value', 'type')
+        $doc_file = DocumentRequirement::select('id as doc_req_id','requirement_value', 'type')
             ->where('document_id', $data->document_id)
             ->whereNull('deleted_at')
             ->get();

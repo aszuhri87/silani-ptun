@@ -217,4 +217,19 @@ class InboxController extends Controller
             ], 500);
         }
     }
+
+    public function download($id)
+    {
+        $data = DocumentRequirement::select([
+            'id',
+            'requirement_value',
+        ])
+            ->where('id', $id)
+            ->whereNull('deleted_at')
+            ->first();
+
+        // dd($data);
+
+        return response()->download(public_path('/files/' . $data->requirement_value));
+    }
 }

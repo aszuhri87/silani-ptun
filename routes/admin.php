@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super admin']], 
     Route::put('/exit-permit-document/update_approval/{id}', [ExitPermitDocumentController::class, 'update_approval']);
     Route::get('/exit-permit-document/download_pdf/{id}', [ExitPermitDocumentController::class, 'print']);
     Route::get('/leave-document/download_pdf/{id}', [LeaveDocumentController::class, 'print']);
+    Route::get('/document/download/{id}', [InboxController::class, 'download']);
+
 
     Route::get('/list-general-applicant/{id}', [GeneralApplicantController::class, 'show']);
     Route::post('/list-general-applicant/dt', [GeneralApplicantController::class, 'dt']);
