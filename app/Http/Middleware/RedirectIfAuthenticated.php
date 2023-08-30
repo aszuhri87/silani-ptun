@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             if(Auth::user()->category == 'admin'){
                 return redirect('admin/dashboard');
-            } else if (Auth::user()->category == 'umum' || Auth::user()->category == null){
+            } else if (Auth::user()->category == 'umum' || Auth::user()->category == null || Auth::user()->category == 'karyawan'){
                 return redirect('applicant/dashboard');
             } else{
                 return redirect('login');
