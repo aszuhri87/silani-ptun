@@ -270,7 +270,7 @@
 
                 <li class="nav-item @if (Request::is('admin/list-general-applicant')) active @endif"><a
                     class="d-flex align-items-center" href="/admin/list-general-applicant" data-toggle="tooltip"
-                    data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
+                    data-bs-placement="right" title="Daftar Pemohon Umum"><i data-feather="users"></i><span
                         class="menu-item text-truncate" data-i18n="Second Level">Daftar Pemohon Umum</span></a>
                 </li>
             @endrole
@@ -286,7 +286,7 @@
 
                 <li class="nav-item @if (Request::is('admin/list-general-applicant')) active @endif"><a
                     class="d-flex align-items-center" href="/admin/list-general-applicant" data-toggle="tooltip"
-                    data-bs-placement="right" title="Karyawan"><i data-feather="users"></i><span
+                    data-bs-placement="right" title="Daftar Pemohon Umum"><i data-feather="users"></i><span
                         class="menu-item text-truncate" data-i18n="Second Level">Daftar Pemohon Umum</span></a>
                 </li>
             @endrole
