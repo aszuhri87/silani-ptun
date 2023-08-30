@@ -279,7 +279,7 @@
                         @if (
                             $d->role == 'Kasub Umum dan Keuangan' ||
                                 $d->role == 'Kasub Kepegawaian, Ortala' ||
-                                $d->role == 'Kasub Umum dan Keuangan')
+                                $d->role == 'Kasub Perencanaan, TI dan Pelaporan')
                             <p>- {{ $d->instruction }}</p>
                         @endif
                     @endforeach
