@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
 use App\Models\Admin;
 use App\Models\Applicant;
-use App\Models\DispositionDocument;
-use App\Models\DispositionUser;
+use App\Models\doneDocument;
+use App\Models\doneUser;
 use App\Models\Document;
 use App\Models\DocumentCategory;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
 use App\Models\User;
+use App\Notifications\NewLetter;
 use DataTables;
 use Exception;
 use Illuminate\Http\Request;
@@ -195,19 +196,19 @@ class AcceptedController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
 
-        $data = DispositionDocument::select('*')->where('document_id', $id)->first();
+        $data = doneDocument::select('*')->where('document_id', $id)->first();
 
-        $user = DispositionUser::select([
-            'disposition_users.role',
-            'disposition_users.instruction',
+        $user = doneUser::select([
+            'done_users.role',
+            'done_users.instruction',
             'users.name',
         ])
-            ->leftJoin('users', 'users.id', 'disposition_users.user_id')
-            ->where('disposition_users.disposition_document_id', $data->id)
-            ->whereNull('disposition_users.deleted_at')
+            ->leftJoin('users', 'users.id', 'done_users.user_id')
+            ->where('done_users.done_document_id', $data->id)
+            ->whereNull('done_users.deleted_at')
             ->get();
 
-        $data->disposition = $user;
+        $data->done = $user;
 
         $pdf = PDF::loadView(
             '/applicant/accepted/print',
@@ -261,6 +262,16 @@ class AcceptedController extends Controller
             Document::where('id', $id)->update([
                 'status' => "Menunggu Konfirmasi Pembayaran"
             ]);
+
+            $admin = Admin::where('role', 'Persuratan')->get();
+            foreach ($admin as $a) {
+                $user = User::where('id', $a->user_id)->first();
+                $user->notify(new NewLetter('done', $id, $user, 'done'));
+            }
+
+            $super = Admin::where('role', null)->first();
+            $superuser = User::where('id', $super->user_id)->first();
+            $superuser->notify(new NewLetter('done', $id, $superuser, 'done'));
 
             return response([
                 'data' => $data,
