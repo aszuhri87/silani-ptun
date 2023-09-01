@@ -44,11 +44,11 @@
                             <label class="form-label mt-1">Tanggal Cuti</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input class="form-control" type="datetime-local" name="start_time" id="start_time"
+                                    <input class="form-control" type="date" name="start_time" id="start_time"
                                         required>
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" type="datetime-local" name="end_time" id="end_time"
+                                    <input class="form-control" type="date" name="end_time" id="end_time"
                                         required>
                                 </div>
                             </div>

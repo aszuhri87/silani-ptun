@@ -45,6 +45,8 @@ Route::group(['prefix' => 'applicant', 'middleware' => 'role:applicant'], functi
     Route::post('/disposition-update/{id}', [DispositionDocumentController::class, 'update_disposition']);
     Route::get('/disposition-document/download_pdf/{id}', [DispositionDocumentController::class, 'print']);
     Route::post('/outgoing-letter/dt', [OutgoingLetterController::class, 'dt']);
+    Route::post('/done-docs/upload-transer/{id}', [AcceptedController::class, 'upload_transfer']);
+
 
     Route::resource('/done-docs', AcceptedController::class);
     Route::resource('/verification-process', VerificationController::class);

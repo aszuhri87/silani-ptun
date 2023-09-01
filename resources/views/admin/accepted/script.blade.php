@@ -44,16 +44,27 @@
                     $('#form-doc-accepted').find('input[name="requirement"]').val(data.requirement);
                     $('#form-doc-accepted').find('input[name="required"]').val(data.required);
                     $('#form-doc-accepted').find('textarea[name="description"]').val(data.description);
-                    $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     $('#form-doc-accepted').find('textarea[name="notes"]').val(data.notes);
                     $('#form-doc-accepted').find('input[name="phone_number"]').val(data.phone_number);
+
+                    // if(data.status != "Belum Bayar" || data.status != "Menunggu Konfirmasi Pembayaran"){
+                    //     $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
+                    // }
+
+                    if(data.status == "Menunggu Konfirmasi Pembayaran"){
+                        $('.confirm_transfer').append(`
+                                <input type="radio" id="status_edit3" name="status_edit" class="form-check-input"
+                                    value="Diterima">
+                                <label class="form-check-label" for="status_edit3">Konfirmasi Pembayaran dan Terima</label>
+                        `);
+                    }
 
                     for (i in data.doc_req){
                         $('div#doc_file').append(`
                                     <label for="basicadd`+i+`">`+data.doc_req[i].type+`</label>
                                     <div class="input-group mb-1">
                                         <span class="input-group-text " id="basicadd`+i+`" style="width:100%; ">
-                                            <a style="font-size:12px;" href="/admin/verification/download/`+data.id+`">`+data.doc_req[i].requirement_value+`</a>
+                                            <a style="font-size:12px;" href="/admin/verification/download/`+data.id+`"> Download </a>
                                             <div class="tooltipLink" style="position:absolute;left:93%; width:50px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                 <embed src="{{ asset('files/`+data.doc_req[i].requirement_value+`') }}">
@@ -61,6 +72,15 @@
                                         </span>
                                     </div>
                                 `);
+                    }
+
+                    if(data.transfer_img != null){
+                        $('.thumbnail').html(`
+                            <label class="form-check-label pt-1" for="account-upload-img">Preview Bukti Transfer</label> <br>
+                            <img src="{{ asset('/files/`+ data.transfer_img+`') }}"
+                                id="account-upload-img" class="rounded mr-50"
+                                alt="profile image" style="height:100%; max-width:100%;"/>
+                        `)
                     }
 
                     if (data.status=='Diterima') {
@@ -72,6 +92,11 @@
                     }
 
                     showModal('modal-accepted');
+
+                    $(document).on('hide.bs.modal','#modal-accepted', function(event){
+                        $('input[type="checkbox"]').prop('checked',false);
+                        location.reload();
+                    });
                 });
             });
 

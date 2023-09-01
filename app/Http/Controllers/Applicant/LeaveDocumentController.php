@@ -52,6 +52,8 @@ class LeaveDocumentController extends Controller
             ->select([
                 'users.name',
                 'leave_documents.*',
+                DB::raw("to_char(leave_documents.start_time, 'dd-mm-yyyy') as start_time"),
+                DB::raw("to_char(leave_documents.end_time, 'dd-mm-yyyy') as end_time"),
             ])
             ->join('users', 'users.id', 'leave_documents.user_id')
             ->join('leave_approvals', 'leave_approvals.leave_document_id', 'leave_documents.id')
@@ -215,6 +217,8 @@ class LeaveDocumentController extends Controller
                 'users.nip',
                 'users.title',
                 'leave_documents.*',
+                DB::raw("to_char(leave_documents.start_time, 'dd-mm-yyyy') as start_time"),
+                DB::raw("to_char(leave_documents.end_time, 'dd-mm-yyyy') as end_time"),
                 DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
             ])
             ->join('users', 'users.id', 'leave_documents.user_id')
@@ -299,6 +303,8 @@ class LeaveDocumentController extends Controller
                 'users.title',
                 'units.name as unit',
                 'leave_documents.*',
+                DB::raw("to_char(leave_documents.start_time, 'dd-mm-yyyy') as start_time"),
+                DB::raw("to_char(leave_documents.end_time, 'dd-mm-yyyy') as end_time"),
                 DB::raw('leave_documents.end_time - leave_documents.start_time as count_time'),
             ])
             ->join('users', 'users.id', 'leave_documents.user_id')

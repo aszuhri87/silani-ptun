@@ -211,13 +211,37 @@ class DispositionDocumentController extends Controller
 
         $document = Document::where('id', $data->document_id);
 
-        if (
+        $trx_check = DocumentRequirement::select('id as doc_req_id','requirement_value', 'type')
+        ->where('document_id', $data->document_id)
+        ->where('type', 'Bukti Transfer PNBP')
+        ->whereNull('deleted_at')
+        ->first();
+
+
+        $category = Document::select('document_categories.name as category')
+            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
+            ->where('documents.id', $data->document_id)
+            ->first();
+
+            if (
             $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
             Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
             Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
-        ) {
+            ) {
+
+                $status = null;
+
+            if(($trx_check == null && $category = 'Permohonan Surat Keterangan BHT') ||
+                ($trx_check == null && $category = 'Salinan Putusan') ||
+                ($trx_check == null && $category = 'Surat Keterangan Bebas Perkara')){
+                $status = "Belum Bayar";
+            } else {
+                $status = "Diterima";
+            }
+                    // dd($status);
+
             $document->update([
-                'status' => "Diterima"
+                'status' => $status
             ]);
 
             $appl = Applicant::where('id', $document->first()->applicant_id)->first();
@@ -252,10 +276,10 @@ class DispositionDocumentController extends Controller
         )
             ->where('disposition_documents.id', $id)->first();
 
-            $doc_file = DocumentRequirement::select('id as doc_req_id','requirement_value', 'type')
-            ->where('document_id', $data->document_id)
-            ->whereNull('deleted_at')
-            ->get();
+        $doc_file = DocumentRequirement::select('id as doc_req_id','requirement_value', 'type')
+        ->where('document_id', $data->document_id)
+        ->whereNull('deleted_at')
+        ->get();
 
         $user = DispositionUser::select([
             'disposition_users.role',

@@ -64,7 +64,9 @@ class AcceptedController extends Controller
             ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
             ->where(function ($query) {
                 $query->where('documents.status', '=', 'Diterima')
-                    ->orWhere('documents.status', '=', 'Ditolak');
+                    ->orWhere('documents.status', '=', 'Ditolak')
+                    ->orWhere('documents.status', '=', 'Belum Bayar')
+                    ->orWhere('documents.status', '=', 'Menunggu Konfirmasi Pembayaran');
             })
             ->whereNull('documents.deleted_at')
             ->orderBy('documents.updated_at', 'DESC');
@@ -154,6 +156,20 @@ class AcceptedController extends Controller
             ->where('document_requirements.document_id', $id)
             ->whereNull('documents.deleted_at')
             ->first();
+
+            $transfer_img = DocumentRequirement::where('document_id', $id)->where('type', 'Bukti Transfer PNBP')->first();
+
+            $img = null;
+
+            if($transfer_img == null){
+                $img = null;
+            } else {
+                $img = $transfer_img->requirement_value;
+            }
+
+            $data->transfer_img = $img;
+
+            // dd($data);
 
         return Response::json($data);
     }

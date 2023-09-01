@@ -145,15 +145,6 @@
                                         <input type="hidden" name="type_doc[3]" value="Fotocopy SKCK">
                                     </div>
                                 </div>
-                                <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                        <input type="hidden" name="type_doc[4]" value="Upload Bukti Transfer PNBP">
-                                    </div>
-                                </div>
-                                <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-
                             `);
                         } else if (jenis == "perusahaan") {
                             $('div#data_input').html(`
@@ -185,15 +176,6 @@
                                         <input type="hidden" name="type_doc[4]" value="Fotocopy Surat Kuasa">
                                     </div>
                                 </div>
-                                <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                        <input type="hidden" name="type_doc[5]" value="Upload Bukti Transfer PNBP">
-                                    </div>
-                                </div>
-                                <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-
                             `);
                         } else {
                             $('div#data_input').html(``);
@@ -218,15 +200,6 @@
                                 <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
                             </div>
                         </div>
-                        <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                <input type="hidden" name="type_doc[2]" value="Upload Bukti Transfer PNBP">
-                            </div>
-                        </div>
-                        <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-
                     `);
                     showModal('modal-document')
                 } else if (id_req == "Permohonan Surat Keterangan BHT"){
@@ -246,15 +219,6 @@
                                 <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
                             </div>
                         </div>
-                        <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                <input type="hidden" name="type_doc[2]" value="Upload Bukti Transfer PNBP">
-                            </div>
-                        </div>
-                        <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-
                     `);
                     showModal('modal-document')
                 }
@@ -523,15 +487,6 @@
                                                 <input type="hidden" name="type_doc[3]" value="Fotocopy SKCK">
                                             </div>
                                         </div>
-                                        <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                                <input type="hidden" name="type_doc[4]" value="Upload Bukti Transfer PNBP">
-                                            </div>
-                                        </div>
-                                        <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-
                                     `);
                                 } else if (jenis == "perusahaan") {
                                     $('div#data_input').html(`
@@ -563,14 +518,6 @@
                                                 <input type="hidden" name="type_doc[4]" value="Fotocopy Surat Kuasa">
                                             </div>
                                         </div>
-                                        <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                                        <div class="input-group">
-                                                <div class="custom-file">
-                                                <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                                <input type="hidden" name="type_doc[5]" value="Upload Bukti Transfer PNBP">
-                                            </div>
-                                        </div>
-                                        <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
                                     `);
                                 } else {
                                     $('div#data_input').html(``);
@@ -604,15 +551,7 @@
                                         <input type="hidden" name="type_doc[2]" value="Identitas pemohon (KTP)">
                                     </div>
                                 </div>
-                                <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                        <input type="hidden" name="type_doc[3]" value="Upload Bukti Transfer PNBP">
-                                    </div>
-                                </div>
-                                <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-                            `);
+                             `);
                             showModal('modal-document')
                             } else if (data.document_category == "Permohonan Surat Keterangan BHT"){
                             $('div#data_input').append(`
@@ -631,15 +570,6 @@
                                         <input type="hidden" name="type_doc[1]" value="Identitas pemohon (KTP)">
                                     </div>
                                 </div>
-                                <label class="form-label mt-1 label"> Upload Bukti Transfer PNBP </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[1]">
-                                        <input type="hidden" name="type_doc[2]" value="Upload Bukti Transfer PNBP">
-                                    </div>
-                                </div>
-                                <p class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-
                             `);
                             showModal('modal-document')
                             }

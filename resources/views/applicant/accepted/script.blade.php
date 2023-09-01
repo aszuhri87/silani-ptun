@@ -13,9 +13,14 @@
                 var dt = DoneTable.table().row($(this).parents('tr')).data();
                 $('#form-doc-accepted').trigger("reset");
                 $('#form-doc-accepted').attr('action', $(this).attr('href'));
+
+                // console.log($(this).attr('href'));
                 $('#form-doc-accepted').attr('method','PUT');
+                $('#form-doc-accepted').attr('enctype','multipart/form-data');
+
 
                 $.get(url, function(data){
+                    $('#form-doc-accepted').find('input[name="id"]').val(data.id);
                     $('#form-doc-accepted').find('input[name="name"]').val(data.name);
                     $('#form-doc-accepted').find('input[name="date"]').val(data.date_create);
                     $('#form-doc-accepted').find('input[name="document_category"]').val(data.document_category);
@@ -24,8 +29,22 @@
                     $('#form-doc-accepted').find('input[name="requirement"]').val(data.requirement);
                     $('#form-doc-accepted').find('input[name="required"]').val(data.required);
                     $('#form-doc-accepted').find('textarea[name="description"]').val(data.description);
-                    $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
+                    // $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     $('#form-doc-accepted').find('textarea[name="ket"]').val(data.notes);
+
+                    // console.log(data.document_category != "Permohonan Surat Keterangan BHT");
+
+                    if (data.document_category == 'Permohonan Magang' || data.document_category == 'Permohonan Penelitian' || data.document_category == 'Permohonan Sertifikat Magang' || data.document_category == 'Lain-lain'){
+                        $('.transfer-div').remove();
+                    }
+
+                    if(data.transfer_img != null){
+                        $('.thumbnail').html(`
+                            <img src="{{ asset('/files/`+ data.transfer_img+`') }}"
+                                id="account-upload-img" class="rounded mr-50"
+                                alt="profile image" height="300px" max-width="500px"/>
+                        `)
+                    }
 
                     if (data.status=='Diterima') {
                         $('#form-doc-accepted').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-success mr-1">'+data.status+'</span>');
@@ -43,7 +62,44 @@
                     `);
 
                     showModal('modal-accepted');
+
+                    $(document).on('hide.bs.modal','#modal-accepted', function(event){
+                    $('input[type="checkbox"]').prop('checked',false);
+                    location.reload();
                 });
+                });
+            });
+
+            $("#transfer_image").change(function() {
+                var img = $(this).val();
+                var ext = img.split('.').pop();
+                var size = this.files[0].size;
+                var limit_size = 2048;
+                var size_cal = size/1024;
+
+                var id = $('#id').val();
+
+                $('#form-doc-accepted').attr('action', "/applicant/done-docs/upload-transer/"+id);
+                $('#form-doc-accepted').attr('method','POST');
+                $('#form-doc-accepted').attr('enctype','multipart/form-data');
+
+
+                if (ext == "jpg" || ext == "jpeg" || ext == "png"){
+                    if(size_cal > limit_size){
+                            Swal.fire({
+                                        title: 'Kesalahan!',
+                                        text: "Ukuran gambar terlalu besar, maksimal 2MB!",
+                                    })
+                            } else {
+
+                    $('#form-doc-accepted').submit();
+                    }
+                } else {
+                    Swal.fire({
+                            title: 'Kesalahan!',
+                            text: "Format gambar harus jpeg, jpeg atau png!",
+                        })
+                }
             });
 
             $(document).on('click', '.btn-delete', function(event){
@@ -80,11 +136,15 @@
         formSubmit = () => {
             $('#form-doc-accepted').submit(function(event){
                 event.preventDefault();
+                var formData = new FormData(this);
 
                 $.ajax({
                     url: $(this).attr('action'),
                     type: $(this).attr('method'),
-                    data: $(this).serialize(),
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')
@@ -102,6 +162,37 @@
                             title: 'Gagal!',
                             text: "Gagal menyimpan!",
                         })
+                })
+                .always(function() { });
+            });
+
+            $('#upload-file').submit(function(event){
+                event.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                })
+                .done(function(res, xhr, meta) {
+                    toastr.success(res.message, 'Success')
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: "Berhasil ganti profile!",
+                    })
+
+                    location.reload();
+                })
+                .fail(function(res, error) {
+                    toastr.error(res.responseJSON.message, 'Gagal')
+                    Swal.fire({
+                        title: 'Gagal!',
+                        text: "Gagal ganti profile!",
+                    })
                 })
                 .always(function() { });
             });

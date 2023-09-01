@@ -9,6 +9,7 @@ use App\Models\Applicant;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
 use App\Models\Document;
+use App\Models\DocumentCategory;
 use App\Models\DocumentCategoryRequirement;
 use App\Models\DocumentRequirement;
 use App\Models\User;
@@ -61,7 +62,10 @@ class AcceptedController extends Controller
             ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
             ->where(function ($query) {
                 $query->where('documents.status', '=', 'Diterima')
-                    ->orWhere('documents.status', '=', 'Ditolak');
+                    ->orWhere('documents.status', '=', 'Ditolak')
+                    ->orWhere('documents.status', '=', 'Belum Bayar')
+                    ->orWhere('documents.status', '=', 'Menunggu Konfirmasi Pembayaran');
+
             })
             ->where('documents.applicant_id', $appl->id)
             ->whereNull('documents.deleted_at')
@@ -130,6 +134,18 @@ class AcceptedController extends Controller
             ->where('documents.id', $id)
             ->whereNull('documents.deleted_at')
             ->first();
+
+        $transfer_img = DocumentRequirement::where('document_id', $id)->where('type', 'Bukti Transfer PNBP')->first();
+
+        $img = null;
+
+        if($transfer_img == null){
+            $img = null;
+        } else {
+            $img = $transfer_img->requirement_value;
+        }
+
+        $data->transfer_img = $img;
 
         return Response::json($data);
     }
@@ -203,5 +219,57 @@ class AcceptedController extends Controller
         $fileName = 'dokumen_lengkap_' . time() . '.pdf';
 
         return $pdf->download(public_path($fileName));
+    }
+
+    public function upload_transfer(Request $request, $id)
+    {
+        try {
+            $data = null;
+
+            $check = DocumentRequirement::where('document_id', $id)->where('type', '=', 'Bukti Transfer PNBP')->first();
+
+            if($request->hasFile('transfer_image')){
+                $file = $request->file('transfer_image');
+                $ext = $file->extension();
+                if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
+                    $name = 'transfer_image' . '_' . date('Y-m-d_s') . '.' .$ext;
+                } else {
+                    $name = 'transfer_image' . '_' . date('Y-m-d_s') . '.' .'jpg';
+                }
+
+                $file->move(public_path() . '/files/', $name);
+
+                $img = $name;
+
+                if ($check){
+                    $data = DocumentRequirement::where('document_id', $id)->where('type', '=', 'Bukti Transfer PNBP');
+                    $data->update([
+                        'requirement_value' => $img,
+                        'document_id' => $id,
+                        'type' => 'Bukti Transfer PNBP'
+                    ]);
+                } else {
+                    $data = DocumentRequirement::create([
+                        'requirement_value' => $img,
+                        'document_id' => $id,
+                        'type' => 'Bukti Transfer PNBP'
+                    ]);
+                }
+
+            }
+
+            Document::where('id', $id)->update([
+                'status' => "Menunggu Konfirmasi Pembayaran"
+            ]);
+
+            return response([
+                'data' => $data,
+                'message' => 'Data Terubah',
+            ], 200);
+        } catch (Exception $e) {
+            return response([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

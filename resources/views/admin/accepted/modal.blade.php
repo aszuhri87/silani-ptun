@@ -64,10 +64,18 @@
 
                                 </div>
                                 <div class="col-6">
-                                    <div class="container">
+                                    <div class="container-fluid">
                                         <label for="requirement_value">File</label>
                                         <div id="doc_file">
 
+                                        </div>
+                                    </div>
+                                    <div class="transfer-div">
+                                        <div class="media m-1">
+                                            <a href="javascript:void(0);" class="mr-25">
+                                                <div class="thumbnail">
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -85,6 +93,8 @@
                                     <input type="radio" id="status_edit2" name="status_edit" class="form-check-input"
                                         value="Ditolak">
                                     <label class="form-check-label" for="status_edit2">Ditolak</label>
+                                </div>
+                                <div class="form-check form-check-inline confirm_transfer">
                                 </div>
                             </div>
                             <label for="keterangan" id="keterangan" class="form-label">Keterangan</label>
