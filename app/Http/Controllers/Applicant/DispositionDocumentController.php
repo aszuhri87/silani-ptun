@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Libraries\PageLib;
+use App\Models\Admin;
 use App\Models\Applicant;
 use App\Models\DispositionDocument;
 use App\Models\DispositionUser;
@@ -223,37 +224,37 @@ class DispositionDocumentController extends Controller
             ->where('documents.id', $data->document_id)
             ->first();
 
-            if (
-            $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
-            Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
-            Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
-            ) {
+            // if (
+            // $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
+            // Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
+            // Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
+            // ) {
 
-                $status = null;
+            //     $status = null;
 
-            if(($trx_check == null && $category = 'Permohonan Surat Keterangan BHT') ||
-                ($trx_check == null && $category = 'Salinan Putusan') ||
-                ($trx_check == null && $category = 'Surat Keterangan Bebas Perkara')){
-                $status = "Belum Bayar";
-            } else {
-                $status = "Diterima";
-            }
+            // if(($trx_check == null && $category = 'Permohonan Surat Keterangan BHT') ||
+            //     ($trx_check == null && $category = 'Salinan Putusan') ||
+            //     ($trx_check == null && $category = 'Surat Keterangan Bebas Perkara')){
+            //     $status = "Belum Bayar";
+            // } else {
+            // $status = "Diproses";
+            // }
                     // dd($status);
 
-            $document->update([
-                'status' => $status
-            ]);
+            // $document->update([
+            //     'status' => $status
+            // ]);
 
-            $appl = Applicant::where('id', $document->first()->applicant_id)->first();
+            // $appl = Applicant::where('id', $document->first()->applicant_id)->first();
 
-            $users = User::where('id', $appl->user_id)->first();
-            $users->notify(new NewLetter('done', $document->first()->id, $users, 'done'));
+            // $users = User::where('id', $appl->user_id)->first();
+            // $users->notify(new NewLetter('done', $document->first()->id, $users, 'done'));
 
-            $admin = User::where('category', 'admin')->get();
-            foreach ($admin as $a) {
-                $a->notify(new NewLetter('done', $document->first()->id, $a, 'done'));
-            }
-        }
+            // $admin = User::where('category', 'admin')->get();
+            // foreach ($admin as $a) {
+            //     $a->notify(new NewLetter('done', $document->first()->id, $a, 'done'));
+            // }
+        // }
 
 
         $users = User::where('title', $request->role)->first();
@@ -261,9 +262,17 @@ class DispositionDocumentController extends Controller
             $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
         }
 
+        $super = Admin::where('role', null)->first();
+        $superuser = User::where('id', $super->user_id)->first();
+        if($superuser){
+            $superuser->notify(new NewLetter('disposition', $id, $superuser, 'disposition'));
+        }
+
         $admin = User::where('category', 'admin')->get();
-        foreach ($admin as $a) {
-            $a->notify(new NewLetter('disposition', $id, $a, 'disposition'));
+        if($admin){
+            foreach ($admin as $a) {
+                $a->notify(new NewLetter('disposition', $id, $a, 'disposition'));
+            }
         }
 
         return redirect()->back();

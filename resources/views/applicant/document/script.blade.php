@@ -131,20 +131,6 @@
                                         <input type="hidden" name="type_doc[1]" value="Fotocopy KTP">
                                     </div>
                                 </div>
-                                <label class="form-label mt-1 label"> Fotocopy KK </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
-                                        <input type="hidden" name="type_doc[2]" value="Fotocopy KK">
-                                    </div>
-                                </div>
-                                <label class="form-label mt-1 label"> Fotocopy SKCK </label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[3]">
-                                        <input type="hidden" name="type_doc[3]" value="Fotocopy SKCK">
-                                    </div>
-                                </div>
                             `);
                         } else if (jenis == "perusahaan") {
                             $('div#data_input').html(`
@@ -155,7 +141,7 @@
                                         <input type="hidden" name="type_doc[1]" value="Fotocopy KTP Direksi">
                                     </div>
                                 </div>
-                                <label class="form-label mt-1 label"> Fotocopy TDP/SIUP/Akta Pendirian </label>
+                                <label class="form-label mt-1 label"> Fotocopy TDP/SIUP/Akta Pendirian Terbaru</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                         <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[2]">
@@ -174,6 +160,13 @@
                                         <div class="custom-file">
                                         <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[4]">
                                         <input type="hidden" name="type_doc[4]" value="Fotocopy Surat Kuasa">
+                                    </div>
+                                </div>
+                                <label class="form-label mt-1 label"> AD dan ART </label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                        <input type="file" id="inputGroupFile" class="form-control" name="requirement_value[5]">
+                                        <input type="hidden" name="type_doc[5]" value="AD dan ART">
                                     </div>
                                 </div>
                             `);

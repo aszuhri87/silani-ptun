@@ -38,13 +38,13 @@
                         $('.transfer-div').remove();
                     }
 
-                    if(data.transfer_img != null){
-                        $('.thumbnail').html(`
-                            <img src="{{ asset('/files/`+ data.transfer_img+`') }}"
-                                id="account-upload-img" class="rounded mr-50"
-                                alt="profile image" height="300px" max-width="500px"/>
-                        `)
-                    }
+                    // if(data.transfer_img != null){
+                    //     $('.thumbnail').html(`
+                    //         <img src="{{ asset('/files/`+ data.transfer_img+`') }}"
+                    //             id="account-upload-img" class="rounded mr-50"
+                    //             alt="profile image" height="300px" max-width="500px"/>
+                    //     `)
+                    // }
 
                     if (data.status=='Diterima') {
                         $('#form-doc-accepted').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-success mr-1">'+data.status+'</span>');
@@ -70,37 +70,37 @@
                 });
             });
 
-            $("#transfer_image").change(function() {
-                var img = $(this).val();
-                var ext = img.split('.').pop();
-                var size = this.files[0].size;
-                var limit_size = 2048;
-                var size_cal = size/1024;
+            // $("#transfer_image").change(function() {
+            //     var img = $(this).val();
+            //     var ext = img.split('.').pop();
+            //     var size = this.files[0].size;
+            //     var limit_size = 2048;
+            //     var size_cal = size/1024;
 
-                var id = $('#id').val();
+            //     var id = $('#id').val();
 
-                $('#form-doc-accepted').attr('action', "/applicant/done-docs/upload-transer/"+id);
-                $('#form-doc-accepted').attr('method','POST');
-                $('#form-doc-accepted').attr('enctype','multipart/form-data');
+            //     $('#form-doc-accepted').attr('action', "/applicant/done-docs/upload-transer/"+id);
+            //     $('#form-doc-accepted').attr('method','POST');
+            //     $('#form-doc-accepted').attr('enctype','multipart/form-data');
 
 
-                if (ext == "jpg" || ext == "jpeg" || ext == "png"){
-                    if(size_cal > limit_size){
-                            Swal.fire({
-                                        title: 'Kesalahan!',
-                                        text: "Ukuran gambar terlalu besar, maksimal 2MB!",
-                                    })
-                            } else {
+            //     if (ext == "jpg" || ext == "jpeg" || ext == "png"){
+            //         if(size_cal > limit_size){
+            //                 Swal.fire({
+            //                             title: 'Kesalahan!',
+            //                             text: "Ukuran gambar terlalu besar, maksimal 2MB!",
+            //                         })
+            //                 } else {
 
-                    $('#form-doc-accepted').submit();
-                    }
-                } else {
-                    Swal.fire({
-                            title: 'Kesalahan!',
-                            text: "Format gambar harus jpeg, jpeg atau png!",
-                        })
-                }
-            });
+            //         $('#form-doc-accepted').submit();
+            //         }
+            //     } else {
+            //         Swal.fire({
+            //                 title: 'Kesalahan!',
+            //                 text: "Format gambar harus jpeg, jpeg atau png!",
+            //             })
+            //     }
+            // });
 
             $(document).on('click', '.btn-delete', function(event){
                 event.preventDefault();

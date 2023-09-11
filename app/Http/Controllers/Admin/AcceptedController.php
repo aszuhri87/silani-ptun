@@ -65,8 +65,9 @@ class AcceptedController extends Controller
             ->where(function ($query) {
                 $query->where('documents.status', '=', 'Diterima')
                     ->orWhere('documents.status', '=', 'Ditolak')
-                    ->orWhere('documents.status', '=', 'Belum Bayar')
-                    ->orWhere('documents.status', '=', 'Menunggu Konfirmasi Pembayaran');
+                    ->orWhere('documents.status', '=', 'Diproses');
+                    // ->orWhere('documents.status', '=', 'Belum Bayar')
+                    // ->orWhere('documents.status', '=', 'Menunggu Konfirmasi Pembayaran');
             })
             ->whereNull('documents.deleted_at')
             ->orderBy('documents.updated_at', 'DESC');

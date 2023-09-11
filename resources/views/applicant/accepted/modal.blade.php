@@ -69,7 +69,7 @@
                                         placeholder="" readonly></textarea>
                                 </div>
                             </div>
-                                <div class="transfer-div">
+                                {{-- <div class="transfer-div">
                                     <div class="media">
                                         <a href="javascript:void(0);" class="mr-25">
                                             <div class="thumbnail">
@@ -78,7 +78,7 @@
                                         </a>
 
                                         </div>
-                                        <div class="media-body mt-75 ml-1">
+                                        {{-- <div class="media-body mt-75 ml-1">
                                             <label for="transfer_image"
                                                 class="btn btn-sm btn-success mb-75 mr-75">Upload Bukti Transfer</label>
                                             <input type="file" id="transfer_image" name="transfer_image" hidden
@@ -86,8 +86,8 @@
                                             <input type="hidden" id="id" name="id">
                                             <p style="margin:none; white-space: no-wrap;" class="text-primary"> *Format: JPG, JPEG atau PNG. Max ukuran 2MB</p>
                                             <p style="margin:none; white-space: no-wrap;" class="text-primary"> *Pembayaran PNBP dapat dilakukan melalui transfer ke rekening BRI 024501001579307 a.n. RPL 030 PTUN Yogyakarta </p>
-                                    </div>
-                                </div>                        <!-- header media -->
+                                    </div> --}}
+                            {{-- </div>                  --}}
                     </div>
                 </div>
                 <div class="modal-footer">
