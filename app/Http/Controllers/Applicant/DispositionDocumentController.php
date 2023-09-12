@@ -212,69 +212,41 @@ class DispositionDocumentController extends Controller
 
         $document = Document::where('id', $data->document_id);
 
-        $trx_check = DocumentRequirement::select('id as doc_req_id','requirement_value', 'type')
-        ->where('document_id', $data->document_id)
-        ->where('type', 'Bukti Transfer PNBP')
-        ->whereNull('deleted_at')
-        ->first();
+        if (
+            $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
+            Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
+            Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
+        ) {
+            $document->update([
+                'status' => "Menunggu Konfirmasi Admin"
+            ]);
 
+            $admin = Admin::where('role', 'Persuratan')->get();
+            foreach ($admin as $a) {
+                $adm = User::where('id', $a->user_id)->first();
+                $adm->notify(new NewLetter('done', $document->first()->id, $adm, 'done'));
+            }
 
-        $category = Document::select('document_categories.name as category')
-            ->leftJoin('document_categories', 'document_categories.id', 'documents.document_category_id')
-            ->where('documents.id', $data->document_id)
-            ->first();
+            $super = Admin::where('role', null)->first();
+            $superUser = User::where('id', $super->user_id)->first();
+            $superUser->notify(new NewLetter('done', $document->first()->id, $superUser, 'done'));
 
-            // if (
-            // $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
-            // Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
-            // Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
-            // ) {
-
-            //     $status = null;
-
-            // if(($trx_check == null && $category = 'Permohonan Surat Keterangan BHT') ||
-            //     ($trx_check == null && $category = 'Salinan Putusan') ||
-            //     ($trx_check == null && $category = 'Surat Keterangan Bebas Perkara')){
-            //     $status = "Belum Bayar";
-            // } else {
-            // $status = "Diproses";
-            // }
-                    // dd($status);
-
-            // $document->update([
-            //     'status' => $status
-            // ]);
-
-            // $appl = Applicant::where('id', $document->first()->applicant_id)->first();
-
-            // $users = User::where('id', $appl->user_id)->first();
-            // $users->notify(new NewLetter('done', $document->first()->id, $users, 'done'));
-
-            // $admin = User::where('category', 'admin')->get();
-            // foreach ($admin as $a) {
-            //     $a->notify(new NewLetter('done', $document->first()->id, $a, 'done'));
-            // }
-        // }
-
+        }
 
         $users = User::where('title', $request->role)->first();
         if ($users) {
             $users->notify(new NewLetter('disposition', $id, $users, 'disposition'));
         }
 
-        $super = Admin::where('role', null)->first();
-        $superuser = User::where('id', $super->user_id)->first();
-        if($superuser){
-            $superuser->notify(new NewLetter('disposition', $id, $superuser, 'disposition'));
+        $admin = Admin::where('role', 'Persuratan')->get();
+        foreach ($admin as $a) {
+            $adm = User::where('id', $a->user_id)->first();
+            $adm->notify(new NewLetter('disposition', $document->first()->id, $adm, 'disposition'));
         }
 
-        $admin = Admin::where('role', 'Persuratan')->get();
-        if($admin){
-            foreach ($admin as $a) {
-                $user_get = User::where('user_id', $a->user_id)->first();
-                $user_get->notify(new NewLetter('disposition', $id, $user_get, 'disposition'));
-            }
-        }
+        $super = Admin::where('role', null)->first();
+        $superUser = User::where('id', $super->user_id)->first();
+        $superUser->notify(new NewLetter('disposition', $document->first()->id, $superUser, 'disposition'));
 
         return redirect()->back();
     }
