@@ -197,7 +197,7 @@ class DispositionDocumentController extends Controller
             ]);
         }
 
-        $data = DispositionDocument::where($id);
+        $data = DispositionDocument::find($id);
         $data->update([
             'status' => 'Disetujui ' . Auth::user()->title,
         ]);
