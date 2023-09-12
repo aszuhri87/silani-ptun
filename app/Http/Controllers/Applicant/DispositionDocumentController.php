@@ -243,14 +243,14 @@ class DispositionDocumentController extends Controller
         if ($admin){
             foreach ($admin as $a) {
                 $adm = User::where('id', $a->user_id)->first();
-                $adm->notify(new NewLetter('disposition', $document->first()->id, $adm, 'disposition'));
+                $adm->notify(new NewLetter('disposition', $id, $adm, 'disposition'));
             }
         }
 
         $super = Admin::where('role', null)->first();
         if($super){
             $superUser = User::where('id', $super->user_id)->first();
-            $superUser->notify(new NewLetter('disposition', $document->first()->id, $superUser, 'disposition'));
+            $superUser->notify(new NewLetter('disposition', $id, $superUser, 'disposition'));
         }
 
         return redirect()->back();
