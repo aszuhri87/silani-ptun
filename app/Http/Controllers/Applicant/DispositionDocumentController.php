@@ -268,10 +268,11 @@ class DispositionDocumentController extends Controller
             $superuser->notify(new NewLetter('disposition', $id, $superuser, 'disposition'));
         }
 
-        $admin = User::where('category', 'admin')->get();
+        $admin = Admin::where('role', 'Persuratan')->get();
         if($admin){
             foreach ($admin as $a) {
-                $a->notify(new NewLetter('disposition', $id, $a, 'disposition'));
+                $user_get = User::where('user_id', $a->user_id)->first();
+                $user_get->notify(new NewLetter('disposition', $id, $user_get, 'disposition'));
             }
         }
 
