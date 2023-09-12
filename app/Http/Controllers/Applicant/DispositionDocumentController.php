@@ -183,7 +183,7 @@ class DispositionDocumentController extends Controller
     public function update_disposition(Request $request, $id)
     {
         $check = DispositionUser::where('role', $request->role)->where('disposition_document_id', $id);
-        ;
+
 
         if ($check->first()) {
             $check->update([
@@ -197,7 +197,7 @@ class DispositionDocumentController extends Controller
             ]);
         }
 
-        $data = DispositionDocument::find($id);
+        $data = DispositionDocument::where($id);
         $data->update([
             'status' => 'Disetujui ' . Auth::user()->title,
         ]);
