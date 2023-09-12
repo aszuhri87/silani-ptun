@@ -136,17 +136,17 @@ class AcceptedController extends Controller
             ->whereNull('documents.deleted_at')
             ->first();
 
-        $transfer_img = DocumentRequirement::where('document_id', $id)->where('type', 'Bukti Transfer PNBP')->first();
+        $surat_balasan = DocumentRequirement::where('document_id', $id)->where('type', 'Surat Balasan')->first();
 
         $img = null;
 
-        if($transfer_img == null){
+        if($surat_balasan == null){
             $img = null;
         } else {
-            $img = $transfer_img->requirement_value;
+            $img = $surat_balasan->requirement_value;
         }
 
-        $data->transfer_img = $img;
+        $data->surat_balasan = $img;
 
         return Response::json($data);
     }

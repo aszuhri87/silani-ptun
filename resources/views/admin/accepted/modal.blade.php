@@ -15,7 +15,8 @@
                     <!-- Basic -->
                     <div class="col-md-12">
 
-                        <form id="form-doc-accepted" name="form-doc-accepted">
+                        <form id="form-doc-accepted" name="form-doc-accepted" enctype="multipart/form-data">
+                            <div class="form-method"></div>
                             <div class="row">
                                 <div class="col-3">
                                     <label for="name">Nama</label>
@@ -70,16 +71,19 @@
 
                                         </div>
                                     </div>
-                                    <div class="transfer-div">
-                                        <div class="media m-1">
-                                            <a href="javascript:void(0);" class="mr-25">
-                                                <div class="thumbnail">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
 
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="surat_balasan">Upload Surat Balasan</label>
+                                    <div class="input-group mb-2" id="surat_balasan">
+                                        <input type="file" name="uploaded_file" id="uploaded_file" class="dropify"
+                                        accept=".pdf" data-allowed-file-extensions="pdf"
+                                        data-max-file-size-preview="5M">
+                                    <label style="font-size: 8pt;">*Format harus pdf</label>
+                                    </div>
+                                </div>
                             </div>
 
                             <label for="status_edit" id="description" class="form-label">Ubah Status</label>
@@ -93,6 +97,11 @@
                                     <input type="radio" id="status_edit2" name="status_edit" class="form-check-input"
                                         value="Ditolak">
                                     <label class="form-check-label" for="status_edit2">Ditolak</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="status_edit2" name="status_edit" class="form-check-input"
+                                        value="Diterima">
+                                    <label class="form-check-label" for="status_edit3">Diterima</label>
                                 </div>
                                 <div class="form-check form-check-inline confirm_transfer">
                                 </div>

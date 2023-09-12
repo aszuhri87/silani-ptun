@@ -57,7 +57,6 @@
                                             id="status" name="status"></h4>
                                     </div>
 
-                                    {{-- <label for="link_pdf"></label> --}}
                                     <div id="link_pdf"></div>
 
                                 </div>
@@ -68,6 +67,9 @@
                                     <textarea data-length="50" class="form-control char-textarea" id="ket" name="ket" rows="4"
                                         placeholder="" readonly></textarea>
                                 </div>
+                            </div>
+                            <div id="surat_balasan">
+
                             </div>
                                 {{-- <div class="transfer-div">
                                     <div class="media">

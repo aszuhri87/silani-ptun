@@ -178,6 +178,31 @@ class AcceptedController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $file_name = null;
+
+            if ($request->uploaded_file) {
+                $file = $request->file('uploaded_file');
+                $file_name = date('Y-m-d_s') . '_surat_balasan.pdf';
+                $file->move(public_path() . '/files/', $file_name);
+            }
+
+            $check = DocumentRequirement::where('document_id', $id)->where('type', '=', 'Surat Balasan')->first();
+
+            if ($check){
+                $reply = DocumentRequirement::where('document_id', $id)->where('type', '=', 'Surat Balasan');
+                $reply->update([
+                    'requirement_value' => $file_name,
+                    'document_id' => $id,
+                    'type' => 'Surat Balasan'
+                ]);
+            } else {
+                DocumentRequirement::create([
+                    'requirement_value' => $file_name,
+                    'document_id' => $id,
+                    'type' => 'Surat Balasan'
+                ]);
+            }
+
             $data = Document::find($id);
             $data->update([
                 'status' => $request->status_edit ? $request->status_edit : $data->status,
@@ -225,4 +250,6 @@ class AcceptedController extends Controller
             ], 500);
         }
     }
+
+
 }

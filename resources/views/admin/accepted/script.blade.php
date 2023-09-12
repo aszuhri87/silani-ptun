@@ -3,6 +3,10 @@
         $(document).ready(function() {
             formSubmit();
             initAction();
+
+            $(document).ready(function(){
+                $('.dropify').dropify();
+            })
         });
 
         const initAction = () => {
@@ -32,7 +36,9 @@
                 var dt = DoneTable.table().row($(this).parents('tr')).data();
                 $('#form-doc-accepted').trigger("reset");
                 $('#form-doc-accepted').attr('action', $(this).attr('href'));
-                $('#form-doc-accepted').attr('method','PUT');
+                $('#form-doc-accepted').attr('method','POST');
+                $('.form-method').html(`{{ method_field('put') }}`);
+                $('#form-doc-accepted').attr('enctype', 'multipart/form-data')
                 $('div#doc_file').html("");
 
                 $.get(url, function(data){
@@ -51,13 +57,13 @@
                     //     $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     // }
 
-                    if(data.status == "Menunggu Konfirmasi Pembayaran"){
-                        $('.confirm_transfer').append(`
-                                <input type="radio" id="status_edit3" name="status_edit" class="form-check-input"
-                                    value="Diterima">
-                                <label class="form-check-label" for="status_edit3">Konfirmasi Pembayaran dan Terima</label>
-                        `);
-                    }
+                    // if(data.status == "Menunggu Konfirmasi Pembayaran"){
+                    //     $('.confirm_transfer').append(`
+                    //             <input type="radio" id="status_edit3" name="status_edit" class="form-check-input"
+                    //                 value="Diterima">
+                    //             <label class="form-check-label" for="status_edit3">Konfirmasi Pembayaran dan Terima</label>
+                    //     `);
+                    // }
 
                     for (i in data.doc_req){
                         $('div#doc_file').append(`
@@ -134,11 +140,15 @@
         formSubmit = () => {
             $('#form-doc-accepted').submit(function(event){
                 event.preventDefault();
+                var formData = new FormData(this);
 
                 $.ajax({
                     url: $(this).attr('action'),
                     type: $(this).attr('method'),
-                    data: $(this).serialize(),
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
                 })
                 .done(function(res, xhr, meta) {
                     toastr.success(res.message, 'Success')

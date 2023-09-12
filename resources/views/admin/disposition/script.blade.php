@@ -292,8 +292,6 @@
                         }
                     }
 
-                    console.log(data.data);
-
                     for (i in data.data.document_file){
                         $('div#doc_file').append(`
                             <label for="basicadd`+i+`">`+data.data.document_file[i].type+`</label>

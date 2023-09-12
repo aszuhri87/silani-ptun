@@ -38,13 +38,13 @@
                         $('.transfer-div').remove();
                     }
 
-                    // if(data.transfer_img != null){
-                    //     $('.thumbnail').html(`
-                    //         <img src="{{ asset('/files/`+ data.transfer_img+`') }}"
-                    //             id="account-upload-img" class="rounded mr-50"
-                    //             alt="profile image" height="300px" max-width="500px"/>
-                    //     `)
-                    // }
+                    console.log(data.surat_balasan);
+
+                    if(data.surat_balasan != null){
+                        $('#surat_balasan').html(`
+                            <embed src="{{ asset('/files/`+ data.surat_balasan+`') }}" height="800px" width="100%"/>
+                        `)
+                    }
 
                     if (data.status=='Diterima') {
                         $('#form-doc-accepted').find('h4[name="status"]').html('<span class="badge badge-pill badge-light-success mr-1">'+data.status+'</span>');
