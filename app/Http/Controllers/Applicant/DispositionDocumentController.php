@@ -228,9 +228,10 @@ class DispositionDocumentController extends Controller
             }
 
             $super = Admin::where('role', null)->first();
-            $superUser = User::where('id', $super->user_id)->first();
-            $superUser->notify(new NewLetter('done', $document->first()->id, $superUser, 'done'));
-
+            if($super){
+                $superUser = User::where('id', $super->user_id)->first();
+                $superUser->notify(new NewLetter('done', $document->first()->id, $superUser, 'done'));
+            }
         }
 
         $users = User::where('title', $request->role)->first();
@@ -239,14 +240,18 @@ class DispositionDocumentController extends Controller
         }
 
         $admin = Admin::where('role', 'Persuratan')->get();
-        foreach ($admin as $a) {
-            $adm = User::where('id', $a->user_id)->first();
-            $adm->notify(new NewLetter('disposition', $document->first()->id, $adm, 'disposition'));
+        if ($admin){
+            foreach ($admin as $a) {
+                $adm = User::where('id', $a->user_id)->first();
+                $adm->notify(new NewLetter('disposition', $document->first()->id, $adm, 'disposition'));
+            }
         }
 
         $super = Admin::where('role', null)->first();
-        $superUser = User::where('id', $super->user_id)->first();
-        $superUser->notify(new NewLetter('disposition', $document->first()->id, $superUser, 'disposition'));
+        if($super){
+            $superUser = User::where('id', $super->user_id)->first();
+            $superUser->notify(new NewLetter('disposition', $document->first()->id, $superUser, 'disposition'));
+        }
 
         return redirect()->back();
     }
