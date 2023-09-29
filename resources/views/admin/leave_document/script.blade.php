@@ -323,8 +323,6 @@
                                 $('.agree-4').text('✓');
                             }
 
-                            console.log(data.data.approval[i].signature);
-
                             $('.atasan-sign').html(`
                                 <img src="{{asset('/signature/`+data.data.approval[i].signature+`')}}" alt=""
                                 style="min-height: 60px; max-height: 60px;" width="auto"

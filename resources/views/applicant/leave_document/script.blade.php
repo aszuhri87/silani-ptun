@@ -106,7 +106,7 @@
                     $('input[name="phone"]').val(data.data.phone);
                     $('input[name="working_time"]').val(data.data.working_time);
                     $('input[name="leave_long"]').val(data.data.leave_long);
-                    // console.log(data.data.approval);
+
                     if (data.data.approval[0].chief && data.data.user_id == {!! json_encode(Auth::user()->id)!!}){
                         $('select[id="select-chief"]').append(`<option value="`+ data.data.approval[0].user_id  +`">`+ data.data.approval[0].chief +`</option>`)
                     }

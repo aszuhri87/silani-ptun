@@ -228,8 +228,6 @@ class InboxController extends Controller
             ->whereNull('deleted_at')
             ->first();
 
-        // dd($data);
-
         return response()->download(public_path('/files/' . $data->requirement_value));
     }
 }

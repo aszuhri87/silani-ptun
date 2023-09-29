@@ -79,13 +79,12 @@ class ProfileController extends Controller
                 $file_name = null;
                 $action = $request->no_image;
             }
-            // dd($request->file('image'));
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $ext = $file->extension();
 
-                if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
+                if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg') {
                     $file_name = date('Y-m-d_s') . '.' . $ext;
                     $file->move(public_path() . '/files/', $file_name);
                     $action = $request->hasFile('image');

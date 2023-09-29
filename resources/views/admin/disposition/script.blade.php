@@ -202,7 +202,6 @@
 
 
                     for(let i = 0; i < disposition.length; i++){
-                        console.log(disposition[i].instruction);
                         let instruction = null;
                         if(disposition[i].instruction == null || disposition[i].instruction == "null"){
                             instruction = "";

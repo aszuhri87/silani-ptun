@@ -13,8 +13,6 @@
                 var dt = DoneTable.table().row($(this).parents('tr')).data();
                 $('#form-doc-accepted').trigger("reset");
                 $('#form-doc-accepted').attr('action', $(this).attr('href'));
-
-                // console.log($(this).attr('href'));
                 $('#form-doc-accepted').attr('method','PUT');
                 $('#form-doc-accepted').attr('enctype','multipart/form-data');
 
@@ -29,16 +27,12 @@
                     $('#form-doc-accepted').find('input[name="requirement"]').val(data.requirement);
                     $('#form-doc-accepted').find('input[name="required"]').val(data.required);
                     $('#form-doc-accepted').find('textarea[name="description"]').val(data.description);
-                    // $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
                     $('#form-doc-accepted').find('textarea[name="ket"]').val(data.notes);
-
-                    // console.log(data.document_category != "Permohonan Surat Keterangan BHT");
+                    // $('#form-doc-accepted').find('input[name="status_edit"][value=' + data.status + ']').prop('checked', true);
 
                     if (data.document_category == 'Permohonan Magang' || data.document_category == 'Permohonan Penelitian' || data.document_category == 'Permohonan Sertifikat Magang' || data.document_category == 'Lain-lain'){
                         $('.transfer-div').remove();
                     }
-
-                    console.log(data.surat_balasan);
 
                     if(data.surat_balasan != null){
                         $('#surat_balasan').html(`
@@ -69,38 +63,6 @@
                 });
                 });
             });
-
-            // $("#transfer_image").change(function() {
-            //     var img = $(this).val();
-            //     var ext = img.split('.').pop();
-            //     var size = this.files[0].size;
-            //     var limit_size = 2048;
-            //     var size_cal = size/1024;
-
-            //     var id = $('#id').val();
-
-            //     $('#form-doc-accepted').attr('action', "/applicant/done-docs/upload-transer/"+id);
-            //     $('#form-doc-accepted').attr('method','POST');
-            //     $('#form-doc-accepted').attr('enctype','multipart/form-data');
-
-
-            //     if (ext == "jpg" || ext == "jpeg" || ext == "png"){
-            //         if(size_cal > limit_size){
-            //                 Swal.fire({
-            //                             title: 'Kesalahan!',
-            //                             text: "Ukuran gambar terlalu besar, maksimal 2MB!",
-            //                         })
-            //                 } else {
-
-            //         $('#form-doc-accepted').submit();
-            //         }
-            //     } else {
-            //         Swal.fire({
-            //                 title: 'Kesalahan!',
-            //                 text: "Format gambar harus jpeg, jpeg atau png!",
-            //             })
-            //     }
-            // });
 
             $(document).on('click', '.btn-delete', function(event){
                 event.preventDefault();

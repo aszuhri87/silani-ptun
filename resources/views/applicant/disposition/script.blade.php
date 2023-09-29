@@ -168,7 +168,6 @@
 
 
                     for(let i = 0; i < disposition.length; i++){
-                        console.log(disposition[i].instruction);
                         let instruction = null;
                         if(disposition[i].instruction == null || disposition[i].instruction == "null"){
                             instruction = "";
@@ -335,10 +334,8 @@
 
                 if(data.status_user == 'setuju'){
                     $('#status_true').prop('checked', true);
-                    // $('#select-fordward').prop('disable', false);
                 } else {
                     $('#status_false').prop('checked', true);
-                    // $('#select-fordward').prop('disable', true);
                 }
 
                 if(role == 'Kasub Umum dan Keuangan' || role == 'Kasub Kepegawaian, Ortala' ||

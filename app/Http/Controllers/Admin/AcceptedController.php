@@ -170,8 +170,6 @@ class AcceptedController extends Controller
 
             $data->transfer_img = $img;
 
-            // dd($data);
-
         return Response::json($data);
     }
 
