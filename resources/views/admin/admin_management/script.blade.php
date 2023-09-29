@@ -100,7 +100,7 @@
                 .fail(function(res, error) {
                     Swal.fire({
                             title: 'Gagal!',
-                            text: "Gagal menyimpan!",
+                            text: res.responseJSON.message,
                         })
                 })
                 .always(function() { });

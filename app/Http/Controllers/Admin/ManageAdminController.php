@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Exception;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ManageAdminController extends Controller
 {
@@ -74,6 +75,17 @@ class ManageAdminController extends Controller
                 ], 500);
             }
 
+            $user_check = User::where('email', $request->email)
+            ->orWhere('username', $request->username)
+            ->whereNull('deleted_at')
+            ->first();
+
+            if($user_check){
+                return response([
+                    'message' => "Username atau email sudah digunakan gunakan!",
+                ], 500);
+            }
+
             $result = DB::transaction(function () use ($request) {
                 $user = User::create([
                     'name' => $request->name,
@@ -109,6 +121,18 @@ class ManageAdminController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+            $user_check = User::where('email', $request->email)
+            ->orWhere('username', $request->username)
+            ->whereNull('deleted_at')
+            ->first();
+
+            if($user_check){
+                return response([
+                    'message' => "Username atau email sudah digunakan gunakan!",
+                ], 500);
+            }
+
             $result = DB::transaction(function () use ($request, $id) {
                 $data = User::find($id);
                 $data->update([

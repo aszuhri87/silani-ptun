@@ -162,7 +162,7 @@
                     toastr.error(res.responseJSON.message, 'Gagal')
                     Swal.fire({
                             title: 'Gagal!',
-                            text: "Gagal menyimpan!",
+                            text: res.responseJSON.message,
                         })
                 })
                 .always(function() { });

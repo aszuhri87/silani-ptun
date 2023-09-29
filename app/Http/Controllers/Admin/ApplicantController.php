@@ -58,6 +58,17 @@ class ApplicantController extends Controller
     public function store(Request $request)
     {
         try {
+            $user_check = User::where('email', $request->email)
+            ->orWhere('username', $request->username)
+            ->whereNull('deleted_at')
+            ->first();
+
+            if($user_check){
+                return response([
+                    'message' => "Username atau email sudah digunakan gunakan!",
+                ], 500);
+            }
+
             $result = DB::transaction(function () use ($request) {
                 $user = User::create([
                     'name' => $request->name,
@@ -98,6 +109,18 @@ class ApplicantController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+            $user_check = User::where('email', $request->email)
+            ->orWhere('username', $request->username)
+            ->whereNull('deleted_at')
+            ->first();
+
+            if($user_check){
+                return response([
+                    'message' => "Username atau email sudah digunakan gunakan!",
+                ], 500);
+            }
+
             $result = DB::transaction(function () use ($request, $id) {
                 $user = User::find($id);
                 $user->update([
