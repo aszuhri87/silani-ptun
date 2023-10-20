@@ -99,7 +99,7 @@ class DispositionDocumentController extends Controller
             'uploaded_document' => $file_name,
         ]);
 
-        $user = User::where('title', $request->role)->first();
+        $user = User::where('title', $request->role)->whereNull('deleted_at')->first();
 
         $user_disposition = DispositionUser::create([
             'user_id' => $user->id,

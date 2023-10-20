@@ -212,27 +212,30 @@ class DispositionDocumentController extends Controller
 
         $document = Document::where('id', $data->document_id);
 
-
         if (
             $request->status == "setuju" && Auth::user()->title == "Kasub Umum dan Keuangan" ||
             Auth::user()->title == "Kasub Kepegawaian, Ortala" || Auth::user()->title == "Kasub Perencanaan, TI dan Pelaporan" ||
             Auth::user()->title == "Panitera Muda Hukum" || Auth::user()->title == "Panitera Muda Perkara"
             ) {
-                $document->update([
-                    'status' => "Menunggu Konfirmasi Admin"
-                ]);
+                if($document->first()){
+                    $document->update([
+                        'status' => "Menunggu Konfirmasi Admin"
+                    ]);
 
-                $admin = Admin::where('role', 'Persuratan')->get();
-                foreach ($admin as $a) {
-                    $adm = User::where('id', $a->user_id)->first();
-                    $adm->notify(new NewLetter('done', $document->first()->id, $adm, 'done'));
+                    $admin = Admin::where('role', 'Persuratan')->get();
+                    foreach ($admin as $a) {
+                        $adm = User::where('id', $a->user_id)->first();
+                        if($adm){
+                            $adm->notify(new NewLetter('done', $data->document_id, $adm, 'done'));
+                        }
+                    }
+
+                    $super = Admin::where('role', null)->first();
+                    if($super){
+                        $superUser = User::where('id', $super->user_id)->first();
+                        $superUser->notify(new NewLetter('done', $data->document_id, $superUser, 'done'));
+                    }
                 }
-
-            $super = Admin::where('role', null)->first();
-            if($super){
-                $superUser = User::where('id', $super->user_id)->first();
-                $superUser->notify(new NewLetter('done', $document->first()->id, $superUser, 'done'));
-            }
         }
 
         $users = User::where('title', $request->role)->first();

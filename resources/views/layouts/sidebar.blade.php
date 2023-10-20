@@ -75,6 +75,7 @@
 
                 @if (Auth::user()->category == 'karyawan')
                     @if (Auth::user()->title == 'Ketua' ||
+                            Auth::user()->title == 'Wakil Ketua' ||
                             Auth::user()->title == 'Sekretaris' ||
                             Auth::user()->title == 'Panitera' ||
                             Auth::user()->title == 'Panitera Muda Hukum' ||
