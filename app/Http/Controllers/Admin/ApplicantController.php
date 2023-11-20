@@ -110,16 +110,16 @@ class ApplicantController extends Controller
     {
         try {
 
-            $user_check = User::where('email', $request->email)
-            ->orWhere('username', $request->username)
-            ->whereNull('deleted_at')
-            ->first();
+            // $user_check = User::where('email', $request->email)
+            // ->orWhere('username', $request->username)
+            // ->whereNull('deleted_at')
+            // ->first();
 
-            if($user_check){
-                return response([
-                    'message' => "Username atau email sudah digunakan gunakan!",
-                ], 500);
-            }
+            // if($user_check){
+            //     return response([
+            //         'message' => "Username atau email sudah digunakan gunakan!",
+            //     ], 500);
+            // }
 
             $result = DB::transaction(function () use ($request, $id) {
                 $user = User::find($id);
