@@ -145,11 +145,15 @@ class DispositionDocumentController extends Controller
 
             $user = User::where('title', $request->role)->first();
 
-            $user_disposition = DispositionUser::create([
-                'user_id' => $user->id,
-                'disposition_document_id' => $data->id,
-                'role' => $request->role,
-            ]);
+            $user_dis = DispositionUser::where('disposition_document_id', $id)->where('role', $request->role)->first();
+
+            if(!$user_dis){
+                $user_disposition = DispositionUser::create([
+                    'user_id' => $user->id,
+                    'disposition_document_id' => $data->id,
+                    'role' => $request->role,
+                ]);
+            }
 
             if (strpos($data->status, 'Disetujui') == false) {
                 $document = Document::where('id', $data->document_id);
