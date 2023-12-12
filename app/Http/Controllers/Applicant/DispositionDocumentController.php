@@ -33,25 +33,25 @@ class DispositionDocumentController extends Controller
 
         $data = [];
 
-        foreach ($docs as $item) {
-            $user_disposition = DispositionUser::select([
-                'id as disposition_id',
-                'user_id',
-                'role',
-                'note',
-                'instruction',
-                'status as status_user',
-            ])
-                ->where('disposition_document_id', $item->id)
-                ->where('user_id', Auth::user()->id)
-                ->orWhere('role', Auth::user()->title)
-                ->whereNull('deleted_at')
-                ->orderBy('created_at', 'desc')
-                ->get();
+        // foreach ($docs as $item) {
+        //     $user_disposition = DispositionUser::select([
+        //         'id as disposition_id',
+        //         'user_id',
+        //         'role',
+        //         'note',
+        //         'instruction',
+        //         'status as status_user',
+        //     ])
+        //         ->where('disposition_document_id', $item->id)
+        //         ->where('user_id', Auth::user()->id)
+        //         ->orWhere('role', Auth::user()->title)
+        //         ->whereNull('deleted_at')
+        //         ->orderBy('created_at', 'desc')
+        //         ->get();
 
-            $item->user_disposition = $user_disposition;
-            $data[] = $item;
-        }
+        //     $item->user_disposition = $user_disposition;
+        //     $data[] = $item;
+        // }
 
         $notify = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->whereNull('read_at')->get();
         foreach ($notify as $item1) {
