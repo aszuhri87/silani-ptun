@@ -162,7 +162,6 @@ class LeaveDocumentController extends Controller
             $approver->update([
                 'note' => $request->approval_note,
                 'status' => $request->approval_status,
-                // 'signature' => $sign ? $sign : null,
                 'type' => $type,
             ]);
 
@@ -198,9 +197,6 @@ class LeaveDocumentController extends Controller
                 'leave_document_id' => $data_doc->id,
                 'user_id' => $request->chief ? $request->chief : $approver->first()->user_id,
             ]);
-
-            // $user = User::where('id', $approver->first()->user_id)->first();
-            // $user->notify(new NewLetter('leave', $id, $user, 'leave'));
         }
 
         $data = LeaveNote::where('leave_document_id', $id);
